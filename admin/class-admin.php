@@ -31,8 +31,8 @@ class Admin {
 
 	use Asset;
 
-	const NOTICE_ID 	= 'wecodeart/plugin/woocommerce';
-	const CACHE_ID 		= 'wecodeart/transient/extension/woocommerce/update';
+	const NOTICE_ID 	= 'wecodeart/plugin/woocommerce/notice';
+	const UPDATE_ID		= 'wecodeart/plugin/woocommerce/update';
 	const REPOSITORY 	= 'BicanMarianValeriu/wca-woocommerce';
 
 	/**
@@ -306,11 +306,11 @@ class Admin {
 	public static function get_github_data() {
 		$api_url	= sprintf( 'https://api.github.com/repos/%s/releases/latest', self::REPOSITORY );
 
-		if ( false === ( $response = get_transient( self::CACHE_ID ) ) ) {
+		if ( false === ( $response = get_transient( self::UPDATE_ID ) ) ) {
 			$request	= new Request( $api_url, [] );
 			$request->send( $request::METHOD_GET );
 			$response = $request->get_response_body( true );
-			set_transient( self::CACHE_ID, $response, 12 * HOUR_IN_SECONDS );
+			set_transient( self::UPDATE_ID, $response, 12 * HOUR_IN_SECONDS );
 		}
 
 		return $response;			
