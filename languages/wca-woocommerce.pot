@@ -1,9 +1,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: WCA: Contact Form 7\n"
+"Project-Id-Version: WCA: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 01:49+0000\n"
+"POT-Creation-Date: 2023-05-24 17:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,18 +13,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.8; wp-5.9\n"
-"X-Domain: wca-cf7"
+"X-Loco-Version: 2.6.4; wp-6.2.2\n"
+"X-Domain: wca-woocommerce"
 
 #: admin/class-admin.php:97
-msgid "Awesome, WCA: Contact Form 7 extension is activated!"
+msgid "Awesome, WCA: WooCommerce extension is activated!"
 msgstr ""
 
 #. Author of the plugin
+msgctxt "Bican Marian Valeriu"
 msgid "Bican Marian Valeriu"
 msgstr ""
 
-#: admin/class-admin.php:273
+#: admin/class-admin.php:268
 msgid "Give it a star on GitHub"
 msgstr ""
 
@@ -33,26 +34,28 @@ msgid "Go to Theme Options in order to setup your preferences."
 msgstr ""
 
 #. URI of the plugin
-msgid "https://github.com/BicanMarianValeriu/wca-contact-form-7"
+msgctxt "https://github.com/BicanMarianValeriu/wca-woocommerce"
+msgid "https://github.com/BicanMarianValeriu/wca-woocommerce"
 msgstr ""
 
 #. Author URI of the plugin
+msgctxt "https://www.wecodeart.com/about/"
 msgid "https://www.wecodeart.com/about/"
 msgstr ""
 
-#: admin/class-admin.php:294
+#: admin/class-admin.php:289
 msgid "Navigate to the extension settings."
 msgstr ""
 
-#: admin/class-admin.php:207
+#: admin/class-admin.php:202
 msgid "Plugin reactivated successfully."
 msgstr ""
 
-#: admin/class-admin.php:250
+#: admin/class-admin.php:245
 msgid "release page"
 msgstr ""
 
-#: admin/class-admin.php:295
+#: admin/class-admin.php:290
 msgid "Settings"
 msgstr ""
 
@@ -60,26 +63,26 @@ msgstr ""
 msgid "Show me the options!"
 msgstr ""
 
-#: admin/class-admin.php:274
+#: admin/class-admin.php:269
 msgid "Star on GitHub"
 msgstr ""
 
-#: admin/class-admin.php:206
+#: admin/class-admin.php:201
 msgid ""
 "The plugin has been updated, but could not be reactivated. Please reactivate "
 "it manually."
 msgstr ""
 
-#: includes/class-activator.php:71
-msgid "This extension requires Contact Form 7 plugin installed and active."
-msgstr ""
-
-#: includes/class-activator.php:70
+#: includes/class-activator.php:63
 msgid ""
 "This extension requires WeCodeArt Framework (or a skin) installed and active."
 msgstr ""
 
-#: admin/class-admin.php:246
+#: includes/class-activator.php:64
+msgid "This extension requires WooCommerce plugin installed and active."
+msgstr ""
+
+#: admin/class-admin.php:241
 #, php-format
 msgid ""
 "To read the change history for the latest plugin release, please go to the "
@@ -87,11 +90,10 @@ msgid ""
 msgstr ""
 
 #. Description of the plugin
-msgid ""
-"WCA Contact Form 7 extension for WeCodeArt Framework theme - assets "
-"optimization and automatic forms styling."
+msgid "WCA WooCommerce extension for WeCodeArt Framework theme."
 msgstr ""
 
 #. Name of the plugin
-msgid "WCA: Contact Form 7"
+msgctxt "WCA: WooCommerce"
+msgid "WCA: WooCommerce"
 msgstr ""

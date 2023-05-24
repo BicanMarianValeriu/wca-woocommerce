@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WCA: WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-24 17:44+0000\n"
+"PO-Revision-Date: 2023-05-24 17:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: Română\n"
+"Language: ro_RO\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 :(((n%100>19)||(( n%100==0)&&(n!"
+"=0)))? 2 : 1));\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.4; wp-6.2.2\n"
+"X-Domain: wca-woocommerce"
+
+#: admin/class-admin.php:97
+msgid "Awesome, WCA: WooCommerce extension is activated!"
+msgstr ""
+
+#. Author of the plugin
+msgctxt "Bican Marian Valeriu"
+msgid "Bican Marian Valeriu"
+msgstr "Bican Marian Valeriu"
+
+#: admin/class-admin.php:268
+msgid "Give it a star on GitHub"
+msgstr ""
+
+#: admin/class-admin.php:98
+msgid "Go to Theme Options in order to setup your preferences."
+msgstr ""
+
+#. URI of the plugin
+msgctxt "https://github.com/BicanMarianValeriu/wca-woocommerce"
+msgid "https://github.com/BicanMarianValeriu/wca-woocommerce"
+msgstr "https://github.com/BicanMarianValeriu/wca-woocommerce"
+
+#. Author URI of the plugin
+msgctxt "https://www.wecodeart.com/about/"
+msgid "https://www.wecodeart.com/about/"
+msgstr "https://www.wecodeart.com/about/"
+
+#: admin/class-admin.php:289
+msgid "Navigate to the extension settings."
+msgstr ""
+
+#: admin/class-admin.php:202
+msgid "Plugin reactivated successfully."
+msgstr ""
+
+#: admin/class-admin.php:245
+msgid "release page"
+msgstr ""
+
+#: admin/class-admin.php:290
+msgid "Settings"
+msgstr ""
+
+#: admin/class-admin.php:100
+msgid "Show me the options!"
+msgstr ""
+
+#: admin/class-admin.php:269
+msgid "Star on GitHub"
+msgstr ""
+
+#: admin/class-admin.php:201
+msgid ""
+"The plugin has been updated, but could not be reactivated. Please reactivate "
+"it manually."
+msgstr ""
+
+#: includes/class-activator.php:63
+msgid ""
+"This extension requires WeCodeArt Framework (or a skin) installed and active."
+msgstr ""
+
+#: includes/class-activator.php:64
+msgid "This extension requires WooCommerce plugin installed and active."
+msgstr ""
+
+#: admin/class-admin.php:241
+#, php-format
+msgid ""
+"To read the change history for the latest plugin release, please go to the "
+"%s."
+msgstr ""
+
+#. Description of the plugin
+msgid "WCA WooCommerce extension for WeCodeArt Framework theme."
+msgstr ""
+
+#. Name of the plugin
+msgctxt "WCA: WooCommerce"
+msgid "WCA: WooCommerce"
+msgstr "WCA: WooCommerce"
