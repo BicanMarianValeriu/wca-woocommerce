@@ -16,8 +16,6 @@ defined( 'ABSPATH' ) || exit();
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
 
-use function add_filter;
-
 /**
  * Gutenberg Product Categories block.
  */

@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit();
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
 
-use function add_action;
+use function add_filter;
 use function WeCodeArt\Functions\get_prop;
 
 /**

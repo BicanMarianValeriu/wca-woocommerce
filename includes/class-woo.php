@@ -16,7 +16,7 @@ namespace WCA\EXT;
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Integration;
-use WeCodeArt\Conditional\Traits\No_Conditionals;
+use WCA\EXT\WOO\Frontend\Condition;
 use function WeCodeArt\Functions\get_prop;
 
 /**
@@ -36,7 +36,6 @@ use function WeCodeArt\Functions\get_prop;
 class WOO implements Integration {
 
 	use Singleton;
-	use No_Conditionals;
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -74,6 +73,20 @@ class WOO implements Integration {
 	 * @var      mixed    $config    The config of the plugin.
 	 */
 	protected $config;
+
+	/**
+	 * Get Conditionals
+	 *
+	 * @return void
+	 */
+	public static function get_conditionals() {
+		wecodeart( 'conditionals' )->register( [
+			'is_woocommerce_page'		=> Condition\Page::class,
+			'is_woocommerce_archive'	=> Condition\Archive::class,
+		] );
+
+		return [ /* 'is_woocommerce_active' */ ];
+	}
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -154,7 +167,9 @@ class WOO implements Integration {
 	 * @access   private
 	 */
 	private function set_config() {
-		$this->config = wecodeart_config( 'woocommerce', [] );
+		$this->config = wp_parse_args( [
+			'options' => wecodeart_option( 'woocommerce' ),
+		], wecodeart_config( 'woocommerce', [] ) );
 	}
 
 	/**
@@ -188,10 +203,13 @@ class WOO implements Integration {
 	 */
 	private function define_public_hooks() {
 		$frontend = new WOO\Frontend( $this->get_plugin_name(), $this->get_version(), $this->get_config() );
+		$patterns = WOO\Frontend\Patterns::get_instance();
 
 		// Load Hooks
-		$this->loader->add_action( 'after_setup_theme',			$frontend, 'after_setup_theme',	20 		);
-		$this->loader->add_filter( 'woocommerce_form_field',	$frontend, 'form_field_markup',	20, 4	);
+		$this->loader->add_action( 'init',										$patterns, 'register',				20, 1 );
+		$this->loader->add_action( 'wp_enqueue_scripts',						$frontend, 'assets', 				20, 1 );
+		$this->loader->add_action( 'after_setup_theme',							$frontend, 'after_setup_theme',		20, 1 );
+		$this->loader->add_filter( 'woocommerce_form_field',					$frontend, 'form_field_markup',		20, 4 );
 		$this->loader->add_filter( 'wecodeart/filter/gutenberg/styles/core',	$frontend, 'block_inline_styles',	20, 1 );
 		$this->loader->add_filter( 'wecodeart/filter/gutenberg/restricted',		$frontend, 'restricted_blocks',		20, 1 );
 	}

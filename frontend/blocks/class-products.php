@@ -15,7 +15,6 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
-use WeCodeArt\Support\Plugins\WooCommerce;
 
 /**
  * Gutenberg Products block.

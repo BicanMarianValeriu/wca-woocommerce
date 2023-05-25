@@ -54,31 +54,14 @@ new Autoloader( 'WCA\EXT\WOO', __DIR__ . '/frontend/blocks/account' );
 new Autoloader( 'WCA\EXT\WOO', __DIR__ . '/frontend/blocks/product' );
 new Autoloader( 'WCA\EXT\WOO', __DIR__ . '/frontend/blocks/checkout' );
 
-/**
- * The code that runs during plugin activation.
- */
-function activate() {
-	Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- */
-function deactivate() {
-	Deactivator::deactivate();
-}
-
-register_activation_hook( WCA_WOO_EXT, __NAMESPACE__ . '\\activate' );
-register_deactivation_hook( WCA_WOO_EXT, __NAMESPACE__ . '\\deactivate' );
+// Activation/Deactivation Hooks
+register_activation_hook( WCA_WOO_EXT, [ Activator::class, 'run' ] );
+register_deactivation_hook( WCA_WOO_EXT, [ Deactivator::class, 'run' ] );
 
 /**
  * Hook the extension after WeCodeArt is Loaded
  */
 add_action( 'wecodeart/theme/loaded', function() {
 	wecodeart( 'integrations' )->register( 'plugin/woocommerce', __NAMESPACE__ );
-	wecodeart( 'conditionals' )->register( [
-		'is_woocommerce_page'		=> Frontend\Condition\Page::class,
-		'is_woocommerce_archive'	=> Frontend\Condition\Archive::class,
-	] );
 } );
 

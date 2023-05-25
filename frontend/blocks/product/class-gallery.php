@@ -17,6 +17,8 @@ use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
 
 use function add_filter;
+use function apply_filters;
+use function str_replace;
 
 /**
  * Gutenberg Product Gallery block.

@@ -75,6 +75,7 @@ class Frontend {
 	 */
 	public function after_setup_theme() {
 		$support = get_prop( $this->config, 'support', [] );
+
 		// Theme Support
 		foreach( $support as $feature => $value ) {
 			if( $value === 'remove' ) {
@@ -137,6 +138,19 @@ class Frontend {
 	 * @return 	void
 	 */
 	public function assets() {
+		$options = get_prop( $this->config, [ 'options' ], [] );
+
+		// By default we have our own simplified styles
+		wp_deregister_style( 'wc-blocks-style' );
+
+		if( get_prop( $options, 'remove_style' ) ) {
+			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+		}
+
+		if( get_prop( $options, 'remove_select2_style' ) ) {
+			wp_deregister_style( 'select2' );
+		}
+		
 		$path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
 		$name = wecodeart_if( 'is_dev_mode' ) ? 'frontend' : 'frontend.min';
 
@@ -149,7 +163,7 @@ class Frontend {
 		wp_enqueue_script(
 			$this->make_handle(),
 			sprintf( '%s/assets/%s/js/%s.js', untrailingslashit( WCA_WOO_EXT_URL ), $path, $name ),
-			[ 'contact-form-7' ],
+			[ 'wecodeart-support-assets' ],
 			$this->version,
 			true
 		);

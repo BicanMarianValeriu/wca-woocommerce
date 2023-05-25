@@ -109,7 +109,9 @@ const {
     Placeholder,
     DropdownMenu,
     ToggleControl,
-    SelectControl,
+    Card,
+    CardHeader,
+    CardBody,
     Dashicon,
     Spinner,
     Tooltip,
@@ -162,7 +164,54 @@ const Options = props => {
     return createNotice('success', __('Settings saved.', 'wca-woocommerce'));
   };
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Settings"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Card, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardHeader, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
+    className: "text-uppercase fw-medium m-0"
+  }, __('Optimization', 'wca-woocommerce'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+    label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, __('Remove CSS?', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(DropdownMenu, {
+      label: __('More Information', 'wca-woocommerce'),
+      icon: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Dashicon, {
+        icon: "info",
+        style: {
+          color: 'var(--wca--header--color)'
+        }
+      }),
+      toggleProps: {
+        style: {
+          height: 'initial',
+          minWidth: 'initial',
+          padding: 0
+        }
+      },
+      popoverProps: {
+        focusOnMount: 'container',
+        position: 'bottom',
+        noArrow: false
+      }
+    }, () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      style: {
+        minWidth: 250,
+        margin: 0
+      }
+    }, __('These styles primarily cater to legacy themes, whereas WooCommerce blocks now have their own styles.', 'wca-woocommerce'))))),
+    help: __('Remove default WooCommerce stylesheets.', 'wca-woocommerce'),
+    checked: formData['remove_style'],
+    onChange: value => setFormData({ ...formData,
+      remove_style: value
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
+    label: __('Replace Select2 CSS?', 'wca-woocommerce'),
+    help: __('Replace Select2 stylesheet with an optimized version for our theme.', 'wca-woocommerce'),
+    checked: formData['replace_select2_style'],
+    onChange: value => setFormData({ ...formData,
+      replace_select2_style: value
+    })
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", {
     style: {
       margin: '20px 0'
     }

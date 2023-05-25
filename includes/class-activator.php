@@ -11,6 +11,7 @@
 
 namespace WCA\EXT\WOO;
 
+
 use WeCodeArt\Admin\Notifications;
 use WeCodeArt\Admin\Notifications\Notification;
 
@@ -33,7 +34,7 @@ class Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function run() {
 		$errors = self::if_compatible();
 
 		if ( count( $errors ) ) {
@@ -43,7 +44,8 @@ class Activator {
 
 		wecodeart_option( [
 			'woocommerce' => [
-				'clean_assets'	=> true,
+				'remove_style'			=> true,
+				'replace_select2_style' => true
 			]
 		] );
 	}
