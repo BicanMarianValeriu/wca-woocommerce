@@ -1,3 +1,7 @@
+@import "~animate.css/source/fading_entrances/fadeIn";
+@import "~animate.css/source/sliding_exits/slideOutLeft";
+
+/* Global */
 .woocommerce-js,
 .woocommerce-page {
     --wc--star: url( "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'><path fill='gray' d='M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z'></path></svg>"); 
@@ -90,4 +94,155 @@
     .added_to_cart {
         display: none
     }
+}
+
+/* Layout */
+.wc-block-components-sidebar-layout {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(2 * var(--wp--custom--gutter));
+}
+
+.wc-block-components-main,
+.wc-block-components-sidebar {
+    flex: 1 0 100%;
+    width: 100%;
+
+    .is-large & {
+        flex: 1 0 0%;
+    }
+}
+
+.wc-block-components-sidebar {
+    .is-large & {
+        position: sticky;
+        top: var(--wp--header-height, 80px);
+        align-self: flex-start;
+        flex: 0 0 30%
+    }
+}
+
+/* Snackbar */
+.components-snackbar-list {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+
+    &__notice-container {
+        background-color: var(--wp--gray-900);
+        color: var(--wp--preset--color--white);
+        padding: var(--wp--custom--gutter);
+    }
+}
+
+/* Drawer */
+.wc-block-components-drawer {
+    --wp--drawer--width: 100%;
+    position: fixed;
+    background: var(--wp--preset--color--white);
+    display: block;
+    height: 100%;
+    left: 100%;
+    right: 0;
+    top: 0;
+    transform: translateX(calc(var(--wp--drawer--width) * -1));
+    width: var(--wp--drawer--width);
+    
+    @media only screen and (min-width: 480px) {
+        --wp--drawer--width: 480px;
+    }
+
+    &__screen-overlay {
+        --wp--animation--duration: .3s;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        background-color: rgba(95,95,95,.35);
+        transition: opacity var(--wp--animation--duration);
+        opacity: 1;
+        z-index: 9999;
+
+        &--with-slide-in {
+            animation-duration: var(--wp--animation--duration);
+            animation-name: fadeIn;
+
+            .wc-block-components-drawer {
+                animation-duration: var(--wp--animation--duration);
+                animation-name: slideOutLeft;
+            }
+        }
+        
+        &--with-slide-out {
+            .wc-block-components-drawer {
+                transition: transform var(--wp--animation--duration) ease-in-out;
+            }
+        }
+
+        &--is-hidden {
+            pointer-events: none;
+            opacity: 0;
+
+            .wc-block-components-drawer  {
+                transform: translateX(0);
+            }
+        }
+    }
+}
+
+/* Panel */
+.wc-block-components-panel {
+    position: relative;
+
+    h2 {
+        margin: 0;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        line-height: inherit;
+        text-decoration: inherit;
+        text-transform: inherit;
+    }
+
+    &__button {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        line-height: inherit;
+        text-decoration: inherit;
+        text-transform: inherit;
+
+        svg {
+            position: absolute;
+            right: 0;
+        }
+    }
+
+    &__content {
+        margin-top: .5rem;
+    }
+}
+
+/* Mask */
+.wc-block-components-loading-mask {
+    position: relative;
+    pointer-events: none;
+    opacity: .5;
+
+    @include loader();
 }

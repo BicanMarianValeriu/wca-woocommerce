@@ -210,7 +210,7 @@ class WOO implements Integration {
 
 		// Load Hooks
 		$this->loader->add_action( 'init',										$patterns, 'register',				20, 1 );
-		$this->loader->add_action( 'wp_enqueue_scripts',						$frontend, 'assets', 				20, 1 );
+		$this->loader->add_action( 'init',										$frontend, 'assets', 				20, 1 );
 		$this->loader->add_action( 'after_setup_theme',							$frontend, 'after_setup_theme',		20, 1 );
 		$this->loader->add_filter( 'get_block_templates',						$template, 'get_block_templates',	20, 3 );
 		$this->loader->add_filter( 'woocommerce_form_field',					$frontend, 'form_field_markup',		20, 4 );

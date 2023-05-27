@@ -75,12 +75,6 @@ class Frontend {
 	 */
 	public function after_setup_theme() {
 		$support = get_prop( $this->config, [ 'support' ], [] );
-		$options = get_prop( $this->config, [ 'options' ], [] );
-		
-		// Legacy styles
-		if( get_prop( $options, 'remove_style' ) ) {
-			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-		}
 
 		// Theme Support
 		foreach( $support as $feature => $value ) {
@@ -149,37 +143,41 @@ class Frontend {
 		$options 	= get_prop( $this->config, [ 'options' ], [] );
 		$plugin 	= untrailingslashit( WCA_WOO_EXT_URL );
 		$folder		= wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
-		$frontend	= wecodeart_if( 'is_dev_mode' ) ? 'frontend' : 'frontend.min';
 
 		// By default we have our own simplified styles
 		wp_deregister_style( 'wc-blocks-style' );
 
+		// Legacy styles
+		if( get_prop( $options, 'remove_style' ) ) {
+			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+		}
+
 		// Select2 styles
 		if( get_prop( $options, 'replace_select2_style' ) ) {
 			$select2	= wecodeart_if( 'is_dev_mode' ) ? 'select2' : 'select2.min';
-			
-			wp_deregister_style( 'select2' );
-			wp_register_style(
-				'select2',
-				sprintf( '%s/assets/%s/css/%s.css', $plugin, $folder, $select2 ),
-				[],
-				$this->version
-			);
+
+			wecodeart( 'assets' )->add_style( 'select2', [
+				'path' 		=> sprintf( '%s/assets/%s/css/%s.css', $plugin, $folder, $select2 ),
+				'load'  	=> false,
+				'version' 	=> $this->version,
+			] );
 		}
 
-		wp_enqueue_style(
-			$this->make_handle(),
-			sprintf( '%s/assets/%s/css/%s.css', $plugin, $folder, $frontend ),
-			$this->version,
-		);
+		// Frontend assets
+		$frontend	= wecodeart_if( 'is_dev_mode' ) ? 'frontend' : 'frontend.min';
 
-		wp_enqueue_script(
-			$this->make_handle(),
-			sprintf( '%s/assets/%s/js/%s.js', $plugin, $folder, $frontend ),
-			[ 'wecodeart-support-assets' ],
-			$this->version,
-			true
-		);
+		wecodeart( 'assets' )->add_style( $this->make_handle(), [
+			'path' 		=> sprintf( '%s/assets/%s/css/%s.css', $plugin, $folder, $frontend ),
+			'load'  	=> fn() => wecodeart_if( 'is_woocommerce_page' ),
+			'version' 	=> $this->version,
+		] );
+
+		wecodeart( 'assets' )->add_script( $this->make_handle(), [
+			'path' 		=> sprintf( '%s/assets/%s/js/%s.js', $plugin, $folder, $frontend ),
+			'deps'		=> [ 'wecodeart-support-assets' ],
+			'load'  	=> fn() => wecodeart_if( 'is_woocommerce_page' ),
+			'version' 	=> $this->version,
+		] );
 	}
 
 	/**

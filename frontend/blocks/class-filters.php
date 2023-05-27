@@ -44,9 +44,6 @@ class Filters extends Dynamic {
 	 */
 	public function styles(): string {
 		return '
-			.wc-blocks-filter-wrapper {
-				margin-bottom: 2.5rem;	
-			}
 			.wc-blocks-filter-wrapper :where(h1, h2, h3, h4, h5, h6) {
 				padding-bottom: 1rem;
 				margin-bottom: 1rem;
@@ -61,7 +58,7 @@ class Filters extends Dynamic {
 			.wc-block-components-filter-reset-button,
 			.wc-block-active-filters__clear-all {
 				font-size: .65rem;
-				font-weight: bold;
+				font-weight: 500;
 				text-transform: uppercase;
 				background-color: var(--wp--preset--color--accent);
 				border: var(--wc--input--border);

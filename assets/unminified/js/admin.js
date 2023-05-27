@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/components/MissingTemplates.js":
-/*!***********************************************!*\
-  !*** ./src/js/components/MissingTemplates.js ***!
-  \***********************************************/
+/***/ "./src/js/admin/components/MissingTemplates.js":
+/*!*****************************************************!*\
+  !*** ./src/js/admin/components/MissingTemplates.js ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -108,17 +108,17 @@ const MissingTemplates = _ref => {
 
 /***/ }),
 
-/***/ "./src/js/components/index.js":
-/*!************************************!*\
-  !*** ./src/js/components/index.js ***!
-  \************************************/
+/***/ "./src/js/admin/components/index.js":
+/*!******************************************!*\
+  !*** ./src/js/admin/components/index.js ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MissingTemplates": () => (/* reexport safe */ _MissingTemplates__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _MissingTemplates__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MissingTemplates */ "./src/js/components/MissingTemplates.js");
+/* harmony import */ var _MissingTemplates__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MissingTemplates */ "./src/js/admin/components/MissingTemplates.js");
 
 
 /***/ }),
@@ -204,13 +204,13 @@ module.exports = window["wp"]["element"];
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*************************!*\
-  !*** ./src/js/admin.js ***!
-  \*************************/
+/*!*******************************!*\
+  !*** ./src/js/admin/index.js ***!
+  \*******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./src/js/components/index.js");
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./src/js/admin/components/index.js");
 
 
 /**

@@ -89,7 +89,7 @@ wecodeart( 'styles' )->Utilities->load( [
 
 	<div class="wp-block-button"><?php
 
-		$classes = [ 'woocommerce-form-login__submit', 'wp-block-button__link', 'has-primary-background-color' ];
+		$classes = [ 'woocommerce-form-login__submit', 'wp-block-button__link', 'has-success-background-color' ];
 		$classes[] = wc_wp_theme_get_element_class_name( 'button' );
 
 		wecodeart_input( 'button', [

@@ -42,9 +42,9 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 <?php endif; ?>
 
-		<div class="has-secondary-background-color p-3 p-md-5 rounded">
-			<span class="has-small-font-size has-dark-color text-uppercase opacity-50"><?php esc_html_e( 'Already a member?', 'woocommerce' ); ?></span>
-			<h2 class="has-dark-color fw-700 mt-0"><?php esc_html_e( 'Login', 'woocommerce' ); ?></h2>
+		<div class="has-primary-background-color p-3 p-md-5 rounded">
+			<span class="has-small-font-size has-white-color text-uppercase opacity-50"><?php esc_html_e( 'Already a member?', 'woocommerce' ); ?></span>
+			<h2 class="has-white-color fw-700 mt-0"><?php esc_html_e( 'Login', 'woocommerce' ); ?></h2>
 
 			<?php
 

@@ -104,3 +104,35 @@
         color: var(--wp--preset--color--success);
     } 
 }
+
+// Fields
+#billing_state_field,
+#billing_country_field {
+    label {
+        margin-bottom: .5rem;
+    }
+}
+
+// Misc
+.list-group {
+    --bs-list-group-border-color: var(--wp--preset--color--accent);
+}
+
+.card {
+    border: 1px solid var(--wp--preset--color--accent);
+
+    &-header,
+    &-body,
+    &-footer {
+        padding: .75rem 1rem;
+    }
+
+    &-header {
+        border-bottom: inherit;
+    }
+
+    &-footer {
+        background-color: var(--wp--preset--color--accent);
+        border-top: inherit;
+    }
+}

@@ -5,7 +5,7 @@
  * @version:	1.0.0
  */
 
-import './../scss/index.scss';
+import './../../scss/index.scss';
 
 export default (function (wecodeart) {
 	wecodeart.routes = {

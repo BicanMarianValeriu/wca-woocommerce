@@ -55,7 +55,7 @@ $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 			
 				wp_nonce_field( 'woocommerce-add-payment-method', 'woocommerce-add-payment-method-nonce' );
 
-				$classes = [ 'wp-block-button__link', 'has-secondary-background-color', 'has-dark-color' ];
+				$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color' ];
 				$classes[] = wc_wp_theme_get_element_class_name( 'button' );
 
 				wecodeart_input( 'button', [
