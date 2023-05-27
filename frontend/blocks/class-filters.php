@@ -60,16 +60,19 @@ class Filters extends Dynamic {
 			}
 			.wc-block-components-filter-reset-button,
 			.wc-block-active-filters__clear-all {
-				font-size: var(--wp--preset--font-size--small);
+				font-size: .65rem;
 				font-weight: bold;
 				text-transform: uppercase;
 				background-color: var(--wp--preset--color--accent);
 				border: var(--wc--input--border);
 				border-radius: var(--wc--input--radius);
-				color: var(--wp--gray-800);
+				color: var(--wp--gray-600);
+				appearance: none;
+				cursor: pointer;
 			}
-			:where(.wc-block-components-filter-reset-button, .wc-block-active-filters__clear-all):is(:hover,:focus) {
+			:where(.wc-block-components-filter-reset-button,.wc-block-active-filters__clear-all):is(:hover,:focus) {
 				border-color: var(--wp--preset--color--primary);
+				color: var(--wp--preset--color--primary);
 			}
 			.wc-block-product-categories-list-item-count,
 			.wc-filter-element-label-list-count {
@@ -290,15 +293,27 @@ class ActiveFilters extends Dynamic {
 			}
 		';
 
-		$inline .= Frontend::get_loading_css( '.wc-block-active-filters--loading :where(.show-loading-state-list,.show-loading-state-chips)' );
+		$inline .= Frontend::get_loading_css(
+			'.wc-block-active-filters--loading :where(.show-loading-state-list,.show-loading-state-chips)'
+		);
 		
 		$inline .= '
 			.wc-block-active-filters--loading .show-loading-state-chips {
 				display: inline-block;
 				margin-right: 1rem;
 			}
+			.wc-block-active-filters--loading .show-loading-state-chips:first-of-type {
+				margin-top: 0;
+			}
 			.wc-block-active-filters--loading .show-loading-state-chips:not(:first-of-type) {
 				max-width: 150px;
+			}
+			.wc-block-active-filters__list--chips {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.wc-block-active-filters__list--chips .wc-block-active-filters__list-item-type {
+				display: none;
 			}
 			.wc-block-active-filters__list,
 			.wc-block-active-filters__list ul {
@@ -317,11 +332,19 @@ class ActiveFilters extends Dynamic {
 			.wc-block-active-filters__list-item-type {
 				display: block;
 				margin-right: 0.5rem;
-				margin-bottom: 5px;
 			}
 			.wc-block-active-filters__list-item-remove {
 				margin-right: 1rem;
+				background-color: var(--wp--preset--color--accent);
 				color: var(--wp--preset--color--danger);
+				border: var(--wp--input--border);
+				border-radius: var(--wp--input--border-radius);
+				appearance: none;
+				cursor: pointer;
+			}
+			.wc-block-active-filters__list-item-remove:is(:hover,:focus) {
+				background-color: var(--wp--preset--color--danger);
+				color: white;
 			}
 			.wc-block-active-filters__clear-all {
 				float: right;

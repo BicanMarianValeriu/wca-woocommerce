@@ -16,20 +16,21 @@ const {
     components: {
         Placeholder,
         DropdownMenu,
+        RangeControl,
         ToggleControl,
         Card,
         CardHeader,
         CardBody,
         Dashicon,
         Spinner,
-        Tooltip,
         Button,
     },
     element: {
         useState,
-        useEffect
     }
 } = wp;
+
+import { MissingTemplates } from './components';
 
 addFilter('wecodeart.admin.tabs.plugins', 'wecodeart/woocommerce/admin/panel', optionsPanel);
 function optionsPanel(panels) {
@@ -55,15 +56,20 @@ const Options = (props) => {
     const apiOptions = (({ woocommerce }) => (woocommerce))(settings);
     const [formData, setFormData] = useState(apiOptions);
 
-    const handleNotice = () => {
+    const handleNotice = (message = '') => {
         setLoading(false);
 
-        return createNotice('success', __('Settings saved.', 'wca-woocommerce'));
+        if (!message) {
+            message = __('Settings saved.', 'wca-woocommerce')
+        }
+
+        return createNotice('success', message);
     };
 
     return (
         <>
-            <Card>
+            <MissingTemplates {...{ loading, setLoading, handleNotice }} />
+            <Card className="border shadow-none">
                 <CardHeader>
                     <h5 className="text-uppercase fw-medium m-0">{__('Optimization', 'wca-woocommerce')}</h5>
                 </CardHeader>
@@ -71,7 +77,7 @@ const Options = (props) => {
                     <ToggleControl
                         label={<>
                             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <span>{__('Remove CSS?', 'wca-woocommerce')}</span>
+                                <span>{__('Remove legacy CSS?', 'wca-woocommerce')}</span>
                                 <DropdownMenu
                                     label={__('More Information', 'wca-woocommerce')}
                                     icon={<Dashicon icon="info" style={{ color: 'var(--wca--header--color)' }} />}
@@ -96,7 +102,7 @@ const Options = (props) => {
                                 </DropdownMenu>
                             </span>
                         </>}
-                        help={__('Remove default WooCommerce stylesheets.', 'wca-woocommerce')}
+                        help={sprintf(__('Default WooCommerce style will be %s.', 'wca-woocommerce'), !formData['remove_style'] ? __('loaded', 'wca-woocommerce') : __('removed', 'wca-woocommerce'))}
                         checked={formData['remove_style']}
                         onChange={value => setFormData({ ...formData, remove_style: value })}
                     />
@@ -108,6 +114,58 @@ const Options = (props) => {
                     />
                 </CardBody>
             </Card>
+            <Card className="border border-top-0 shadow-none">
+                <CardHeader>
+                    <h5 className="text-uppercase fw-medium m-0">{__('Functionality', 'wca-woocommerce')}</h5>
+                </CardHeader>
+                <CardBody>
+                    <ToggleControl
+                        label={<>
+                            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <span>{__('Enable product price extras?', 'wca-woocommerce')}</span>
+                                <DropdownMenu
+                                    label={__('More Information', 'wca-woocommerce')}
+                                    icon={<Dashicon icon="info" style={{ color: 'var(--wca--header--color)' }} />}
+                                    toggleProps={{
+                                        style: {
+                                            height: 'initial',
+                                            minWidth: 'initial',
+                                            padding: 0
+                                        }
+                                    }}
+                                    popoverProps={{
+                                        focusOnMount: 'container',
+                                        position: 'bottom',
+                                        noArrow: false,
+                                    }}
+                                >
+                                    {() => (
+                                        <p style={{ minWidth: 250, margin: 0 }}>
+                                            {__('A new field has been introduced in the product administration page for both normal and variation products.', 'wca-woocommerce')}
+                                        </p>
+                                    )}
+                                </DropdownMenu>
+                            </span>
+                        </>}
+                        help={__('Enhance the Product Price block by integrating a tooltip that showcases the recommended price set by the producer.', 'wca-woocommerce')}
+                        checked={formData['product_price_extra']}
+                        onChange={value => setFormData({ ...formData, product_price_extra: value })}
+                    />
+                    <ToggleControl
+                        label={__('Enable product rating extras?', 'wca-woocommerce')}
+                        help={__('Enhance the Product Rating block by incorporating enhanced and visually captivating rating information.', 'wca-woocommerce')}
+                        checked={formData['product_rating_extra']}
+                        onChange={value => setFormData({ ...formData, product_rating_extra: value })}
+                    />
+                    <RangeControl
+                        label={__('Product gallery columns', 'wca-woocommerce')}
+                        value={formData['product_gallery_cols']}
+                        onChange={value => setFormData({ ...formData, product_gallery_cols: value })}
+                        min={3}
+                        max={8}
+                    />
+                </CardBody>
+            </Card>
             <hr style={{ margin: '20px 0' }} />
             <Button
                 className="button"
@@ -116,7 +174,7 @@ const Options = (props) => {
                 icon={loading && <Spinner />}
                 onClick={() => {
                     setLoading(true);
-                    saveSettings({ woocommerce: formData }, handleNotice);
+                    saveSettings({ woocommerce: formData }, () => handleNotice());
                 }}
                 {...{ disabled: loading }}
             >

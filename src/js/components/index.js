@@ -1,0 +1,1 @@
+export { default as MissingTemplates } from './MissingTemplates';

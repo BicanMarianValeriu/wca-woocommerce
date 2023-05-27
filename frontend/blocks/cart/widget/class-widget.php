@@ -89,10 +89,12 @@ class Widget extends Dynamic {
 		parent::enqueue_styles();
 
 		wecodeart( 'assets' )->add_style( 'wp-block-cart', [
-			'load'		=> function() {				
+			'load'		=> function( $post_id, $template ) {			
 				if( wp_style_is( 'wp-block-cart' ) ) {
 					return false;
 				}
+
+				// Everywhere
 				return true;
 			},
 			'inline'	=> wecodeart( 'blocks' )->get( 'woocommerce/cart' )::get_instance()->styles()

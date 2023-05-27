@@ -15,6 +15,7 @@ use WeCodeArt\Config\Traits\Asset;
 use WeCodeArt\Admin\Request;
 use WeCodeArt\Admin\Notifications;
 use WeCodeArt\Admin\Notifications\Notification;
+use WCA\EXT\WOO\Frontend\Templates;
 use function WeCodeArt\Functions\get_prop;
 
 /**
@@ -78,6 +79,8 @@ class Admin {
 		$this->plugin_name	= $plugin_name;
 		$this->version 		= $version;
 		$this->config 		= $config;
+
+		new Admin\Ajax();
 	}
     
     /**
@@ -87,26 +90,25 @@ class Admin {
 	 * @version	1.0.0
 	 */
 	public function if_active() {
-		$notification = new Notification(
-			sprintf(
-				'<h3 class="notice__heading" style="margin-bottom:0px">%1$s</h3>
-				<div class="notice__content">
-					<p>%2$s</p>
-					<p><a href="%3$s" class="button button-primary">%4$s</a></p>
-				</div>',
-				esc_html__( 'Awesome, WCA: WooCommerce extension is activated!', 'wca-woocommerce' ),
-				esc_html__( 'Go to Theme Options in order to setup your preferences.', 'wca-woocommerce' ),
-				esc_url( admin_url( '/themes.php?page=wecodeart&tab=plugins#wca-woocommerce' ) ),
-				esc_html__( 'Show me the options!', 'wca-woocommerce' )
-			),
-			[
-				'id'			=> self::NOTICE_ID,
-				'type'     		=> Notification::INFO,
-				'priority' 		=> 1,
-				'class'			=> 'notice is-dismissible',
-				'capabilities' 	=> 'activate_plugins',
-			]
+		$message = sprintf(
+			'<h3 class="notice__heading" style="margin-bottom:0px">%1$s</h3>
+			<div class="notice__content">
+				<p>%2$s</p>
+				<p><a href="%3$s" class="button button-primary">%4$s</a></p>
+			</div>',
+			esc_html__( 'Awesome, WCA: WooCommerce extension is activated!', 'wca-woocommerce' ),
+			esc_html__( 'Go to Theme Options in order to setup your preferences.', 'wca-woocommerce' ),
+			esc_url( admin_url( '/themes.php?page=wecodeart&tab=plugins#wca-woocommerce' ) ),
+			esc_html__( 'Show me the options!', 'wca-woocommerce' )
 		);
+
+		$notification = new Notification( $message, [
+			'id'			=> self::NOTICE_ID,
+			'type'     		=> Notification::INFO,
+			'priority' 		=> 1,
+			'class'			=> 'notice is-dismissible',
+			'capabilities' 	=> 'activate_plugins',
+		] );
 
 		if( get_user_option( self::NOTICE_ID ) === 'seen' ) {
 			Notifications::get_instance()->remove_notification( $notification );
@@ -144,6 +146,10 @@ class Admin {
 		);
 
 		wp_enqueue_script( $this->make_handle() );
+
+		wp_localize_script( $this->make_handle(), 'wecodeartWooCommerce', [
+			'missing' => Templates::get_instance()->get_missing(),
+		] );
 	}
 
 	/**

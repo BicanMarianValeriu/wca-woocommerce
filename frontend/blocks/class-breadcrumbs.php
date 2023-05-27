@@ -62,13 +62,17 @@ class Breadcrumbs extends Dynamic {
 		$processor = new \WP_HTML_Tag_Processor( $content );
 		$processor->next_tag();
 
+		// Clean empty style
 		if( empty( $processor->get_attribute( 'style' ) ) ) {
 			$processor->remove_attribute( 'style' );
 		}
-
-		$content = $processor->get_updated_html();
 	
-		return $content;
+		// Clean empty class
+		if( $class = $processor->get_attribute( 'class' ) ) {
+			$processor->set_attribute( 'class', rtrim( $class ) );
+		}
+	
+		return $processor->get_updated_html();
 	}
 
 	/**

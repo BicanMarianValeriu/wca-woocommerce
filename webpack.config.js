@@ -18,6 +18,7 @@ rules[devMode ? 3 : 2].use[1].options.url = false;
 module.exports = {
     ...defaultConfig,
     entry: {
+        'select2': path.resolve(process.cwd(), 'src', 'scss', 'vendor', 'select2.scss'),
         'frontend': path.resolve(process.cwd(), 'src', 'js', 'index.js'),
         'admin': path.resolve(process.cwd(), 'src', 'js', 'admin.js'),
     },

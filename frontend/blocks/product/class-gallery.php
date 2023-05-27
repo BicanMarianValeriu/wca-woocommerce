@@ -19,6 +19,7 @@ use WeCodeArt\Gutenberg\Blocks\Dynamic;
 use function add_filter;
 use function apply_filters;
 use function str_replace;
+use function WeCodeArt\Functions\get_prop;
 
 /**
  * Gutenberg Product Gallery block.
@@ -75,7 +76,7 @@ class Gallery extends Dynamic {
 	 * @return 	array
 	 */
 	public function thumbnails_columns( $columns ) {
-		$columns = 5;
+		$columns = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_gallery_cols' ], 5 );
 
 		return $columns;
 	}

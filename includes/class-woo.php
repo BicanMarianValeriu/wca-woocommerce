@@ -85,7 +85,7 @@ class WOO implements Integration {
 			'is_woocommerce_archive'	=> Condition\Archive::class,
 		] );
 
-		return [ /* 'is_woocommerce_active' */ ];
+		return [ 'is_woocommerce_active' ];
 	}
 
 	/**
@@ -204,12 +204,17 @@ class WOO implements Integration {
 	private function define_public_hooks() {
 		$frontend = new WOO\Frontend( $this->get_plugin_name(), $this->get_version(), $this->get_config() );
 		$patterns = WOO\Frontend\Patterns::get_instance();
+		$template = WOO\Frontend\Templates::get_instance();
+
+		// var_dump( $template->get_missing() );
 
 		// Load Hooks
 		$this->loader->add_action( 'init',										$patterns, 'register',				20, 1 );
 		$this->loader->add_action( 'wp_enqueue_scripts',						$frontend, 'assets', 				20, 1 );
 		$this->loader->add_action( 'after_setup_theme',							$frontend, 'after_setup_theme',		20, 1 );
+		$this->loader->add_filter( 'get_block_templates',						$template, 'get_block_templates',	20, 3 );
 		$this->loader->add_filter( 'woocommerce_form_field',					$frontend, 'form_field_markup',		20, 4 );
+		$this->loader->add_filter( 'woocommerce_locate_template',				$frontend, 'locate_template',		20, 2 );
 		$this->loader->add_filter( 'wecodeart/filter/gutenberg/styles/core',	$frontend, 'block_inline_styles',	20, 1 );
 		$this->loader->add_filter( 'wecodeart/filter/gutenberg/restricted',		$frontend, 'restricted_blocks',		20, 1 );
 	}

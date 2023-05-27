@@ -46,9 +46,9 @@ class Reviews extends Dynamic {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-reviews', [
+		wecodeart( 'assets' )->add_style( 'wp-block-all-reviews', [
 			'load'		=> function( $post_id, $template ) {
-				if( wp_style_is( 'wp-block-reviews' ) || wp_style_is( 'wp-block-all-reviews' ) ) {
+				if( wp_style_is( 'wp-block-all-reviews' ) ) {
 					return false;
 				}
 

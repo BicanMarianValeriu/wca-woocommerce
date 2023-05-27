@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend;
 
 /**
  * Gutenberg Products block.
@@ -45,44 +46,13 @@ class Products extends Dynamic {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-products', [
+		wecodeart( 'assets' )->add_style( 'wp-block-all-products', [
 			'load'		=> function( $post_id, $template ) {
-				if( wp_style_is( 'wp-block-products' ) || wp_style_is( 'wp-block-all-products' ) ) {
+				if( wp_style_is( 'wp-block-all-products' ) ) {
 					return false;
 				}
 
-				if(
-					( has_block( 'core/query', $template ) && strpos( $template, 'woocommerce/product-query' ) ) || 
-					( has_block( 'core/query', $post_id ) && strpos( get_the_content( $post_id ), 'woocommerce/product-query' ) )
-				) {
-					return true;
-				}
-
-				if( has_block( 'woocommerce/related-products', $template ) || has_block( 'woocommerce/related-products', $post_id ) ) {
-					return true;
-				}
-
-				if( has_block( 'woocommerce/product-on-sale', $template ) || has_block( 'woocommerce/product-on-sale', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-new', $template ) || has_block( 'woocommerce/product-new', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-category', $template ) || has_block( 'woocommerce/product-category', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-tag', $template ) || has_block( 'woocommerce/product-tag', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-attribute', $template ) || has_block( 'woocommerce/product-attribute', $post_id ) ) {
-					return true;
-				}
-
-				if( wecodeart_if( 'is_woocommerce_archive' ) ) {
+				if( Frontend::has_products_block( $post_id, $template ) ) {
 					return true;
 				}
 			},

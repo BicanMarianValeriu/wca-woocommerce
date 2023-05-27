@@ -1,26 +1,3 @@
-// Image
-:is(.wc-block-grid__product-image,.wc-block-components-product-image) {
-    position: relative;
-    z-index: 2;
-    
-    img {
-        display: block;
-        width: 100%;
-        object-fit: cover;
-        @include border-radius();
-        
-        &:only-child,
-        &:last-child {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-        
-        .is-loading & {
-            @include border-radius();
-        }
-    }
-}
-
 // Title
 :is(.wc-block-grid__product-title,.wc-block-components-product-title) {
     font-size: 1rem;
@@ -115,11 +92,8 @@
 :is(.wp-element-button.add_to_cart_button,.wp-element-button.single_add_to_cart_button,.wc-block-components-product-button__button,.wc-block-components-product-add-to-cart-button) {
     position: relative;
     padding-left: 5.5rem;
-    font-size: var(--wp--preset--font-size--small);
-    font-weight: 700;
-    text-align: center;
-    text-transform: uppercase;
     overflow: hidden;
+    border: 0;
 
     &.added {
         &::after {
@@ -152,7 +126,7 @@
         bottom: 0;
         display: block;
         width: 60px;
-        background-color: var(--wp--preset--color--primary);
+        background-color: var(--wp--preset--color--danger);
         background-image: var(--wc--cart);
         background-repeat: no-repeat;
         background-position: 40% center;
@@ -176,18 +150,15 @@
 }
 
 :is(ul.products .type-product,.wc-block-components-product-button,.wc-block-components-product-add-to-cart,.wc-block-grid__product-add-to-cart) {
-
     :is(.wp-element-button,.wc-block-components-button,.wp-block-button__link) {
         display: block;
         width: 100%;
-        margin-top: 1rem;
-        margin-bottom: 0!important;
         border: none;
         border-radius: inherit;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        background-color: var(--wp--preset--color--secondary);
-        color: var(--wp--preset--color--dark);
+        background-color: var(--wp--preset--color--primary);
+        color: var(--wp--preset--color--white);
     }
 }
 

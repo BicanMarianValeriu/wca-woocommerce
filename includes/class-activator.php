@@ -42,12 +42,17 @@ class Activator {
 			wp_die( current( $errors ) );
 		}
 
-		wecodeart_option( [
-			'woocommerce' => [
-				'remove_style'			=> true,
-				'replace_select2_style' => true
-			]
-		] );
+		if( ! wecodeart_option( 'woocommerce' ) ) {
+			wecodeart_option( [
+				'woocommerce' => [
+					'remove_style'			=> true,
+					'replace_select2_style' => true,
+					'product_price_extra'	=> true,
+					'product_rating_extra'	=> true,
+					'product_gallery_cols'	=> 5
+				]
+			] );
+		}
 	}
 
 	/**

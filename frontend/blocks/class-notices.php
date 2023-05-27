@@ -38,6 +38,28 @@ class Notices extends Dynamic {
 	protected $block_name = 'store-notices';
 
 	/**
+	 * Block styles.
+	 *
+	 * @return 	string Block CSS.
+	 */
+	public function enqueue_styles() {
+		parent::enqueue_styles();
+
+		wecodeart( 'assets' )->add_style( 'wp-block-store-notices', [
+			'load'		=> function( $post_id, $template ) {
+				if( wp_style_is( 'wp-block-store-notices' ) ) {
+					return false;
+				}
+
+				if( has_block( 'woocommerce/checkout-payment-block', $template ) || has_block( 'woocommerce/checkout-payment-block', $post_id ) ) {
+					return true;
+				}
+			},
+			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
+		] );
+	}
+
+	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.

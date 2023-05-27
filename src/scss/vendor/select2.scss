@@ -1,3 +1,9 @@
+// Required
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+
 .select2-container {
     position: relative;
     display: block;
@@ -69,6 +75,7 @@
                     .select2-selection {
                         &--single {
                             border-color: var(--wp--preset--color--primary);
+                            box-shadow: 0 0 0 0.25rem var(--wp--preset--color--accent);
                         }
                     }
                 }
@@ -81,15 +88,15 @@
                 background-clip: padding-box;
                 border-radius: var(--wp--input--border-radius);
                 border: var(--wp--input--border);
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
                 
                 .select2-selection {
                     &__rendered {
                         padding: var(--wp--input--padding);
                         color: var(--wp--input--color);
-                        font-family: 1rem;
+                        font-size: 1rem;
                         font-weight: 400;
                         line-height: 1.5;
-                        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
                     }
 
                     &__clear {
@@ -99,7 +106,7 @@
                     }
 
                     &__placeholder {
-                        color: #999;
+                        color: var(--wp--gray-600);
                     }
 
                     &__arrow {
@@ -179,6 +186,7 @@
             background-color: var(--wp--input--background-color);
             border: var(--wp--input--border);
             border-radius: var(--wp--input--border-radius);
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
             cursor: text;
 
             .select2-selection {
@@ -189,10 +197,9 @@
                     white-space: nowrap;
                     padding: var(--wp--input--padding);
                     color: var(--wp--input--color);
-                    font-family: 1rem;
+                    font-size: 1rem;
                     font-weight: 400;
                     line-height: 1.5;
-                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
                     li {
                         list-style: none;
@@ -228,14 +235,14 @@
                     cursor: default;
 
                     &__remove {
-                        color: #999;
+                        color: var(--wp--gray-600);
                         display: inline-block;
                         font-weight: bold;
                         margin-right: 2px;
                         cursor: pointer;
 
                         &:hover {
-                            color: #333;
+                            color: var(--wp--gray-700);
                         }
                     }
                 }

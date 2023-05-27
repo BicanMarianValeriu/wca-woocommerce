@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WCA: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 17:44+0000\n"
+"POT-Creation-Date: 2023-05-27 05:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,73 +16,149 @@ msgstr ""
 "X-Loco-Version: 2.6.4; wp-6.2.2\n"
 "X-Domain: wca-woocommerce"
 
-#: admin/class-admin.php:97
+#: frontend/blocks/product/class-rating.php:118
+#, php-format
+msgid "%s customer review"
+msgid_plural "%s customer reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: frontend/blocks/product/class-rating.php:125
+#, php-format
+msgid "%s of the customers recommend the product"
+msgstr ""
+
+#: frontend/class-patterns.php:48 frontend/class-patterns.php:51
+msgid "Active Filters"
+msgstr ""
+
+#: admin/class-ajax.php:125
+msgid "All templates have failed to install."
+msgstr ""
+
+#: admin/class-ajax.php:121
+msgid ""
+"All templates installed successfully. You can customize them in Site Editor."
+msgstr ""
+
+#: admin/class-admin.php:99
 msgid "Awesome, WCA: WooCommerce extension is activated!"
 msgstr ""
 
 #. Author of the plugin
-msgctxt "Bican Marian Valeriu"
 msgid "Bican Marian Valeriu"
 msgstr ""
 
-#: admin/class-admin.php:268
+#: frontend/class-patterns.php:142 frontend/class-patterns.php:145
+msgid "Color filter"
+msgstr ""
+
+#: frontend/class-patterns.php:127
+msgid "Filters"
+msgstr ""
+
+#: admin/class-admin.php:274
 msgid "Give it a star on GitHub"
 msgstr ""
 
-#: admin/class-admin.php:98
+#: admin/class-admin.php:100
 msgid "Go to Theme Options in order to setup your preferences."
 msgstr ""
 
 #. URI of the plugin
-msgctxt "https://github.com/BicanMarianValeriu/wca-woocommerce"
 msgid "https://github.com/BicanMarianValeriu/wca-woocommerce"
 msgstr ""
 
 #. Author URI of the plugin
-msgctxt "https://www.wecodeart.com/about/"
 msgid "https://www.wecodeart.com/about/"
 msgstr ""
 
-#: admin/class-admin.php:289
+#: admin/class-admin.php:295
 msgid "Navigate to the extension settings."
 msgstr ""
 
-#: admin/class-admin.php:202
+#: admin/class-ajax.php:68
+msgid "Please define an action type."
+msgstr ""
+
+#: admin/class-admin.php:208
 msgid "Plugin reactivated successfully."
 msgstr ""
 
-#: admin/class-admin.php:245
+#: frontend/class-patterns.php:131 frontend/class-patterns.php:134
+msgid "Price filter"
+msgstr ""
+
+#: frontend/class-patterns.php:30
+msgid "Product Item"
+msgstr ""
+
+#: frontend/class-patterns.php:85
+msgid "Query (Products - Search)"
+msgstr ""
+
+#: frontend/class-patterns.php:112
+msgid "Query (Products - Taxonomy)"
+msgstr ""
+
+#: frontend/class-patterns.php:43
+msgid "Query (Products)"
+msgstr ""
+
+#: frontend/class-patterns.php:167
+msgid "Rating filter"
+msgstr ""
+
+#: frontend/class-patterns.php:180 frontend/class-patterns.php:189
+msgid "Related Products"
+msgstr ""
+
+#: admin/class-admin.php:251
 msgid "release page"
 msgstr ""
 
-#: admin/class-admin.php:290
+#: admin/class-admin.php:296
 msgid "Settings"
 msgstr ""
 
-#: admin/class-admin.php:100
+#: admin/class-admin.php:102
 msgid "Show me the options!"
 msgstr ""
 
-#: admin/class-admin.php:269
+#: admin/class-admin.php:275
 msgid "Star on GitHub"
 msgstr ""
 
-#: admin/class-admin.php:201
+#: frontend/class-patterns.php:153 frontend/class-patterns.php:156
+msgid "Stock filter"
+msgstr ""
+
+#: admin/class-ajax.php:58
+msgid "Templates array is empty."
+msgstr ""
+
+#: admin/class-admin.php:207
 msgid ""
 "The plugin has been updated, but could not be reactivated. Please reactivate "
 "it manually."
 msgstr ""
 
-#: includes/class-activator.php:63
+#: includes/class-activator.php:70
 msgid ""
 "This extension requires WeCodeArt Framework (or a skin) installed and active."
 msgstr ""
 
-#: includes/class-activator.php:64
+#: includes/class-activator.php:71
 msgid "This extension requires WooCommerce plugin installed and active."
 msgstr ""
 
-#: admin/class-admin.php:241
+#: frontend/blocks/product/class-price.php:127
+msgid ""
+"This is the manufacturer's recommended price. The selling price of the "
+"product is shown below."
+msgstr ""
+
+#: admin/class-admin.php:247
 #, php-format
 msgid ""
 "To read the change history for the latest plugin release, please go to the "
@@ -94,6 +170,5 @@ msgid "WCA WooCommerce extension for WeCodeArt Framework theme."
 msgstr ""
 
 #. Name of the plugin
-msgctxt "WCA: WooCommerce"
 msgid "WCA: WooCommerce"
 msgstr ""

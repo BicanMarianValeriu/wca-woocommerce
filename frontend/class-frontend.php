@@ -74,7 +74,13 @@ class Frontend {
 	 * @since	unknown
 	 */
 	public function after_setup_theme() {
-		$support = get_prop( $this->config, 'support', [] );
+		$support = get_prop( $this->config, [ 'support' ], [] );
+		$options = get_prop( $this->config, [ 'options' ], [] );
+		
+		// Legacy styles
+		if( get_prop( $options, 'remove_style' ) ) {
+			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+		}
 
 		// Theme Support
 		foreach( $support as $feature => $value ) {
@@ -88,6 +94,7 @@ class Frontend {
 		// Register Blocks Overwrites
 		// Misc Blocks
 		wecodeart( 'blocks' )->register( 'woocommerce/store-notices',			Frontend\Blocks\Notices::class );
+		wecodeart( 'blocks' )->register( 'woocommerce/catalog-sorting',			Frontend\Blocks\Sorting::class );
 		wecodeart( 'blocks' )->register( 'woocommerce/all-reviews',				Frontend\Blocks\Reviews::class );
 		wecodeart( 'blocks' )->register( 'woocommerce/all-products',			Frontend\Blocks\Products::class );
 		wecodeart( 'blocks' )->register( 'woocommerce/breadcrumbs',				Frontend\Blocks\Breadcrumbs::class );
@@ -103,6 +110,7 @@ class Frontend {
 		wecodeart( 'blocks' )->register( 'woocommerce/featured-category',		Frontend\Blocks\Featured\Category::class );
 		// Product
 		wecodeart( 'blocks' )->register( 'woocommerce/product-price', 			Frontend\Blocks\Product\Price::class );
+		wecodeart( 'blocks' )->register( 'woocommerce/product-image', 			Frontend\Blocks\Product\Image::class );
 		wecodeart( 'blocks' )->register( 'woocommerce/product-rating', 			Frontend\Blocks\Product\Rating::class );
 		wecodeart( 'blocks' )->register( 'woocommerce/product-details',			Frontend\Blocks\Product\Details::class );
 		wecodeart( 'blocks' )->register( 'woocommerce/product-image-gallery',	Frontend\Blocks\Product\Gallery::class );
@@ -138,31 +146,36 @@ class Frontend {
 	 * @return 	void
 	 */
 	public function assets() {
-		$options = get_prop( $this->config, [ 'options' ], [] );
+		$options 	= get_prop( $this->config, [ 'options' ], [] );
+		$plugin 	= untrailingslashit( WCA_WOO_EXT_URL );
+		$folder		= wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
+		$frontend	= wecodeart_if( 'is_dev_mode' ) ? 'frontend' : 'frontend.min';
 
 		// By default we have our own simplified styles
 		wp_deregister_style( 'wc-blocks-style' );
 
-		if( get_prop( $options, 'remove_style' ) ) {
-			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-		}
-
-		if( get_prop( $options, 'remove_select2_style' ) ) {
+		// Select2 styles
+		if( get_prop( $options, 'replace_select2_style' ) ) {
+			$select2	= wecodeart_if( 'is_dev_mode' ) ? 'select2' : 'select2.min';
+			
 			wp_deregister_style( 'select2' );
+			wp_register_style(
+				'select2',
+				sprintf( '%s/assets/%s/css/%s.css', $plugin, $folder, $select2 ),
+				[],
+				$this->version
+			);
 		}
-		
-		$path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
-		$name = wecodeart_if( 'is_dev_mode' ) ? 'frontend' : 'frontend.min';
 
 		wp_enqueue_style(
 			$this->make_handle(),
-			sprintf( '%s/assets/%s/css/%s.css', untrailingslashit( WCA_WOO_EXT_URL ), $path, $name ),
+			sprintf( '%s/assets/%s/css/%s.css', $plugin, $folder, $frontend ),
 			$this->version,
 		);
 
 		wp_enqueue_script(
 			$this->make_handle(),
-			sprintf( '%s/assets/%s/js/%s.js', untrailingslashit( WCA_WOO_EXT_URL ), $path, $name ),
+			sprintf( '%s/assets/%s/js/%s.js', $plugin, $folder, $frontend ),
 			[ 'wecodeart-support-assets' ],
 			$this->version,
 			true
@@ -172,8 +185,8 @@ class Frontend {
 	/**
 	 * Block CSS process
 	 *
-	 * @since	5.6.3
-	 * @version	6.1.2
+	 * @since	1.0.0
+	 * @version	1.0.0
 	 *
 	 * @return 	array
 	 */
@@ -191,8 +204,8 @@ class Frontend {
 	/**
 	 * Filter - Restricted WooCommerce Blocks from theme code
 	 *
-	 * @since	5.0.0
-	 * @version	6.1.2
+	 * @since	1.0.0
+	 * @version	1.0.0
 	 *
 	 * @return 	array
 	 */
@@ -212,8 +225,8 @@ class Frontend {
 	/**
      * Form Field Markup
      *
-     * @since	5.6.4
-     * @version	6.1.2
+     * @since	1.0.0
+     * @version	1.0.0
      *
      * @return	array
      */
@@ -253,10 +266,34 @@ class Frontend {
     }
 
 	/**
+     * WooCommerce Locate Template
+     *
+     * @since	1.0.0
+     * @version	1.0.0
+     *
+     * @return	array
+     */
+    public function locate_template( $template, $template_name ) {
+		// Check if the template is loaded from the plugin
+		$is_loaded_from_plugin = ( strpos( wp_normalize_path( $template ), 'woocommerce/templates' ) !== false );
+		
+		if( $is_loaded_from_plugin ) {
+			$template_file = untrailingslashit( WCA_WOO_EXT_DIR ) . '/woocommerce/' . $template_name;
+	
+			// Check if the template file exists in the custom directory
+			if ( file_exists( $template_file ) ) {
+				$template = $template_file;
+			}
+		}
+
+		return $template;
+    }
+
+	/**
      * Returns loading CSS
      *
-     * @since	6.1.2
-     * @version	6.1.2
+     * @since	1.0.0
+     * @version	1.0.0
      *
      * @return	string
      */
@@ -295,5 +332,66 @@ class Frontend {
 				transform: translateX(-100%);
 			}
 		";
+	}
+
+	/**
+     * Check if has products blocks
+     *
+     * @since	1.0.0
+     * @version	1.0.0
+     *
+     * @return	boolean
+     */
+	public static function has_products_block( $post_id, string $template = '' ) {
+		// New products block
+		if(
+			( has_block( 'core/query', $template ) && strpos( $template, 'woocommerce/product-query' ) ) || 
+			( has_block( 'core/query', $post_id ) && strpos( get_the_content( $post_id ), 'woocommerce/product-query' ) )
+		) {
+			return true;
+		}
+
+		// Related products block
+		if( has_block( 'woocommerce/related-products', $template ) || has_block( 'woocommerce/related-products', $post_id ) ) {
+			return true;
+		}
+
+		// Old products blocks
+		if( has_block( 'woocommerce/all-products', $template ) || has_block( 'woocommerce/all-products', $post_id ) ) {
+			return true;
+		}
+
+		if( has_block( 'woocommerce/product-on-sale', $template ) || has_block( 'woocommerce/product-on-sale', $post_id ) ) {
+			return true;
+		}
+
+		if( has_block( 'woocommerce/product-top-rated', $template ) || has_block( 'woocommerce/product-top-rated', $post_id ) ) {
+			return true;
+		}
+		
+		if( has_block( 'woocommerce/product-best-sellers', $template ) || has_block( 'woocommerce/product-best-sellers', $post_id ) ) {
+			return true;
+		}
+		
+		if( has_block( 'woocommerce/product-new', $template ) || has_block( 'woocommerce/product-new', $post_id ) ) {
+			return true;
+		}
+		
+		if( has_block( 'woocommerce/product-category', $template ) || has_block( 'woocommerce/product-category', $post_id ) ) {
+			return true;
+		}
+		
+		if( has_block( 'woocommerce/product-tag', $template ) || has_block( 'woocommerce/product-tag', $post_id ) ) {
+			return true;
+		}
+		
+		if( has_block( 'woocommerce/product-attribute', $template ) || has_block( 'woocommerce/product-attribute', $post_id ) ) {
+			return true;
+		}
+
+		// Catalog page (if a pattern is in template and is not detected as a block when rendered)
+		if( wecodeart_if( 'is_woocommerce_archive' ) ) {
+			return true;
+		}
 	}
 }

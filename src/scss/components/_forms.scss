@@ -358,7 +358,7 @@
             cursor: pointer;
 
             &.is-selected {
-                background-color: var(--wp--gray-300);
+                background-color: var(--wp--preset--color--accent);
             }
         }
     }
@@ -538,7 +538,13 @@
 
         &-progress {
             --range-color: var(--wp--preset--color--primary);
-            --track-background: linear-gradient(90deg,transparent var(--low),var(--range-color) 0,var(--range-color) var(--high),transparent 0) no-repeat 0 100%/100% 100%;
+            --track-background: linear-gradient(
+                90deg,
+                transparent calc(var(--low) + 5px),
+                var(--range-color) 0,
+                var(--range-color) calc(var(--high) - 5px),
+                transparent 0
+            ) no-repeat 0 100%/100% 100%;
             position: absolute;
             left: 0;
             top: 0;
@@ -604,9 +610,10 @@
     border: var(--wc--input--border);
     
     & > span {
-        padding: .35em .75em;
-        font-size: .65rem;
-        font-weight: 700;
+        padding: 0.35em 1em;
+        font-size: 0.65rem;
+        font-weight: 500;
+        line-height: 1.7;
     }
 
     & > button {
@@ -615,6 +622,8 @@
         outline: 1px solid var(--wc--input--border-color);
         border-radius: inherit;
         background: transparent;
+        border: 0;
+        cursor: pointer;
 
         &:hover,
         &:focus {

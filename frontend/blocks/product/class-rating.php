@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend;
 
 use function add_filter;
 use function preg_match;
@@ -47,6 +48,10 @@ class Rating extends Dynamic {
 	 * @return 	array
 	 */
 	public function init() {
+		$is_enabled = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_rating_extra' ] );
+
+		if( ! $is_enabled ) return;
+		
 		add_filter( 'render_block_' . $this->get_block_type(), [ $this, 'render_block' ], 20, 2 );
 	}
 
@@ -66,46 +71,21 @@ class Rating extends Dynamic {
 			$offset	= strrpos( $content, '</div>', $offset );
     		$content = substr( $content, 0, $offset ) . $this->markup() . substr( $content, $offset );
 		}
+		
+		$processor = new \WP_HTML_Tag_Processor( $content );
+		$processor->next_tag();
 
-		return $content;
-	}
+		// Clean empty style
+		if( empty( $processor->get_attribute( 'style' ) ) ) {
+			$processor->remove_attribute( 'style' );
+		}
+	
+		// Clean empty class
+		if( $class = $processor->get_attribute( 'class' ) ) {
+			$processor->set_attribute( 'class', rtrim( $class ) );
+		}
 
-	/**
-	 * Block styles.
-	 *
-	 * @return 	string Block CSS.
-	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-
-		wecodeart( 'assets' )->add_style( 'wp-block-rating', [
-			'load'		=> function( $post_id, $template ) {
-				if( wp_style_is( 'wp-block-rating' ) || wp_style_is( 'wp-block-product-rating' ) ) {
-					return false;
-				}
-
-				if( has_block( 'woocommerce/reviews-by-category', $template ) || has_block( 'woocommerce/reviews-by-category', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/reviews-by-product', $template ) || has_block( 'woocommerce/reviews-by-product', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/all-reviews', $template ) || has_block( 'woocommerce/all-reviews', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/cart-cross-sells-products-block', $post_id ) ) {
-					return true;
-				}
-
-				if( wecodeart_if( 'is_woocommerce_archive' ) ) {
-					return true;
-				}
-			},
-			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
-		] );
+		return $processor->get_updated_html();
 	}
 
 	/**
@@ -135,14 +115,14 @@ class Rating extends Dynamic {
 		?> 
 		<a href="#reviews" class="wc-block-components-product-rating__info" rel="nofollow">(<?php
 			printf(
-				_n( '%s customer review', '%s customer reviews', $review_count, 'wecodeart' ),
+				_n( '%s customer review', '%s customer reviews', $review_count, 'wca-woocommerce' ),
 				'<span class="count">' . esc_html( $review_count ) . '</span>'
 			);
 		?>)</a>
 		<p class="wc-block-components-product-rating__stats"><?php
 		
 			printf(
-				__( '%s of the customers recommend the product', 'wecodeart' ),
+				__( '%s of the customers recommend the product', 'wca-woocommerce' ),
 				'<strong>' .  ( ( $average / 5 ) * 100 ) . '%</strong>'
 			);
 			
@@ -152,6 +132,47 @@ class Rating extends Dynamic {
 		$html .= ob_get_clean();
 
 		return $html;
+	}
+
+	/**
+	 * Block styles.
+	 *
+	 * @return 	string Block CSS.
+	 */
+	public function enqueue_styles() {
+		parent::enqueue_styles();
+
+		wecodeart( 'assets' )->add_style( 'wp-block-product-rating', [
+			'load'		=> function( $post_id, $template ) {
+				if( wp_style_is( 'wp-block-product-rating' ) ) {
+					return false;
+				}
+
+				// Reviews
+				if( has_block( 'woocommerce/reviews-by-category', $template ) || has_block( 'woocommerce/reviews-by-category', $post_id ) ) {
+					return true;
+				}
+				
+				if( has_block( 'woocommerce/reviews-by-product', $template ) || has_block( 'woocommerce/reviews-by-product', $post_id ) ) {
+					return true;
+				}
+				
+				if( has_block( 'woocommerce/all-reviews', $template ) || has_block( 'woocommerce/all-reviews', $post_id ) ) {
+					return true;
+				}
+
+				// Products
+				if( Frontend::has_products_block( $post_id, $template ) ) {
+					return true;
+				}
+				
+				// Cart/Checkout
+				if( has_block( 'woocommerce/cart-cross-sells-products-block', $post_id ) ) {
+					return true;
+				}
+			},
+			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
+		] );
 	}
 
 	/**
