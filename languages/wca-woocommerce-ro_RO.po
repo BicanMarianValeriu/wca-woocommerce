@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WCA: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-24 17:44+0000\n"
-"PO-Revision-Date: 2023-05-27 05:42+0000\n"
+"PO-Revision-Date: 2023-05-27 08:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: Română\n"
 "Language: ro_RO\n"
@@ -67,7 +67,7 @@ msgstr "Dați-i o stea pe GitHub"
 
 #: admin/class-admin.php:100
 msgid "Go to Theme Options in order to setup your preferences."
-msgstr "Accesați Opțiunile temei pentru a vă configura preferințele."
+msgstr "Accesați opțiunile temei pentru a vă configura preferințele."
 
 #. URI of the plugin
 msgid "https://github.com/BicanMarianValeriu/wca-woocommerce"
