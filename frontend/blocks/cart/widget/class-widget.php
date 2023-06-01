@@ -123,6 +123,7 @@ class Widget extends Dynamic {
 				font-size: inherit;
 				font-family: inherit;
 				padding: 0.5em 0;
+				cursor: pointer;
 			}
 			.wc-block-mini-cart__button:hover:not([disabled]) {
 				opacity: 0.6;

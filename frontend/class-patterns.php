@@ -32,9 +32,9 @@ class Patterns {
 			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/product-image {"saleBadgeAlign":"left","isDescendentOfQueryLoop":true} /-->
-				<!-- wp:post-title {"textAlign":"center","level":3,"isLink":true,"style":{"typography":{"fontStyle":"normal","fontWeight":"700","textTransform":"uppercase"},"spacing":{"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}},"fontSize":"normal","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
-				<!-- wp:woocommerce/product-price {"textAlign":"center","isDescendentOfQueryLoop":true} /-->
+				<!-- wp:post-title {"textAlign":"center","level":3,"isLink":true,"style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"700"},"spacing":{"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}},"fontSize":"normal","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
 				<!-- wp:woocommerce/product-rating {"textAlign":"center","isDescendentOfQueryLoop":true } /-->
+				<!-- wp:woocommerce/product-price {"isDescendentOfQueryLoop":true,"textAlign":"center","style":{"spacing":{"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}}} /-->
 				<!-- wp:woocommerce/product-button {"textAlign":"center","isDescendentOfQueryLoop":true} /-->
 			'
 		] );
@@ -123,6 +123,7 @@ class Patterns {
 			'title' 		=> esc_html__( 'Related Products', 'wca-woocommerce' ),
 			'categories' 	=> [ 'wecodeart', 'wecodeart-query' ],
 			'blockTypes' 	=> [ 'core/query' ],
+			'postTypes' 	=> [ 'product' ],
 			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/related-products -->
@@ -198,6 +199,32 @@ class Patterns {
 			'
 		] );
 		
+		register_block_pattern( 'wecodeart/section-products', [
+			'title' 		=> esc_html__( 'Cart', 'wca-woocommerce' ),
+			'categories' 	=> [ 'wecodeart' ],
+			'content'		=> '
+				<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","bottom":"var:preset|spacing|lg","right":"var:preset|spacing|g","left":"var:preset|spacing|g"}}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--lg);padding-right:var(--wp--preset--spacing--g);padding-bottom:var(--wp--preset--spacing--lg);padding-left:var(--wp--preset--spacing--g)">
+					<!-- wp:query {"queryId":0,"query":{"perPage":9,"pages":0,"offset":0,"postType":"product","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false,"__woocommerceAttributes":[],"__woocommerceStockStatus":["instock","outofstock","onbackorder"]},"displayLayout":{"type":"flex","columns":4},"namespace":"woocommerce/product-query"} -->
+					<div class="wp-block-query">
+					<!-- wp:post-template {"className":"wp-block-query__products","__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
+					<!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
+					<!-- /wp:post-template -->
+					
+					<!-- wp:query-pagination {"className":"mt-3","layout":{"type":"flex","justifyContent":"center"}} -->
+					<!-- wp:query-pagination-numbers /-->
+					<!-- /wp:query-pagination -->
+					
+					<!-- wp:query-no-results -->
+					<!-- wp:pattern {"slug":"woocommerce/no-products-found"} /-->
+					<!-- /wp:query-no-results -->
+					</div>
+					<!-- /wp:query -->
+				</div>
+				<!-- /wp:group -->
+			'
+		] );
+
 		register_block_pattern( 'wecodeart/page-cart', [
 			'title' 		=> esc_html__( 'Cart', 'wca-woocommerce' ),
 			'categories' 	=> [ 'wecodeart', 'wecodeart-pages' ],

@@ -55,6 +55,10 @@ class Products extends Dynamic {
 				if( Frontend::has_products_block( $blocks ) ) {
 					return true;
 				}
+
+				if( is_singular( 'product' ) ) {
+					return true;
+				}
 			},
 			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
 		] );
@@ -108,6 +112,7 @@ class Products extends Dynamic {
 				transition: border-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 				border: 1px solid var(--wp--preset--color--accent);
 				border-radius: 0.375rem;
+				box-sizing: border-box;
 			}
 			:where(ul li.type-product,ul.wp-block-query__products li.wp-block-post,.wc-block-grid__product,.cross-sells-product):hover {
 				border-color: var(--wp--preset--color--primary);

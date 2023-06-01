@@ -150,10 +150,12 @@ class Button extends Dynamic {
 			}
 			:is(
 				.wc-block-components-product-button,
+				.wp-block-woocommerce-product-button,
+				.wp-block-woocommerce-product-button > div,
 				.wc-block-components-product-add-to-cart,
 				.wc-block-grid__product-add-to-cart
 			) {
-				margin-top: auto;
+				margin: auto 0 0;
 				border-radius: inherit;
 			}
 			:is(

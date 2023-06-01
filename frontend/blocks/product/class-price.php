@@ -284,8 +284,9 @@ class Price extends Dynamic {
 				text-decoration: none;
 				margin-left: 5px;
 			}
-			div[class*="wc-block-components-product-price--align-"] {
-				text-align: center;
+			.wc-block-components-product-price--align-center,
+			.wc-block-components-product-price--align-right {
+				display: block;
 			}
 			.wc-block-components-product-price--align-center {
 				text-align: center;
