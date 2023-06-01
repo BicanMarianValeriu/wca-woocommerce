@@ -38,38 +38,32 @@ class Crossells extends Dynamic {
 	protected $block_name = 'cart-cross-sells-products-block';
 
 	/**
-	 * Block styles.
-	 *
-	 * @return 	string Block CSS.
-	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-		
-		// wecodeart( 'assets' )->add_style( 'wp-block-products', [
-		// 	'load'		=> function( $post_id, $template ) {
-		// 		if( wp_style_is( 'wp-block-products' ) || wp_style_is( 'wp-block-all-products' ) ) {
-		// 			return false;
-		// 		}
-
-		// 		if( has_block( $this->get_block_type(), $template ) || has_block( $this->get_block_type(), $post_id ) ) {
-		// 			return true;
-		// 		}
-		// 	},
-		// 	'inline'	=> wecodeart( 'blocks' )->get( 'woocommerce/all-products' )::get_instance()->styles()
-		// ] );
-	}
-
-	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
 		return '
+			/* Admin */
+			.wp-block-woocommerce-cart-cross-sells-products-block .cross-sells-product {
+				display: inline-flex;
+				margin-right: calc(5% - 2px);
+				padding: 0;
+			}
+			.wp-block-woocommerce-cart-cross-sells-products-block .cross-sells-product:nth-child(3n+3) {
+				margin-right: 0;
+			}
+			/* Frontend */
 			.woocommerce-cart .wp-block-woocommerce-cart-cross-sells-block > div {
 				display: grid;
 				grid-gap: 1rem;
 				grid-template-columns: 1fr;
+			}
+			.woocommerce-cart .cross-sells-product > div {
+				display: inherit;
+				gap: inherit;
+				flex-direction: inherit;
+				justify-content: inherit;
 			}
 			.woocommerce-cart .is-medium .wp-block-woocommerce-cart-cross-sells-block > div {
 				grid-template-columns: repeat(2, 1fr);

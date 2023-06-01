@@ -21,7 +21,7 @@ wecodeart( 'styles' )->Utilities->load( [
 	'col-md-10',
 	'col-lg-8',
 	'mx-auto',
-	'mb-5'
+	'mb-5',
 ] );
 
 ?>
@@ -56,26 +56,26 @@ wecodeart( 'styles' )->Utilities->load( [
 		
 	?></p>
 
-	<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details grid list-unstyled mb-5" style="--wp--columns:4;">
+	<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details grid list-unstyled mb-5" style="--wp--columns:2;">
 
-		<li class="woocommerce-order-overview__order order card card-body span-4 span-md-2 span-lg-1">
+		<li class="woocommerce-order-overview__order order card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 			<span><?php esc_html_e( 'Order number:', 'woocommerce' ); ?></span>
 			<strong><?php echo $order->get_order_number(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
 		</li>
 
-		<li class="woocommerce-order-overview__date date card card-body span-4 span-md-2 span-lg-1">
+		<li class="woocommerce-order-overview__date date card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 			<span><?php esc_html_e( 'Date:', 'woocommerce' ); ?></span>
 			<strong><?php echo wc_format_datetime( $order->get_date_created() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
 		</li>
 
 		<?php if ( is_user_logged_in() && $order->get_user_id() === get_current_user_id() && $order->get_billing_email() ) : ?>
-		<li class="woocommerce-order-overview__email email card card-body span-4 span-md-2 span-lg-1">
+		<li class="woocommerce-order-overview__email email card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 			<span><?php esc_html_e( 'Email:', 'woocommerce' ); ?></span>
 			<strong><?php echo $order->get_billing_email(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
 		</li>
 		<?php endif; ?>
 
-		<li class="woocommerce-order-overview__total total card card-body span-4 span-md-2 span-lg-1">
+		<li class="woocommerce-order-overview__total total card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 			<span><?php esc_html_e( 'Total:', 'woocommerce' ); ?></span>
 			<strong><?php echo $order->get_formatted_order_total(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
 		</li>

@@ -48,8 +48,7 @@ class Gallery extends Dynamic {
 	 * @return 	array
 	 */
 	public function init() {
-		add_filter( 'woocommerce_product_thumbnails_columns', 	[ $this, 'thumbnails_columns' 	] );
-		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'render_block'			], 20 );
+		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'render_block'	], 20 );
 	}
 
     /**
@@ -60,25 +59,9 @@ class Gallery extends Dynamic {
 	 * @return 	string
 	 */
 	public function render_block( string $content = '' ): string {
-		return str_replace(
-			' data-columns',
-			sprintf( ' style="--columns:%s;" data-columns', apply_filters( 'woocommerce_product_thumbnails_columns', 3 ) ),
-			$content
-		);
-	}
-
-    /**
-	 * Gallery Columns
-	 *
-	 * @since	1.0
-	 * @version	1.0
-	 *
-	 * @return 	array
-	 */
-	public function thumbnails_columns( $columns ) {
 		$columns = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_gallery_cols' ], 5 );
 
-		return $columns;
+		return str_replace( ' data-columns', sprintf( ' style="--columns:%s;" data-columns', $columns ), $content );
 	}
 
 	/**

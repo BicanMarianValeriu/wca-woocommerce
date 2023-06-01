@@ -13,17 +13,16 @@
             <!-- /wp:column -->
             <!-- wp:column {"verticalAlignment":"top","className":"col-12 col-lg"} -->
             <div class="wp-block-column is-vertically-aligned-top col-12 col-lg">
-                <!-- wp:woocommerce/breadcrumbs /-->
-                <!-- wp:post-title {"level":1,"className":"fw-700","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
+                <!-- wp:woocommerce/breadcrumbs {"style":{"elements":{"link":{"color":{"text":"var:preset|color|secondary"}}}}} /-->
+                <!-- wp:post-title {"level":1,"fontSize":"large","className":"fw-700","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
                 <!-- wp:woocommerce/product-price {"isDescendentOfSingleProductTemplate":true} /-->
                 <!-- wp:woocommerce/product-rating {"isDescendentOfSingleProductTemplate":true} /-->
                 <!-- wp:post-excerpt {"__woocommerceNamespace":"woocommerce/product-query/product-summary"} /-->
                 <!-- wp:woocommerce/add-to-cart-form /-->
                 <!-- wp:woocommerce/product-meta {"className":"wp-block-woocommerce-product-meta"} -->
-                    <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+                    <!-- wp:group {"fontSize":"small","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
                     <div class="wp-block-group">
-                        <!-- wp:woocommerce/product-stock-indicator /-->
-                        <!-- wp:woocommerce/product-sku /-->
+                        <!-- wp:woocommerce/product-sku {"fontSize":"small","textColor":"cyan-bluish-gray"} /-->
                         <!-- wp:post-terms {"term":"product_cat"} /-->
                         <!-- wp:post-terms {"term":"product_tag"} /-->
                     </div>
@@ -44,7 +43,7 @@
                 <!-- wp:separator {"backgroundColor":"accent","className":"is-style-wide"} -->
                 <hr class="wp-block-separator has-text-color has-accent-color has-alpha-channel-opacity has-accent-background-color has-background is-style-wide" />
                 <!-- /wp:separator -->
-                <!-- wp:post-template {"__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
+                <!-- wp:post-template {"className":"wp-block-query__products","__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
                 <!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
                 <!-- /wp:post-template -->
             </div>

@@ -51,14 +51,14 @@ class Image extends Dynamic {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-product-image', [
-			'load'		=> function( $post_id, $template ) {
-				if( wp_style_is( 'wp-block-product-image' ) ) {
+		wecodeart( 'assets' )->add_style( 'wp-block-product-thumb', [
+			'load'		=> function( $blocks ) {
+				if( wp_style_is( 'wp-block-product-thumb' ) || wp_style_is( 'wp-block-product-image' ) ) {
 					return false;
 				}
 
 				// Products
-				if( Frontend::has_products_block( $post_id, $template ) ) {
+				if( Frontend::has_products_block( $blocks ) ) {
 					return true;
 				}
 			},

@@ -18,17 +18,18 @@
 defined( 'ABSPATH' ) || exit;
 
 $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_address();
+wecodeart( 'styles' )->Utilities->load( [ 'h-100' ] );
 
 ?>
 <section class="woocommerce-customer-details mb-5">
 
 	<?php if ( $show_shipping ) : ?>
 
-	<section class="woocommerce-columns woocommerce-columns--2 woocommerce-columns--addresses col2-set addresses">
+	<section class="woocommerce-columns col2-set addresses">
 		<div class="woocommerce-column woocommerce-column--1 woocommerce-column--billing-address col-1">
 
 	<?php endif; ?>
-		<div class="card">
+		<div class="card has-accent-background-color has-white-border-color h-100">
 			<div class="card-header">
 				<h6 class="woocommerce-column__title fw-700 my-0"><?php esc_html_e( 'Billing address', 'woocommerce' ); ?></h6>
 			</div>
@@ -52,9 +53,9 @@ $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_a
 		</div><!-- /.col-1 -->
 
 		<div class="woocommerce-column woocommerce-column--2 woocommerce-column--shipping-address col-2">
-			<div class="card">
+			<div class="card has-accent-background-color has-white-border-color h-100">
 				<div class="card-header">
-					<h6 class="woocommerce-column__title mb-0"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></h6>
+					<h6 class="woocommerce-column__title fw-700 my-0"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></h6>
 				</div>
 				<div class="card-body">
 					<address>

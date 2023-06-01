@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WCA: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-27 05:40+0000\n"
+"POT-Creation-Date: 2023-05-31 15:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,14 +16,14 @@ msgstr ""
 "X-Loco-Version: 2.6.4; wp-6.2.2\n"
 "X-Domain: wca-woocommerce"
 
-#: frontend/blocks/product/class-rating.php:118
+#: frontend/blocks/product/class-rating.php:113
 #, php-format
 msgid "%s customer review"
 msgid_plural "%s customer reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: frontend/blocks/product/class-rating.php:125
+#: frontend/blocks/product/class-rating.php:120
 #, php-format
 msgid "%s of the customers recommend the product"
 msgstr ""
@@ -49,15 +49,31 @@ msgstr ""
 msgid "Bican Marian Valeriu"
 msgstr ""
 
-#: frontend/class-patterns.php:142 frontend/class-patterns.php:145
+#: frontend/class-patterns.php:278
+msgid "Browse the store"
+msgstr ""
+
+#: frontend/class-patterns.php:202
+msgid "Cart"
+msgstr ""
+
+#: frontend/class-patterns.php:235
+msgid "Cart Total"
+msgstr ""
+
+#: frontend/class-patterns.php:298
+msgid "Checkout"
+msgstr ""
+
+#: frontend/class-patterns.php:164 frontend/class-patterns.php:167
 msgid "Color filter"
 msgstr ""
 
-#: frontend/class-patterns.php:127
+#: frontend/class-patterns.php:149
 msgid "Filters"
 msgstr ""
 
-#: admin/class-admin.php:274
+#: admin/class-admin.php:277
 msgid "Give it a star on GitHub"
 msgstr ""
 
@@ -73,19 +89,23 @@ msgstr ""
 msgid "https://www.wecodeart.com/about/"
 msgstr ""
 
-#: admin/class-admin.php:295
+#: admin/class-admin.php:298
 msgid "Navigate to the extension settings."
+msgstr ""
+
+#: frontend/class-patterns.php:285
+msgid "New in store"
 msgstr ""
 
 #: admin/class-ajax.php:68
 msgid "Please define an action type."
 msgstr ""
 
-#: admin/class-admin.php:208
+#: admin/class-admin.php:211
 msgid "Plugin reactivated successfully."
 msgstr ""
 
-#: frontend/class-patterns.php:131 frontend/class-patterns.php:134
+#: frontend/class-patterns.php:153 frontend/class-patterns.php:156
 msgid "Price filter"
 msgstr ""
 
@@ -93,11 +113,11 @@ msgstr ""
 msgid "Product Item"
 msgstr ""
 
-#: frontend/class-patterns.php:85
+#: frontend/class-patterns.php:83
 msgid "Query (Products - Search)"
 msgstr ""
 
-#: frontend/class-patterns.php:112
+#: frontend/class-patterns.php:108
 msgid "Query (Products - Taxonomy)"
 msgstr ""
 
@@ -105,19 +125,19 @@ msgstr ""
 msgid "Query (Products)"
 msgstr ""
 
-#: frontend/class-patterns.php:167
+#: frontend/class-patterns.php:189
 msgid "Rating filter"
 msgstr ""
 
-#: frontend/class-patterns.php:180 frontend/class-patterns.php:189
+#: frontend/class-patterns.php:123 frontend/class-patterns.php:133
 msgid "Related Products"
 msgstr ""
 
-#: admin/class-admin.php:251
+#: admin/class-admin.php:254
 msgid "release page"
 msgstr ""
 
-#: admin/class-admin.php:296
+#: admin/class-admin.php:299
 msgid "Settings"
 msgstr ""
 
@@ -125,11 +145,11 @@ msgstr ""
 msgid "Show me the options!"
 msgstr ""
 
-#: admin/class-admin.php:275
+#: admin/class-admin.php:278
 msgid "Star on GitHub"
 msgstr ""
 
-#: frontend/class-patterns.php:153 frontend/class-patterns.php:156
+#: frontend/class-patterns.php:175 frontend/class-patterns.php:178
 msgid "Stock filter"
 msgstr ""
 
@@ -137,7 +157,7 @@ msgstr ""
 msgid "Templates array is empty."
 msgstr ""
 
-#: admin/class-admin.php:207
+#: admin/class-admin.php:210
 msgid ""
 "The plugin has been updated, but could not be reactivated. Please reactivate "
 "it manually."
@@ -152,13 +172,13 @@ msgstr ""
 msgid "This extension requires WooCommerce plugin installed and active."
 msgstr ""
 
-#: frontend/blocks/product/class-price.php:127
+#: frontend/blocks/product/class-price.php:122
 msgid ""
 "This is the manufacturer's recommended price. The selling price of the "
 "product is shown below."
 msgstr ""
 
-#: admin/class-admin.php:247
+#: admin/class-admin.php:250
 #, php-format
 msgid ""
 "To read the change history for the latest plugin release, please go to the "
@@ -171,4 +191,12 @@ msgstr ""
 
 #. Name of the plugin
 msgid "WCA: WooCommerce"
+msgstr ""
+
+#: frontend/class-patterns.php:222
+msgid "You might also like"
+msgstr ""
+
+#: frontend/class-patterns.php:274
+msgid "Your cart is empty!"
 msgstr ""

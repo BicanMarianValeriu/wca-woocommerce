@@ -47,6 +47,7 @@ class Shipping extends Dynamic {
 			.wc-block-components-totals-shipping__fieldset {
 				border: 1px solid var(--wp--preset--color--accent);
     			margin: 1rem 0 0;
+				padding: 1rem;
 			}
 			.wc-block-components-shipping-calculator-address__button.wp-element-button {
 				display: block;

@@ -88,13 +88,13 @@ class Widget extends Dynamic {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-cart', [
-			'load'		=> function( $post_id, $template ) {			
-				if( wp_style_is( 'wp-block-cart' ) ) {
+		wecodeart( 'assets' )->add_style( 'wp-block-cart-dep', [
+			'load'		=> function( $blocks ) {			
+				if( wp_style_is( 'wp-block-cart' ) || wp_style_is( 'wp-block-cart-dep' ) ) {
 					return false;
 				}
 
-				// Everywhere
+				// Global
 				return true;
 			},
 			'inline'	=> wecodeart( 'blocks' )->get( 'woocommerce/cart' )::get_instance()->styles()
@@ -187,6 +187,7 @@ class Widget extends Dynamic {
 				font-size: 1.5rem;
 				color: inherit;
 				z-index: 9999;
+				cursor: pointer;
 			}
 			.wc-block-mini-cart__drawer .components-modal__header svg {
 				display: block;

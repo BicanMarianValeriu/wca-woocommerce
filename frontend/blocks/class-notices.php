@@ -45,13 +45,21 @@ class Notices extends Dynamic {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-store-notices', [
-			'load'		=> function( $post_id, $template ) {
-				if( wp_style_is( 'wp-block-store-notices' ) ) {
+		wecodeart( 'assets' )->add_style( 'wp-block-notices', [
+			'load'		=> function( $blocks ) {
+				if( wp_style_is( 'wp-block-notices' ) || wp_style_is( 'wp-block-store-notices' ) ) {
 					return false;
 				}
 
-				if( has_block( 'woocommerce/checkout-payment-block', $template ) || has_block( 'woocommerce/checkout-payment-block', $post_id ) ) {
+				if( count( array_intersect( $blocks, [
+					'woocommerce/cart-order-summary-shipping-block',
+					'woocommerce/checkout-shipping-methods-block',
+					'woocommerce/checkout-payment-block'
+				] ) ) ) {
+					return true;
+				}
+
+				if( is_account_page() ) {
 					return true;
 				}
 			},
@@ -66,16 +74,17 @@ class Notices extends Dynamic {
 	 */
 	public function styles(): string {
 		return '
-			.wc-block-store-notices + * {
-				margin-top: 0 !important;
-			}
-			.wc-block-store-notices .woocommerce-notices-wrapper {
-				margin-bottom: 1.5rem;
+			.wc-block-store-notices .woocommerce-notices-wrapper,
+			.wc-block-components-notices:not(:empty) {
+				margin-bottom: var(--wp--style--block-gap);
 			}
 			.wc-block-store-notices .woocommerce-notices-wrapper:empty {
 				display: none;
 			}
-			
+			.wc-block-store-notices + * {
+				margin-top: 0!important;
+			}
+
 			.wc-block-components-notice-banner {
 				display: flex;
 				align-items: center;
@@ -86,6 +95,7 @@ class Notices extends Dynamic {
 			}
 			.wc-block-components-notice-banner__content {
 				flex-basis: 100%;
+				font-size: var(--wp--preset--font-size--small);
 			}
 			.wc-block-components-notice-banner .wp-element-button {
 				float: right;
@@ -99,7 +109,6 @@ class Notices extends Dynamic {
 				flex-shrink: 0;
 				padding: 2px;
 			}
-			
 			.wc-block-components-notice-banner.is-info {
 				color: var(--wp--preset--color--dark);
 			}
@@ -120,6 +129,19 @@ class Notices extends Dynamic {
 			}
 			.wc-block-components-notice-banner.is-warning .wp-element-button {
 				background-color: var(--wp--preset--color--warning);
+			}
+
+			.components-snackbar-list {
+				position: fixed;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 5;
+			}
+			.components-snackbar-list__notice-container {
+				background-color: var(--wp--gray-900);
+				color: var(--wp--preset--color--white);
+				padding: var(--wp--custom--gutter);
 			}
 		';
 	}

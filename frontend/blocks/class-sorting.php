@@ -60,11 +60,6 @@ class Sorting extends Dynamic {
 	public function filter_render( string $content = '', array $attributes = [] ): string {
 		$processor = new \WP_HTML_Tag_Processor( $content );
 		$processor->next_tag();
-
-		// Clean empty style
-		if( empty( $processor->get_attribute( 'style' ) ) ) {
-			$processor->remove_attribute( 'style' );
-		}
 	
 		// Clean empty class
 		if( $class = $processor->get_attribute( 'class' ) ) {

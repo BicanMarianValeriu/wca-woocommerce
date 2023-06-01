@@ -128,6 +128,7 @@ class Admin {
 	 * @version	1.0.0
 	 */
 	public function assets() {
+		// Only if user is administrator.
 		if( ! current_user_can( 'administrator' ) ) return;
 
 		$path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
@@ -146,6 +147,8 @@ class Admin {
 		);
 
 		wp_enqueue_script( $this->make_handle() );
+
+		wp_set_script_translations( $this->make_handle(), 'wca-woocommerce', untrailingslashit( WCA_WOO_EXT_DIR ) . '/languages' );
 
 		wp_localize_script( $this->make_handle(), 'wecodeartWooCommerce', [
 			'missing' => Templates::get_instance()->get_missing(),

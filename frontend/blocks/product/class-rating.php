@@ -74,11 +74,6 @@ class Rating extends Dynamic {
 		
 		$processor = new \WP_HTML_Tag_Processor( $content );
 		$processor->next_tag();
-
-		// Clean empty style
-		if( empty( $processor->get_attribute( 'style' ) ) ) {
-			$processor->remove_attribute( 'style' );
-		}
 	
 		// Clean empty class
 		if( $class = $processor->get_attribute( 'class' ) ) {
@@ -142,32 +137,24 @@ class Rating extends Dynamic {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-product-rating', [
-			'load'		=> function( $post_id, $template ) {
-				if( wp_style_is( 'wp-block-product-rating' ) ) {
+		wecodeart( 'assets' )->add_style( 'wp-block-rating', [
+			'load'		=> function( $blocks ) {
+				if( wp_style_is( 'wp-block-rating' ) || wp_style_is( 'wp-block-product-rating' ) ) {
 					return false;
 				}
 
-				// Reviews
-				if( has_block( 'woocommerce/reviews-by-category', $template ) || has_block( 'woocommerce/reviews-by-category', $post_id ) ) {
+				// If any of this blocks styles are detected
+				if( count( array_intersect( $blocks, [
+					'woocommerce/all-reviews',
+					'woocommerce/reviews-by-product',
+					'woocommerce/reviews-by-category',
+					'woocommerce/rating-filter',
+				] ) ) ) {
 					return true;
 				}
 				
-				if( has_block( 'woocommerce/reviews-by-product', $template ) || has_block( 'woocommerce/reviews-by-product', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/all-reviews', $template ) || has_block( 'woocommerce/all-reviews', $post_id ) ) {
-					return true;
-				}
-
 				// Products
-				if( Frontend::has_products_block( $post_id, $template ) ) {
-					return true;
-				}
-				
-				// Cart/Checkout
-				if( has_block( 'woocommerce/cart-cross-sells-products-block', $post_id ) ) {
+				if( Frontend::has_products_block( $blocks ) ) {
 					return true;
 				}
 			},

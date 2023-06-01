@@ -89,20 +89,22 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 			?>
 		</tbody>
 	</table>
-	<div class="card-footer">
-		<?php do_action( 'woocommerce_before_account_orders_pagination' ); ?>
-		<?php if ( 1 < $customer_orders->max_num_pages ) : ?>
-		<div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination d-flex">
+	<div class="card-footer"><?php
+		do_action( 'woocommerce_before_account_orders_pagination' );
+		
+		if ( 1 < $customer_orders->max_num_pages ) :
+		?><div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination d-flex">
 			<?php if ( 1 !== $current_page ) : ?>
 			<a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page - 1 ) ); ?>"><?php esc_html_e( 'Previous', 'woocommerce' ); ?></a>
 			<?php endif; ?>
 			<?php if ( intval( $customer_orders->max_num_pages ) !== $current_page ) : ?>
 			<a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button ms-auto" href="<?php echo esc_url( wc_get_endpoint_url( 'orders', $current_page + 1 ) ); ?>"><?php esc_html_e( 'Next', 'woocommerce' ); ?></a>
 			<?php endif; ?>
-		</div>
-		<?php endif; ?>
-		<?php do_action( 'woocommerce_after_account_orders_pagination' ); ?>
-	</div>
+		</div><?php
+		endif;
+		
+		do_action( 'woocommerce_after_account_orders_pagination' );
+	?></div>
 </div>
 <?php else : ?>
 <div class="woocommerce-message woocommerce-message--info woocommerce-Message woocommerce-Message--info woocommerce-info">

@@ -49,7 +49,7 @@ class Coupon extends Dynamic {
 			}
 			.wc-block-components-totals-coupon__input {
 				flex: 1 1 100%;
-				margin-top: 0 !important;
+				margin: 0;
 			}
 			.wc-block-components-totals-coupon__button.wp-element-button {
 				margin-left: 1rem;

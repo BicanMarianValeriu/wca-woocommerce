@@ -31,9 +31,9 @@ wecodeart( 'styles' )->Utilities->load( [
 	<nav class="woocommerce-MyAccount-navigation">
 		<ul class="list-group list-unstyled m-0">
 			<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
-				<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
-					<a class="list-group-item list-group-item-action fw-700 text-uppercase" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
-				</li>
+			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
+				<a class="list-group-item list-group-item-action fw-700 text-uppercase" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
+			</li>
 			<?php endforeach; ?>
 		</ul>
 	</nav>

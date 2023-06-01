@@ -27,7 +27,7 @@ wecodeart( 'styles' )->Utilities->load( [
 
 $notes = $order->get_customer_order_notes();
 ?>
-<p class="mb-5"><?php
+<p><?php
 
 	printf(
 		/* translators: 1: order number 2: order date 3: order status */
