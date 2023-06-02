@@ -66,14 +66,14 @@ class Cart extends Dynamic {
 			.wp-block-woocommerce-cart.is-loading .wp-block-woocommerce-cart-totals-block {
 				flex: 0 0 100%;
 			}
+			.wp-block-woocommerce-cart.is-loading .wp-block-woocommerce-cart-line-items-block {
+				min-height: 205px;
+			}
 			.wp-block-woocommerce-cart.is-loading :where(
 				.wp-block-woocommerce-cart-express-payment-block,
 				.wp-block-woocommerce-cart-accepted-payment-methods-block
 			) {
 				min-height: 2.5rem;
-			}
-			.wp-block-woocommerce-cart.is-loading .wp-block-woocommerce-cart-line-items-block {
-				min-height: 205px;
 			}
 			.wp-block-woocommerce-cart.is-loading .wp-block-woocommerce-empty-cart-block {
 				display: none;
@@ -81,6 +81,10 @@ class Cart extends Dynamic {
 			@media (min-width: 991px) {
 				.wp-block-woocommerce-cart.is-loading .wp-block-woocommerce-cart-totals-block {
 					flex: 0 0 30%;
+				}
+				.wp-block-woocommerce-cart.is-loading .wp-block-woocommerce-cart-totals-block > div:last-child {
+					margin-left: auto;
+					max-width: 50%;
 				}
 			}
 		';

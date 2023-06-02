@@ -79,10 +79,6 @@ class Checkout extends Dynamic {
 			) {
 				min-height: 3.5rem;
 			}
-			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-actions-block {
-				margin-left: auto;
-				max-width: 300px;
-			}
 			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-order-summary-block {
 				position: sticky;
 				top: var(--wp--header-height, 80px);
@@ -91,6 +87,10 @@ class Checkout extends Dynamic {
 			@media (min-width: 991px) {
 				.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-totals-block {
 					flex: 0 0 30%;
+				}
+				.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-actions-block {
+					margin-left: auto;
+					max-width: 300px;
 				}
 			}
 		';
