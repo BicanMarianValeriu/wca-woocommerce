@@ -36,13 +36,13 @@ class Radio extends Base {
 	 */
 	public static function styles(): string {
 		return '
-			.theme-wecodeart .wc-block-components-radio-control-accordion-option {
+			.wc-block-components-radio-control-accordion-option {
 				position: relative;
 			}
-			.theme-wecodeart .wc-block-components-radio-control-accordion-option:last-child::after {
+			.wc-block-components-radio-control-accordion-option:last-child::after {
 				border-width: 1px;
 			}
-			.theme-wecodeart .wc-block-components-radio-control-accordion-option::after {
+			.wc-block-components-radio-control-accordion-option::after {
 				content: "";
 				position: absolute;
 				top: 0;
@@ -55,16 +55,16 @@ class Radio extends Base {
 				border-color: var(--wc--input--border-color);
 				pointer-events: none;
 			}
-			.theme-wecodeart .wc-block-components-radio-control-accordion-option label {
+			.wc-block-components-radio-control-accordion-option label {
 				padding: 1rem 1rem 1rem 3.5rem;
 			}
-			.theme-wecodeart .wc-block-components-radio-control-accordion-option input {
+			.wc-block-components-radio-control-accordion-option input {
 				left: 1rem;
 			}
-			.theme-wecodeart .wc-block-components-radio-control-accordion-content {
+			.wc-block-components-radio-control-accordion-content {
 				padding: 0 1rem 1rem;
 			}
-			.theme-wecodeart .wc-block-components-radio-control__input {
+			.wc-block-components-radio-control__input {
 				position: absolute;
 				top: 50%;
 				left: 0;
@@ -78,7 +78,7 @@ class Radio extends Base {
 				border-radius: 50%;
 				transform: translateY(-50%);
 			}
-			.theme-wecodeart .wc-block-components-radio-control__input:checked::before {
+			.wc-block-components-radio-control__input:checked::before {
 				content: "";
 				position: absolute;
 				top: 50%;
@@ -91,17 +91,17 @@ class Radio extends Base {
 				margin: 0;
 				transform: translate(-50%, -50%);
 			}
-			.theme-wecodeart .wc-block-components-radio-control__label {
+			.wc-block-components-radio-control__label {
 				font-weight: 700;
 			}
-			.theme-wecodeart .wc-block-components-radio-control__label-group {
+			.wc-block-components-radio-control__label-group {
 				display: flex;
 				justify-content: space-between;
 			}
-			.theme-wecodeart .wc-block-components-radio-control__secondary-label {
+			.wc-block-components-radio-control__secondary-label {
 				margin-left: 1.5rem;
 			}
-			.theme-wecodeart .wc-block-components-radio-control__option {
+			.wc-block-components-radio-control__option {
 				position: relative;
 				display: block;
 				padding: 0.5rem 0 0.5rem 2.5rem;
