@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend;
 
 /**
  * Gutenberg Checkout block.
@@ -43,7 +44,58 @@ class Checkout extends Dynamic {
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
-		return '
+		$inline = '';
+		$inline .= Frontend::get_loading_css(
+			'.wc-block-checkout.is-loading :where(
+				.wp-block-woocommerce-checkout-fields-block div[class*="wp-block-woocommerce-checkout-"],
+				.wp-block-woocommerce-checkout-order-summary-block div[class*="wp-block-woocommerce-checkout-order-summary-"]
+			)'
+		);
+		$inline .= '
+			.wc-block-checkout.is-loading {
+				display: flex;
+				flex-wrap: wrap;
+				gap: calc(2 * var(--wp--custom--gutter));
+			}
+			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-fields-block {
+				flex: 1 1 auto;
+			}
+			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-totals-block {
+				flex: 0 0 100%;
+			}
+			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-fields-block div[class*="wp-block-woocommerce-checkout-"] {
+				min-height: 2.5rem;
+			}
+			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-shipping-address-block {
+				min-height: 305px!important;
+			}
+			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-order-note-block {
+				min-height: 100px!important;
+			}
+			.wc-block-checkout.is-loading :where(
+				.wp-block-woocommerce-checkout-order-summary-coupon-form-block,
+				.wp-block-woocommerce-checkout-order-summary-subtotal-block,
+				.wp-block-woocommerce-checkout-order-summary-taxes-block
+			) {
+				min-height: 3.5rem;
+			}
+			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-actions-block {
+				margin-left: auto;
+				max-width: 300px;
+			}
+			.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-order-summary-block {
+				position: sticky;
+				top: var(--wp--header-height, 80px);
+				align-self: flex-start;
+			}
+			@media (min-width: 991px) {
+				.wc-block-checkout.is-loading .wp-block-woocommerce-checkout-totals-block {
+					flex: 0 0 30%;
+				}
+			}
+		';
+
+		$inline .= '
 			.wc-block-checkout__form {
 				counter-reset: checkout-step;
 			}
@@ -125,5 +177,7 @@ class Checkout extends Dynamic {
 				background-color: var(--wp--preset--color--primary);
 			}
 		';
+
+		return $inline;
 	}
 }

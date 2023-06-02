@@ -130,8 +130,8 @@ class Patterns {
 				<div class="wp-block-woocommerce-related-products">
 					<!-- wp:query {"queryId":0,"query":{"perPage":"4","pages":0,"offset":0,"postType":"product","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false},"displayLayout":{"type":"flex","columns":4},"namespace":"woocommerce/related-products","lock":{"remove":true,"move":true},"layout":{"type":"constrained"}} -->
 					<div class="wp-block-query">
-						<!-- wp:heading {"level":3,"className":"fw-700"} -->
-						<h3 class="wp-block-heading fw-700">' . esc_html__( 'Related Products', 'wca-woocommerce' ) . '</h3>
+						<!-- wp:heading {"level":3,"className":"fw-500"} -->
+						<h3 class="wp-block-heading fw-500">' . esc_html__( 'Related Products', 'wca-woocommerce' ) . '</h3>
 						<!-- /wp:heading -->
 						<!-- wp:separator {"backgroundColor":"accent","className":"is-style-faded"} -->
 						<hr class="wp-block-separator has-text-color has-accent-color has-alpha-channel-opacity has-accent-background-color has-background is-style-faded" />

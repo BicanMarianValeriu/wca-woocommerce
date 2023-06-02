@@ -67,7 +67,6 @@ class Blocks {
 		// Cart
 		$container->register( 'woocommerce/cart',								Blocks\Cart::class );
 		$container->register( 'woocommerce/cart-cross-sells-products',			Blocks\Cart\Crossells::class );
-		$container->register( 'woocommerce/cart-order-summary',					Blocks\Cart\Summary::class );
 		$container->register( 'woocommerce/cart-order-summary-coupon-form',		Blocks\Cart\Summary\Coupon::class );
 		$container->register( 'woocommerce/cart-order-summary-shipping',		Blocks\Cart\Summary\Shipping::class );
 		// Mini Cart
@@ -79,9 +78,8 @@ class Blocks {
 		// Checkout
 		$container->register( 'woocommerce/checkout',							Blocks\Checkout::class );
 		$container->register( 'woocommerce/checkout-billing-address',			Blocks\Checkout\Address::class );
-		$container->register( 'woocommerce/checkout-order-summary',				Blocks\Checkout\Summary::class );
-		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
 		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
+		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
 	}
 
     /**

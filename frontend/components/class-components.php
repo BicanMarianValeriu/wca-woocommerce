@@ -73,18 +73,16 @@ class Components implements Configuration {
 	 * @since	1.0.0
 	 * @version	1.0.0
 	 */
-	public function enqueue_block_assets() {
-        $blocks = [/* empty will load for all (eg: admin side) */];
+	public function wp_enqueue_scripts() {
+        $blocks = [];
 
-        if( ! is_admin() ) {
-            global $_wp_current_template_content;
-            $template   = $_wp_current_template_content ?: '';
-            $blocks_1   = parse_blocks( get_post_field( 'post_content', get_the_ID() ) );
-            $blocks_1 	= wp_list_pluck( _flatten_blocks( $blocks_1 ), 'blockName' );
-            $blocks_2   = parse_blocks( $template );
-            $blocks_2 	= wp_list_pluck( _flatten_blocks( $blocks_2 ), 'blockName' );
-            $blocks     = array_unique( array_merge( $blocks_2, $blocks_1 ) );
-        }
+        global $_wp_current_template_content;
+        $template   = $_wp_current_template_content ?: '';
+        $blocks_1   = parse_blocks( get_post_field( 'post_content', get_the_ID() ) );
+        $blocks_1 	= wp_list_pluck( _flatten_blocks( $blocks_1 ), 'blockName' );
+        $blocks_2   = parse_blocks( $template );
+        $blocks_2 	= wp_list_pluck( _flatten_blocks( $blocks_2 ), 'blockName' );
+        $blocks     = array_unique( array_merge( $blocks_2, $blocks_1 ) );
 
 		$inline = '';
 
@@ -99,7 +97,7 @@ class Components implements Configuration {
 					}
 
                     if(
-                        empty( $blocks ) || // Admin.
+                        empty( $blocks ) || // Anywhere empty.
                         empty( $this->get( $dep )::blocks() ) || // No requiredments.
                         count( array_intersect( $blocks, $this->get( $dep )::blocks() ) ) // Must meet requirements.
                     ) {
@@ -110,7 +108,7 @@ class Components implements Configuration {
 			}
 
             if(
-                empty( $blocks ) || // Admin.
+                empty( $blocks ) || // Anywhere empty.
                 empty( $class::blocks() ) || // No requiredments.
                 count( array_intersect( $blocks, $class::blocks() ) ) // Must meet requirements.
             ) {
