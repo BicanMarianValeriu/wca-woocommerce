@@ -88,8 +88,11 @@ class Frontend {
 		// Editor Styles
 		$filesystem = wecodeart( 'files' );
 		$filesystem->set_folder( 'cache' );
-        add_editor_style( $filesystem->get_file_url( Frontend\Blocks::CACHE_FILE, true ) );
-        add_editor_style( $filesystem->get_file_url( Frontend\Components::CACHE_FILE, true ) );
+		add_editor_style( $filesystem->get_file_url( Frontend\Components::CACHE_FILE, true ) );
+		global $pagenow;
+		if( $pagenow === 'site-editor.php' ) {
+			add_editor_style( $filesystem->get_file_url( Frontend\Blocks::CACHE_FILE, true ) );
+		}
 		$filesystem->set_folder( '' );
 	}
 
