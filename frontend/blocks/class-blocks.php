@@ -67,8 +67,8 @@ class Blocks {
 		// Cart
 		$container->register( 'woocommerce/cart',								Blocks\Cart::class );
 		$container->register( 'woocommerce/cart-cross-sells-products',			Blocks\Cart\Crossells::class );
-		$container->register( 'woocommerce/cart-order-summary-coupon-form',		Blocks\Cart\Summary\Coupon::class );
 		$container->register( 'woocommerce/cart-order-summary-shipping',		Blocks\Cart\Summary\Shipping::class );
+		$container->register( 'woocommerce/cart-order-summary-coupon-form',		Blocks\Cart\Summary\Coupon::class );
 		// Mini Cart
 		$container->register( 'woocommerce/mini-cart',							Blocks\Cart\Widget::class );
 		$container->register( 'woocommerce/mini-cart-title',					Blocks\Cart\Widget\Title::class );
@@ -78,8 +78,8 @@ class Blocks {
 		// Checkout
 		$container->register( 'woocommerce/checkout',							Blocks\Checkout::class );
 		$container->register( 'woocommerce/checkout-billing-address',			Blocks\Checkout\Address::class );
-		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
 		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
+		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
 	}
 
     /**
@@ -124,6 +124,19 @@ class Blocks {
 				// Account
 				'woocommerce/customer-account',
 				// Everything else is added on page
+				'woocommerce/cart',
+				'woocommerce/cart-cross-sells-products',
+				'woocommerce/cart-order-summary-coupon-form',
+				'woocommerce/cart-order-summary-shipping',
+				'woocommerce/mini-cart',
+				'woocommerce/mini-cart-title',
+				'woocommerce/mini-cart-items',
+				'woocommerce/mini-cart-footer',
+				'woocommerce/mini-cart-shopping-button',
+				'woocommerce/checkout',
+				'woocommerce/checkout-billing-address',
+				'woocommerce/checkout-order-summary-coupon-form',
+				'woocommerce/checkout-order-summary-cart-items',
 			] as $block ) {
 				if( wecodeart( 'blocks' )->has( $block ) ) {
 					$inline .= wecodeart( 'blocks' )->get( $block )::get_instance()->styles();
