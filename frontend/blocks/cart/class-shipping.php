@@ -44,9 +44,6 @@ class Shipping extends Dynamic {
 	 */
 	public function styles(): string {
 		return '
-			.wc-block-components-totals-shipping .wc-block-components-totals-item__description {
-				font-size: var(--wp--preset--font-size--small);
-			}
 			.wc-block-components-totals-shipping__fieldset {
 				border: 1px solid var(--wp--preset--color--accent);
     			margin: 1rem 0 0;

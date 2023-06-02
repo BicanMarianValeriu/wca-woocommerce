@@ -76,7 +76,10 @@ class Totals extends Base {
 			}
 			.wc-block-components-totals-item__description {
 				flex: 0 0 100%;
-			}   
+			}
+			.wc-block-components-totals-shipping .wc-block-components-totals-item__description {
+				font-size: var(--wp--preset--font-size--small);
+			}
         ';
 	}
 }
