@@ -13,7 +13,6 @@ namespace WCA\EXT\WOO\Frontend;
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Config\Traits\Asset;
-use WCA\EXT\WOO\Frontend;
 
 /**
  * Blocks
@@ -37,53 +36,52 @@ class Blocks {
 	 * @since	1.0.0
 	 * @version	1.0.0
 	 */
-	public function after_setup_theme() {
-        // Register Blocks Overwrites
+	public function register( $container ) {
 		// Misc Blocks
-		wecodeart( 'blocks' )->register( 'woocommerce/store-notices',			Blocks\Notices::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/catalog-sorting',			Blocks\Sorting::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/all-reviews',				Blocks\Reviews::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/all-products',			Blocks\Products::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/breadcrumbs',				Blocks\Breadcrumbs::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/categories',				Blocks\Categories::class );
+		$container->register( 'woocommerce/store-notices',			Blocks\Notices::class );
+		$container->register( 'woocommerce/catalog-sorting',		Blocks\Sorting::class );
+		$container->register( 'woocommerce/all-reviews',			Blocks\Reviews::class );
+		$container->register( 'woocommerce/all-products',			Blocks\Products::class );
+		$container->register( 'woocommerce/breadcrumbs',			Blocks\Breadcrumbs::class );
+		$container->register( 'woocommerce/categories',				Blocks\Categories::class );
 		// Filters
-		wecodeart( 'blocks' )->register( 'woocommerce/filter-wrapper', 			Blocks\Filters::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/active-filters',			Blocks\Filters\Active::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/price-filter', 			Blocks\Filters\Price::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/rating-filter',			Blocks\Filters\Rating::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/stock-filter',			Blocks\Filters\Stock::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/attribute-filter',		Blocks\Filters\Attribute::class );
+		$container->register( 'woocommerce/filter-wrapper', 		Blocks\Filters::class );
+		$container->register( 'woocommerce/active-filters',			Blocks\Filters\Active::class );
+		$container->register( 'woocommerce/price-filter', 			Blocks\Filters\Price::class );
+		$container->register( 'woocommerce/rating-filter',			Blocks\Filters\Rating::class );
+		$container->register( 'woocommerce/stock-filter',			Blocks\Filters\Stock::class );
+		$container->register( 'woocommerce/attribute-filter',		Blocks\Filters\Attribute::class );
 		// Featured
-		wecodeart( 'blocks' )->register( 'woocommerce/featured-product',		Blocks\Featured::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/featured-category',		Blocks\Featured\Category::class );
+		$container->register( 'woocommerce/featured-product',		Blocks\Featured::class );
+		$container->register( 'woocommerce/featured-category',		Blocks\Featured\Category::class );
 		// Product
-		wecodeart( 'blocks' )->register( 'woocommerce/product-price', 			Blocks\Product\Price::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/product-image', 			Blocks\Product\Image::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/product-button', 			Blocks\Product\Button::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/product-rating', 			Blocks\Product\Rating::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/product-details',			Blocks\Product\Details::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/product-image-gallery',	Blocks\Product\Gallery::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/add-to-cart-form',		Blocks\Product\Cart::class );
+		$container->register( 'woocommerce/product-price', 			Blocks\Product\Price::class );
+		$container->register( 'woocommerce/product-image', 			Blocks\Product\Image::class );
+		$container->register( 'woocommerce/product-button', 		Blocks\Product\Button::class );
+		$container->register( 'woocommerce/product-rating', 		Blocks\Product\Rating::class );
+		$container->register( 'woocommerce/product-details',		Blocks\Product\Details::class );
+		$container->register( 'woocommerce/product-image-gallery',	Blocks\Product\Gallery::class );
+		$container->register( 'woocommerce/add-to-cart-form',		Blocks\Product\Cart::class );
 		// Account
-		wecodeart( 'blocks' )->register( 'woocommerce/customer-account',		Blocks\Account\Link::class );
+		$container->register( 'woocommerce/customer-account',		Blocks\Account\Link::class );
 		// Cart
-		wecodeart( 'blocks' )->register( 'woocommerce/cart',								Blocks\Cart::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/cart-cross-sells-products',			Blocks\Cart\Crossells::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/cart-order-summary',					Blocks\Cart\Summary::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/cart-order-summary-coupon-form',		Blocks\Cart\Summary\Coupon::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/cart-order-summary-shipping',			Blocks\Cart\Summary\Shipping::class );
+		$container->register( 'woocommerce/cart',								Blocks\Cart::class );
+		$container->register( 'woocommerce/cart-cross-sells-products',			Blocks\Cart\Crossells::class );
+		$container->register( 'woocommerce/cart-order-summary',					Blocks\Cart\Summary::class );
+		$container->register( 'woocommerce/cart-order-summary-coupon-form',		Blocks\Cart\Summary\Coupon::class );
+		$container->register( 'woocommerce/cart-order-summary-shipping',		Blocks\Cart\Summary\Shipping::class );
 		// Mini Cart
-		wecodeart( 'blocks' )->register( 'woocommerce/mini-cart',							Blocks\Cart\Widget::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/mini-cart-title',						Blocks\Cart\Widget\Title::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/mini-cart-items',						Blocks\Cart\Widget\Items::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/mini-cart-footer',					Blocks\Cart\Widget\Footer::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/mini-cart-shopping-button',			Blocks\Cart\Widget\Button::class );
+		$container->register( 'woocommerce/mini-cart',							Blocks\Cart\Widget::class );
+		$container->register( 'woocommerce/mini-cart-title',					Blocks\Cart\Widget\Title::class );
+		$container->register( 'woocommerce/mini-cart-items',					Blocks\Cart\Widget\Items::class );
+		$container->register( 'woocommerce/mini-cart-footer',					Blocks\Cart\Widget\Footer::class );
+		$container->register( 'woocommerce/mini-cart-shopping-button',			Blocks\Cart\Widget\Button::class );
 		// Checkout
-		wecodeart( 'blocks' )->register( 'woocommerce/checkout',							Blocks\Checkout::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/checkout-billing-address',			Blocks\Checkout\Address::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/checkout-order-summary',				Blocks\Checkout\Summary::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
-		wecodeart( 'blocks' )->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
+		$container->register( 'woocommerce/checkout',							Blocks\Checkout::class );
+		$container->register( 'woocommerce/checkout-billing-address',			Blocks\Checkout\Address::class );
+		$container->register( 'woocommerce/checkout-order-summary',				Blocks\Checkout\Summary::class );
+		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
+		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
 	}
 
     /**
@@ -135,8 +133,73 @@ class Blocks {
 			}
 
 			$filesystem->create_file( self::CACHE_FILE, wecodeart( 'styles' )::compress( $inline ) );
-			set_transient( self::CACHE_KEY, true, 5 * MINUTE_IN_SECONDS );
+			set_transient( self::CACHE_KEY, true, 12 * HOUR_IN_SECONDS );
 		}
 		$filesystem->set_folder( '' );
+	}
+
+	/**
+	 * Filter - Restricted WooCommerce Blocks from theme code (extending their attributes will cause them to crash)
+	 *
+	 * @since	1.0.0
+	 * @version	1.0.0
+	 *
+	 * @return 	array
+	 */
+	public function restricted( $blocks ) {
+		return wp_parse_args( [
+			'woocommerce/product-best-sellers', // ok
+			'woocommerce/product-top-rated',	// ok
+			'woocommerce/product-on-sale',		// ok
+			'woocommerce/product-new',			// ok
+			'woocommerce/product-tag',			// ok
+			'woocommerce/product-category', 	// ok
+			'woocommerce/products-by-attribute',// ok
+			'woocommerce/handpicked-products',	// ok
+		], $blocks );
+	}
+
+	/**
+     * Check if has products blocks
+     *
+     * @since	1.0.0
+     * @version	1.0.0
+     *
+     * @return	boolean
+     */
+	public static function has_products( $blocks ) {
+		// If any of this blocks styles are detected
+		if( count( array_intersect( $blocks, [
+			'woocommerce/product-on-sale',
+			'woocommerce/product-top-rated',
+			'woocommerce/product-best-sellers',
+			'woocommerce/product-new',
+			'woocommerce/product-tag',
+			'woocommerce/product-category',
+			'woocommerce/products-by-attribute',
+			'woocommerce/all-products',
+			'woocommerce/related-products',
+			'woocommerce/handpicked-products',
+			'woocommerce/cart-cross-sells-products-block'
+		] ) ) ) {
+			return true;
+		}
+
+		// Catalog page (if a pattern is in template and is not detected as a block when rendered)
+		if( wecodeart_if( 'is_woocommerce_archive' ) ) {
+			return true;
+		}
+
+		// For new block, we use the old fashioned way.
+		global $_wp_wp_current_template_content;
+		$template	= $_wp_wp_current_template_content ?: '';
+		$content	= get_the_content( get_the_ID() );
+
+		if(
+			( has_block( 'core/query', $template ) && strpos( $template, 'woocommerce/product-query' ) ) || 
+			( has_block( 'core/query', $content ) && strpos( $content, 'woocommerce/product-query' ) )
+		) {
+			return true;
+		}
 	}
 }

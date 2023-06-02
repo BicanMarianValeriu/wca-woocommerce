@@ -157,6 +157,12 @@ const Options = (props) => {
                         checked={formData['product_rating_extra']}
                         onChange={value => setFormData({ ...formData, product_rating_extra: value })}
                     />
+                    <ToggleControl
+                        label={__('Enable customer account extras?', 'wca-woocommerce')}
+                        help={__('Enhance the Customer Account block by adding a dropdown with WooCommerce\'s account page endpoints.', 'wca-woocommerce')}
+                        checked={formData['customer_account_extra']}
+                        onChange={value => setFormData({ ...formData, customer_account_extra: value })}
+                    />
                     <RangeControl
                         label={__('Product gallery columns', 'wca-woocommerce')}
                         value={formData['product_gallery_cols']}

@@ -23,8 +23,14 @@ class Account extends Base {
      * @return 	array
      */
 	public static function blocks(): array {
-		// Global
-        return [];
+		if( is_account_page() ) {
+			// Global
+			return [];
+		}
+
+		return [
+			'wocommerce/account' // Non-existent
+		];
 	}
 
     /**

@@ -49,6 +49,7 @@ class Activator {
 					'replace_select2_style' => true,
 					'product_price_extra'	=> true,
 					'product_rating_extra'	=> true,
+					'customer_account_extra'=> false,
 					'product_gallery_cols'	=> 5
 				]
 			] );

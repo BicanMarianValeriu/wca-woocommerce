@@ -39,6 +39,7 @@ class Address extends Base {
 		return '
             :is(
                 .wc-block-components-shipping-calculator-address,
+                .wp-block-woocommerce-checkout-contact-information-block,
                 .wp-block-woocommerce-checkout-shipping-address-block,
                 .wp-block-woocommerce-checkout-billing-address-block,
                 .wp-block-woocommerce-checkout-order-note-block

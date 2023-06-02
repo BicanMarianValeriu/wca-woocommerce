@@ -47,27 +47,6 @@ class Breadcrumbs extends Dynamic {
 	 */
 	public function init() {
 		add_filter( 'woocommerce_breadcrumb_defaults', 			[ $this, 'filter_defaults' 	], 20, 1 );
-		add_filter( 'render_block_' . $this->get_block_type(), 	[ $this, 'filter_render' 	], 20, 1 );
-	}
-
-	/**
-	 * Dynamically renders the block.
-	 *
-	 * @param 	array 	$block 		The parsed block.
-	 * @param 	string 	$content 	The block markup.
-	 *
-	 * @return 	string 	The block markup.
-	 */
-	public function filter_render( string $content = '', array $attributes = [] ): string {
-		$processor = new \WP_HTML_Tag_Processor( $content );
-		$processor->next_tag();
-	
-		// Clean empty class
-		if( $class = $processor->get_attribute( 'class' ) ) {
-			$processor->set_attribute( 'class', rtrim( $class ) );
-		}
-	
-		return $processor->get_updated_html();
 	}
 
 	/**

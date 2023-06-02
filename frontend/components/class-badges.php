@@ -23,8 +23,8 @@ class Badges extends Base {
 	 * @return 	array
 	 */
 	public static function blocks(): array {
-		// Global
-        return [];
+		// Global - mini cart
+		return [];
 	}
 
     /**

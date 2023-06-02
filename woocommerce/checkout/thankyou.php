@@ -35,9 +35,9 @@ wecodeart( 'styles' )->Utilities->load( [
 
 	<?php if ( $order->has_status( 'failed' ) ) : ?>
 
-	<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
+	<p class="wc-block-components-notice-banner is-error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
 
-	<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
+	<p class="woocommerce-thankyou-order-failed-actions">
 		<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php esc_html_e( 'Pay', 'woocommerce' ); ?></a>
 		<?php if ( is_user_logged_in() ) : ?>
 		<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php esc_html_e( 'My account', 'woocommerce' ); ?></a>
@@ -46,7 +46,7 @@ wecodeart( 'styles' )->Utilities->load( [
 
 	<?php else : ?>
 
-	<p class="woocommerce-notice woocommerce-notice--info woocommerce-thankyou-order-received mb-5"><?php
+	<p class="wc-block-components-notice-banner is-success"><?php
 		
 		echo apply_filters(
 			'woocommerce_thankyou_order_received_text',
@@ -96,7 +96,7 @@ wecodeart( 'styles' )->Utilities->load( [
 
 	<?php else : ?>
 
-	<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), null ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+	<p class="wc-block-components-notice-banner is-success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), null ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
 	<?php endif; ?>
 

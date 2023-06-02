@@ -187,7 +187,7 @@ class Price extends Dynamic {
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-between;
-				gap: 0.5rem;
+				gap: 1rem;
 			}
 			.wc-block-components-price-slider__amount {
 				flex: 1 0 0%;

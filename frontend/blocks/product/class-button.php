@@ -59,7 +59,7 @@ class Button extends Dynamic {
 				}
 
 				// Products blocks should inherit the styles
-				if( Frontend::has_products_block( $blocks ) ) {
+				if( Frontend\Blocks::has_products( $blocks ) ) {
 					return true;
 				}
 			},

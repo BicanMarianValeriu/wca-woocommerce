@@ -70,17 +70,9 @@ class Rating extends Dynamic {
 			$offset	= $matches[0][1];
 			$offset	= strrpos( $content, '</div>', $offset );
     		$content = substr( $content, 0, $offset ) . $this->markup() . substr( $content, $offset );
-		}
-		
-		$processor = new \WP_HTML_Tag_Processor( $content );
-		$processor->next_tag();
-	
-		// Clean empty class
-		if( $class = $processor->get_attribute( 'class' ) ) {
-			$processor->set_attribute( 'class', rtrim( $class ) );
-		}
+		} 
 
-		return $processor->get_updated_html();
+		return $content;
 	}
 
 	/**
@@ -154,7 +146,7 @@ class Rating extends Dynamic {
 				}
 				
 				// Products
-				if( Frontend::has_products_block( $blocks ) ) {
+				if( Frontend\Blocks::has_products( $blocks ) ) {
 					return true;
 				}
 			},

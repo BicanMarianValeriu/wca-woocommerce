@@ -88,17 +88,6 @@ class Footer extends Dynamic {
 				display: block;
 				pointer-events: none;
 			}
-			.wc-block-components-totals-item {
-				display: flex;
-				flex-wrap: wrap;
-				width: 100%;
-			}
-			.wc-block-components-totals-item__label {
-				flex-grow: 1;
-			}
-			.wc-block-components-totals-item__value {
-				font-weight: 700;
-			} 
 			.wc-block-components-totals-footer-item {
 				font-size: var(--wp--preset--font-size--large);
 			}

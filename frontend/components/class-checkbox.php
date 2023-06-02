@@ -67,21 +67,22 @@ class Checkbox extends Base {
                 align-items: flex-start;
             }
             .wc-block-components-checkbox input {
-                cursor: pointer;
                 position: static;
-                -webkit-appearance: none;
-                        appearance: none;
-                border: var(--wc--input--border);
-                border-radius: calc(var(--wc--input--border-radius) / 2);
                 margin: 0 var(--wc--input--padding-x) 0 0;
                 height: var(--wc--checkbox--size);
                 width: var(--wc--checkbox--size);
                 min-height: var(--wc--checkbox--size);
                 min-width: var(--wc--checkbox--size);
-                overflow: hidden;
-                outline: none;
+                background-color: transparent;
+                border: var(--wc--input--border);
+                border-radius: calc(var(--wc--input--border-radius) / 2);
                 font-size: 1em;
                 vertical-align: middle;
+                overflow: hidden;
+                outline: none;
+                cursor: pointer;
+                -webkit-appearance: none;
+                        appearance: none;
             }
             .wc-block-components-checkbox input:not(:checked) + .wc-block-components-checkbox__mark {
                 display: none;

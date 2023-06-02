@@ -108,7 +108,6 @@ class Frontend {
 
 		// By default we have our own simplified styles
 		wp_deregister_style( 'wc-blocks-style' );
-		// wp_deregister_style( 'wc-blocks-editor-style' );
 
 		// Legacy styles
 		if( get_prop( $options, 'remove_style' ) ) {
@@ -133,7 +132,7 @@ class Frontend {
 			'deps'		=> [ 'wecodeart-support-assets' ],
 			'version' 	=> $this->version,
 			'load'  	=> function( $blocks ) {
-				return wecodeart_if( 'is_woocommerce_page' ) || self::has_products_block( $blocks );
+				return wecodeart_if( 'is_woocommerce_page' ) || Frontend\Blocks::has_products( $blocks );
 			},
 		] );
 	}
@@ -152,27 +151,6 @@ class Frontend {
         
 		// Components Cache
 		Frontend\Components::get_instance()->cache();
-	}
-
-	/**
-	 * Filter - Restricted WooCommerce Blocks from theme code (extending their attributes will cause them to crash)
-	 *
-	 * @since	1.0.0
-	 * @version	1.0.0
-	 *
-	 * @return 	array
-	 */
-	public function restricted_blocks( $blocks ) {
-		return wp_parse_args( [
-			'woocommerce/product-best-sellers', // ok
-			'woocommerce/product-top-rated',	// ok
-			'woocommerce/product-on-sale',		// ok
-			'woocommerce/product-new',			// ok
-			'woocommerce/product-tag',			// ok
-			'woocommerce/product-category', 	// ok
-			'woocommerce/products-by-attribute',// ok
-			'woocommerce/handpicked-products',	// ok
-		], $blocks );
 	}
 
 	/**
@@ -306,49 +284,5 @@ class Frontend {
 				transform: translateX(-100%);
 			}
 		";
-	}
-
-	/**
-     * Check if has products blocks
-     *
-     * @since	1.0.0
-     * @version	1.0.0
-     *
-     * @return	boolean
-     */
-	public static function has_products_block( $blocks ) {
-		// If any of this blocks styles are detected
-		if( count( array_intersect( $blocks, [
-			'woocommerce/product-on-sale',
-			'woocommerce/product-top-rated',
-			'woocommerce/product-best-sellers',
-			'woocommerce/product-new',
-			'woocommerce/product-tag',
-			'woocommerce/product-category',
-			'woocommerce/products-by-attribute',
-			'woocommerce/all-products',
-			'woocommerce/related-products',
-			'woocommerce/handpicked-products',
-			'woocommerce/cart-cross-sells-products-block'
-		] ) ) ) {
-			return true;
-		}
-
-		// Catalog page (if a pattern is in template and is not detected as a block when rendered)
-		if( wecodeart_if( 'is_woocommerce_archive' ) ) {
-			return true;
-		}
-
-		// For new block, we use the old fashioned way.
-		global $_wp_wp_current_template_content;
-		$template= $_wp_wp_current_template_content ?: '';
-		$post_id = get_the_ID();
-
-		if(
-			( has_block( 'core/query', $template ) && strpos( $template, 'woocommerce/product-query' ) ) || 
-			( has_block( 'core/query', $post_id ) && strpos( get_the_content( get_the_ID() ), 'woocommerce/product-query' ) )
-		) {
-			return true;
-		}
 	}
 }

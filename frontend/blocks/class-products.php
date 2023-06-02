@@ -52,7 +52,7 @@ class Products extends Dynamic {
 					return false;
 				}
 
-				if( Frontend::has_products_block( $blocks ) ) {
+				if( Frontend\Blocks::has_products( $blocks ) ) {
 					return true;
 				}
 

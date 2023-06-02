@@ -121,7 +121,7 @@ class Ajax extends Async {
             $message = esc_html__( 'All templates installed successfully. You can customize them in Site Editor.', 'wca-woocommerce' );
         }
         
-        if( count( $failed ) === count( $slugs ) > 1 ) {
+        if( count( $failed ) === count( $slugs ) ) {
             $message = esc_html__( 'All templates have failed to install.', 'wca-woocommerce' );
         }
 
