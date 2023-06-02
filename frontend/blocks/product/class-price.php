@@ -15,9 +15,11 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend;
 
 use function add_action;
 use function add_filter;
+use function str_replace;
 use function WeCodeArt\Functions\get_prop;
 
 /**
@@ -47,6 +49,10 @@ class Price extends Dynamic {
 	 * @return 	array
 	 */
 	public function init() {
+		$is_enabled = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_price_extra' ] );
+
+		if( ! $is_enabled ) return;
+
 		add_action( 'woocommerce_product_options_general_product_data', [ $this, 'manufacturer_product_data' 	], 20 );
 		add_action( 'woocommerce_variation_options_pricing', 			[ $this, 'manufacturer_variation_data' 	], 20, 3 );
 		add_action( 'woocommerce_process_product_meta', 				[ $this, 'process_product_meta' 		], 20);
@@ -67,7 +73,15 @@ class Price extends Dynamic {
 
 		$content = str_replace( '<del', $this->markup() . '<del', $content );
 
-		return $content;
+		$processor = new \WP_HTML_Tag_Processor( $content );
+		$processor->next_tag();
+	
+		// Clean empty class
+		if( $class = $processor->get_attribute( 'class' ) ) {
+			$processor->set_attribute( 'class', rtrim( $class ) );
+		}
+
+		return $processor->get_updated_html();
 	}
 
 	/**
@@ -105,11 +119,12 @@ class Price extends Dynamic {
 			return '';
 		}
 		
-		$message = esc_html__( 'This is the manufacturer\'s recommended price. The selling price of the product is shown below.', 'wecodeart' );
+		$message = esc_html__( 'This is the manufacturer\'s recommended price. The selling price of the product is shown below.', 'wca-woocommerce' );
 		
 		wecodeart( 'styles' )->Utilities->load( [
 			'ms-1',
-			'm-0',
+			'mb-1',
+			'fw-400'
 		] );
 		
 		wecodeart( 'markup' )->SVG::add( 'info', [
@@ -123,7 +138,7 @@ class Price extends Dynamic {
 		ob_start();
 
 		?>
-		<p class="woocommerce-product-prp has-small-font-size has-cyan-bluish-gray-color m-0">
+		<p class="has-small-font-size has-cyan-bluish-gray-color fw-400 mb-1">
 			<span><?php
 			
 				printf( 'PRP: %s', wc_price( $prp ) );
@@ -222,24 +237,21 @@ class Price extends Dynamic {
 		parent::enqueue_styles();
 
 		wecodeart( 'assets' )->add_style( 'wp-block-price', [
-			'load'		=> function( $post_id, $template ) {
+			'load'		=> function( $blocks ) {
 				if( wp_style_is( 'wp-block-price' ) || wp_style_is( 'wp-block-product-price' ) ) {
 					return false;
 				}
 
-				if( has_block( 'woocommerce/all-products', $template ) || has_block( 'woocommerce/all-products', $post_id ) ) {
+				// Products
+				if( Frontend\Blocks::has_products( $blocks ) ) {
 					return true;
 				}
 
-				if( has_block( 'woocommerce/cart-cross-sells-products-block', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/checkout-order-summary-cart-items-block', $post_id ) ) {
-					return true;
-				}
-
-				if( wecodeart_if( 'is_woocommerce_archive' ) ) {
+				// If any of this blocks styles are detected
+				if( count( array_intersect( $blocks, [
+					'woocommerce/cart-cross-sells-products-block',
+					'woocommerce/checkout-order-summary-cart-items-block',
+				] ) ) ) {
 					return true;
 				}
 			},
@@ -259,23 +271,29 @@ class Price extends Dynamic {
 				line-height: 1;
 				color: var(--wp--gray-800);
 			}
-
 			:is(.price,.wc-block-grid__product-price,.wc-block-components-product-price) :where(del, ins) > * {
 				font-size: inherit;
 				color: inherit;
 			}
-			
 			:is(.price,.wc-block-grid__product-price,.wc-block-components-product-price) del {
-				font-size: .8rem;
+				font-size: var(--wp--preset--font-size--small);
 				color: var(--wp--gray-500); 
 			}
-			
 			:is(.price,.wc-block-grid__product-price,.wc-block-components-product-price) ins {
 				color: var(--wp--preset--color--danger);
 				text-decoration: none;
 				margin-left: 5px;
 			}
-			
+			.wc-block-components-product-price--align-center,
+			.wc-block-components-product-price--align-right {
+				display: block;
+			}
+			.wc-block-components-product-price--align-center {
+				text-align: center;
+			}
+			.wc-block-components-product-price--align-right {
+				text-align: right;
+			}
 			.prp-tooltip .tooltip-inner {
 				max-width: 350px;
 			}

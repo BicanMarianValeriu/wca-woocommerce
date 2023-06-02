@@ -44,12 +44,12 @@ class Details extends Dynamic {
 	 */
 	public function styles(): string {
 		return '
-			.woocommerce-tabs ul.tabs {
+			ul.wc-tabs {
+				display: flex;
 				padding: 0;
 				margin: 0 0 -1px;
-				display: flex;
 			}
-			.woocommerce-tabs ul.tabs li {
+			ul.wc-tabs li {
 				display: block;
 				background-color: transparent;
 				border: 1px solid var(--wp--preset--color--accent);
@@ -58,13 +58,13 @@ class Details extends Dynamic {
 				padding: 0;
 				margin: 0;
 			}
-			.woocommerce-tabs ul.tabs li:is(:hover,.active)::before {
+			ul.wc-tabs li:is(:hover,.active)::before {
 				border-top-color: var(--wp--preset--color--primary);
 			}
-			.woocommerce-tabs ul.tabs li:is(:hover,.active) a {
+			ul.wc-tabs li:is(:hover,.active) a {
 				color: var(--wp--preset--color--primary);
 			}
-			.woocommerce-tabs ul.tabs li::before {
+			ul.wc-tabs li::before {
 				content: "";
 				display: block;
 				height: 0;
@@ -72,7 +72,7 @@ class Details extends Dynamic {
 				width: 100%;
 				border-top: 4px solid var(--wp--preset--color--accent);
 			}
-			.woocommerce-tabs ul.tabs li a {
+			ul.wc-tabs li a {
 				position: relative;
 				display: block;
 				font-size: 0.6rem;
@@ -82,15 +82,15 @@ class Details extends Dynamic {
 				color: var(--wp--gray-900);
 				padding: 0.6rem 0.8rem;
 			}
-			.woocommerce-tabs ul.tabs li + li {
+			ul.wc-tabs li + li {
 				border-left: 0;
 			}
-			.woocommerce-tabs .wc-tab {
+			ul.wc-tabs ~ .wc-tab {
 				border: 1px solid var(--wp--preset--color--accent);
 				padding: 20px 10px 10px;
 			}
-			.woocommerce-tabs .wc-tab h2 {
-				font-weight: 700;
+			ul.wc-tabs ~ .wc-tab h2 {
+				font-weight: 500;
 			}
 
 			.woocommerce-product-attributes {
@@ -124,7 +124,6 @@ class Details extends Dynamic {
 				float: right;
 				width: calc(100% - var(--wc--avatar-size));
 				padding-left: 10px;
-				font-size: var(--wp--preset--font-size--small);
 			}
 			.woocommerce-reviews .review .comment-text p:only-child {
 				margin: 0;
@@ -177,9 +176,6 @@ class Details extends Dynamic {
 				.woocommerce-reviews .review {
 					padding-top: 1rem;
 				}
-				.woocommerce-reviews .review .comment-text {
-					font-size: var(--wp--preset--font-size--normal);
-				}
 				.woocommerce-reviews .review .star-rating {
 					position: absolute;
 					right: 0;
@@ -189,11 +185,11 @@ class Details extends Dynamic {
 			}
 
 			@media (min-width: 576px) {
-				.woocommerce-tabs ul.tabs li a {
+				ul.wc-tabs li a {
 					font-size: 0.8rem;
 					padding: 0.7rem 1.5rem;
 				}
-				.woocommerce-tabs .wc-tab {
+				ul.wc-tabs .wc-tab {
 					padding: 25px;
 				}
 			}

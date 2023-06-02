@@ -15,6 +15,7 @@ use WeCodeArt\Config\Traits\Asset;
 use WeCodeArt\Admin\Request;
 use WeCodeArt\Admin\Notifications;
 use WeCodeArt\Admin\Notifications\Notification;
+use WCA\EXT\WOO\Frontend\Templates;
 use function WeCodeArt\Functions\get_prop;
 
 /**
@@ -31,8 +32,8 @@ class Admin {
 
 	use Asset;
 
-	const NOTICE_ID 	= 'wecodeart/plugin/woocommerce';
-	const CACHE_ID 		= 'wecodeart/transient/extension/woocommerce/update';
+	const NOTICE_ID 	= 'wecodeart/plugin/woocommerce/notice';
+	const UPDATE_ID		= 'wecodeart/plugin/woocommerce/update';
 	const REPOSITORY 	= 'BicanMarianValeriu/wca-woocommerce';
 
 	/**
@@ -78,6 +79,8 @@ class Admin {
 		$this->plugin_name	= $plugin_name;
 		$this->version 		= $version;
 		$this->config 		= $config;
+
+		new Admin\Ajax();
 	}
     
     /**
@@ -87,26 +90,25 @@ class Admin {
 	 * @version	1.0.0
 	 */
 	public function if_active() {
-		$notification = new Notification(
-			sprintf(
-				'<h3 class="notice__heading" style="margin-bottom:0px">%1$s</h3>
-				<div class="notice__content">
-					<p>%2$s</p>
-					<p><a href="%3$s" class="button button-primary">%4$s</a></p>
-				</div>',
-				esc_html__( 'Awesome, WCA: WooCommerce extension is activated!', 'wca-woocommerce' ),
-				esc_html__( 'Go to Theme Options in order to setup your preferences.', 'wca-woocommerce' ),
-				esc_url( admin_url( '/themes.php?page=wecodeart&tab=plugins#wca-woocommerce' ) ),
-				esc_html__( 'Show me the options!', 'wca-woocommerce' )
-			),
-			[
-				'id'			=> self::NOTICE_ID,
-				'type'     		=> Notification::INFO,
-				'priority' 		=> 1,
-				'class'			=> 'notice is-dismissible',
-				'capabilities' 	=> 'activate_plugins',
-			]
+		$message = sprintf(
+			'<h3 class="notice__heading" style="margin-bottom:0px">%1$s</h3>
+			<div class="notice__content">
+				<p>%2$s</p>
+				<p><a href="%3$s" class="button button-primary">%4$s</a></p>
+			</div>',
+			esc_html__( 'Awesome, WCA: WooCommerce extension is activated!', 'wca-woocommerce' ),
+			esc_html__( 'Go to Theme Options in order to setup your preferences.', 'wca-woocommerce' ),
+			esc_url( admin_url( '/themes.php?page=wecodeart&tab=plugins#wca-woocommerce' ) ),
+			esc_html__( 'Show me the options!', 'wca-woocommerce' )
 		);
+
+		$notification = new Notification( $message, [
+			'id'			=> self::NOTICE_ID,
+			'type'     		=> Notification::INFO,
+			'priority' 		=> 1,
+			'class'			=> 'notice is-dismissible',
+			'capabilities' 	=> 'activate_plugins',
+		] );
 
 		if( get_user_option( self::NOTICE_ID ) === 'seen' ) {
 			Notifications::get_instance()->remove_notification( $notification );
@@ -126,6 +128,7 @@ class Admin {
 	 * @version	1.0.0
 	 */
 	public function assets() {
+		// Only if user is administrator.
 		if( ! current_user_can( 'administrator' ) ) return;
 
 		$path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
@@ -144,6 +147,12 @@ class Admin {
 		);
 
 		wp_enqueue_script( $this->make_handle() );
+
+		wp_set_script_translations( $this->make_handle(), 'wca-woocommerce', untrailingslashit( WCA_WOO_EXT_DIR ) . '/languages' );
+
+		wp_localize_script( $this->make_handle(), 'wecodeartWooCommerce', [
+			'missing' => Templates::get_instance()->get_missing(),
+		] );
 	}
 
 	/**
@@ -306,11 +315,11 @@ class Admin {
 	public static function get_github_data() {
 		$api_url	= sprintf( 'https://api.github.com/repos/%s/releases/latest', self::REPOSITORY );
 
-		if ( false === ( $response = get_transient( self::CACHE_ID ) ) ) {
+		if ( false === ( $response = get_transient( self::UPDATE_ID ) ) ) {
 			$request	= new Request( $api_url, [] );
 			$request->send( $request::METHOD_GET );
 			$response = $request->get_response_body( true );
-			set_transient( self::CACHE_ID, $response, 12 * HOUR_IN_SECONDS );
+			set_transient( self::UPDATE_ID, $response, 12 * HOUR_IN_SECONDS );
 		}
 
 		return $response;			

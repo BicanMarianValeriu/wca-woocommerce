@@ -37,6 +37,6 @@ class I18N {
 	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'wca-woocommerce', false, dirname( dirname( WCA_WOO_EXT_BASE ) ) . '/languages' );
+		load_plugin_textdomain( 'wca-woocommerce', false, dirname( WCA_WOO_EXT_BASE ) . '/languages' );
 	}
 }

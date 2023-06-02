@@ -52,9 +52,7 @@ class Footer extends Dynamic {
 				font-weight: 600;
 				margin-bottom: 1em;
 			}
-			.wc-block-mini-cart__footer-subtotal .wc-block-components-totals-item__description {
-				display: none;
-			}
+			.wc-block-mini-cart__footer-subtotal .wc-block-components-totals-item__description,
 			.wc-block-mini-cart__footer-cart.wp-element-button {
 				display: none;
 			}
@@ -66,15 +64,10 @@ class Footer extends Dynamic {
 			.wc-block-mini-cart__footer .wc-block-components-formatted-money-amount {
 				color: var(--wp--preset--color--black);
 			}
-			.wc-block-mini-cart__footer .wc-block-components-button {
-				font-size: var(--wp--preset--font-size--small);
-				text-align: center;
-				padding: 0.75rem 0.75rem;
-			}
 			.wc-block-mini-cart__footer .wc-block-components-payment-method-icons {
 				margin-top: 1em;
 			}
-			/* Totals */
+			
 			.wc-block-components-totals-wrapper {
 				position: relative;
 				padding: 1rem 0;
@@ -95,17 +88,6 @@ class Footer extends Dynamic {
 				display: block;
 				pointer-events: none;
 			}
-			.wc-block-components-totals-item {
-				display: flex;
-				flex-wrap: wrap;
-				width: 100%;
-			}
-			.wc-block-components-totals-item__label {
-				flex-grow: 1;
-			}
-			.wc-block-components-totals-item__value {
-				font-weight: 700;
-			} 
 			.wc-block-components-totals-footer-item {
 				font-size: var(--wp--preset--font-size--large);
 			}

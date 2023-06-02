@@ -11,6 +11,7 @@
 
 namespace WCA\EXT\WOO;
 
+
 use WeCodeArt\Admin\Notifications;
 use WeCodeArt\Admin\Notifications\Notification;
 
@@ -33,7 +34,7 @@ class Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function run() {
 		$errors = self::if_compatible();
 
 		if ( count( $errors ) ) {
@@ -41,11 +42,18 @@ class Activator {
 			wp_die( current( $errors ) );
 		}
 
-		wecodeart_option( [
-			'woocommerce' => [
-				'clean_assets'	=> true,
-			]
-		] );
+		if( ! wecodeart_option( 'woocommerce' ) ) {
+			wecodeart_option( [
+				'woocommerce' => [
+					'remove_style'			=> true,
+					'replace_select2_style' => true,
+					'product_price_extra'	=> true,
+					'product_rating_extra'	=> true,
+					'customer_account_extra'=> false,
+					'product_gallery_cols'	=> 5
+				]
+			] );
+		}
 	}
 
 	/**

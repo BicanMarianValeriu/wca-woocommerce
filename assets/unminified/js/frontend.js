@@ -73,14 +73,14 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*************************!*\
-  !*** ./src/js/index.js ***!
-  \*************************/
+/*!**********************************!*\
+  !*** ./src/js/frontend/index.js ***!
+  \**********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../scss/index.scss */ "./src/scss/index.scss");
+/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../scss/index.scss */ "./src/scss/index.scss");
 /**
  * @package: 	WeCodeArt WooCommerce Extension
  * @author: 	Bican Marian Valeriu
@@ -92,8 +92,21 @@ __webpack_require__.r(__webpack_exports__);
   wecodeart.routes = { ...wecodeart.routes,
     woocommerceJs: {
       complete: () => {
-        const forms = document.querySelectorAll('.wpcf7-form');
-        [...forms].map(el => el.addEventListener('change', () => el.classList.add('was-validated')));
+        const handleButtonClick = (input, action) => {
+          const value = parseInt(input.value, 10) || 0;
+          const min = parseInt(input.getAttribute('min'), 10) || 0;
+          const max = parseInt(input.getAttribute('max'), 10) || 99999;
+          input.value = action === '-' && value > min ? value - 1 : action === '+' && value < max ? value + 1 : value;
+          input.dispatchEvent(new Event('change'));
+        };
+
+        document.querySelectorAll('.quantity.wc-block-components-quantity-selector:not([hasQtyInit])').forEach(item => {
+          item.hasQtyInit = true;
+          const input = item.querySelector('.wc-block-components-quantity-selector__input');
+          item.querySelectorAll('.wc-block-components-quantity-selector__button').forEach(el => {
+            el.addEventListener('click', () => handleButtonClick(input, el.value));
+          });
+        });
       }
     }
   };

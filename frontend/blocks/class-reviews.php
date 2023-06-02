@@ -47,16 +47,12 @@ class Reviews extends Dynamic {
 		parent::enqueue_styles();
 
 		wecodeart( 'assets' )->add_style( 'wp-block-reviews', [
-			'load'		=> function( $post_id, $template ) {
+			'load'		=> function( $blocks ) {
 				if( wp_style_is( 'wp-block-reviews' ) || wp_style_is( 'wp-block-all-reviews' ) ) {
 					return false;
 				}
 
-				if( has_block( 'woocommerce/reviews-by-product', $template ) || has_block( 'woocommerce/reviews-by-category', $post_id ) ) {
-					return true;
-				}
-
-				if( has_block( 'woocommerce/reviews-by-category', $template ) || has_block( 'woocommerce/reviews-by-category', $post_id ) ) {
+				if( count( array_intersect( $blocks, [ 'woocommerce/reviews-by-product', 'woocommerce/reviews-by-category' ] ) ) ) {
 					return true;
 				}
 			},

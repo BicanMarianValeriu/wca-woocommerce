@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
-use WeCodeArt\Support\Plugins\WooCommerce;
+use WCA\EXT\WOO\Frontend;
 
 /**
  * Gutenberg Products block.
@@ -47,43 +47,16 @@ class Products extends Dynamic {
 		parent::enqueue_styles();
 
 		wecodeart( 'assets' )->add_style( 'wp-block-products', [
-			'load'		=> function( $post_id, $template ) {
+			'load'		=> function( $blocks ) {
 				if( wp_style_is( 'wp-block-products' ) || wp_style_is( 'wp-block-all-products' ) ) {
 					return false;
 				}
 
-				if(
-					( has_block( 'core/query', $template ) && strpos( $template, 'woocommerce/product-query' ) ) || 
-					( has_block( 'core/query', $post_id ) && strpos( get_the_content( $post_id ), 'woocommerce/product-query' ) )
-				) {
+				if( Frontend\Blocks::has_products( $blocks ) ) {
 					return true;
 				}
 
-				if( has_block( 'woocommerce/related-products', $template ) || has_block( 'woocommerce/related-products', $post_id ) ) {
-					return true;
-				}
-
-				if( has_block( 'woocommerce/product-on-sale', $template ) || has_block( 'woocommerce/product-on-sale', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-new', $template ) || has_block( 'woocommerce/product-new', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-category', $template ) || has_block( 'woocommerce/product-category', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-tag', $template ) || has_block( 'woocommerce/product-tag', $post_id ) ) {
-					return true;
-				}
-				
-				if( has_block( 'woocommerce/product-attribute', $template ) || has_block( 'woocommerce/product-attribute', $post_id ) ) {
-					return true;
-				}
-
-				if( wecodeart_if( 'is_woocommerce_archive' ) ) {
+				if( is_singular( 'product' ) ) {
 					return true;
 				}
 			},
@@ -106,9 +79,8 @@ class Products extends Dynamic {
 				list-style: none;
 				margin-bottom: 0;
 			}
-			.editor-styles-wrapper .wc-block-grid__products {
-				display: flex;
-				gap: 0;
+			.editor-styles-wrapper :is(.wc-block-grid__products,.wc-block-grid__products li) {
+				margin: 0!important;
 			}
 			.wc-block-grid__no-products {
 				text-align: center;
@@ -129,30 +101,26 @@ class Products extends Dynamic {
 				-webkit-appearance: none;
 						appearance: none;
 			}
-			:where(ul li.type-product,.wc-block-grid__product,.cross-sells-product) {
+			:where(ul li.type-product,ul.wp-block-query__products li.wp-block-post,.wc-block-grid__product,.cross-sells-product) {
 				position: relative;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				gap: 0.5rem;
 				text-align: center;
-				background-color: white;
+				background-color: transparent;
 				transition: border-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 				border: 1px solid var(--wp--preset--color--accent);
 				border-radius: 0.375rem;
+				box-sizing: border-box;
 			}
-			.cross-sells-product > div {
-				display: inherit;
-				gap: inherit;
-				flex-direction: inherit;
-				justify-content: inherit;
-			}
-			:where(ul li.type-product,.wc-block-grid__product,.cross-sells-product):hover {
+			:where(ul li.type-product,ul.wp-block-query__products li.wp-block-post,.wc-block-grid__product,.cross-sells-product):hover {
 				border-color: var(--wp--preset--color--primary);
 				box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.05);
 			}
 			:where(
 				ul li.type-product.is-loading,
+				ul.wp-block-query__products li.wp-block-post.is-loading,
 				.wc-block-grid__product.is-loading,
 				.cross-sells-product.is-loading
 			) :where(
@@ -163,6 +131,17 @@ class Products extends Dynamic {
 			) {
 				display: none;
 			}
+			
+			:is(.wc-block-grid__product-title,.wc-block-components-product-title) {
+				font-size: 1rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				margin: 0;
+			}
+			.wc-block-grid__product-image + .wc-block-grid__product-title {
+				margin-top: .5rem;
+			}
+
 			.wc-block-pagination {
 				margin: 3rem 0 0;
 			}
@@ -194,6 +173,9 @@ class Products extends Dynamic {
 				}
 				.has-5-columns .wc-block-grid__products {
 					grid-template-columns: repeat(5, 1fr);
+				}
+				.has-6-columns .wc-block-grid__products {
+					grid-template-columns: repeat(6, 1fr);
 				}
 			}
 		';

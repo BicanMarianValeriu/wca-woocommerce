@@ -56,8 +56,7 @@ class Items extends Dynamic {
 				display: block;
 			}
 			.wc-block-components-order-summary-item .wc-block-components-product-name {
-				font-weight: 600;
-				color: var(--wp--gray-900);
+				font-weight: 500;
 			}
 			.wc-block-components-order-summary-item .wc-block-components-product-price {
 				margin-bottom: 0.5rem;

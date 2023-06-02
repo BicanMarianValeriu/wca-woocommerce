@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend;
 
 /**
  * Gutenberg Summary block.
@@ -43,8 +44,15 @@ class Cart extends Dynamic {
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
-		return '
-			.wc-block-cart__totals-title {
+		$inline = '';
+		// $inline .= Frontend::get_loading_css(
+		// 	'.wc-block-cart--is-loading :where(
+		// 		.wc-block-cart-items,
+		// 		.wc-block-components-totals-wrapper
+		// 	)'
+		// );
+		$inline .= '
+			.wc-block-cart__totals-title.wc-block-cart__totals-title {
 				margin-top: 1rem;
 				font-size: var(--wp--preset--font-size--normal);
 				font-weight: 700;
@@ -55,9 +63,6 @@ class Cart extends Dynamic {
 			}
 			.wc-block-cart__submit-container {
 				text-align: right;
-			}
-			.wc-block-cart__submit-container--sticky {
-				display: none;
 			}
 			.wc-block-cart__submit-button.wp-element-button {
 				background-color: var(--wp--preset--color--primary);
@@ -96,7 +101,7 @@ class Cart extends Dynamic {
 			}
 			@media (min-width: 576px) {
 				.wc-block-cart-item__image {
-				width: 100px;
+					width: 100px;
 				}
 			}
 			.wc-block-cart-item__image img {
@@ -115,27 +120,22 @@ class Cart extends Dynamic {
 				height: 1.5em;
 				width: 1.5em;
 				transform: translate3d(-50%, -50%, 0);
-				background: url("./../../images/loader-black.svg") center center;
+				background: url("' . untrailingslashit( WCA_WOO_EXT_URL ) . '/assets/images/loader-black.svg") center center;
 				background-size: cover;
 				font-size: 3rem;
 				line-height: 1;
 				text-align: center;
-				color: rgba(0, 0, 0, 0.75);
 			}
 			.wc-block-cart-item__product .wc-block-components-product-name {
 				display: block;
-				color: var(--wp--preset--color--black);
 				font-weight: 700;
 				width: max-content;
 			}
-			.wc-block-cart-item__product .wc-block-components-product-metadata__description {
-				display: none;
-			}
-			.wc-block-cart-item__product .wc-block-components-product-badge ~ .wc-block-components-product-badge {
-				margin-left: 0.5rem;
+			.wc-block-cart-item__product .wc-block-components-product-badge {
+				margin-right: 0.5rem;
 			}
 			.wc-block-cart-item__product .wc-block-components-product-details {
-				font-size: var(--wp--preset--font-size--small);
+				font-size: .65rem;
 				margin: 0 0 0.5rem;
 				padding: 0;
 				list-style: none;
@@ -144,10 +144,12 @@ class Cart extends Dynamic {
 				padding: 0.5rem 0;
 				text-align: right;
 			}
-			.wc-block-cart-item__total .wc-block-components-sale-badge {
-				display: none;
-			}
-			.wc-block-cart-item__prices {
+			:is(
+				.wc-block-cart-item__product .wc-block-components-product-metadata__description,
+				.wc-block-cart-item__total .wc-block-components-sale-badge,
+				.wc-block-cart-item__prices,
+				.wc-block-cart__submit-container--sticky
+			) {
 				display: none;
 			}
 			.wc-block-cart-item__quantity {
@@ -160,11 +162,20 @@ class Cart extends Dynamic {
 			.wc-block-cart-item__remove-link {
 				display: block;
 				background: none;
+				color: inherit;
 				border: none;
 				box-shadow: none;
 				outline: none;
 				padding: 0;
+				opacity: .5;
+				font-size: var(--wp--preset--font-size--small);
+				cursor: pointer;
+			}
+			.wc-block-cart-item__remove-link:hover {
+				opacity: 1;
 			}
 		';
+
+		return $inline;
 	}
 }
