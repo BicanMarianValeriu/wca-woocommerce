@@ -87,10 +87,10 @@ class Price extends Dynamic {
 			.wc-block-components-price-slider__range-input::-webkit-slider-runnable-track {
 				height: 1px;
 				outline: 0;
-				-webkit-appearance: none;
-						appearance: none;
 				border-color: transparent;
 				cursor: default;
+				-webkit-appearance: none;
+						appearance: none;
 			}
 			.wc-block-components-price-slider__range-input::-moz-range-thumb {
 				background-color: var(--wp--preset--color--primary);
@@ -117,11 +117,11 @@ class Price extends Dynamic {
 				pointer-events: auto;
 				-webkit-transition: transform 0.2s ease-in-out;
 				transition: transform 0.2s ease-in-out;
-				-webkit-appearance: none;
-						appearance: none;
 				margin-top: calc((var(--wp--slider-height) - var(--wp--thumb-size)) * 0.5);
 				z-index: 20;
 				cursor: pointer;
+				-webkit-appearance: none;
+						appearance: none;
 			}
 			.wc-block-components-price-slider__range-input::-moz-range-thumb:hover {
 				transform: translateY(calc((var(--wp--slider-height) - var(--wp--thumb-size)) / 2 + 1px)) scale(1.1);
@@ -160,10 +160,10 @@ class Price extends Dynamic {
 				margin: 15px 0;
 				background: var(--wp--slider-color);
 				box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-				-webkit-appearance: none;
-						appearance: none;
 				outline: none;
 				clear: both;
+				-webkit-appearance: none;
+						appearance: none;
 			}
 			.wc-block-components-price-slider__range-input-progress {
 				--range-color: var(--wp--preset--color--primary);

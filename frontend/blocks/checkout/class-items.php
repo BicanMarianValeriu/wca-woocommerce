@@ -79,7 +79,7 @@ class Items extends Dynamic {
 				right: -1rem;
 				padding: 5px;
 				background-color: var(--wp--preset--color--primary);
-				border: 3px solid white;
+				border: 3px solid var(--wp--preset--color--accent);
 				color: white;
 				border-radius: 9999px;
 				display: flex;
