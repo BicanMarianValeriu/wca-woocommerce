@@ -74,12 +74,11 @@ class Notices extends Dynamic {
 	 */
 	public function styles(): string {
 		return '
-			:where(.wc-block-store-notices,.woocommerce-MyAccount-content) .woocommerce-notices-wrapper,
-			.wc-block-store-notices .components-notice,
-			.wc-block-components-notices:not(:empty) {
+			:where(.wc-block-components-notices,.woocommerce-notices-wrapper):not(:empty),
+			.wc-block-store-notices .components-notice {
 				margin: 0 0 var(--wp--style--block-gap);
 			}
-			:where(.wc-block-store-notices,.woocommerce-MyAccount-content) .woocommerce-notices-wrapper:empty {
+			.woocommerce-notices-wrapper:empty {
 				display: none;
 			}
 			.wc-block-store-notices + * {
