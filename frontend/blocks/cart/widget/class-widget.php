@@ -147,7 +147,6 @@ class Widget extends Dynamic {
 				border-radius: 0.2em;
 				color: var(--wp--preset--color--white);
 				font-size: var(--wp--preset--font-size--small);
-				font-weight: 600;
 				height: 1.2em;
 				min-width: 1em;
 				margin-left: -0.65em;
