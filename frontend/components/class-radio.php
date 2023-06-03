@@ -59,7 +59,7 @@ class Radio extends Base {
 				padding: 1rem 1rem 1rem 3.5rem;
 			}
 			.wc-block-components-radio-control-accordion-option input {
-				left: 1rem;
+				left: 1.125rem;
 			}
 			.wc-block-components-radio-control-accordion-content {
 				padding: 0 1rem 1rem;
@@ -71,6 +71,7 @@ class Radio extends Base {
 				height: var(--wc--checkbox--size);
 				width: var(--wc--checkbox--size);
 				display: inline-block;
+				margin: 0;
 				-webkit-appearance: none;
 						appearance: none;
 				background: white;

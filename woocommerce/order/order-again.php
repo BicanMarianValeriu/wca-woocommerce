@@ -18,8 +18,8 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<div class="wp-block-button">
-	<a href="<?php echo esc_url( $order_again_url ); ?>" class="wp-block-button__link has-white-color has-primary-background-color"><?php
+<div class="wp-block-button is-style-outline">
+	<a href="<?php echo esc_url( $order_again_url ); ?>" class="wp-block-button__link has-primary-color"><?php
 	
 		esc_html_e( 'Order again', 'woocommerce' );
 		

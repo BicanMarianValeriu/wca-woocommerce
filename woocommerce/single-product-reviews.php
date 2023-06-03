@@ -27,7 +27,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'wp-block-separator' );
 } );
 
-wecodeart( 'styles' )->Utilities->load( [ 'position-sticky', 'col-md-7', 'my-3', 'mb-3', 'me-1', 'fw-500' ] );
+wecodeart( 'styles' )->Utilities->load( [ 'position-sticky', 'my-3', 'mb-3', 'me-1', 'fw-500' ] );
 
 ?>
 <div id="reviews" class="woocommerce-reviews grid" style="--wp--columns:3;--wp--style--block-gap:2.5rem;">
@@ -119,7 +119,7 @@ wecodeart( 'styles' )->Utilities->load( [ 'position-sticky', 'col-md-7', 'my-3',
 				$comment_form['fields'][ $key ] = wecodeart( 'markup' )::wrap( 'comment-author-' . $key, [ [
 					'tag' 	=> 'div',
 					'attrs' => [
-						'class' => 'comment-form-field comment-form-' . $key . ' col-md-7 my-3'
+						'class' => 'comment-form-field comment-form-' . $key . ' my-3'
 					]
 				] ], 'wecodeart_input', [ 'floating', [
 					'type' 	=> $field['type'],

@@ -91,17 +91,44 @@ class Link extends Dynamic {
 	 *
 	 * @return 	string Block CSS.
 	 */
-	public function dropdown( array $block = [] ) {		
+	public function dropdown( array $block = [] ) {
 		$block = [
-			'context' => [
+			'context' 	=> [
 				'openSubmenusOnClick' => true,
+			],
+			'inner_blocks' => [
+				new \WP_Block( [
+					'blockName'	=> 'core/navigation-link',
+					'attrs'		=> [
+						'kind' 		=> 'custom',
+						'className' => 'dropdown-header',
+						'label'		=> sprintf( esc_html__( 'Welcome %s', 'wca-woocommerce' ), wp_get_current_user()->display_name ),
+						'isTopLevelLink' => false,
+					]
+				] )
 			]
 		];
+
+		$divider = new \WP_Block( [
+			'blockName'	=> 'core/navigation-link',
+			'attrs'		=> [
+				'kind' 		=> 'custom',
+				'className' => 'dropdown-divider',
+				'label'		=> '-',
+				'isTopLevelLink' => false,
+			]
+		] );
+
+		$block['inner_blocks'][] = $divider;
 
 		global $wp;
 		$current_url = trailingslashit( home_url( $wp->request ) );
 
 		foreach( wc_get_account_menu_items() as $endpoint => $label ) :
+			if( $endpoint === 'customer-logout' ) {
+				$block['inner_blocks'][] = $divider;
+			}
+
 			$permalink = wc_get_account_endpoint_url( $endpoint );
 			$block['inner_blocks'][] = new \WP_Block( [
 				'blockName'	=> 'core/navigation-link',
@@ -151,6 +178,10 @@ class Link extends Dynamic {
 			.wc-block-customer-account__account-label,
 			.wc-block-customer-account__account-label:empty {
 				display: none;
+			}
+			.wp-block-woocommerce-customer-account .dropdown-header {
+				font-weight: 700;
+				color: inherit;
 			}
 			@media screen and (min-width: 768px) {
 				.wp-block-woocommerce-customer-account .label,
