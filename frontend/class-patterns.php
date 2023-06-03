@@ -186,7 +186,7 @@ class Patterns {
 				
 				<!-- wp:woocommerce/filter-wrapper {"filterType":"rating-filter"} -->
 				<div class="wp-block-woocommerce-filter-wrapper">
-				<!-- wp:heading {"level":5,"className":"fw-700","fontSize":"normal"} -->
+					<!-- wp:heading {"level":5,"className":"fw-700","fontSize":"normal"} -->
 					<h5 class="has-normal-font-size fw-700">' . esc_html__( 'Rating filter', 'wca-woocommerce' ) . '</h5>
 					<!-- /wp:heading -->
 					<!-- wp:woocommerce/rating-filter {"lock":{"remove":true}} -->
@@ -302,7 +302,7 @@ class Patterns {
 							<!-- /wp:heading -->
 							<!-- wp:paragraph {"align":"center"} -->
 							<p class="has-text-align-center">
-								<a href="#s">' . esc_html__( 'Browse the store', 'wca-woocommerce' ) . '</a>
+								<a href="#">' . esc_html__( 'Browse the store', 'wca-woocommerce' ) . '</a>
 							</p>
 							<!-- /wp:paragraph -->
 							<!-- wp:separator {"className":"is-style-dots"} -->
