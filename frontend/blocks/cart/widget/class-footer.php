@@ -61,9 +61,6 @@ class Footer extends Dynamic {
 				background-color: var(--wp--preset--color--primary);
 				color: var(--wp--preset--color--white);
 			}
-			.wc-block-mini-cart__footer .wc-block-components-formatted-money-amount {
-				color: var(--wp--preset--color--black);
-			}
 			.wc-block-mini-cart__footer .wc-block-components-payment-method-icons {
 				margin-top: 1em;
 			}

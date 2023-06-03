@@ -65,9 +65,9 @@ class Quantity extends Base {
 			}
 			.wc-block-components-quantity-selector__input::-webkit-inner-spin-button,
 			.wc-block-components-quantity-selector__input::-webkit-outer-spin-button {
+				margin: 0;
 				-webkit-appearance: none;
 						appearance: none;
-				margin: 0;
 			}
 			.wc-block-components-quantity-selector__input:focus,
 			.wc-block-components-quantity-selector__input:active {

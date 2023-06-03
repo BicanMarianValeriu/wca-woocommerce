@@ -72,12 +72,12 @@ class Radio extends Base {
 				width: var(--wc--checkbox--size);
 				display: inline-block;
 				margin: 0;
-				-webkit-appearance: none;
-						appearance: none;
-				background: white;
+				background: transparent;
 				border: var(--wc--input--border);
 				border-radius: 50%;
 				transform: translateY(-50%);
+				-webkit-appearance: none;
+						appearance: none;
 			}
 			.wc-block-components-radio-control__input:checked::before {
 				content: "";

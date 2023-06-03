@@ -147,7 +147,7 @@ class Price extends Dynamic {
 			<a class="has-cyan-bluish-gray-color ms-1"
 				href="javascript:void(0);"
 				data-bs-toggle="tooltip"
-				data-bs-custom-class="prp-tooltip"
+				data-bs-custom-class="wc-block-components-product-price__tip"
 				title="<?php echo esc_attr( $message ); ?>">
 				<?php
 				
@@ -267,9 +267,8 @@ class Price extends Dynamic {
 	public function styles(): string {
 		return '
 			:is(.price,.wc-block-grid__product-price,.wc-block-components-product-price) {
-				font-weight: bold;
+				font-weight: 700;
 				line-height: 1;
-				color: var(--wp--gray-800);
 			}
 			:is(.price,.wc-block-grid__product-price,.wc-block-components-product-price) :where(del, ins) > * {
 				font-size: inherit;
@@ -294,7 +293,7 @@ class Price extends Dynamic {
 			.wc-block-components-product-price--align-right {
 				text-align: right;
 			}
-			.prp-tooltip .tooltip-inner {
+			.wc-block-components-product-price__tip .tooltip-inner {
 				max-width: 350px;
 			}
 		';
