@@ -23,13 +23,12 @@ wecodeart( 'styles' )->Utilities->load( [
 	'col-md-10',
 	'col-lg-6',
 	'mx-auto',
-	'my-5',
 	'mb-3',
 	'mb-0',
 ] );
 
 ?>
-<div class="card col-md-10 col-lg-6 my-5 mx-auto">
+<div class="card col-md-10 col-lg-6 mx-auto">
 	<div class="card-header">
 		<p class="mb-0"><?php
 		
