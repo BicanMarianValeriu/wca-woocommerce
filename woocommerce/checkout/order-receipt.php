@@ -20,21 +20,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<ul class="order_details list-unstyled">
-	<li class="order card card-body">
+<ul class="order_details grid list-unstyled" style="--wp--columns: 2;">
+	<li class="order card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 		<?php esc_html_e( 'Order number:', 'woocommerce' ); ?>
 		<strong><?php echo esc_html( $order->get_order_number() ); ?></strong>
 	</li>
-	<li class="date card card-body">
+	<li class="date card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 		<?php esc_html_e( 'Date:', 'woocommerce' ); ?>
 		<strong><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></strong>
 	</li>
-	<li class="total card card-body">
+	<li class="total card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 		<?php esc_html_e( 'Total:', 'woocommerce' ); ?>
 		<strong><?php echo wp_kses_post( $order->get_formatted_order_total() ); ?></strong>
 	</li>
 	<?php if ( $order->get_payment_method_title() ) : ?>
-	<li class="method card card-body">
+	<li class="method card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 		<?php esc_html_e( 'Payment method:', 'woocommerce' ); ?>
 		<strong><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></strong>
 	</li>
@@ -42,5 +42,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 </ul>
 
 <?php do_action( 'woocommerce_receipt_' . $order->get_payment_method(), $order->get_id() ); ?>
-
-<div class="clear"></div>

@@ -54,25 +54,24 @@ wecodeart( 'styles' )->Utilities->load( [
 </p>
 
 <?php if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) : ?>
-	<div class="u-columns woocommerce-Addresses col2-set addresses">
+	<div class="woocommerce-Addresses grid addresses" style="--wp--columns:2;">
 <?php endif; ?>
 
 <?php foreach ( $get_addresses as $name => $address_title ) : ?>
 	<?php
 		$address = wc_get_account_formatted_address( $name );
-		$col     = $col * -1;
-		$oldcol  = $oldcol * -1;
 	?>
-
-	<div class="card u-column<?php echo $col < 0 ? 1 : 2; ?> col-<?php echo $oldcol < 0 ? 1 : 2; ?> woocommerce-Address mb-0">
-		<header class="card-header woocommerce-Address-title title">
-			<h6 class="fw-700 my-0"><?php echo esc_html( $address_title ); ?></h6>
-		</header>
-		<address class="card-body mb-0">
-			<?php echo $address ? wp_kses_post( $address ) : esc_html_e( 'You have not set up this type of address yet.', 'woocommerce' ); ?>
-		</address>
-		<div class="card-footer">
-			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit"><?php echo $address ? esc_html__( 'Edit', 'woocommerce' ) : esc_html__( 'Add', 'woocommerce' ); ?></a>
+	<div class="span-2 span-md-<?php echo $col < 0 ? 2 : 1; ?>">
+		<div class="woocommerce-Address card has-accent-background-color has-white-border-color h-100">
+			<header class="card-header">
+				<h6 class="fw-700 my-0"><?php echo esc_html( $address_title ); ?></h6>
+			</header>
+			<address class="card-body">
+				<?php echo $address ? wp_kses_post( $address ) : esc_html_e( 'You have not set up this type of address yet.', 'woocommerce' ); ?>
+			</address>
+			<footer class="card-footer">
+				<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit"><?php echo $address ? esc_html__( 'Edit', 'woocommerce' ) : esc_html__( 'Add', 'woocommerce' ); ?></a>
+			</footer>
 		</div>
 	</div>
 

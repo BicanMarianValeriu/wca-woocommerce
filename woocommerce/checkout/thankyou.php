@@ -56,7 +56,7 @@ wecodeart( 'styles' )->Utilities->load( [
 		
 	?></p>
 
-	<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details grid list-unstyled mb-5" style="--wp--columns:2;">
+	<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details grid list-unstyled mb-5" style="--wp--columns: 2;">
 
 		<li class="woocommerce-order-overview__order order card card-body has-accent-background-color span-4 span-md-2 span-lg-1">
 			<span><?php esc_html_e( 'Order number:', 'woocommerce' ); ?></span>

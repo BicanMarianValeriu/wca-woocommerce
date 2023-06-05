@@ -20,29 +20,31 @@ defined( 'ABSPATH' ) || exit;
 $notes = $order->get_customer_order_notes();
 
 wecodeart( 'styles' )->Utilities->load( [
-	'my-5',
+	'col-lg-8',
+	'col-md-10',
+	'mx-auto',
+	'mb-5',
 ] );
 
 ?>
+<div class="col-md-10 col-lg-8 mx-auto">
+	<p class="mb-5"><?php
 
-<p class="order-info my-5">
-	<?php
-	echo wp_kses_post(
-		apply_filters(
-			'woocommerce_order_tracking_status',
-			sprintf(
-				/* translators: 1: order number 2: order date 3: order status */
-				__( 'Order #%1$s was placed on %2$s and is currently %3$s.', 'woocommerce' ),
-				'<mark class="order-number">' . $order->get_order_number() . '</mark>',
-				'<mark class="order-date">' . wc_format_datetime( $order->get_date_created() ) . '</mark>',
-				'<mark class="order-status">' . wc_get_order_status_name( $order->get_status() ) . '</mark>'
+		echo wp_kses_post(
+			apply_filters(
+				'woocommerce_order_tracking_status',
+				sprintf(
+					/* translators: 1: order number 2: order date 3: order status */
+					__( 'Order #%1$s was placed on %2$s and is currently %3$s.', 'woocommerce' ),
+					'<mark class="order-number">' . $order->get_order_number() . '</mark>',
+					'<mark class="order-date">' . wc_format_datetime( $order->get_date_created() ) . '</mark>',
+					'<mark class="order-status">' . wc_get_order_status_name( $order->get_status() ) . '</mark>'
+				)
 			)
-		)
-	);
-	?>
-</p>
+		);
 
-<?php if ( $notes ) : ?>
+	?></p>
+	<?php if ( $notes ) : ?>
 	<h2><?php esc_html_e( 'Order updates', 'woocommerce' ); ?></h2>
 	<ol class="commentlist notes">
 		<?php foreach ( $notes as $note ) : ?>
@@ -60,6 +62,6 @@ wecodeart( 'styles' )->Utilities->load( [
 		</li>
 		<?php endforeach; ?>
 	</ol>
-<?php endif; ?>
-
-<?php do_action( 'woocommerce_view_order', $order->get_id() ); ?>
+	<?php endif; ?>
+	<?php do_action( 'woocommerce_view_order', $order->get_id() ); ?>
+</div>

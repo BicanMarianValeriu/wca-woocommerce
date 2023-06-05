@@ -25,16 +25,15 @@ wecodeart( 'styles' )->Utilities->load( [ 'h-100' ] );
 
 	<?php if ( $show_shipping ) : ?>
 
-	<section class="woocommerce-columns col2-set addresses">
-		<div class="woocommerce-column woocommerce-column--1 woocommerce-column--billing-address col-1">
+	<section class="woocommerce-Addresses grid addresses" style="--wp--columns:2;">
+		<div class="span-2 span-md-1">
 
 	<?php endif; ?>
-		<div class="card has-accent-background-color has-white-border-color h-100">
-			<div class="card-header">
-				<h6 class="woocommerce-column__title fw-700 my-0"><?php esc_html_e( 'Billing address', 'woocommerce' ); ?></h6>
-			</div>
-			<div class="card-body">
-				<address>
+			<div class="woocommerce-Address card has-accent-background-color has-white-border-color h-100">
+				<header class="card-header">
+					<h6 class="fw-700 my-0"><?php esc_html_e( 'Billing address', 'woocommerce' ); ?></h6>
+				</header>
+				<address class="card-body">
 					<?php echo wp_kses_post( $order->get_formatted_billing_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?>
 			
 					<?php if ( $order->get_billing_phone() ) : ?>
@@ -46,30 +45,28 @@ wecodeart( 'styles' )->Utilities->load( [ 'h-100' ] );
 					<?php endif; ?>
 				</address>
 			</div>
-		</div>
 
 	<?php if ( $show_shipping ) : ?>
 
-		</div><!-- /.col-1 -->
+		</div>
 
-		<div class="woocommerce-column woocommerce-column--2 woocommerce-column--shipping-address col-2">
-			<div class="card has-accent-background-color has-white-border-color h-100">
-				<div class="card-header">
-					<h6 class="woocommerce-column__title fw-700 my-0"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></h6>
-				</div>
-				<div class="card-body">
-					<address>
-						<?php echo wp_kses_post( $order->get_formatted_shipping_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?>
+		<div class="span-2 span-md-1">
 
-						<?php if ( $order->get_shipping_phone() ) : ?>
-						<p class="woocommerce-customer-details--phone"><?php echo esc_html( $order->get_shipping_phone() ); ?></p>
-						<?php endif; ?>
-					</address>
-				</div>
+			<div class="woocommerce-Address card has-accent-background-color has-white-border-color h-100">
+				<header class="card-header">
+					<h6 class="fw-700 my-0"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></h6>
+				</header>
+				<address class="card-body"> 
+					<?php echo wp_kses_post( $order->get_formatted_shipping_address( esc_html__( 'N/A', 'woocommerce' ) ) ); ?>
+					<?php if ( $order->get_shipping_phone() ) : ?>
+					<p class="woocommerce-customer-details--phone"><?php echo esc_html( $order->get_shipping_phone() ); ?></p>
+					<?php endif; ?> 
+				</address>
 			</div>
-		</div><!-- /.col-2 -->
+			
+		</div>
 
-	</section><!-- /.col2-set -->
+	</section>
 
 	<?php endif; ?>
 

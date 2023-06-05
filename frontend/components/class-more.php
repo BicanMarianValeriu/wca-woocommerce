@@ -37,9 +37,12 @@ class More extends Base {
 	 */
 	public static function styles(): string {
 		return '
-			.wc-block-components-load-more .wp-element-button.wp-block-button__link {
-				font-size: var(--wp--preset--font-size--small);
-				background-color: var(--wp--preset--color--primary);
+			.wc-block-components-load-more .wp-block-button__link {
+				font-size: .65rem;
+				background-color: var(--wp--preset--color--accent);
+				border-color: var(--wp--preset--color--primary);
+				color: var(--wp--preset--color--primary);
+				padding: .35em 1em;
 			}
         ';
 	}

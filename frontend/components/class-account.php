@@ -40,20 +40,12 @@ class Account extends Base {
 	 */
 	public static function styles(): string {
 		return '
-			.woocommerce-js .col2-set {
-				display: grid;
-				grid-gap: 1rem;
-				grid-template-columns: 1fr;
-			}
-			.woocommerce-js :where(.form-row-first, .form-row-last, .form-row-wide) {
+			.woocommerce-js :where(.form-row-first,.form-row-last,.form-row-wide) {
 				margin: 0;
 				grid-column: auto/span 2;
 			}
 			@media (min-width: 768px) {
-				.woocommerce-js .col2-set {
-					grid-template-columns: repeat(2, 1fr);
-				}
-				.woocommerce-account :where(.form-row-first, .form-row-last) {
+				.woocommerce-js :where(.form-row-first,.form-row-last) {
 					grid-column: auto/span 1;
 				}
 			}

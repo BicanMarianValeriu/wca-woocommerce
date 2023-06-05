@@ -48,8 +48,8 @@ class Widget extends Dynamic {
 	 */
 	public function init() {
 		if ( apply_filters( 'litespeed_esi_status', false ) ) {
-			add_action( 'litespeed_esi_load-woo-mini-cart', 		__CLASS__ . '::load_mini_cart' );
-			add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'render_block'		], 20 );
+			// add_action( 'litespeed_esi_load-woo-mini-cart', 		__CLASS__ . '::load_mini_cart' );
+			// add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'render_block'		], 20 );
 		}
 	}
 
