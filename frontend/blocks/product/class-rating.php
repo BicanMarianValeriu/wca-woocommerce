@@ -100,7 +100,7 @@ class Rating extends Dynamic {
 
 		ob_start();
 		?> 
-		<a href="#reviews" class="wc-block-components-product-rating__info" rel="nofollow">(<?php
+		<a href="#reviews" class="wc-block-components-product-rating__info woocommerce-review-link" rel="nofollow">(<?php
 			printf(
 				_n( '%s customer review', '%s customer reviews', $review_count, 'wca-woocommerce' ),
 				'<span class="count">' . esc_html( $review_count ) . '</span>'
