@@ -92,7 +92,10 @@ class Price extends Dynamic {
 	 * @return 	array
 	 */
 	public function render_variation( array $variations = [] ): array {
-		$variations['price_manufacturer'] = $this->markup( wc_get_product( $variations[ 'variation_id' ] ) );
+		$price_prp  = $this->markup( wc_get_product( $variations[ 'variation_id' ] ) );
+		$price_old  = $variations['price_html'];
+
+		$variations['price_html'] = $price_prp . $price_old; // New price markup.
 		
 		return $variations;
 	}
