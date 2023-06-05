@@ -46,7 +46,7 @@ require_once( WCA_WOO_EXT_DIR . '/includes/class-autoloader.php' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/admin' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/includes' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend' );
-new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/condition' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/conditions' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/components' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/cart' );

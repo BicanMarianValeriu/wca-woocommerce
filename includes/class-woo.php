@@ -16,7 +16,7 @@ namespace WCA\EXT;
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Integration;
-use WCA\EXT\WOO\Frontend\Condition;
+use WCA\EXT\WOO\Frontend\Conditions;
 use function WeCodeArt\Functions\get_prop;
 
 /**
@@ -81,8 +81,8 @@ class WOO implements Integration {
 	 */
 	public static function get_conditionals() {
 		wecodeart( 'conditionals' )->register( [
-			'is_woocommerce_page'		=> Condition\Page::class,
-			'is_woocommerce_archive'	=> Condition\Archive::class,
+			'is_woocommerce_page'		=> Conditions\Page::class,
+			'is_woocommerce_archive'	=> Conditions\Archive::class,
 		] );
 
 		return [ 'is_woocommerce_active' ];
