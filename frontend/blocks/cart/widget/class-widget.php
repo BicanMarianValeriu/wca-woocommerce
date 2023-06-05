@@ -169,10 +169,6 @@ class Widget extends Dynamic {
 			.wc-block-mini-cart__drawer {
 				font-size: 1rem;
 			}
-			.wc-block-mini-cart__drawer .components-modal__content {
-				position: relative;
-				padding: 0;
-			}
 			.wc-block-mini-cart__drawer .components-modal__header {
 				position: absolute;
 				top: var(--wp--custom--gutter, 1rem);
