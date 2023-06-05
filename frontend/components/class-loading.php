@@ -49,8 +49,10 @@ class Loading extends Base {
 				left: 0;
 				top: 0;
 				bottom: 0;
+				margin: 0;
 				display: block;
 				width: 3em;
+				height: auto;
 				background-image: var(--wc--arrow);
 				background-repeat: no-repeat;
 				background-position: center;
