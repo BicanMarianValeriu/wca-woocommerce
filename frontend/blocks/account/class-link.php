@@ -51,6 +51,35 @@ class Link extends Dynamic {
 		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'filter_render' ], 20, 2 );
 	}
 
+	/**
+	 * Block args.
+	 *
+	 * @param	array $current	Existing register args
+	 *
+	 * @return 	array
+	 */
+	public function block_type_args( $current ): array {
+		$supports 	= get_prop( $current, [ 'supports' ], [] );
+
+		return [
+			'supports' 			=> wp_parse_args( [
+				'typography' => [
+					'fontSize'		=> true,
+					'lineHeight'	=> true,
+					'__experimentalFontFamily'	=> true,
+					'__experimentalFontWeight'	=> true,
+					'__experimentalFontStyle'	=> true,
+					'__experimentalTextTransform'	=> true,
+					'__experimentalTextDecoration'	=> true,
+					'__experimentalLetterSpacing'	=> true,
+					'__experimentalDefaultControls' => [
+						'fontSize' => true
+					]
+				],
+			], $supports )
+		];
+	}
+
     /**
 	 * Render Block
 	 * 
@@ -64,6 +93,10 @@ class Link extends Dynamic {
 
 		$processor->next_tag();
 		$processor->add_class( 'dropdown' );
+
+		if( $classname = get_prop( $block, [ 'attrs', 'className' ] ) ) {
+			$processor->add_class( $classname );
+		}
 
 		$processor->next_tag( 'a' );
 		$processor->add_class( 'wc-block-customer-account__account-link' );
