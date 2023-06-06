@@ -169,6 +169,7 @@ class Blocks {
 			'woocommerce/product-category', 	// ok
 			'woocommerce/products-by-attribute',// ok
 			'woocommerce/handpicked-products',	// ok
+			'woocommerce/product-categories',	// ok
 		], $blocks );
 	}
 
