@@ -87,7 +87,7 @@ class Details extends Dynamic {
 			}
 			ul.wc-tabs ~ .wc-tab {
 				border: 1px solid var(--wp--preset--color--accent);
-				padding: 20px 10px 10px;
+				padding: 10px 10px 20px;
 			}
 			ul.wc-tabs ~ .wc-tab h2 {
 				font-weight: 500;
@@ -112,7 +112,7 @@ class Details extends Dynamic {
 				margin-top: 1rem;
 			}
 			.woocommerce-reviews .review .meta {
-				margin-bottom: 0;
+				margin: 0;
 			}
 			.woocommerce-reviews .review .comment_container::after {
 				display: block;

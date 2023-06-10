@@ -24,11 +24,12 @@ if ( ! $order ) {
 }
 
 wecodeart( 'styles' )->Utilities->load( [
+	'align-top',
 	'fw-700',
 	'mb-5',
 	'mb-0',
 	'my-0',
-	'p-0'
+	'p-0',
 ] );
 
 add_action( 'wp_enqueue_scripts', function() {
@@ -59,59 +60,57 @@ if ( $show_downloads ) {
 	<div class="card-header">
 		<h6 class="woocommerce-order-details__title fw-700 my-0"><?php esc_html_e( 'Order details', 'woocommerce' ); ?></h6>
 		<?php do_action( 'woocommerce_order_details_before_order_table', $order ); ?>
-	</div>
-	<div class="card-body p-0">
-		<table class="woocommerce-table woocommerce-table--order-details table table-bordered table-hover border">
-			<thead>
-				<tr>
-					<th class="woocommerce-table__product-name product-name"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
-					<th class="woocommerce-table__product-table product-total has-text-align-right"><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				do_action( 'woocommerce_order_details_before_order_table_items', $order );
-	
-				foreach ( $order_items as $item_id => $item ) {
-					$product = $item->get_product();
-	
-					wc_get_template(
-						'order/order-details-item.php',
-						array(
-							'order'              => $order,
-							'item_id'            => $item_id,
-							'item'               => $item,
-							'show_purchase_note' => $show_purchase_note,
-							'purchase_note'      => $product ? $product->get_purchase_note() : '',
-							'product'            => $product,
-						)
-					);
-				}
-	
-				do_action( 'woocommerce_order_details_after_order_table_items', $order );
-				?>
-			</tbody>
-	
-			<tfoot>
-				<?php
-				foreach ( $order->get_order_item_totals() as $key => $total ) {
-				?>
-				<tr>
-					<th scope="row"><?php echo esc_html( $total['label'] ); ?></th>
-					<td class="has-text-align-right"><?php echo wp_kses_post( $total['value'] ); ?></td>
-				</tr>
-				<?php
-				}
-				?>
-				<?php if ( $order->get_customer_note() ) : ?>
-				<tr>
-					<th><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
-					<td class="has-text-align-right"><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
-				</tr>
-				<?php endif; ?>
-			</tfoot>
-		</table>
-	</div>
+	</div> 
+	<table class="card-body woocommerce-table woocommerce-table--order-details table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th class="woocommerce-table__product-name product-name"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
+				<th class="woocommerce-table__product-table product-total has-text-align-right"><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			do_action( 'woocommerce_order_details_before_order_table_items', $order );
+
+			foreach ( $order_items as $item_id => $item ) {
+				$product = $item->get_product();
+
+				wc_get_template(
+					'order/order-details-item.php',
+					array(
+						'order'              => $order,
+						'item_id'            => $item_id,
+						'item'               => $item,
+						'show_purchase_note' => $show_purchase_note,
+						'purchase_note'      => $product ? $product->get_purchase_note() : '',
+						'product'            => $product,
+					)
+				);
+			}
+
+			do_action( 'woocommerce_order_details_after_order_table_items', $order );
+			?>
+		</tbody>
+
+		<tfoot>
+			<?php
+			foreach ( $order->get_order_item_totals() as $key => $total ) {
+			?>
+			<tr>
+				<th class="align-top"><?php echo esc_html( $total['label'] ); ?></th>
+				<td class="has-text-align-right"><?php echo wp_kses_post( $total['value'] ); ?></td>
+			</tr>
+			<?php
+			}
+			?>
+			<?php if ( $order->get_customer_note() ) : ?>
+			<tr>
+				<th><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
+				<td class="has-text-align-right"><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
+			</tr>
+			<?php endif; ?>
+		</tfoot>
+	</table> 
 	<?php if( has_action( 'woocommerce_order_details_after_order_table' ) ) : ?>
 	<div class="card-footer"><?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?></div>
 	<?php endif; ?>

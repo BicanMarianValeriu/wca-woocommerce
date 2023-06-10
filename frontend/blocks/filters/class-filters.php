@@ -76,7 +76,7 @@ class Filters extends Dynamic {
 		return '
 			.wp-block-woocommerce-filter-wrapper :where(h1, h2, h3, h4, h5, h6) {
 				padding-bottom: 1rem;
-				margin-bottom: 1rem;
+				margin: 0 0 1rem;
 				border-bottom: 1px solid var(--wp--preset--color--accent);
 			}
 			.wc-block-components-price-slider__actions,
