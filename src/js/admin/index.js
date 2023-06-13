@@ -102,14 +102,14 @@ const Options = (props) => {
                                 </DropdownMenu>
                             </span>
                         </>}
-                        help={sprintf(__('Default WooCommerce style will be %s.', 'wca-woocommerce'), !formData['remove_style'] ? __('loaded', 'wca-woocommerce') : __('removed', 'wca-woocommerce'))}
-                        checked={formData['remove_style']}
+                        help={sprintf(__('Default WooCommerce style will be %s.', 'wca-woocommerce'), !formData?.remove_style ? __('loaded', 'wca-woocommerce') : __('removed', 'wca-woocommerce'))}
+                        checked={formData?.remove_style}
                         onChange={value => setFormData({ ...formData, remove_style: value })}
                     />
                     <ToggleControl
                         label={__('Replace Select2 CSS?', 'wca-woocommerce')}
                         help={__('Replace Select2 stylesheet with an optimized version for our theme.', 'wca-woocommerce')}
-                        checked={formData['replace_select2_style']}
+                        checked={formData?.replace_select2_style}
                         onChange={value => setFormData({ ...formData, replace_select2_style: value })}
                     />
                 </CardBody>
@@ -148,24 +148,24 @@ const Options = (props) => {
                             </span>
                         </>}
                         help={__('Enhance the Product Price block by integrating a tooltip that showcases the recommended price set by the producer.', 'wca-woocommerce')}
-                        checked={formData['product_price_extra']}
+                        checked={formData?.product_price_extra}
                         onChange={value => setFormData({ ...formData, product_price_extra: value })}
                     />
                     <ToggleControl
                         label={__('Enable product rating extras?', 'wca-woocommerce')}
                         help={__('Enhance the Product Rating block by incorporating enhanced and visually captivating rating information.', 'wca-woocommerce')}
-                        checked={formData['product_rating_extra']}
+                        checked={formData?.product_rating_extra}
                         onChange={value => setFormData({ ...formData, product_rating_extra: value })}
                     />
                     <ToggleControl
                         label={__('Enable customer account extras?', 'wca-woocommerce')}
                         help={__('Enhance the Customer Account block by adding a dropdown with WooCommerce\'s account page endpoints.', 'wca-woocommerce')}
-                        checked={formData['customer_account_extra']}
+                        checked={formData?.customer_account_extra}
                         onChange={value => setFormData({ ...formData, customer_account_extra: value })}
                     />
                     <RangeControl
                         label={__('Product gallery columns', 'wca-woocommerce')}
-                        value={formData['product_gallery_cols']}
+                        value={formData?.product_gallery_cols}
                         onChange={value => setFormData({ ...formData, product_gallery_cols: value })}
                         min={3}
                         max={8}

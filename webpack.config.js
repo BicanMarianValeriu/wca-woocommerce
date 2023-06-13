@@ -19,6 +19,7 @@ module.exports = {
     ...defaultConfig,
     entry: {
         'select2': path.resolve(process.cwd(), 'src', 'scss', 'vendor', 'select2.scss'),
+        'gutenberg': path.resolve(process.cwd(), 'src', 'js', 'gutenberg', 'index.js'),
         'frontend': path.resolve(process.cwd(), 'src', 'js', 'frontend', 'index.js'),
         'admin': path.resolve(process.cwd(), 'src', 'js', 'admin', 'index.js'),
     },

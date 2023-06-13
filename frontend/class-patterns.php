@@ -133,9 +133,6 @@ class Patterns {
 						<!-- wp:heading {"level":3,"className":"fw-500"} -->
 						<h3 class="wp-block-heading fw-500">' . esc_html__( 'Related Products', 'wca-woocommerce' ) . '</h3>
 						<!-- /wp:heading -->
-						<!-- wp:separator {"backgroundColor":"accent","className":"is-style-faded"} -->
-						<hr class="wp-block-separator has-text-color has-accent-color has-alpha-channel-opacity has-accent-background-color has-background is-style-faded" />
-						<!-- /wp:separator -->
 						<!-- wp:post-template {"className":"wp-block-query__products","__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
 						<!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
 						<!-- /wp:post-template -->
@@ -200,7 +197,7 @@ class Patterns {
 		] );
 		
 		register_block_pattern( 'wecodeart/section-products', [
-			'title' 		=> esc_html__( 'Cart', 'wca-woocommerce' ),
+			'title' 		=> esc_html__( 'Query (Products - Section)', 'wca-woocommerce' ),
 			'categories' 	=> [ 'wecodeart' ],
 			'content'		=> '
 				<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","bottom":"var:preset|spacing|lg","right":"var:preset|spacing|g","left":"var:preset|spacing|g"}}},"layout":{"type":"constrained"}} -->

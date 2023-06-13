@@ -102,8 +102,8 @@ class Price extends Dynamic {
 				pointer-events: auto;
 				-moz-transition: transform 0.2s ease-in-out;
 				transition: transform 0.2s ease-in-out;
+				transform: translateY(calc(var(--wp--slider-height) / 2 - 1px));
 				appearance: none;
-				transform: translateY(calc((var(--wp--slider-height) - var(--wp--thumb-size)) / 2 + 1px));
 				z-index: 20;
 				cursor: pointer;
 			}
@@ -117,14 +117,14 @@ class Price extends Dynamic {
 				pointer-events: auto;
 				-webkit-transition: transform 0.2s ease-in-out;
 				transition: transform 0.2s ease-in-out;
-				margin-top: calc((var(--wp--slider-height) - var(--wp--thumb-size)) * 0.5);
+				margin-top: calc(var(--wp--slider-height) / 2 - var(--wp--thumb-size) / 2);
 				z-index: 20;
 				cursor: pointer;
 				-webkit-appearance: none;
 						appearance: none;
 			}
 			.wc-block-components-price-slider__range-input::-moz-range-thumb:hover {
-				transform: translateY(calc((var(--wp--slider-height) - var(--wp--thumb-size)) / 2 + 1px)) scale(1.1);
+				transform: translateY(calc(var(--wp--slider-height) / 2 - 1px)) scale(1.1);
 			}
 			.wc-block-components-price-slider__range-input::-webkit-slider-thumb:hover {
 				transform: scale(1.1);

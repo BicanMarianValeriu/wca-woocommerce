@@ -81,6 +81,9 @@ class Blocks {
 		$container->register( 'woocommerce/checkout-shipping-method',			Blocks\Checkout\Shipping::class );
 		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
 		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
+		
+		// New Blocks
+		$container->register( 'woocommerce/viewed-products',	Blocks\Viewed::class );
 	}
 
     /**

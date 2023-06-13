@@ -126,6 +126,7 @@ class Price extends Dynamic {
 		
 		wecodeart( 'styles' )->Utilities->load( [
 			'ms-1',
+			'mt-0',
 			'mb-1',
 			'fw-400'
 		] );
@@ -141,7 +142,7 @@ class Price extends Dynamic {
 		ob_start();
 
 		?>
-		<p class="has-small-font-size has-cyan-bluish-gray-color fw-400 mb-1">
+		<p class="has-small-font-size has-cyan-bluish-gray-color fw-400 mt-0 mb-1">
 			<span><?php
 			
 				printf( 'PRP: %s', wc_price( $prp ) );

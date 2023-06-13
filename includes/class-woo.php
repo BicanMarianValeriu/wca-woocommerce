@@ -184,6 +184,8 @@ class WOO implements Integration {
 		// Admin init/scripts
 		$this->loader->add_action( 'admin_init', 							$admin, 'if_active' 	);
 		$this->loader->add_action( 'admin_enqueue_scripts',					$admin, 'assets' 		);
+		$this->loader->add_action( 'enqueue_block_editor_assets', 			$admin, 'editor_assets' );
+
 		// Handle Updates
 		$this->loader->add_filter( 'pre_set_site_transient_update_plugins',	$admin, 'update' 		);
 		$this->loader->add_filter( 'upgrader_post_install',					$admin, 'install', 	20, 3 );
