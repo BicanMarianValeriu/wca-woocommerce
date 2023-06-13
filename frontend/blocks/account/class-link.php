@@ -229,7 +229,7 @@ class Link extends Dynamic {
 				width: 1.25em;
 				height: 1.25em;
 			}
-			svg.svg-inline {
+			.wc-block-customer-account__account-icon.svg-inline {
 				height: initial;
 			}
 			.wc-block-customer-account__account-icon + :is(.wc-block-customer-account__account-label,.label) {
