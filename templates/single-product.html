@@ -19,14 +19,16 @@
                 <!-- wp:woocommerce/product-rating {"isDescendentOfSingleProductTemplate":true} /-->
                 <!-- wp:post-excerpt {"__woocommerceNamespace":"woocommerce/product-query/product-summary"} /-->
                 <!-- wp:woocommerce/add-to-cart-form /-->
-                <!-- wp:woocommerce/product-meta {"className":"wp-block-woocommerce-product-meta"} -->
-                    <!-- wp:group {"fontSize":"small","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+                <!-- wp:woocommerce/product-meta -->
+                <div class="wp-block-woocommerce-product-meta">
+                    <!-- wp:group {"style":{"spacing":{"blockGap":"0"}}} -->
                     <div class="wp-block-group">
                         <!-- wp:woocommerce/product-sku {"fontSize":"small","textColor":"cyan-bluish-gray"} /-->
                         <!-- wp:post-terms {"term":"product_cat"} /-->
                         <!-- wp:post-terms {"term":"product_tag"} /-->
                     </div>
                     <!-- /wp:group -->
+                </div>
                 <!-- /wp:woocommerce/product-meta -->
             </div>
             <!-- /wp:column -->

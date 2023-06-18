@@ -21,13 +21,14 @@ defined( 'ABSPATH' ) || exit;
 
 wecodeart( 'styles' )->Utilities->load( [
 	'position-relative',
+	'mt-0',
 	'mb-5',
 	'mb-4',
 ] );
 
 $notes = $order->get_customer_order_notes();
 ?>
-<p><?php
+<p class="mt-0"><?php
 
 	printf(
 		/* translators: 1: order number 2: order date 3: order status */
