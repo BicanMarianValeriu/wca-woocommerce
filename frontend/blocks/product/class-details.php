@@ -134,7 +134,7 @@ class Details extends Dynamic {
 				border: 4px solid var(--wp--preset--color--accent);
 				border-radius: 100%;
 			}
-			.woocommerce-reviews .review .star-rating {
+			.woocommerce-reviews .review :where(.star-rating,.wc-block-components-product-rating__container) {
 				float: right;
 			}
 
