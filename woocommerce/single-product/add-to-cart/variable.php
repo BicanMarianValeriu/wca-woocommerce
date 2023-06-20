@@ -23,19 +23,14 @@ $attribute_keys  = array_keys( $attributes );
 $variations_json = wp_json_encode( $available_variations );
 $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
 
-wecodeart( 'styles' )->Utilities->load( [
-	'position-relative',
-	'text-uppercase',
-	'fw-700',
-	'mb-3',
-] );
-
 add_action( 'wp_enqueue_scripts', function() {
 	$styles = '';
 	$styles .= wecodeart( 'blocks' )->get( 'core/table' )::get_instance()->styles();
 	$styles .= wecodeart( 'markup' )->Inputs->get( 'select' )::styles();
 	
 	wp_add_inline_style( 'global-styles', wecodeart( 'styles' )::compress( $styles ) );
+	
+	wecodeart( 'styles' )->Utilities->load( [ 'position-relative', 'text-uppercase', 'fw-700' ] );
 } );
 
 do_action( 'woocommerce_before_add_to_cart_form' );
@@ -47,7 +42,7 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 	<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
 	<p class="stock out-of-stock"><?php echo esc_html( apply_filters( 'woocommerce_out_of_stock_message', __( 'This product is currently out of stock and unavailable.', 'woocommerce' ) ) ); ?></p>
 	<?php else : ?>
-	<table class="position-relative table table-bordered variations mb-3" cellspacing="0">
+	<table class="position-relative table table-bordered variations" cellspacing="0">
 		<tbody>
 			<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 			<tr class="variations__item">
@@ -77,7 +72,7 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 
 	<?php do_action( 'woocommerce_after_variations_table' ); ?>
 
-	<div class="woocoomerce-variations single_variation_wrap">
+	<div class="woocommerce-variations single_variation_wrap">
 		<?php
 			/**
 			 * Hook: woocommerce_before_single_variation.

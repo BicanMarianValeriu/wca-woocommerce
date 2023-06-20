@@ -45,7 +45,16 @@ class Cart extends Dynamic {
 	 */
 	public function styles(): string {
 		return '
-			.single-product form.cart.variations_form a.reset_variations {
+			form.cart .woocommerce-variations *[class*="woocommerce-variation-"] {
+				margin-top: 1rem;
+			}
+			form.cart .woocommerce-variations *[class*="woocommerce-variation-"]:empty {
+				display: none;
+			}
+			form.cart .woocommerce-variation-price {
+				line-height: 1;
+			}
+			form.cart a.reset_variations {
 				position: absolute;
 				bottom: 100%;
 				right: 0;

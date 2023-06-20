@@ -23,14 +23,8 @@ class Notices extends Base {
      * @return 	array
      */
 	public static function blocks(): array {
-		if( is_account_page() || is_product() ) {
-            return [];
-        }
-		
-        return [
-			'woocommerce/checkout',
-			'woocommerce/cart',
-        ];
+		// Global - mini cart
+		return [];
 	}
 
     /**
@@ -89,18 +83,12 @@ class Notices extends Base {
 				background-color: var(--wp--preset--color--warning);
 			}
 
-			.woocommerce .components-snackbar-list {
+			.wc-block-components-notice-snackbar-list {
 				position: fixed;
-				left: 0;
-				right: 0;
-				bottom: 0;
+				left: var(--wp--custom--gutter);
+				bottom: var(--wp--custom--gutter);
 				z-index: 5;
-			}
-			.woocommerce .components-snackbar-list__notice-container {
-				background-color: var(--wp--gray-900);
-				color: var(--wp--preset--color--white);
-				padding: var(--wp--custom--gutter);
-			}     
+			}   
         ';
 	}
 }

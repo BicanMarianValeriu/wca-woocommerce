@@ -35,7 +35,7 @@ defined( 'WPINC' ) || die;
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'WCA_WOO_EXT',		 __FILE__ );
+define( 'WCA_WOO_EXT',	    __FILE__ );
 define( 'WCA_WOO_EXT_VER', 	get_file_data( WCA_WOO_EXT, [ 'Version' ] )[0] ); // phpcs:ignore
 define( 'WCA_WOO_EXT_DIR', 	plugin_dir_path( WCA_WOO_EXT ) );
 define( 'WCA_WOO_EXT_URL', 	plugin_dir_url( WCA_WOO_EXT ) );
@@ -46,7 +46,7 @@ require_once( WCA_WOO_EXT_DIR . '/includes/class-autoloader.php' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/admin' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/includes' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend' );
-new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/condition' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/conditions' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/components' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/cart' );

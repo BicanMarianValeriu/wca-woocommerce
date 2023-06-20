@@ -19,13 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-wecodeart( 'styles' )->Utilities->load( [ 'border' ] );
-
 add_action( 'wp_enqueue_scripts', function() {
 	$styles = '';
 	$styles .= wecodeart( 'blocks' )->get( 'core/table' )::get_instance()->styles();
 	
 	wp_add_inline_style( 'global-styles', wecodeart( 'styles' )::compress( $styles ) );
+	
+	wecodeart( 'styles' )->Utilities->load( [ 'border' ] );
 } );
 
 ?>

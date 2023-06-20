@@ -29,10 +29,10 @@ wecodeart( 'styles' )->Utilities->load( [
 <div class="span-4 span-md-1">
 	<?php do_action( 'woocommerce_before_account_navigation' ); ?>
 	<nav class="woocommerce-MyAccount-navigation">
-		<ul class="list-group list-unstyled m-0">
+		<ul class="list-unstyled m-0">
 			<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
 			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
-				<a class="list-group-item list-group-item-action fw-700 text-uppercase" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
+				<a class="fw-700 text-uppercase" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
 			</li>
 			<?php endforeach; ?>
 		</ul>

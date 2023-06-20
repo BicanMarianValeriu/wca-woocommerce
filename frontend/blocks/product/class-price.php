@@ -92,7 +92,10 @@ class Price extends Dynamic {
 	 * @return 	array
 	 */
 	public function render_variation( array $variations = [] ): array {
-		$variations['price_manufacturer'] = $this->markup( wc_get_product( $variations[ 'variation_id' ] ) );
+		$price_prp  = $this->markup( wc_get_product( $variations[ 'variation_id' ] ) );
+		$price_old  = $variations['price_html'];
+
+		$variations['price_html'] = $price_prp . $price_old; // New price markup.
 		
 		return $variations;
 	}
@@ -123,6 +126,7 @@ class Price extends Dynamic {
 		
 		wecodeart( 'styles' )->Utilities->load( [
 			'ms-1',
+			'mt-0',
 			'mb-1',
 			'fw-400'
 		] );
@@ -138,7 +142,7 @@ class Price extends Dynamic {
 		ob_start();
 
 		?>
-		<p class="has-small-font-size has-cyan-bluish-gray-color fw-400 mb-1">
+		<p class="has-small-font-size has-cyan-bluish-gray-color fw-400 mt-0 mb-1">
 			<span><?php
 			
 				printf( 'PRP: %s', wc_price( $prp ) );

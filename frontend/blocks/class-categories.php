@@ -45,6 +45,7 @@ class Categories extends Dynamic {
 	public function styles(): string {
 		return '
 			.wc-block-product-categories-list {
+				margin: 0;
 				padding-left: 0;
 				list-style: none;
 			}

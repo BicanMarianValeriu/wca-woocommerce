@@ -100,7 +100,7 @@ class Rating extends Dynamic {
 
 		ob_start();
 		?> 
-		<a href="#reviews" class="wc-block-components-product-rating__info" rel="nofollow">(<?php
+		<a href="#reviews" class="wc-block-components-product-rating__info woocommerce-review-link" rel="nofollow">(<?php
 			printf(
 				_n( '%s customer review', '%s customer reviews', $review_count, 'wca-woocommerce' ),
 				'<span class="count">' . esc_html( $review_count ) . '</span>'
@@ -162,6 +162,7 @@ class Rating extends Dynamic {
 	public function styles(): string {
 		$selectors = join( ',', [
 			'.star-rating',
+			'.wc-block-components-product-rating__container',
 			'.wc-block-components-product-rating__stars',
 			'.wc-block-components-review-list-item__rating__stars'
 		] );
@@ -169,7 +170,7 @@ class Rating extends Dynamic {
 		return "
 			:is({$selectors}) {
 				position: relative;
-				display: inline-block;
+				display: inline-flex;
 				vertical-align: middle;
 				max-width: 5em;
 				font-size: 1.25rem;

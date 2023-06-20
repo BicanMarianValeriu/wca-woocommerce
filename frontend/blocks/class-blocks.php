@@ -78,8 +78,12 @@ class Blocks {
 		// Checkout
 		$container->register( 'woocommerce/checkout',							Blocks\Checkout::class );
 		$container->register( 'woocommerce/checkout-billing-address',			Blocks\Checkout\Address::class );
+		$container->register( 'woocommerce/checkout-shipping-method',			Blocks\Checkout\Shipping::class );
 		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
 		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
+		
+		// New Blocks
+		$container->register( 'woocommerce/viewed-products',	Blocks\Viewed::class );
 	}
 
     /**
@@ -135,6 +139,7 @@ class Blocks {
 				'woocommerce/mini-cart-shopping-button',
 				'woocommerce/checkout',
 				'woocommerce/checkout-billing-address',
+				'woocommerce/checkout-shipping-method',
 				'woocommerce/checkout-order-summary-coupon-form',
 				'woocommerce/checkout-order-summary-cart-items',
 			] as $block ) {
@@ -167,6 +172,7 @@ class Blocks {
 			'woocommerce/product-category', 	// ok
 			'woocommerce/products-by-attribute',// ok
 			'woocommerce/handpicked-products',	// ok
+			'woocommerce/product-categories',	// ok
 		], $blocks );
 	}
 

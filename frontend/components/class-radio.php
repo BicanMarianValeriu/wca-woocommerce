@@ -92,6 +92,12 @@ class Radio extends Base {
 				margin: 0;
 				transform: translate(-50%, -50%);
 			}
+			:where(
+				.wc-block-components-shipping-rates-control,
+				.wc-block-components-local-pickup-rates-control
+			) .wc-block-components-radio-control__input {
+				top: 1.55em;
+			} 
 			.wc-block-components-radio-control__label {
 				font-weight: 700;
 			}
@@ -101,6 +107,21 @@ class Radio extends Base {
 			}
 			.wc-block-components-radio-control__secondary-label {
 				margin-left: 1.5rem;
+			}
+			.wc-block-components-radio-control__description-group {
+				display: none;
+				flex-direction: column;
+				gap: 10px;
+				background-color: var(--wp--preset--color--accent);
+				padding: var(--wp--custom--gutter);
+				margin-top: var(--wp--custom--gutter);
+				font-size: var(--wp--preset--font-size--small);
+			}
+			.wc-block-components-radio-control__secondary-description {
+				opacity: .75;
+			}
+			.wc-block-components-radio-control__option-checked .wc-block-components-radio-control__description-group {
+				display: flex;
 			}
 			.wc-block-components-radio-control__option {
 				position: relative;
@@ -116,7 +137,7 @@ class Radio extends Base {
 				text-decoration: inherit;
 				text-transform: inherit;
 				cursor: pointer;
-			}   
+			}
         ';
 	}
 }

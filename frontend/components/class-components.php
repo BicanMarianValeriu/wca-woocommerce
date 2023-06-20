@@ -62,6 +62,7 @@ class Components implements Configuration {
 		$this->register( 'badges',      Components\Badges::class    );
 		$this->register( 'panel',       Components\Panel::class     );
 		$this->register( 'card',        Components\Card::class      );
+		$this->register( 'more',        Components\More::class      );
         $this->register( 'account',     Components\Account::class   );
         $this->register( 'validation',  Components\Validation::class);
         $this->register( 'animations',  Components\Animations::class);

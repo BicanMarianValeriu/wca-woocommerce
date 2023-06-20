@@ -20,6 +20,7 @@ use WeCodeArt\Gutenberg\Blocks\Navigation\Menu;
 use function add_filter;
 use function str_replace;
 use function WeCodeArt\Functions\get_prop;
+use function WeCodeArt\Functions\get_dom_element;
 
 /**
  * Gutenberg Account Link block.
@@ -49,6 +50,40 @@ class Link extends Dynamic {
 	 */
 	public function init() {
 		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'filter_render' ], 20, 2 );
+
+		wecodeart( 'markup' )->SVG::add( 'account', [
+			'viewBox' 	=> '0 0 512 512',
+			'paths'		=> 'M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z'
+		] );
+	}
+
+	/**
+	 * Block args.
+	 *
+	 * @param	array $current	Existing register args
+	 *
+	 * @return 	array
+	 */
+	public function block_type_args( $current ): array {
+		$supports 	= get_prop( $current, [ 'supports' ], [] );
+
+		return [
+			'supports' 			=> wp_parse_args( [
+				'typography' => [
+					'fontSize'		=> true,
+					'lineHeight'	=> true,
+					'__experimentalFontFamily'	=> true,
+					'__experimentalFontWeight'	=> true,
+					'__experimentalFontStyle'	=> true,
+					'__experimentalTextTransform'	=> true,
+					'__experimentalTextDecoration'	=> true,
+					'__experimentalLetterSpacing'	=> true,
+					'__experimentalDefaultControls' => [
+						'fontSize' => true
+					]
+				],
+			], $supports )
+		];
 	}
 
     /**
@@ -63,7 +98,14 @@ class Link extends Dynamic {
 		$processor 	= new \WP_HTML_Tag_Processor( $content );
 
 		$processor->next_tag();
-		$processor->add_class( 'dropdown' );
+
+		if( $dropdown ) {
+			$processor->add_class( 'dropdown' );
+		}
+
+		if( $classname = get_prop( $block, [ 'attrs', 'className' ] ) ) {
+			$processor->add_class( $classname );
+		}
 
 		$processor->next_tag( 'a' );
 		$processor->add_class( 'wc-block-customer-account__account-link' );
@@ -83,8 +125,24 @@ class Link extends Dynamic {
 			$content = str_replace( '</a>', '</a>' . $this->dropdown( $block ), $content );
 		}
 
+		$dom	= $this->dom( $content );
+		$svg_	= get_dom_element( 'svg', $dom );
+		$link	= get_dom_element( 'a', $dom );
+		
+		$svg	= $dom->importNode( $this->dom( wecodeart( 'markup' )->SVG::compile( 'account', [
+			'class' => 'wc-block-customer-account__account-icon',
+		] ) )->documentElement, true );
+		$svg->setAttribute( 'role', 'presentation' );
+		$svg->setAttribute( 'aria-hidden', 'true' );
+
+		$link->insertBefore( $svg, $svg_ );
+		$link->removeChild( $svg_ );
+
+		$content = $dom->saveHtml();
+
 		return $content;
 	}
+	
 
 	/**
 	 * Block styles.
@@ -170,6 +228,9 @@ class Link extends Dynamic {
 				display: block;
 				width: 1.25em;
 				height: 1.25em;
+			}
+			.wc-block-customer-account__account-icon.svg-inline {
+				height: initial;
 			}
 			.wc-block-customer-account__account-icon + :is(.wc-block-customer-account__account-label,.label) {
 				margin-left: .5em;

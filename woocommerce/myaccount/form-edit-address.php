@@ -36,9 +36,9 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 	<div class="card-header">
 		<h6 class="fw-700 my-0"><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title, $load_address ); ?></h6><?php // @codingStandardsIgnoreLine ?>
 	</div>
-	<div class="card-body woocommerce-address-fields">
+	<div class="card-body">
 		<?php do_action( "woocommerce_before_edit_address_form_{$load_address}" ); ?>
-		<div class="woocommerce-address-fields__field-wrapper grid" style="--wp--columns:2;">
+		<div class="grid" style="--wp--columns:2;">
 		<?php foreach ( $address as $key => $field ) {
 			woocommerce_form_field( $key, $field, wc_get_post_data_by_key( $key, $field['value'] ) );
 		} ?>

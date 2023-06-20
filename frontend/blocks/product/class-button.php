@@ -83,7 +83,7 @@ class Button extends Dynamic {
 				.wc-block-components-product-add-to-cart-button
 			) {
 				position: relative;
-				padding-left: calc(4em + {$left_spacing});
+				padding-left: calc(4em + {$left_spacing})!important;
 				overflow: hidden;
 				border: 0;
 			}

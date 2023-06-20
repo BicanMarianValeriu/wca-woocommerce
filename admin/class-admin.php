@@ -156,6 +156,31 @@ class Admin {
 	}
 
 	/**
+	 * Editor Assets
+	 *
+	 * @since 	1.0.0
+	 * @version	1.0.0
+	 */
+	public function editor_assets() {
+		$path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
+		$name = wecodeart_if( 'is_dev_mode' ) ? 'gutenberg' : 'gutenberg.min';
+		$data = [
+			'version' 		=> $this->version,
+			'dependencies'	=> [ 'wp-i18n', 'wp-blocks' ] ,
+		];
+
+		wp_register_script( 
+			$this->make_handle( 'gutenberg' ),
+			sprintf( '%s/assets/%s/js/%s.js', untrailingslashit( WCA_WOO_EXT_URL ), $path, $name ),
+			$data['dependencies'], 
+			$data['version'], 
+			true 
+		);
+
+		wp_enqueue_script( $this->make_handle( 'gutenberg' ) );
+	}
+
+	/**
 	 * Update
 	 *
 	 * @since 	1.0.0
