@@ -76,7 +76,7 @@ class Details extends Dynamic {
 				position: relative;
 				display: block;
 				font-size: 0.6rem;
-				font-weight: 600;
+				font-weight: 500;
 				text-transform: uppercase;
 				text-decoration: none;
 				color: var(--wp--gray-900);

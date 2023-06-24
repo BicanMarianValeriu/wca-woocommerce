@@ -97,6 +97,13 @@ class Ajax extends Async {
         // Get the files in the source folder
         $files = BlockTemplateUtils::get_template_paths( Templates::get_directory() );
 
+        $directory = get_stylesheet_directory() . '/templates';
+
+        // Create /templates directory if is missing
+        if ( ! file_exists( $directory ) ) {
+            wp_mkdir_p( $directory );
+        }
+
         // Copy each file to the destination folder
         foreach ( $files as $file ) {
             // Get the slug without file extension
@@ -107,7 +114,7 @@ class Ajax extends Async {
                 continue;
             }
             
-            $copy_to = trailingslashit( get_stylesheet_directory() . '/templates' ) . $slug . '.html';
+            $copy_to = trailingslashit( $directory ) . $slug . '.html';
 
             // Copy the file
             if ( $wp_filesystem->copy( $file, $copy_to, true, \FS_CHMOD_FILE ) ) {
