@@ -83,8 +83,7 @@ class Image extends Dynamic {
 				object-fit: cover;
 				border-radius: 0.375rem;
 			}
-			:is(.wc-block-grid__product-image,.wc-block-components-product-image) img:only-child,
-			:is(.wc-block-grid__product-image,.wc-block-components-product-image) img:last-child {
+			:is(.wc-block-grid__product-image,.wc-block-components-product-image) img:is(:only-child,:last-child,:last-of-type) {
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
 			}
