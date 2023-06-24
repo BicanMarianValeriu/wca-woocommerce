@@ -53,7 +53,6 @@ class Blocks {
 		$container->register( 'woocommerce/attribute-filter',		Blocks\Filters\Attribute::class );
 		// Featured
 		$container->register( 'woocommerce/featured-product',		Blocks\Featured::class );
-		$container->register( 'woocommerce/featured-category',		Blocks\Featured\Category::class );
 		// Product
 		$container->register( 'woocommerce/product-price', 			Blocks\Product\Price::class );
 		$container->register( 'woocommerce/product-image', 			Blocks\Product\Image::class );

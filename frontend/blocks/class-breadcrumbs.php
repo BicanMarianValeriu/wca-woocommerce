@@ -46,7 +46,7 @@ class Breadcrumbs extends Dynamic {
 	 * @return 	array
 	 */
 	public function init() {
-		add_filter( 'woocommerce_breadcrumb_defaults', 			[ $this, 'filter_defaults' 	], 20, 1 );
+		add_filter( 'woocommerce_breadcrumb_defaults',	[ $this, 'filter_defaults' 	], 20, 1 );
 	}
 
 	/**
