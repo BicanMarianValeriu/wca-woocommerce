@@ -38,6 +38,28 @@ class Featured extends Dynamic {
 	protected $block_name = 'featured-product';
 
 	/**
+	 * Block styles.
+	 *
+	 * @return 	string Block CSS.
+	 */
+	public function enqueue_styles() {
+		parent::enqueue_styles();
+
+		wecodeart( 'assets' )->add_style( 'wp-block-featured-category', [
+			'load'		=> function( $blocks ) {
+				if( wp_style_is( 'wp-block-featured-category' ) || wp_style_is( 'wp-block-featured-product' ) ) {
+					return false;
+				}
+
+				if( in_array( 'woocommerce/featured-category', $blocks ) ) {
+					return true;
+				}
+			},
+			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
+		] );
+	}
+
+	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.
@@ -102,41 +124,5 @@ class Featured extends Dynamic {
 				background-attachment: fixed;
 			}
 		';
-	}
-}
-
-namespace WCA\EXT\WOO\Frontend\Blocks\Featured;
-
-use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
-
-/**
- * Gutenberg Featured Category block.
- */
-class Category extends Dynamic {
-
-	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
-
-	/**
-	 * Block name.
-	 *
-	 * @var string
-	 */
-	protected $block_name = 'featured-category';
-
-	/**
-	 * Block styles
-	 *
-	 * @return 	string 	The block styles.
-	 */
-	public function styles(): string {
-		return wecodeart( 'blocks' )->get( 'woocommerce/featured-product' )::get_instance()->styles();
 	}
 }
