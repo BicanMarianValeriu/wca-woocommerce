@@ -33,7 +33,7 @@ use function WeCodeArt\Functions\get_prop;
  * @subpackage WCA\EXT\WOO
  * @author     Bican Marian Valeriu <marianvaleriubican@gmail.com>
  */
-class WOO implements Integration {
+class Woo implements Integration {
 
 	use Singleton;
 

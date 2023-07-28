@@ -31,8 +31,8 @@ class Viewed extends Dynamic {
 
 	use Singleton;
 
-	const COOKIE = 'wca_recently_viewed';
-	const ESI_TAG= 'woo_recently_viewed';
+	const COOKIE 	= 'wca_recently_viewed';
+	const ESI_TAG	= 'wca_recently_viewed';
 
 	/**
 	 * Block namespace.
@@ -61,13 +61,13 @@ class Viewed extends Dynamic {
 	 * @return 	array
 	 */
 	public function init() {
-		add_action( 'template_redirect',	[ $this, 'track_viewed' ], 20, 1 );
-		add_filter( 'pre_render_block',		[ $this, 'update_query'	], 20, 2 );
-		add_filter( 'render_block',			[ $this, 'render_block'	], 20, 2 );
+		add_action( 'template_redirect',		[ $this, 'track_viewed' ], 20, 1 );
+		add_filter( 'pre_render_block',			[ $this, 'update_query'	], 20, 2 );
+		add_filter( 'render_block_core/query',	[ $this, 'render_block'	], 20, 2 );
 
 		// if ( apply_filters( 'litespeed_esi_status', false ) ) {
-		// 	add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
-		// 	add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
+		// 	add_action( 'litespeed_tpl_normal',						__CLASS__ . '::is_not_esi' );
+		// 	add_action( 'litespeed_esi_load-' . self::ESI_TAG,		__CLASS__ . '::esi_load' );
 		// 	add_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline', 20, 2 );
 		// }
 	}
@@ -196,18 +196,13 @@ class Viewed extends Dynamic {
 
 		// Store the viewed IDs in a session cookie.
 		wc_setcookie( self::COOKIE, implode( '|', $viewed_ids ) );
-
-		do_action( 'litespeed_purge_esi', self::ESI_TAG );
-		do_action( 'litespeed_purge_widget', self::ESI_TAG );
-		do_action( 'litespeed_purge_private', self::ESI_TAG );
-		do_action( 'litespeed_purge_private_esi', self::ESI_TAG );
 	}
 
 	/**
 	 * Hooked to the litespeed_is_not_esi_template action.
 	 */
 	public static function is_not_esi() {
-		add_filter( 'render_block', __CLASS__ . '::esi_render', 110, 2 );
+		add_filter( 'render_block_core/query', __CLASS__ . '::esi_render', 999, 2 );
 	}
 
 	/**
@@ -222,18 +217,20 @@ class Viewed extends Dynamic {
 			return $content;
 		}
 
-		$inline = [
-			'val'		=> $content,
-			'tag'		=> self::esi_tags(),
-			'control' 	=> 'private,no-vary',
-		];
-
 		$params = [
 			'content' 	=> $content,
 			'block'		=> $block
 		];
 
+		$inline_tags = self::esi_tags();
+
 		do_action( 'litespeed_esi_combine', self::ESI_TAG );
+
+		$inline = [
+			'val'		=> $content,
+			'tag'		=> $inline_tags,
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
+		];
 
 		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'WOO_RECENTLY_VIEWED', $params, 'private,no-vary', false, false, false, $inline );
 	}
@@ -248,15 +245,14 @@ class Viewed extends Dynamic {
 			$res = [];
 		}
 
-		remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
-
-		$value = render_block( get_prop( $params, 'block', [] ) );
+		// remove_filter( 'render_block_core/query', __CLASS__ . '::esi_render', 999, 2 );
+		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
+		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
 
 		return wp_parse_args( [
-			'val'		=> $value,
-			'control' 	=> 'private,no-vary',
+			'val'		=> render_block( get_prop( $params, 'block', [] ) ),
 			'tag'		=> self::esi_tags(),
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
 		], $res );
 	}
 
@@ -268,12 +264,13 @@ class Viewed extends Dynamic {
 	 * @return 	string
 	 */
 	public static function esi_load( $params ) {
-		remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
+		// remove_filter( 'render_block_core/query', __CLASS__ . '::esi_render', 999, 2 );
+		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
+		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
 
 		echo render_block( get_prop( $params, 'block', [] ) );
 	
-		do_action( 'litespeed_control_set_nocache' );
+		do_action( 'litespeed_control_set_private', 'woo recently viewed' );
 		do_action( 'litespeed_vary_no' );
 	}
 

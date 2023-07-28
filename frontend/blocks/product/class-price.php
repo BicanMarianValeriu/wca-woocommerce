@@ -149,10 +149,11 @@ class Price extends Dynamic {
 		
 			?></span>
 			<a class="has-cyan-bluish-gray-color ms-1"
-				href="javascript:void(0);"
+				href="#"
 				data-bs-toggle="tooltip"
 				data-bs-custom-class="wc-block-components-product-price__tip"
-				title="<?php echo esc_attr( $message ); ?>">
+				title="<?php echo esc_attr( $message ); ?>"
+				rel="nofollow">
 				<?php
 				
 				wecodeart( 'markup' )->SVG::render( 'info', [

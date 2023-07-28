@@ -45,6 +45,8 @@ class Title extends Dynamic {
 	public function styles(): string {
 		return '
 			.wc-block-mini-cart__title {
+				display: flex;
+				gap: .75rem;
 				font-size: var(--wp--preset--font-size--normal);
 				font-weight: 700;
 				background-color: var(--wp--preset--color--accent);

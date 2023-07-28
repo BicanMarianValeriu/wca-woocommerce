@@ -153,7 +153,7 @@ const Options = (props) => {
                     />
                     <ToggleControl
                         label={__('Enable product rating extras?', 'wca-woocommerce')}
-                        help={__('Enhance the Product Rating block by incorporating enhanced and visually captivating rating information.', 'wca-woocommerce')}
+                        help={__('Enhance the Product Rating block(s) by incorporating enhanced and visually captivating rating information.', 'wca-woocommerce')}
                         checked={formData?.product_rating_extra}
                         onChange={value => setFormData({ ...formData, product_rating_extra: value })}
                     />
