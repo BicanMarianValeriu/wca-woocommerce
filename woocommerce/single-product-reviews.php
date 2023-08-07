@@ -50,7 +50,8 @@ wecodeart( 'styles' )->Utilities->load( [ 'position-sticky', 'my-3', 'mb-3', 'me
 			<?php
 
 			wp_list_comments( apply_filters( 'woocommerce_product_review_list_args', [
-				'callback' => 'woocommerce_comments'
+				'callback' 	=> 'woocommerce_comments',
+				'type'		=> 'review',
 			] ) );
 
 			?>

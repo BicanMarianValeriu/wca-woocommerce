@@ -21,11 +21,11 @@
                 <!-- wp:woocommerce/add-to-cart-form /-->
                 <!-- wp:woocommerce/product-meta -->
                 <div class="wp-block-woocommerce-product-meta">
-                    <!-- wp:group {"style":{"spacing":{"blockGap":"0"}}} -->
+                    <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","flexWrap":"nowrap","orientation":"vertical"}} -->
                     <div class="wp-block-group">
-                        <!-- wp:woocommerce/product-sku {"fontSize":"small","textColor":"cyan-bluish-gray"} /-->
-                        <!-- wp:post-terms {"term":"product_cat"} /-->
-                        <!-- wp:post-terms {"term":"product_tag"} /-->
+                        <!-- wp:woocommerce/product-sku {"isDescendentOfSingleProductTemplate":true} /-->
+                        <!-- wp:post-terms {"term":"product_cat","prefix":"Category: "} /-->
+                        <!-- wp:post-terms {"term":"product_tag","prefix":"Tags: "} /-->
                     </div>
                     <!-- /wp:group -->
                 </div>

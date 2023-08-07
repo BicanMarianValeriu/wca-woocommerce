@@ -172,6 +172,7 @@ class Blocks {
 			'woocommerce/products-by-attribute',// ok
 			'woocommerce/handpicked-products',	// ok
 			'woocommerce/product-categories',	// ok
+			'fibosearch/search'
 		], $blocks );
 	}
 

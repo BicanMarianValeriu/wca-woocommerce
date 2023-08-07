@@ -83,13 +83,13 @@ wecodeart( 'styles' )->Utilities->load( [
 
 		?></div>
 		<div class="has-text-align-right">
-			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>
+			<a class="has-white-color" href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>
 		</div>
 	</div>
 
-	<div class="wp-block-button"><?php
+	<div class="wp-block-button is-style-outline" style="--wp--color--hover: black;"><?php
 
-		$classes = [ 'woocommerce-form-login__submit', 'wp-block-button__link', 'has-primary-background-color' ];
+		$classes = [ 'woocommerce-form-login__submit', 'wp-block-button__link', 'has-white-color' ];
 		$classes[] = wc_wp_theme_get_element_class_name( 'button' );
 
 		wecodeart_input( 'button', [

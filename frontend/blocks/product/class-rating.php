@@ -65,7 +65,8 @@ class Rating extends Dynamic {
 	public function render_block( string $content = '', array $block = [] ): string {
 		$is_single_product = get_prop( $block, [ 'attrs', 'isDescendentOfSingleProductTemplate' ] ) === true;
 
-		$regex = '/<div\b[^>]+wc-block-components-product-rating__stars[\s|"][^>]*>/U';
+		
+		$regex = '/<div\b[^>]+wc-block-components-product-rating__container[\s|"][^>]*>/U';
 		if ( $is_single_product && 1 === preg_match( $regex, $content, $matches, PREG_OFFSET_CAPTURE ) ) {
 			$offset	= $matches[0][1];
 			$offset	= strrpos( $content, '</div>', $offset );
@@ -83,29 +84,22 @@ class Rating extends Dynamic {
 	public function markup(): string {
 		$html = '';
 
-		global $product;
-
-		if( ! is_object( $product ) ) {
+		if( ! is_singular( 'product' ) ) {
 			return $html;
 		}
 
-		$rating_count = $product->get_rating_count();
+		$product = wc_get_product( get_queried_object_id() );
 
-		if ( $rating_count === 0 || ! is_singular( 'product' ) ) {
+		$count	= $product->get_rating_count();
+
+		if ( $count === 0 ) {
 			return $html;
 		}
 
-		$review_count = $product->get_review_count();
-		$average      = $product->get_average_rating();
+		$average	= $product->get_average_rating();
 
 		ob_start();
-		?> 
-		<a href="#reviews" class="wc-block-components-product-rating__info woocommerce-review-link" rel="nofollow">(<?php
-			printf(
-				_n( '%s customer review', '%s customer reviews', $review_count, 'wca-woocommerce' ),
-				'<span class="count">' . esc_html( $review_count ) . '</span>'
-			);
-		?>)</a>
+		?>
 		<p class="wc-block-components-product-rating__stats"><?php
 		
 			printf(
@@ -162,7 +156,6 @@ class Rating extends Dynamic {
 	public function styles(): string {
 		$selectors = join( ',', [
 			'.star-rating',
-			'.wc-block-components-product-rating__container',
 			'.wc-block-components-product-rating__stars',
 			'.wc-block-components-review-list-item__rating__stars'
 		] );
@@ -198,15 +191,14 @@ class Rating extends Dynamic {
 			:is({$selectors}) > span:before {
 				position: relative;
 				background-image: var(--wc--star-active);
-				z-index: 10;
+				z-index: 2;
 			}
 			:is({$selectors}) > span:after {
 				position: absolute;
 				background-image: var(--wc--star);
-				z-index: 5;
+				z-index: 1;
 			}
-			.wc-block-components-product-rating__info {
-				color: var(--wp--preset--color--black);
+			.wc-block-components-product-rating__reviews_count {
 				margin-left: 1em;
 				vertical-align: middle;
 			}

@@ -45,6 +45,30 @@ class Drawer extends Base {
 				transform: translateX(calc(var(--wp--drawer--width) * -1));
 				width: var(--wp--drawer--width);
 			}
+			.wc-block-components-drawer__close-wrapper {
+				position: absolute;
+				top: var(--wp--custom--gutter, 1rem);
+				right: var(--wp--custom--gutter, 1rem);
+			}
+			.wc-block-components-drawer__close.wp-element-button {
+				display: block;
+				padding: 0;
+				background: none;
+				border: none;
+				box-shadow: none;
+				font-size: 1.5rem;
+				color: inherit;
+				z-index: 9999;
+				cursor: pointer;
+			}
+			.wc-block-components-drawer__close svg {
+				display: block;
+				width: 1em;
+				height: 1em;
+			}
+			.wc-block-components-drawer__close span {
+				display: none;
+			}
 			.wc-block-components-drawer__screen-overlay {
 				--wp--animation--duration: .3s;
 				position: fixed;

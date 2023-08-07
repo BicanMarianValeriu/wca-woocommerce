@@ -389,7 +389,7 @@ const Options = props => {
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
     label: __('Enable product rating extras?', 'wca-woocommerce'),
-    help: __('Enhance the Product Rating block by incorporating enhanced and visually captivating rating information.', 'wca-woocommerce'),
+    help: __('Enhance the Product Rating block(s) by incorporating enhanced and visually captivating rating information.', 'wca-woocommerce'),
     checked: formData?.product_rating_extra,
     onChange: value => setFormData({ ...formData,
       product_rating_extra: value

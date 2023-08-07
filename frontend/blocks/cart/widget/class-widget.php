@@ -53,16 +53,16 @@ class Widget extends Dynamic {
 	 * @return 	array
 	 */
 	public function init() {
-		if ( apply_filters( 'litespeed_esi_status', false ) ) {
-			add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
-			add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
-			add_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline', 20, 2 );
+		// if ( apply_filters( 'litespeed_esi_status', false ) ) {
+		// 	add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
+		// 	add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
+		// 	add_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline',	20, 2 );
 			
-			add_action( 'woocommerce_ajax_added_to_cart',			__CLASS__ . '::esi_purge' );
-			add_action( 'woocommerce_add_to_cart',					__CLASS__ . '::esi_purge' );
-			add_action( 'woocommerce_cart_item_removed',			__CLASS__ . '::esi_purge' );
-			add_action( 'woocommerce_cart_item_restored',			__CLASS__ . '::esi_purge' );
-		}
+		// 	add_action( 'woocommerce_ajax_added_to_cart',			__CLASS__ . '::esi_purge' );
+		// 	add_action( 'woocommerce_add_to_cart',					__CLASS__ . '::esi_purge' );
+		// 	add_action( 'woocommerce_cart_item_removed',			__CLASS__ . '::esi_purge' );
+		// 	add_action( 'woocommerce_cart_item_restored',			__CLASS__ . '::esi_purge' );
+		// }
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Widget extends Dynamic {
 		$inline = [
 			'val'		=> $content,
 			'tag'		=> self::esi_tags(),
-			'control' 	=> 'private,no-cache',
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
 		];
 
 		$params = [
@@ -86,14 +86,14 @@ class Widget extends Dynamic {
 
 		do_action( 'litespeed_esi_combine', self::ESI_TAG );
 
-		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'WOO_ESI_BLOCK', $params, 'private,no-cache', false, false, false, $inline );
+		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'WOO_ESI_BLOCK', $params, 'private,no-vary', false, false, false, $inline );
 	}
 
 	/**
 	 * Hooked to the litespeed_is_not_esi_template action.
 	 */
 	public static function is_not_esi() {
-		add_filter( 'render_block_woocommerce/mini-cart', __CLASS__ . '::render_block', 100, 2 );
+		add_filter( 'render_block_woocommerce/mini-cart', __CLASS__ . '::render_block', 20, 2 );
 	}
 
 	/**
@@ -106,15 +106,13 @@ class Widget extends Dynamic {
 			$res = [];
 		}
 
-		remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
-
-		$value = render_block( get_prop( $params, 'block', [] ) );
+		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
+		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
 
 		return wp_parse_args( [
-			'val'		=> $value,
-			'control' 	=> 'private,no-cache',
+			'val'		=> render_block( get_prop( $params, 'block', [] ) ),
 			'tag'		=> self::esi_tags(),
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
 		], $res );
 	}
 
@@ -126,14 +124,13 @@ class Widget extends Dynamic {
 	 * @return 	string
 	 */
 	public static function esi_load( $params ) {
-		remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
+		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
+		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
 
 		echo render_block( get_prop( $params, 'block', [] ) );
 	
 		do_action( 'litespeed_control_set_private', 'woo mini cart' );
-		do_action( 'litespeed_control_set_nocache' );
-		// do_action( 'litespeed_vary_no' );
+		do_action( 'litespeed_vary_no' );
 	}
 
 	/**
@@ -143,7 +140,7 @@ class Widget extends Dynamic {
 	 */
 	public static function esi_tags(): string {
 		$inline_tags = [ '', rtrim( Tag::TYPE_ESI, '.' ), Tag::TYPE_ESI . self::ESI_TAG ];
-		$inline_tags = implode( ',', array_map( fn( $val ) => 'private:' . LSWCP_TAG_PREFIX . '_' . $val, $inline_tags ) );
+		$inline_tags = implode( ',', array_map( fn( $val ) => 'public:' . LSWCP_TAG_PREFIX . '_' . $val, $inline_tags ) );
 		$inline_tags .= ',' . LSWCP_TAG_PREFIX . '_tag_priv';
 
 		return $inline_tags;
@@ -237,6 +234,9 @@ class Widget extends Dynamic {
 				white-space: nowrap;
 				z-index: 1;
 			}
+			.wc-block-mini-cart__badge:empty {
+				display: none;
+			}
 			.wc-block-mini-cart__icon {
 				display: block;
 				height: 1.25em;
@@ -250,30 +250,6 @@ class Widget extends Dynamic {
 			}
 			.wc-block-mini-cart__drawer {
 				font-size: 1rem;
-			}
-			.wc-block-mini-cart__drawer .components-modal__header {
-				position: absolute;
-				top: var(--wp--custom--gutter, 1rem);
-				right: var(--wp--custom--gutter, 1rem);
-			}
-			.wc-block-mini-cart__drawer .components-modal__header button {
-				display: block;
-				padding: 0;
-				background: none;
-				border: none;
-				box-shadow: none;
-				font-size: 1.5rem;
-				color: inherit;
-				z-index: 9999;
-				cursor: pointer;
-			}
-			.wc-block-mini-cart__drawer .components-modal__header svg {
-				display: block;
-				width: 1em;
-				height: 1em;
-			}
-			.wc-block-mini-cart__drawer .components-modal__header span {
-				display: none;
 			}
 			.wp-block-woocommerce-mini-cart-contents {
 				height: 100vh;

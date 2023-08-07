@@ -178,6 +178,10 @@ class Products extends Dynamic {
 					grid-template-columns: repeat(6, 1fr);
 				}
 			}
+			/* Misc */
+			.woocommerce-result-count {
+				margin: 0;
+			}
 		';
 
 		return $inline;
