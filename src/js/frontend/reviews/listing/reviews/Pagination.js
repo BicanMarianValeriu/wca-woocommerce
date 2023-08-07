@@ -44,15 +44,15 @@ export default ({ loading, queryArgs, setQueryArgs, totalPages: total }) => {
 		return (
 			<li className={classNames.join(' ')}>{
 				isDisabled ?
-					<span {...props}><Inner /> <ReaderText text={__('Next page', 'wca-woocommerce')} /></span>
+					<span {...props}><Inner /> <ReaderText text={__('Next page', 'wca-woo-reviews')} /></span>
 					:
-					<a {...props}><Inner /> <ReaderText text={__('Previous page', 'wca-woocommerce')} /></a>
+					<a {...props}><Inner /> <ReaderText text={__('Previous page', 'wca-woo-reviews')} /></a>
 			}</li>
 		);
 	};
 
 	const generateDots = () => <li className="woocommerce-Reviews__pagination-item woocommerce-Reviews__pagination-item--dots">
-		<span className="woocommerce-Reviews__pagination-link">...<ReaderText text={__('dots', 'wca-woocommerce')} /></span>
+		<span className="woocommerce-Reviews__pagination-link">...<ReaderText text={__('dots', 'wca-woo-reviews')} /></span>
 	</li>;
 
 	const generateLink = (p) => {
@@ -76,9 +76,9 @@ export default ({ loading, queryArgs, setQueryArgs, totalPages: total }) => {
 				...[isCurrent ? 'woocommerce-Reviews__pagination-item--current' : '']
 			].filter(Boolean).join(' ')}>{
 					isCurrent ?
-						<span {...props}><ReaderText text={__('Page', 'wca-woocommerce')} /> {p}</span>
+						<span {...props}><ReaderText text={__('Page', 'wca-woo-reviews')} /> {p}</span>
 						:
-						<a {...props}><ReaderText text={__('Page', 'wca-woocommerce')} /> {p}</a>
+						<a {...props}><ReaderText text={__('Page', 'wca-woo-reviews')} /> {p}</a>
 				}</li>
 		);
 	};
@@ -103,8 +103,8 @@ export default ({ loading, queryArgs, setQueryArgs, totalPages: total }) => {
 	}
 
 	return (
-		<nav className="woocommerce-Reviews__pagination has-text-align-center has-text-align-md-right" aria-label={__('Reviews pagination', 'wca-woocommerce')}>
-			<ul className="woocommerce-Reviews__pagination-list mt-3" style={style}>
+		<nav className="woocommerce-Reviews__pagination" aria-label={__('Reviews pagination', 'wca-woo-reviews')}>
+			<ul className="woocommerce-Reviews__pagination-list" style={style}>
 				{renderAdjacent(true)}
 				{generateLinks()}
 				{renderAdjacent()}

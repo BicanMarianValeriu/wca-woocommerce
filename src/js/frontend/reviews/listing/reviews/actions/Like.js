@@ -35,7 +35,11 @@ const Component = ({ review, options }) => {
         }
     };
 
-    return (<Action {...{ label: `(${likes})`, icon: `like${isReviewLiked ? ' active' : ''}`, disabled: liking === true, onClick }} />);
+    return (
+        <Action {...{ icon: isReviewLiked ? 'liked' : 'like', disabled: liking === true, onClick }} >
+            <span className="count">({likes})</span>
+        </Action>
+    );
 };
 
 export default {

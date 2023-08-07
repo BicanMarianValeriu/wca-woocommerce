@@ -32,7 +32,7 @@ export default ({ addComment, setAddComment, productId, requestUrl }) => {
 			});
 
 			const { message } = await r.json();
-			
+
 			return setMessage(message);
 		} finally {
 			setLoading(false);
@@ -43,26 +43,28 @@ export default ({ addComment, setAddComment, productId, requestUrl }) => {
 	return (
 		<>
 			{message ?
-				<div className="has-accent-background-color rounded p-3 my-3"><p className="mt-0">{message}</p></div>
+				<div className="has-accent-background-color my-spacer" style={{ padding: '1rem', borderRadius: '.25rem' }}>
+					<p>{message}</p>
+				</div>
 				:
 				<form className="woocommerce-Reviews__comment" onSubmit={handleSubmit(onSubmit)} name="wca-woo-comment">
 					{doAction('wecodeart.woocommerce.reviews.newComment.top', register, errors, productId)}
-					<div className="position-relative my-3">
+					<div className="position-relative my-spacer">
 						<textarea className="form-control" id="comment" name="comment" rows="7" required="" ref={register({
-							required: __('This cannot be empty!', 'wca-woocommerce'),
+							required: __('This cannot be empty!', 'wca-woo-reviews'),
 							minLength: 20
-						})} placeholder={__('Your comment', 'wca-woocommerce')}></textarea>
-						{errors.comment && <em class="invalid-feedback d-block">{
-							errors.comment.type === 'minLength' ? __('Comment is too short.', 'wca-woocommerce') : errors.comment.message
+						})} placeholder={__('Your comment', 'wca-woo-reviews')}></textarea>
+						{errors.comment && <em class="invalid-feedback" style={{ display: 'block' }}>{
+							errors.comment.type === 'minLength' ? __('Comment is too short.', 'wca-woo-reviews') : errors.comment.message
 						}</em>}
 					</div>
 					{doAction('wecodeart.woocommerce.reviews.newComment.bottom', register, errors, productId)}
 					<button {...{
 						type: 'submit',
-						className: 'wp-element-button has-primary-background-color py-1',
+						className: 'wp-element-button has-primary-background-color',
 						disabled: loading === true || errors.comment === false || errors.comment
 					}}>
-						<span>{loading ? __('Submitting...', 'wca-woocommerce') : __('Add Comment', 'wca-woocommerce')}</span>
+						<span>{loading ? __('Submitting...', 'wca-woo-reviews') : __('Add Comment', 'wca-woo-reviews')}</span>
 					</button>
 				</form>
 			}

@@ -18,7 +18,7 @@ export default `<svg
 	></rect>
 	<defs>
 		<clipPath id="clip-path">
-			<circle cx="35" cy="40" r="35"></circle>
+			<circle cx="25" cy="40" r="25"></circle>
 			<rect x="0" y="100" rx="3" ry="3" width="150" height="8"></rect>
 			<rect x="0" y="115" rx="3" ry="3" width="75" height="6"></rect>
 			<rect x="265" y="15" rx="3" ry="3" width="400" height="10"></rect>

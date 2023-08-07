@@ -1,4 +1,5 @@
 import { useHover } from '../hooks';
+import Icon from './Icon';
 
 const {
 	i18n: { __ },
@@ -7,14 +8,14 @@ const {
 } = wp;
 
 const RATING_LABELS = applyFilters('wecodeart.woocommerce.reviews.rating.labels', {
-	1: __('Not recommended', 'wca-woocommerce'),
-	2: __('Weak', 'wca-woocommerce'),
-	3: __('Acceptable', 'wca-woocommerce'),
-	4: __('Good', 'wca-woocommerce'),
-	5: __('Excelent', 'wca-woocommerce'),
+	1: __('Not recommended', 'wca-woo-reviews'),
+	2: __('Weak', 'wca-woo-reviews'),
+	3: __('Acceptable', 'wca-woo-reviews'),
+	4: __('Good', 'wca-woo-reviews'),
+	5: __('Excelent', 'wca-woo-reviews'),
 });
 
-export default ({ rating = 0, onClick, children, className = 'justify-content-start' }) => {
+export default ({ rating = 0, onClick, children }) => {
 	const [refHover, isHovered] = useHover();
 	const [ratingLabel, setRatingLabel] = useState('');
 
@@ -28,25 +29,25 @@ export default ({ rating = 0, onClick, children, className = 'justify-content-st
 
 	return (
 		<>
-			<div className={`woocommerce-Reviews__rating-input d-flex align-items-center ${className}`}>
-				<div className="woocommerce-Reviews__rating-input__stars me-2">
-					<div className="d-flex flex-row-reverse" ref={refHover}>
-						{Object.entries(RATING_LABELS).reverse().map(item => {
-							const [star, label] = item;
-							const classNames = ['woocommerce-Reviews__icon', 'woocommerce-Reviews__icon--rating', parseInt(star) === parseInt(rating) ? 'active' : ''];
-							return (
-								<button {...{
-									className: classNames.filter(Boolean).join(' '),
-									type: 'button',
-									onClick: (e) => onClick(parseFloat(star), e),
-									'aria-label': label
-								}}><span className="screen-reader-text">{label}</span></button>
-							);
-						})}
-					</div>
-					{children}
+			<div className="woocommerce-Reviews__rating woocommerce-Reviews__rating--input">
+				<div className="woocommerce-Reviews__rating-range" ref={refHover}>
+					{Object.entries(RATING_LABELS).reverse().map(item => {
+						const [star, label] = item;
+						return (
+							<button {...{
+								className: ['has-background', parseInt(star) === parseInt(rating) ? 'active' : ''].filter(Boolean).join(' '),
+								type: 'button',
+								onClick: (e) => onClick(parseFloat(star), e),
+								'aria-label': label
+							}}>
+								<Icon icon="rating" />
+								<span className="screen-reader-text">{label}</span>
+							</button>
+						);
+					})}
 				</div>
-				<div className="woocommerce-Reviews__rating-input__hover fw-700">{hoverLabel || ratingLabel || __('Your rating', 'wca-woocommerce')}</div>
+				<strong className="woocommerce-Reviews__rating-hover">{hoverLabel || ratingLabel || __('Your rating', 'wca-woo-reviews')}</strong>
+				{children}
 			</div>
 		</>
 	);

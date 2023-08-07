@@ -13,16 +13,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../functions */ "./src/js/frontend/reviews/functions.js");
 
+
+const {
+  Template = {
+    renderToString: _functions__WEBPACK_IMPORTED_MODULE_1__.renderToString
+  }
+} = window.wecodeart || {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
   let {
     userData = {},
     note,
     options
   } = _ref;
-  const {
-    Template
-  } = wecodeart;
   const {
     product: {
       title: productTitle
@@ -69,12 +73,12 @@ const {
     useState
   }
 } = wp;
-const RATING_SUGGESTIONS = applyFilters('wecodeart.wecodeart.woocommerce.reviews.rating.suggestions', {
-  1: [__('Not recommended', 'wca-woocommerce'), __('Very weak', 'wca-woocommerce'), __('Not happy', 'wca-woocommerce')],
-  2: [__('Weak', 'wca-woocommerce'), __('I don\'t like it', 'wca-woocommerce'), __('Disappointing', 'wca-woocommerce')],
-  3: [__('Decent', 'wca-woocommerce'), __('Acceptable', 'wca-woocommerce'), __('Ok', 'wca-woocommerce')],
-  4: [__('Happy', 'wca-woocommerce'), __('I like it', 'wca-woocommerce'), __('Is worth it', 'wca-woocommerce'), __('Good', 'wca-woocommerce')],
-  5: [__('Excelent', 'wca-woocommerce'), __('Very satisfied', 'wca-woocommerce'), __('Recommended', 'wca-woocommerce'), __('Cool', 'wca-woocommerce')]
+const RATING_SUGGESTIONS = applyFilters('wecodeart.woocommerce.reviews.rating.suggestions', {
+  1: [__('Not recommended', 'wca-woo-reviews'), __('Very weak', 'wca-woo-reviews'), __('Not happy', 'wca-woo-reviews')],
+  2: [__('Weak', 'wca-woo-reviews'), __('I don\'t like it', 'wca-woo-reviews'), __('Disappointing', 'wca-woo-reviews')],
+  3: [__('Decent', 'wca-woo-reviews'), __('Acceptable', 'wca-woo-reviews'), __('Ok', 'wca-woo-reviews')],
+  4: [__('Happy', 'wca-woo-reviews'), __('I like it', 'wca-woo-reviews'), __('Is worth it', 'wca-woo-reviews'), __('Good', 'wca-woo-reviews')],
+  5: [__('Excelent', 'wca-woo-reviews'), __('Very satisfied', 'wca-woo-reviews'), __('Recommended', 'wca-woo-reviews'), __('Cool', 'wca-woo-reviews')]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
   let {
@@ -92,7 +96,7 @@ const RATING_SUGGESTIONS = applyFilters('wecodeart.wecodeart.woocommerce.reviews
     } = _ref2;
     const props = {
       type: 'button',
-      className: 'wp-element-button has-accent-background-color has-black-color rounded-pill me-2',
+      className: 'wp-element-button has-accent-background-color has-black-color',
       key,
       onClick
     };
@@ -100,7 +104,13 @@ const RATING_SUGGESTIONS = applyFilters('wecodeart.wecodeart.woocommerce.reviews
   };
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__suggestions d-flex flex-wrap align-items-center"
+    className: "woocommerce-Reviews__suggestions",
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      gap: '.5rem'
+    }
   }, current.map((x, y) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Button, {
     key: y,
     label: x
@@ -148,7 +158,8 @@ const {
     queryArgs,
     setQueryArgs,
     userData = false,
-    options
+    options,
+    breakpoint
   } = _ref;
   const {
     product: {
@@ -166,22 +177,12 @@ const {
     errors
   } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useForm)();
 
-  const onClick = (value, e) => {
-    const formElement = document.forms['wca-woo-addreview'];
-    formElement.elements.rating.value = value;
-    const starsBtns = Array.prototype.slice.call(formElement.querySelectorAll('.woocommerce-Reviews__star'));
-
-    for (let i = 0; i < starsBtns.length; i++) starsBtns[i].classList.remove('active');
-
-    e.currentTarget.className = 'active';
-    setRating(value);
-  };
-
   const onSubmit = async (values, e) => {
     if (loading) {
       return;
     }
 
+    console.log(values);
     const formData = new FormData();
     formData.append('action', 'review');
     formData.append('product_id', productId);
@@ -202,6 +203,9 @@ const {
         message
       } = await r.json();
       setMessage(message);
+    } catch (e) {
+      console.warn(e);
+      setMessage(e);
     } finally {
       setLoading(false); // Reset Rating
 
@@ -229,7 +233,10 @@ const {
     note,
     options
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "span-12 span-lg-7 order-lg-first"
+    className: "span-12 span-lg-7",
+    style: {
+      gridRow: breakpoint === 'mobile' ? 'initial' : 1
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
     className: "woocommerce-Reviews__respond-form",
     name: "wca-woo-addreview",
@@ -237,104 +244,106 @@ const {
   }, doAction('wecodeart.woocommerce.reviews.newReview.top', register, errors, options), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__respond-field"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "mb-3"
+    className: "mb-spacer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_RatingInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     rating,
-    setRating,
-    onClick,
-    register: register({
-      validate: value => value !== 0
-    })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    onClick: setRating
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "hidden",
     name: "rating",
     value: rating,
     ref: register({
-      required: __('This cannot be empty!', 'wca-woocommerce'),
-      minLength: 0,
+      validate: value => value !== 0,
+      required: __('This cannot be empty!', 'wca-woo-reviews'),
+      minLength: 1,
       maxLength: 5
     })
-  }))), !userData && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })))), !userData && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__respond-field grid"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "mb-3 span-12 span-md-6"
+    className: "mb-spacer span-12 span-md-6"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    className: "mb-0 fw-700",
     for: "reviewer"
-  }, __('Name', 'wca-woocommerce'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }, __('Name', 'wca-woo-reviews'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     className: "form-control",
     type: "text",
     name: "reviewer",
     id: "reviewer",
     ref: register({
-      required: __('What is your name?', 'wca-woocommerce'),
-      validate: value => value !== 'admin' || __('Nice Try', 'wca-woocommerce')
+      required: __('What is your name?', 'wca-woo-reviews'),
+      validate: value => value !== 'admin' || __('Nice Try', 'wca-woo-reviews')
     }),
-    placeholder: __('Name', 'wca-woocommerce')
+    placeholder: __('Name', 'wca-woo-reviews')
   }), errors.reviewer && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", {
-    class: "invalid-feedback d-block"
+    class: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
   }, errors.reviewer.message)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "mb-3 span-12 span-md-6"
+    className: "mb-spacer span-12 span-md-6"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    className: "mb-0 fw-700",
     for: "reviewer_email"
-  }, __('Email', 'wca-woocommerce'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }, __('Email', 'wca-woo-reviews'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     className: "form-control",
     type: "email",
     name: "reviewer_email",
     id: "reviewer_email",
     ref: register({
-      required: __('What is your email address?', 'wca-woocommerce'),
+      required: __('What is your email address?', 'wca-woo-reviews'),
       pattern: {
         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-        message: __('Invalid email address.', 'wca-woocommerce')
+        message: __('Invalid email address.', 'wca-woo-reviews')
       }
     }),
-    placeholder: __('Email', 'wca-woocommerce')
+    placeholder: __('Email', 'wca-woo-reviews')
   }), errors.reviewer_email && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", {
-    class: "invalid-feedback d-block"
+    class: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
   }, errors.reviewer_email.message))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__respond-field"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "mb-3"
+    className: "mb-spacer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    className: "mb-0 fw-700",
     for: "review_title"
-  }, __('Review title (optional)', 'wca-woocommerce'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+  }, __('Review title (optional)', 'wca-woo-reviews'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     className: "form-control",
     type: "text",
     name: "title",
     id: "review_title",
     ref: register,
-    placeholder: __('Use a suggestion or write your own title', 'wca-woocommerce')
+    placeholder: __('Use a suggestion or write your own title', 'wca-woo-reviews')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "mb-3"
+    className: "mb-spacer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SuggestTitle__WEBPACK_IMPORTED_MODULE_2__["default"], {
     rating: rating
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__respond-field"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "mb-3"
+    className: "mb-spacer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    className: "mb-0 fw-700",
     for: "review"
-  }, __('Review', 'wca-woocommerce'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+  }, __('Review', 'wca-woo-reviews'), ":"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     className: "form-control",
     id: "review",
     name: "review",
     rows: "7",
     required: "",
     ref: register({
-      required: __('This cannot be empty!', 'wca-woocommerce'),
+      required: __('This cannot be empty!', 'wca-woo-reviews'),
       minLength: 20
     }),
-    placeholder: __('Describe your experience with the product', 'wca-woocommerce')
+    placeholder: __('Describe your experience with the product', 'wca-woo-reviews')
   }), errors.review && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", {
-    class: "invalid-feedback d-block"
-  }, errors.review.type === 'minLength' ? __('Please be more descriptive.', 'wca-woocommerce') : errors.review.message))), doAction('wecodeart.woocommerce.reviews.newReview.bottom', register, errors, options), terms && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors.review.type === 'minLength' ? __('Please be more descriptive.', 'wca-woo-reviews') : errors.review.message))), doAction('wecodeart.woocommerce.reviews.newReview.bottom', register, errors, options), terms && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__respond-field woocommerce-Reviews__respond-field--terms"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "mb-3"
+    className: "mb-spacer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "has-small-font-size has-cyan-bluish-gray-color",
     dangerouslySetInnerHTML: {
@@ -344,17 +353,20 @@ const {
     className: "woocommerce-Reviews__respond-field"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: "submit",
-    className: "wp-element-button has-primary-background-color py-1",
+    className: "wp-element-button has-primary-background-color",
     disabled: loading === true
-  }, __('Add Review', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "mx-1"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  }, __('Add Review', 'wca-woo-reviews')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, " \xA0 "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: "javascript:void(0);",
     onClick: () => setRating(false),
     className: "wp-element-link"
-  }, __('Cancel', 'wca-woocommerce')), message && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, __('Cancel', 'wca-woo-reviews')), message && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "review-success",
-    className: "rounded has-accent-background-color p-3 mt-3"
+    className: "has-accent-background-color",
+    style: {
+      padding: '1rem',
+      marginTop: '1rem',
+      borderRadius: '.25rem'
+    }
   }, message))))));
 });
 

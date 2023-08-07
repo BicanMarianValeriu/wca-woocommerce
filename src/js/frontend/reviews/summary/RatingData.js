@@ -6,11 +6,11 @@ const {
 
 export default ({ average = 0.0, total = 0 }) => {
 
-	const labelElement = _n('%s review', '%s reviews', total, 'wca-woocommerce');
+	const labelElement = _n('%s review', '%s reviews', total, 'wca-woo-reviews');
 
 	return (
-		<div className="woocommerce-Reviews__summary-info is-layout-flow has-text-align-center">
-			<h3 className="display-4 fw-700" style={{ lineHeight: 1 }}>{parseFloat(average).toFixed(2)}</h3>
+		<div className="woocommerce-Reviews__summary-info is-layout-flow" style={{ textAlign: 'center' }}>
+			<h3 style={{ lineHeight: 1, fontWeight: 700 }}>{parseFloat(average).toFixed(2)}</h3>
 			<StarRating rating={average} percent={5} />
 			<p className="has-small-font-size has-cyan-bluish-gray-color">{sprintf(labelElement, total)}</p>
 		</div>

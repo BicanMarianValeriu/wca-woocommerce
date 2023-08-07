@@ -1,27 +1,30 @@
 import Summary from './summary';
 import Filters from './filters';
-import Listing from './listing';
+import Listing from './listing/reviews';
 import { useApiFetch } from './hooks';
 import { scrollToElement } from './functions';
+import { createBreakpoint } from 'react-use';
 
 const { element: { useState, useEffect, lazy, Suspense } } = wp;
 
 const LeaveAReview = lazy(() => import(/* webpackChunkName: 'ReviewForm' */ './form'));
+
+const useBreakpoint = createBreakpoint({ mobile: 0, laptop: 992 });
 
 const App = (options) => {
 	const {
 		headline = false,
 		container = '#reviews',
 		product: { ID: product_id, total },
-		query,
 		requestUrl,
+		actions,
 	} = options;
 
 	// State
 	const [scroll, setScroll] = useState(false);
 	const [rating, setRating] = useState(false);
 	const [userData, setUserData] = useState(false);
-	const [queryArgs, setQueryArgs] = useState({ product_id, ...query, action: 'query' });
+	const [queryArgs, setQueryArgs] = useState({ product_id, action: 'query' });
 
 	// Load requested comments by filters
 	const { loading, data: reviews, meta } = useApiFetch({ queryArgs });
@@ -62,15 +65,16 @@ const App = (options) => {
 		setScroll(true);
 	}, [rating, scroll]);
 
-	const defaultProps = { options, rating, setRating, queryArgs, setQueryArgs, userData };
-	const filtersProps = { options, loading, meta, queryArgs, setQueryArgs };
-	const listingProps = { ...filtersProps, reviews, userData };
+	const breakpoint = useBreakpoint();
+	const defaultProps = { options, rating, setRating, queryArgs, setQueryArgs, userData, breakpoint };
+	const filtersProps = { options, loading, meta, queryArgs, setQueryArgs, breakpoint };
+	const listingProps = { ...filtersProps, reviews, userData, actions };
 
 	return (
 		<>
 			{headline && <>
 				<h2 className="woocommerce-Reviews__headline">{headline}</h2>
-				<div className="border-bottom my-3" />
+				<div className="has-border my-spacer" />
 			</>}
 			{typeof rating === 'number' && <Suspense fallback={<div>Loading...</div>}>
 				<LeaveAReview {...defaultProps} />

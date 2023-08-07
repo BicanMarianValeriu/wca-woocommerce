@@ -14,22 +14,22 @@ export default ({ setRating, userData: { reviewer = false }, options = {} }) => 
 	const showMessage = reviewer === false && verify;
 
 	return (
-		<div className="woocommerce-Reviews__summary-new has-text-align-center has-text-align-sm-left">{showMessage ?
+		<div className="woocommerce-Reviews__summary-new">{showMessage ?
 			<>
-				<p className="woocommerce-Reviews__summary-message">{verify}</p>
+				<p className="woocommerce-Reviews__summary-message" dangerouslySetInnerHTML={{ __html: verify }} />
 			</> :
 			<>
-				<p className="mb-1 fw-700">{
+				<p className="has-normal-font-size" style={{ marginBottom: 10 }}><strong>{
 					reviewer ?
-						sprintf(__('Hey %s. Welcome back!', 'wca-woocommerce'), reviewer)
-						: __('Do you own or used the product?', 'wca-woocommerce')
+						sprintf(__('Hey %s. Welcome back!', 'wca-woo-reviews'), reviewer)
+						: __('Do you own or used the product?', 'wca-woo-reviews')
+				}</strong></p>
+				<p className="has-small-font-size has-cyan-bluish-gray-color" style={{ marginBottom: 10 }}>{
+					__('Tell your opinion by giving it a rating', 'wca-woo-reviews')
 				}</p>
-				<p className="mb-1 has-small-font-size has-cyan-bluish-gray-color">{
-					__('Tell your opinion by giving it a rating', 'wca-woocommerce')
-				}</p>
-				<RatingInput onClick={setRating} className="justify-content-center justify-content-sm-start mb-2" />
-				<button onClick={() => setRating(5)} className="wp-element-button has-primary-background-color has-small-font-size py-1">{
-					__('Add a review', 'wca-woocommerce')
+				<RatingInput onClick={setRating} style={{ marginBottom: 10 }} />
+				<button className="wp-element-button has-primary-background-color has-small-font-size" onClick={() => setRating(5)}>{
+					__('Add a review', 'wca-woo-reviews')
 				}</button>
 			</>
 		}</div >

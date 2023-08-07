@@ -29,30 +29,31 @@ const {
     date,
     author: {
       name: authorName,
-      avatar: authorAvatar = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89B8AAskB44g04okAAAAASUVORK5CYII='
-    }
+      avatar: authorAvatar
+    },
+    avatar
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__item woocommerce-Reviews__item--comment has-accent-background-color rounded",
+    className: "woocommerce-Reviews__item woocommerce-Reviews__item--comment has-accent-background-color",
     id: `comment-${id}`,
     key: id
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "grid p-3"
+    className: "grid",
+    style: {
+      padding: '1rem'
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "span-2 span-md-1"
+    className: "span-3 span-sm-2 span-lg-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    className: 'has-accent-border-color shadow rounded-circle my-1',
     width: 50,
-    src: authorAvatar,
-    alt: sprintf(__("%s's Avatar", 'wca-woo-reviews'), authorAvatar)
+    src: avatar === 'initials' ? (0,_functions__WEBPACK_IMPORTED_MODULE_1__.generateAvatarDataURL)((0,_functions__WEBPACK_IMPORTED_MODULE_1__.getInitials)(authorName)) : authorAvatar,
+    alt: sprintf(__("%s's Avatar", 'wca-woo-reviews'), authorName)
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "span-10 span-lg-11"
+    className: "span-9 span-sm-10 span-lg-11"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__item-meta"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, authorName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    class: "mx-1"
-  }, "-"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", {
-    class: "has-cyan-bluish-gray-color has-small-font-size"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, authorName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, " - "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", {
+    class: "has-cyan-bluish-gray-color small"
   }, (0,_functions__WEBPACK_IMPORTED_MODULE_1__.formatDate)(date))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__item-content",
     dangerouslySetInnerHTML: {
@@ -63,37 +64,42 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/comments/CommentsList.js":
-/*!******************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/comments/CommentsList.js ***!
-  \******************************************************************/
+/***/ "./src/js/frontend/reviews/listing/comments/index.js":
+/*!***********************************************************!*\
+  !*** ./src/js/frontend/reviews/listing/comments/index.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CommentItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CommentItem */ "./src/js/frontend/reviews/listing/comments/CommentItem.js");
-/* harmony import */ var _preloaders_CommentPreloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../preloaders/CommentPreloader */ "./src/js/frontend/reviews/listing/preloaders/CommentPreloader.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _CommentItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CommentItem */ "./src/js/frontend/reviews/listing/comments/CommentItem.js");
+/* harmony import */ var _preloaders_CommentPreloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../preloaders/CommentPreloader */ "./src/js/frontend/reviews/listing/preloaders/CommentPreloader.js");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
   let {
     loading,
-    comments
+    comments,
+    avatar
   } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__listing woocommerce-Reviews__listing--comments is-layout-flow"
-  }, loading && comments.map((_, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "my-3",
+  }, loading && comments.map((_, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "my-spacer",
     key: i,
     dangerouslySetInnerHTML: {
-      __html: _preloaders_CommentPreloader__WEBPACK_IMPORTED_MODULE_2__["default"]
+      __html: _preloaders_CommentPreloader__WEBPACK_IMPORTED_MODULE_3__["default"]
     }
-  })), !loading && comments.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_CommentItem__WEBPACK_IMPORTED_MODULE_1__["default"], item)));
+  })), !loading && comments.map(item => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_CommentItem__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, item, {
+    avatar
+  }))));
 });
 
 /***/ }),

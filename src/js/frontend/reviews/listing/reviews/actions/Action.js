@@ -1,10 +1,12 @@
-export default ({ icon = false, label = 'Label', children, ...rest }) => {
-	rest = { className: 'wp-element-button wp-block-button__link has-black-color has-small-font-size fw-400 me-2', ...rest };
+import Icon from './../../../shared/Icon';
+
+export default ({ icon = false, label, children, ...rest }) => {
+	rest = { className: 'wp-element-button has-background has-black-color has-small-font-size', ...rest };
 	
 	return (
 		<button {...rest}>
-			{icon && <span className={`woocommerce-Reviews__icon woocommerce-Reviews__icon--${icon} me-1`} />}
-			<span>{label}</span>
+			{icon && <Icon icon={icon} />}
+			{label && <span className="wp-element-button__label">{label}</span>}
 			{children}
 		</button>
 	);

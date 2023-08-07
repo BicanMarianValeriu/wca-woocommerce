@@ -1,5 +1,8 @@
+import { renderToString as _render } from './../functions';
+
+const { Template = { renderToString: _render } } = window.wecodeart || {};
+
 export default ({ userData = {}, note, options }) => {
-	const { Template } = wecodeart;
 	const { product: { title: productTitle } } = options;
 	const { reviewer: userName = 'visitor' } = userData;
 

@@ -16,9 +16,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./summary */ "./src/js/frontend/reviews/summary/index.js");
 /* harmony import */ var _filters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filters */ "./src/js/frontend/reviews/filters/index.js");
-/* harmony import */ var _listing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./listing */ "./src/js/frontend/reviews/listing/index.js");
+/* harmony import */ var _listing_reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./listing/reviews */ "./src/js/frontend/reviews/listing/reviews/index.js");
 /* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hooks */ "./src/js/frontend/reviews/hooks.js");
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var react_use__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-use */ "./node_modules/react-use/esm/factory/createBreakpoint.js");
+
 
 
 
@@ -35,6 +37,10 @@ const {
   }
 } = wp;
 const LeaveAReview = lazy(() => __webpack_require__.e(/*! import() | ReviewForm */ "ReviewForm").then(__webpack_require__.bind(__webpack_require__, /*! ./form */ "./src/js/frontend/reviews/form/index.js")));
+const useBreakpoint = (0,react_use__WEBPACK_IMPORTED_MODULE_7__["default"])({
+  mobile: 0,
+  laptop: 992
+});
 
 const App = options => {
   const {
@@ -44,8 +50,8 @@ const App = options => {
       ID: product_id,
       total
     },
-    query,
-    requestUrl
+    requestUrl,
+    actions
   } = options; // State
 
   const [scroll, setScroll] = useState(false);
@@ -53,7 +59,6 @@ const App = options => {
   const [userData, setUserData] = useState(false);
   const [queryArgs, setQueryArgs] = useState({
     product_id,
-    ...query,
     action: 'query'
   }); // Load requested comments by filters
 
@@ -103,34 +108,38 @@ const App = options => {
 
     setScroll(true);
   }, [rating, scroll]);
+  const breakpoint = useBreakpoint();
   const defaultProps = {
     options,
     rating,
     setRating,
     queryArgs,
     setQueryArgs,
-    userData
+    userData,
+    breakpoint
   };
   const filtersProps = {
     options,
     loading,
     meta,
     queryArgs,
-    setQueryArgs
+    setQueryArgs,
+    breakpoint
   };
   const listingProps = { ...filtersProps,
     reviews,
-    userData
+    userData,
+    actions
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, headline && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h2", {
     className: "woocommerce-Reviews__headline"
   }, headline), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "border-bottom my-3"
+    className: "has-border my-spacer"
   })), typeof rating === 'number' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Suspense, {
     fallback: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, "Loading...")
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(LeaveAReview, defaultProps)), typeof rating === 'boolean' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_summary__WEBPACK_IMPORTED_MODULE_2__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultProps, {
     meta
-  })), total > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_filters__WEBPACK_IMPORTED_MODULE_3__["default"], filtersProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_listing__WEBPACK_IMPORTED_MODULE_4__["default"], listingProps)));
+  })), total > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_filters__WEBPACK_IMPORTED_MODULE_3__["default"], filtersProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_listing_reviews__WEBPACK_IMPORTED_MODULE_4__["default"], listingProps)));
 };
 
 
@@ -163,11 +172,15 @@ const {
     onReset
   } = _ref;
   return totalResults !== false && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "has-accent-background-color rounded p-3 my-3"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, sprintf(_n('We found %s result for your filters.', 'We found %s results for your filters.', totalResults, 'wca-woocommerce'), totalResults)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "\xA0"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "has-accent-background-color",
+    style: {
+      padding: '1rem',
+      borderRadius: '.25rem'
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, sprintf(_n('We found %s result for your filters.', 'We found %s results for your filters.', totalResults, 'wca-woo-reviews'), totalResults)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, " \xA0 "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: "javascript:void(0);",
     onClick: onReset
-  }, __('Remove filters', 'wca-woocommerce'))));
+  }, __('Remove filters', 'wca-woo-reviews'))));
 });
 
 /***/ }),
@@ -186,6 +199,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.js");
 /* harmony import */ var _ResultsNote__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ResultsNote */ "./src/js/frontend/reviews/filters/ResultsNote.js");
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+
 
 
 
@@ -194,8 +209,16 @@ const {
     __,
     _n,
     sprintf
+  },
+  hooks: {
+    applyFilters
   }
 } = wp;
+const SORTING_OPTIONS = applyFilters('wecodeart.woocommerce.reviews.sorting', {
+  '': __('Recent', 'wca-woo-reviews'),
+  'rating': __('Rating', 'wca-woo-reviews'),
+  'likes': __('Popularity', 'wca-woo-reviews')
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
   let {
     queryArgs,
@@ -204,13 +227,15 @@ const {
     meta: {
       totalResults
     },
-    options
+    options,
+    breakpoint
   } = _ref;
   const {
     product: {
       ID: product_id,
       counts
     },
+    actions = [],
     verified
   } = options;
   let amount = {
@@ -224,7 +249,7 @@ const {
     ...counts
   };
 
-  const getLabel = v => sprintf(_n('%s star reviews', '%s stars reviews', v, 'wca-woocommerce'), v);
+  const getLabel = v => sprintf(_n('%s star reviews', '%s stars reviews', v, 'wca-woo-reviews'), v);
 
   const {
     handleSubmit,
@@ -263,74 +288,92 @@ const {
   const includedIn = x => ['rating', 'verified', 'search'].includes(x);
 
   const hasFilters = Object.keys(queryArgs).map(includedIn).filter(Boolean).pop();
+
+  if (actions?.like === false) {
+    delete SORTING_OPTIONS.likes;
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
     className: "woocommerce-Reviews__filters",
     onSubmit: handleSubmit(onSubmit),
     name: "wca-woo-filters",
     style: style
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "border-bottom my-3"
+    className: "has-border my-spacer"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wp-block-columns is-not-stacked-on-mobile align-items-center g-3"
+    className: "grid"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wp-block-column col-12 col-sm col-lg-3 input-group input-group-sm"
+    className: "span-12 span-sm-6 span-lg-4"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "input-group input-group-sm"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     class: "input-group-text",
-    for: "orderby"
-  }, __('Sort:', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    for: "filter-orderby"
+  }, __('Sort:', 'wca-woo-reviews')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     className: "form-select",
-    id: "orderby",
+    id: "filter-orderby",
     name: "orderby",
     onChange: onChange,
     ref: register
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: ""
-  }, __('Recent', 'woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "rating"
-  }, __('Rating', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "likes"
-  }, __('Popularity', 'wca-woocommerce')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wp-block-column col-12 col-sm col-lg-3 input-group input-group-sm"
+  }, Object.keys(SORTING_OPTIONS).map(k => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: k
+  }, SORTING_OPTIONS[k]))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "span-12 span-sm-6 span-lg-4"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "input-group input-group-sm"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     class: "input-group-text",
-    for: "stars"
-  }, __('Filter:', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    for: "filter-stars"
+  }, __('Filter:', 'wca-woo-reviews')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     className: "form-select",
-    id: "stars",
+    id: "filter-stars",
     name: "rating",
     onChange: onChange,
     ref: register
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: ""
-  }, __('All reviews', 'wca-woocommerce')), Array(5).fill().reverse().map((_, i) => {
+  }, __('All reviews', 'wca-woo-reviews')), Array(5).fill().reverse().map((_, i) => {
     const value = 5 - i;
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
       disabled: amount[value] === 0,
       value
     }, getLabel(value));
-  }))), verified && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wp-block-column col-auto input-group input-group-sm"
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "span-12 span-sm-12 span-lg-4",
+    style: {
+      display: 'flex',
+      alignItems: 'center'
+    }
+  }, verified && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "input-group input-group-sm",
+    style: {
+      width: 'auto',
+      marginRight: 15
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    className: "js-filter-purchase",
+    className: "hidden",
     type: "checkbox",
     name: "verified",
-    id: "verified",
+    id: "filter-verified",
     onChange: onChange,
     ref: register
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "wp-element-button has-accent-background-color",
-    for: "verified"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "woocommerce-Reviews__icon woocommerce-Reviews__icon--verified me-lg-3"
+    for: "filter-verified"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_Icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    icon: "verified"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "d-none d-lg-inline-block"
-  }, __('Verified owner', 'wca-woocommerce')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "wp-block-column col-auto col-sm-12 col-lg flex-grow-1 input-group input-group-sm"
+    style: {
+      marginLeft: 10,
+      display: breakpoint === 'mobile' ? 'none' : 'inline-block'
+    }
+  }, __('Verified owner', 'wca-woo-reviews')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "input-group input-group-sm"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: 'search',
     name: 'search',
     className: 'form-control',
-    placeholder: __('Search in reviews', 'wca-woocommerce'),
+    placeholder: __('Search in reviews', 'wca-woo-reviews'),
     ref: register,
 
     onBlur(_ref2) {
@@ -348,17 +391,17 @@ const {
     }
 
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: 'wp-element-button has-accent-background-color',
+    className: 'wp-element-button wp-block-search__button has-accent-background-color',
     style: {
       lineHeight: 1
     },
     type: 'submit'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "screen-reader-text"
-  }, __('Search', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "screen-reader-text sr-text sr-only"
+  }, __('Search in reviews', 'wca-woo-reviews')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "woocommerce-Reviews__icon woocommerce-Reviews__icon--search"
-  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "border-bottom my-3"
+  }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "has-border my-spacer"
   }), !loading && hasFilters ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ResultsNote__WEBPACK_IMPORTED_MODULE_2__["default"], {
     totalResults: totalResults,
     onReset: onReset
@@ -376,7 +419,10 @@ const {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "formatDate": () => (/* binding */ formatDate),
+/* harmony export */   "generateAvatarDataURL": () => (/* binding */ generateAvatarDataURL),
 /* harmony export */   "getCookie": () => (/* binding */ getCookie),
+/* harmony export */   "getInitials": () => (/* binding */ getInitials),
+/* harmony export */   "renderToString": () => (/* binding */ renderToString),
 /* harmony export */   "scrollToElement": () => (/* binding */ scrollToElement)
 /* harmony export */ });
 const formatDate = date => {
@@ -414,6 +460,61 @@ const scrollToElement = element => {
       behavior: 'smooth'
     });
   }
+};
+
+const getInitials = name => {
+  if (!name) {
+    return 'AN';
+  }
+
+  const names = name.trim().split(' ');
+  const initials = names.map(n => n[0].toUpperCase());
+  return initials.join('');
+};
+
+const generateAvatarDataURL = function (initials) {
+  let size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
+  let bgColor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '#007bff';
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d'); // Set background color
+
+  ctx.fillStyle = bgColor;
+  ctx.fillRect(0, 0, canvas.width, canvas.height); // Set text style
+
+  ctx.font = `${size / 2.5}px Arial`;
+  ctx.fillStyle = '#ffffff'; // White text color
+  // Calculate text metrics to center it on the canvas
+
+  const textMetrics = ctx.measureText(initials);
+  const x = (canvas.width - textMetrics.width) / 2;
+  const y = (canvas.height + size / 4) / 2.5 + size / 4 - textMetrics.actualBoundingBoxAscent / 2.5; // Draw initials on the canvas
+
+  ctx.fillText(initials, x, y); // Convert canvas to data URL
+
+  const dataURL = canvas.toDataURL();
+  return dataURL;
+};
+
+const renderToString = function () {
+  let string = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  let variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  const destruct = (obj, v) => v.split(/\.|\|/).reduce((v, k) => v?.[k], obj); // Multiple
+
+
+  const rxp = /{{([^}]+)}}/g;
+  let match;
+
+  while (match = rxp.exec(string)) {
+    const expression = match[1];
+    const value = destruct(variables, expression.trim());
+    if (value === undefined) continue;
+    string = string.replace(new RegExp(`{{${expression}}}`, 'g'), value);
+  }
+
+  return string;
 };
 
 
@@ -669,15 +770,17 @@ const {
   };
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, message ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "has-accent-background-color rounded p-3 my-3"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "mt-0"
-  }, message)) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
+    className: "has-accent-background-color my-spacer",
+    style: {
+      padding: '1rem',
+      borderRadius: '.25rem'
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, message)) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
     className: "woocommerce-Reviews__comment",
     onSubmit: handleSubmit(onSubmit),
     name: "wca-woo-comment"
   }, doAction('wecodeart.woocommerce.reviews.newComment.top', register, errors, productId), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "position-relative my-3"
+    className: "position-relative my-spacer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
     className: "form-control",
     id: "comment",
@@ -685,107 +788,20 @@ const {
     rows: "7",
     required: "",
     ref: register({
-      required: __('This cannot be empty!', 'wca-woocommerce'),
+      required: __('This cannot be empty!', 'wca-woo-reviews'),
       minLength: 20
     }),
-    placeholder: __('Your comment', 'wca-woocommerce')
+    placeholder: __('Your comment', 'wca-woo-reviews')
   }), errors.comment && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", {
-    class: "invalid-feedback d-block"
-  }, errors.comment.type === 'minLength' ? __('Comment is too short.', 'wca-woocommerce') : errors.comment.message)), doAction('wecodeart.woocommerce.reviews.newComment.bottom', register, errors, productId), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    class: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors.comment.type === 'minLength' ? __('Comment is too short.', 'wca-woo-reviews') : errors.comment.message)), doAction('wecodeart.woocommerce.reviews.newComment.bottom', register, errors, productId), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     type: 'submit',
-    className: 'wp-element-button has-primary-background-color py-1',
+    className: 'wp-element-button has-primary-background-color',
     disabled: loading === true || errors.comment === false || errors.comment
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, loading ? __('Submitting...', 'wca-woocommerce') : __('Add Comment', 'wca-woocommerce')))));
-});
-
-/***/ }),
-
-/***/ "./src/js/frontend/reviews/listing/index.js":
-/*!**************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/index.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _reviews_ReviewItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reviews/ReviewItem */ "./src/js/frontend/reviews/listing/reviews/ReviewItem.js");
-/* harmony import */ var _reviews_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reviews/Pagination */ "./src/js/frontend/reviews/listing/reviews/Pagination.js");
-/* harmony import */ var _preloaders_ReviewPreloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./preloaders/ReviewPreloader */ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloader.js");
-/* harmony import */ var _preloaders_ReviewPreloaderMobile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./preloaders/ReviewPreloaderMobile */ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloaderMobile.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../functions */ "./src/js/frontend/reviews/functions.js");
-
-
-
-
-
-
-
-const {
-  url: {
-    isValidFragment
-  },
-  element: {
-    useEffect,
-    useState
-  }
-} = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    loading,
-    reviews = [],
-    meta,
-    queryArgs,
-    setQueryArgs,
-    userData,
-    options
-  } = _ref;
-  // App Options
-  const {
-    query: {
-      number
-    }
-  } = options;
-  const {
-    hash
-  } = window.location;
-  const rId = isValidFragment(hash) && hash.split('-').pop();
-  const [addComment, setAddComment] = useState(false);
-
-  const onAddComment = id => addComment !== id ? setAddComment(id) : setAddComment(false);
-
-  useEffect(() => {
-    if (loading) return;
-    const scrollEl = document.getElementById(`review-${rId}`);
-    (0,_functions__WEBPACK_IMPORTED_MODULE_6__.scrollToElement)(scrollEl);
-  }, [loading, rId]);
-  const {
-    totalPages
-  } = meta;
-  const preloader = window.innerWidth > 767 ? _preloaders_ReviewPreloader__WEBPACK_IMPORTED_MODULE_4__["default"] : _preloaders_ReviewPreloaderMobile__WEBPACK_IMPORTED_MODULE_5__["default"];
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "woocommerce-Reviews__listing is-layout-flow"
-  }, loading && Array(number).fill().map((_, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    key: i,
-    dangerouslySetInnerHTML: {
-      __html: preloader
-    }
-  })), !loading && reviews.map(review => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_reviews_ReviewItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    review,
-    userData,
-    addComment,
-    onAddComment,
-    setAddComment,
-    options
-  }))), totalPages > 1 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_reviews_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, meta, {
-    loading,
-    queryArgs,
-    setQueryArgs
-  })));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, loading ? __('Submitting...', 'wca-woo-reviews') : __('Add Comment', 'wca-woo-reviews')))));
 });
 
 /***/ }),
@@ -820,7 +836,7 @@ __webpack_require__.r(__webpack_exports__);
 	></rect>
 	<defs>
 		<clipPath id="clip-path">
-			<circle cx="35" cy="40" r="35"></circle>
+			<circle cx="25" cy="40" r="25"></circle>
 			<rect x="0" y="100" rx="3" ry="3" width="150" height="8"></rect>
 			<rect x="0" y="115" rx="3" ry="3" width="75" height="6"></rect>
 			<rect x="265" y="15" rx="3" ry="3" width="400" height="10"></rect>
@@ -1043,9 +1059,9 @@ const {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
       className: classNames.join(' ')
     }, isDisabled ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", props, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Inner, null), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReaderText, {
-      text: __('Next page', 'wca-woocommerce')
+      text: __('Next page', 'wca-woo-reviews')
     })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", props, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Inner, null), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReaderText, {
-      text: __('Previous page', 'wca-woocommerce')
+      text: __('Previous page', 'wca-woo-reviews')
     })));
   };
 
@@ -1054,7 +1070,7 @@ const {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "woocommerce-Reviews__pagination-link"
   }, "...", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReaderText, {
-    text: __('dots', 'wca-woocommerce')
+    text: __('dots', 'wca-woo-reviews')
   })));
 
   const generateLink = p => {
@@ -1069,9 +1085,9 @@ const {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
       className: ['woocommerce-Reviews__pagination-item', ...[isCurrent ? 'woocommerce-Reviews__pagination-item--current' : '']].filter(Boolean).join(' ')
     }, isCurrent ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", props, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReaderText, {
-      text: __('Page', 'wca-woocommerce')
+      text: __('Page', 'wca-woo-reviews')
     }), " ", p) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", props, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReaderText, {
-      text: __('Page', 'wca-woocommerce')
+      text: __('Page', 'wca-woo-reviews')
     }), " ", p));
   };
 
@@ -1096,10 +1112,10 @@ const {
   }
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", {
-    className: "woocommerce-Reviews__pagination has-text-align-center has-text-align-md-right",
-    "aria-label": __('Reviews pagination', 'wca-woocommerce')
+    className: "woocommerce-Reviews__pagination",
+    "aria-label": __('Reviews pagination', 'wca-woo-reviews')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
-    className: "woocommerce-Reviews__pagination-list mt-3",
+    className: "woocommerce-Reviews__pagination-list",
     style: style
   }, renderAdjacent(true), generateLinks(), renderAdjacent()));
 });
@@ -1122,6 +1138,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./src/js/frontend/reviews/listing/reviews/actions/index.js");
 /* harmony import */ var _shared_StarRating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/StarRating */ "./src/js/frontend/reviews/shared/StarRating.js");
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+
 
 
 
@@ -1161,6 +1179,13 @@ const {
       avatar: authorAvatar = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89B8AAskB44g04okAAAAASUVORK5CYII='
     }
   } = review;
+  const {
+    actions = {
+      like: true,
+      comment: true
+    },
+    avatar
+  } = options;
   const defaultProps = {
     review,
     options,
@@ -1168,7 +1193,7 @@ const {
   };
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
-  const reviewActions = applyFilters('wecodeart.woocommerce.reviews.actions', [{
+  const defaultActions = [{
     key: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Like.key, null),
     Component: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Like.Component, defaultProps)
   }, {
@@ -1179,12 +1204,11 @@ const {
       comments,
       setComments
     })),
-    After: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Replies.After, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultProps, {
-      addComment,
-      setAddComment,
+    After: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Replies.After, {
       loading,
-      comments: loading ? Array(replies.length).fill() : comments
-    }))
+      comments: loading ? Array(replies.length).fill() : comments,
+      avatar
+    })
   }, {
     key: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Comment.key, null),
     Component: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Comment.Component, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultProps, {
@@ -1194,61 +1218,85 @@ const {
       addComment,
       setAddComment
     }))
-  }], review, options, userData);
+  }];
+  const enabledActions = Object.keys(actions).filter(k => actions[k] === true);
+  let reviewActions = applyFilters('wecodeart.woocommerce.reviews.actions', defaultActions, review, options, userData); // Filter the defaultActions array based on enabledActions
+
+  reviewActions = reviewActions.filter(_ref2 => {
+    let {
+      key: {
+        type
+      }
+    } = _ref2;
+
+    if (type === 'comments' && enabledActions.includes('comment')) {
+      return true;
+    }
+
+    return enabledActions.includes(type);
+  });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "woocommerce-Reviews__item border-bottom",
+    className: "woocommerce-Reviews__item has-border",
     id: `review-${reviewId}`,
     key: reviewId
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "grid py-3"
+    className: "grid",
+    style: {
+      paddingTop: '1rem',
+      paddingBottom: '1rem'
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "span-12 span-md-4 span-lg-3"
+    className: "span-12 span-md-2 span-lg-3"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "wp-block-columns is-not-stacked-on-mobile align-items-center g-3"
+    className: "grid",
+    style: {
+      alignItems: 'center'
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "wp-block-column col-auto col-md-12"
+    className: "span-3 span-sm-2 span-md-12"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("img", {
-    className: 'has-accent-border-color rounded-circle shadow mt-1',
-    src: authorAvatar,
     width: 65,
-    alt: sprintf(__("%s's Avatar", 'wca-woocommerce'), authorAvatar)
+    src: avatar === 'initials' ? (0,_functions__WEBPACK_IMPORTED_MODULE_4__.generateAvatarDataURL)((0,_functions__WEBPACK_IMPORTED_MODULE_4__.getInitials)(authorName), 150) : authorAvatar,
+    alt: sprintf(__("%s's Avatar", 'wca-woo-reviews'), authorName)
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "wp-block-column col-auto col-md-12"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
-    className: "my-0"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("strong", null, authorName)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
-    className: "has-small-font-size has-cyan-bluish-gray-color my-0"
+    className: "span-9 span-sm-10 span-md-12"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("strong", {
+    style: {
+      display: 'block'
+    }
+  }, authorName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("em", {
+    className: "has-small-font-size has-cyan-bluish-gray-color"
   }, (0,_functions__WEBPACK_IMPORTED_MODULE_4__.formatDate)(date))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "span-12 span-md-8 span-lg-9 is-layout-flow"
+    className: "span-12 span-md-10 span-lg-9 is-layout-flow"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__item-meta has-small-font-size"
   }, title && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h5", {
-    className: "woocommerce-Reviews__item-title fw-700 mb-1"
-  }, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shared_StarRating__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "woocommerce-Reviews__item-title"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("strong", null, title)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shared_StarRating__WEBPACK_IMPORTED_MODULE_3__["default"], {
     rating: rating,
     className: "has-small-font-size"
   }), verified && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-    className: "woocommerce-Reviews__item-verified d-inline-block align-middle ms-3"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-    className: "woocommerce-Reviews__icon woocommerce-Reviews__icon--verified me-1"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
+    className: "woocommerce-Reviews__item-verified"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shared_Icon__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    icon: "verified"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("em", {
     className: "has-cyan-bluish-gray-color"
-  }, __('Verified Purchase', 'wca-woocommerce')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }, __('Verified Purchase', 'wca-woo-reviews')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__item-content",
     dangerouslySetInnerHTML: {
       __html: content
     }
   }), reviewActions.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "woocommerce-Reviews__item-actions wp-block-button is-style-link"
-  }, reviewActions.map(_ref2 => {
+    className: "woocommerce-Reviews__item-actions"
+  }, reviewActions.map(_ref3 => {
     let {
       Component = null
-    } = _ref2;
+    } = _ref3;
     return Component;
-  })), reviewActions.reverse().map(_ref3 => {
+  })), reviewActions.reverse().map(_ref4 => {
     let {
       After = null
-    } = _ref3;
+    } = _ref4;
     return After;
   })))));
 });
@@ -1267,21 +1315,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
   let {
     icon = false,
-    label = 'Label',
+    label,
     children,
     ...rest
   } = _ref;
   rest = {
-    className: 'wp-element-button wp-block-button__link has-black-color has-small-font-size fw-400 me-2',
+    className: 'wp-element-button has-background has-black-color has-small-font-size',
     ...rest
   };
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", rest, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: `woocommerce-Reviews__icon woocommerce-Reviews__icon--${icon} me-1`
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, label), children);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", rest, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_Icon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    icon: icon
+  }), label && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "wp-element-button__label"
+  }, label), children);
 });
 
 /***/ }),
@@ -1312,24 +1364,18 @@ const {
 const Component = _ref => {
   let {
     review,
-    options,
     userData,
     onAddComment
   } = _ref;
   const {
     id: reviewId
   } = review;
-  const {
-    product: {
-      allow
-    }
-  } = options;
 
-  if (allow && userData) {
+  if (userData) {
     const onClick = () => onAddComment(reviewId);
 
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      label: __('Add Comment', 'wca-woocommerce'),
+      label: __('Add Comment', 'wca-woo-reviews'),
       icon: 'comment',
       onClick
     });
@@ -1437,11 +1483,12 @@ const Component = _ref => {
   };
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    label: `(${likes})`,
-    icon: `like${isReviewLiked ? ' active' : ''}`,
+    icon: isReviewLiked ? 'liked' : 'like',
     disabled: liking === true,
     onClick
-  });
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "count"
+  }, "(", likes, ")"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1479,7 +1526,7 @@ const {
     Suspense
   }
 } = wp;
-const CommentsList = lazy(() => __webpack_require__.e(/*! import() | CommentList */ "CommentList").then(__webpack_require__.bind(__webpack_require__, /*! ./../../comments/CommentsList */ "./src/js/frontend/reviews/listing/comments/CommentsList.js")));
+const CommentsList = lazy(() => __webpack_require__.e(/*! import() | CommentList */ "CommentList").then(__webpack_require__.bind(__webpack_require__, /*! ../../comments */ "./src/js/frontend/reviews/listing/comments/index.js")));
 
 const Component = _ref => {
   let {
@@ -1491,7 +1538,7 @@ const Component = _ref => {
     setLoading
   } = _ref;
   const {
-    replies,
+    replies = [],
     id: reviewId
   } = review;
   const {
@@ -1514,15 +1561,12 @@ const Component = _ref => {
       }
 
       if (comments.length) {
-        const container = e.currentTarget.closest('div').nextSibling;
+        const container = e.currentTarget.parentNode.parentNode.querySelector('.woocommerce-Reviews__listing--comments');
 
-        if (container && container.classList.contains('woocommerce-Reviews__listing--comments')) {
-          container.classList.toggle('d-none');
-        } else {
-          container.nextSibling.classList.toggle('d-none');
+        if (container) {
+          container.style.display = container?.style?.display === 'none' ? 'block' : 'none';
+          return;
         }
-
-        return;
       }
 
       const formData = new FormData();
@@ -1539,23 +1583,29 @@ const Component = _ref => {
           data
         } = await r.json();
         return setComments(data);
+      } catch (e) {
+        console.warn(e);
+        setComments([]);
       } finally {
         setLoading(false);
       }
     };
 
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      label: `${__('View Comments', 'wca-woocommerce')} (${replies.length})`,
+      label: __('View Comments', 'wca-woo-reviews'),
       icon: 'comments',
       onClick
-    });
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "count"
+    }, " (", replies.length, ") "));
   }
 };
 
 const After = _ref2 => {
   let {
     loading,
-    comments
+    comments,
+    avatar
   } = _ref2;
 
   if (comments.length) {
@@ -1563,7 +1613,8 @@ const After = _ref2 => {
       fallback: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Loading...")
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CommentsList, {
       comments,
-      loading
+      loading,
+      avatar
     }));
   }
 };
@@ -1597,6 +1648,122 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/frontend/reviews/listing/reviews/index.js":
+/*!**********************************************************!*\
+  !*** ./src/js/frontend/reviews/listing/reviews/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ReviewItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewItem */ "./src/js/frontend/reviews/listing/reviews/ReviewItem.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Pagination */ "./src/js/frontend/reviews/listing/reviews/Pagination.js");
+/* harmony import */ var _preloaders_ReviewPreloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloaders/ReviewPreloader */ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloader.js");
+/* harmony import */ var _preloaders_ReviewPreloaderMobile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../preloaders/ReviewPreloaderMobile */ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloaderMobile.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions */ "./src/js/frontend/reviews/functions.js");
+
+
+
+
+
+
+
+const {
+  url: {
+    isValidFragment
+  },
+  element: {
+    useEffect,
+    useState
+  }
+} = wp;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
+  let {
+    loading,
+    reviews = [],
+    meta,
+    queryArgs,
+    setQueryArgs,
+    userData,
+    options,
+    breakpoint
+  } = _ref;
+  const {
+    amount
+  } = options;
+  const {
+    hash
+  } = window.location;
+  const rId = isValidFragment(hash) && hash.split('-').pop();
+  const [addComment, setAddComment] = useState(false);
+
+  const onAddComment = id => addComment !== id ? setAddComment(id) : setAddComment(false);
+
+  useEffect(() => {
+    if (loading) return;
+    const scrollEl = document.getElementById(`review-${rId}`);
+    (0,_functions__WEBPACK_IMPORTED_MODULE_6__.scrollToElement)(scrollEl);
+  }, [loading, rId]);
+  const {
+    totalPages
+  } = meta;
+  const preloader = breakpoint === 'mobile' ? _preloaders_ReviewPreloaderMobile__WEBPACK_IMPORTED_MODULE_5__["default"] : _preloaders_ReviewPreloader__WEBPACK_IMPORTED_MODULE_4__["default"];
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "woocommerce-Reviews__listing is-layout-flow"
+  }, loading && Array(parseInt(amount)).fill().map((_, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    key: i,
+    dangerouslySetInnerHTML: {
+      __html: preloader
+    }
+  })), !loading && reviews.map(review => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_ReviewItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    review,
+    userData,
+    addComment,
+    onAddComment,
+    setAddComment,
+    options
+  }))), totalPages > 1 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, meta, {
+    loading,
+    queryArgs,
+    setQueryArgs
+  })));
+});
+
+/***/ }),
+
+/***/ "./src/js/frontend/reviews/shared/Icon.js":
+/*!************************************************!*\
+  !*** ./src/js/frontend/reviews/shared/Icon.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
+  let {
+    icon = 'default',
+    ...rest
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: `woocommerce-Reviews__icon woocommerce-Reviews__icon--${icon}`,
+    role: "img"
+  }, rest));
+});
+
+/***/ }),
+
 /***/ "./src/js/frontend/reviews/shared/RatingInput.js":
 /*!*******************************************************!*\
   !*** ./src/js/frontend/reviews/shared/RatingInput.js ***!
@@ -1610,6 +1777,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks */ "./src/js/frontend/reviews/hooks.js");
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+
 
 
 const {
@@ -1625,18 +1794,17 @@ const {
   }
 } = wp;
 const RATING_LABELS = applyFilters('wecodeart.woocommerce.reviews.rating.labels', {
-  1: __('Not recommended', 'wca-woocommerce'),
-  2: __('Weak', 'wca-woocommerce'),
-  3: __('Acceptable', 'wca-woocommerce'),
-  4: __('Good', 'wca-woocommerce'),
-  5: __('Excelent', 'wca-woocommerce')
+  1: __('Not recommended', 'wca-woo-reviews'),
+  2: __('Weak', 'wca-woo-reviews'),
+  3: __('Acceptable', 'wca-woo-reviews'),
+  4: __('Good', 'wca-woo-reviews'),
+  5: __('Excelent', 'wca-woo-reviews')
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
   let {
     rating = 0,
     onClick,
-    children,
-    className = 'justify-content-start'
+    children
   } = _ref;
   const [refHover, isHovered] = (0,_hooks__WEBPACK_IMPORTED_MODULE_1__.useHover)();
   const [ratingLabel, setRatingLabel] = useState('');
@@ -1647,26 +1815,25 @@ const RATING_LABELS = applyFilters('wecodeart.woocommerce.reviews.rating.labels'
     }
   }, [rating]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `woocommerce-Reviews__rating-input d-flex align-items-center ${className}`
+    className: "woocommerce-Reviews__rating woocommerce-Reviews__rating--input"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__rating-input__stars me-2"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "d-flex flex-row-reverse",
+    className: "woocommerce-Reviews__rating-range",
     ref: refHover
   }, Object.entries(RATING_LABELS).reverse().map(item => {
     const [star, label] = item;
-    const classNames = ['woocommerce-Reviews__icon', 'woocommerce-Reviews__icon--rating', parseInt(star) === parseInt(rating) ? 'active' : ''];
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-      className: classNames.filter(Boolean).join(' '),
+      className: ['has-background', parseInt(star) === parseInt(rating) ? 'active' : ''].filter(Boolean).join(' '),
       type: 'button',
       onClick: e => onClick(parseFloat(star), e),
       'aria-label': label
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      icon: "rating"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       className: "screen-reader-text"
     }, label));
-  })), children), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__rating-input__hover fw-700"
-  }, hoverLabel || ratingLabel || __('Your rating', 'wca-woocommerce'))));
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", {
+    className: "woocommerce-Reviews__rating-hover"
+  }, hoverLabel || ratingLabel || __('Your rating', 'wca-woo-reviews')), children));
 });
 
 /***/ }),
@@ -1683,6 +1850,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
   let {
@@ -1692,20 +1861,21 @@ __webpack_require__.r(__webpack_exports__);
   } = _ref;
 
   const generateStars = a => [5, 4, 3, 2, 1].map(i => {
-    const className = ['woocommerce-Reviews__icon', 'woocommerce-Reviews__icon--rating', parseInt(a) === i ? 'active' : ''].filter(Boolean).join(' ');
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: i,
+    const className = ['has-background', parseInt(a) === i ? 'active' : ''].filter(Boolean).join(' ');
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       className: className,
-      role: "icon"
-    });
+      key: i
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Icon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      icon: "rating"
+    }));
   });
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: ['woocommerce-Reviews__rating', 'd-inline-block', 'align-middle', className].join(' ')
+    className: `woocommerce-Reviews__rating ${className}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__rating-range"
   }, generateStars(!percent && rating)), percent && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: 'woocommerce-Reviews__rating-overlay has-warning-color',
+    className: 'woocommerce-Reviews__rating-overlay',
     style: {
       width: (rating / 5 * 100).toString() + '%',
       overflow: 'hidden'
@@ -1753,20 +1923,31 @@ const {
   } = options;
   const showMessage = reviewer === false && verify;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__summary-new has-text-align-center has-text-align-sm-left"
+    className: "woocommerce-Reviews__summary-new"
   }, showMessage ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "woocommerce-Reviews__summary-message"
-  }, verify)) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "mb-1 fw-700"
-  }, reviewer ? sprintf(__('Hey %s. Welcome back!', 'wca-woocommerce'), reviewer) : __('Do you own or used the product?', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    className: "mb-1 has-small-font-size has-cyan-bluish-gray-color"
-  }, __('Tell your opinion by giving it a rating', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_RatingInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "woocommerce-Reviews__summary-message",
+    dangerouslySetInnerHTML: {
+      __html: verify
+    }
+  })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "has-normal-font-size",
+    style: {
+      marginBottom: 10
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, reviewer ? sprintf(__('Hey %s. Welcome back!', 'wca-woo-reviews'), reviewer) : __('Do you own or used the product?', 'wca-woo-reviews'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "has-small-font-size has-cyan-bluish-gray-color",
+    style: {
+      marginBottom: 10
+    }
+  }, __('Tell your opinion by giving it a rating', 'wca-woo-reviews')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_RatingInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onClick: setRating,
-    className: "justify-content-center justify-content-sm-start mb-2"
+    style: {
+      marginBottom: 10
+    }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: () => setRating(5),
-    className: "wp-element-button has-primary-background-color has-small-font-size py-1"
-  }, __('Add a review', 'wca-woocommerce'))));
+    className: "wp-element-button has-primary-background-color has-small-font-size",
+    onClick: () => setRating(5)
+  }, __('Add a review', 'wca-woo-reviews'))));
 });
 
 /***/ }),
@@ -1781,10 +1962,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
 const {
   i18n: {
@@ -1820,46 +1999,57 @@ const {
     }
   };
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "woocommerce-Reviews__summary-bars d-table",
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woocommerce-Reviews__summary-bars",
     style: {
+      display: 'table',
       width: '100%'
     }
   }, Array(5).fill().reverse().map((_, i) => {
     const value = 5 - i;
     const count = amount[value];
-    const width = (count / total * 100).toString() + '%';
-    const label = sprintf(_n('%s star', '%s stars', value, 'wca-woocommerce'), value);
-    let props = {
+    const calc = count ? count / total * 100 : 0;
+    const width = calc.toString() + '%';
+    const label = sprintf(_n('%s star', '%s stars', value, 'wca-woo-reviews'), value);
+    const cellStyle = {
+      display: 'table-cell',
+      paddingTop: 8,
+      paddingBottom: 8,
+      whiteSpace: 'nowrap',
+      lineHeight: 1
+    };
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
       key: i,
       href: parseInt(count) ? 'javascript:void(0);' : null,
       onClick: parseInt(count) !== 0 ? onClick : null,
-      'data-value': value
-    };
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-      className: "d-table-row"
-    }, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-      className: "d-table-cell align-middle py-1"
-    }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-      className: "d-table-cell align-middle py-1 px-1",
       style: {
+        display: 'table-row',
+        backgroundColor: 'transparent'
+      },
+      'data-value': value
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      style: cellStyle
+    }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      style: { ...cellStyle,
+        padding: 8,
         width: '100%'
       }
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      className: "rounded-pill has-accent-background-color",
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "has-accent-background-color",
       style: {
         width: '100%',
+        borderRadius: 50,
         overflow: 'hidden'
       }
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "has-primary-background-color",
       role: "progressbar",
       style: {
         width,
         minHeight: 12
       }
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-      className: "d-table-cell align-middle py-1"
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      style: cellStyle
     }, "(", count, ")"));
   }));
 });
@@ -1893,14 +2083,17 @@ const {
     total = 0
   } = _ref;
 
-  const labelElement = _n('%s review', '%s reviews', total, 'wca-woocommerce');
+  const labelElement = _n('%s review', '%s reviews', total, 'wca-woo-reviews');
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__summary-info is-layout-flow has-text-align-center"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "display-4 fw-700",
+    className: "woocommerce-Reviews__summary-info is-layout-flow",
     style: {
-      lineHeight: 1
+      textAlign: 'center'
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    style: {
+      lineHeight: 1,
+      fontWeight: 700
     }
   }, parseFloat(average).toFixed(2)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_StarRating__WEBPACK_IMPORTED_MODULE_1__["default"], {
     rating: average,
@@ -1924,6 +2117,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+
 
 const {
   i18n: {
@@ -1948,28 +2143,35 @@ const {
     verifiedRef.current = verified;
   }, [verified]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__summary-stats has-text-align-center"
+    className: "woocommerce-Reviews__summary-stats",
+    style: {
+      textAlign: 'center'
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__summary-stats__1"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "woocommerce-Reviews__icon woocommerce-Reviews__icon--recommend me-2",
-    role: "icon"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_Icon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    icon: "recommend",
+    style: {
+      marginRight: 15
+    }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "has-black-color"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, parseInt(average / 5 * 100) + '%')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "has-small-font-size has-cyan-bluish-gray-color"
-  }, __('of the clients recommend the product', 'wca-woocommerce'))), verifiedBadge && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "my-3 border-bottom"
+  }, __('of the clients recommend the product', 'wca-woo-reviews'))), verifiedBadge && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "my-spacer has-border"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__summary-stats__2"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "woocommerce-Reviews__icon woocommerce-Reviews__icon--verified me-2",
-    role: "icon"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_Icon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    icon: "verified",
+    style: {
+      marginRight: 15
+    }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "has-black-color"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, (_verifiedRef$current = verifiedRef.current) !== null && _verifiedRef$current !== void 0 ? _verifiedRef$current : verified), "\xA0\xA0"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "has-small-font-size has-cyan-bluish-gray-color"
-  }, __('of the reviews are verified purchase', 'wca-woocommerce')))));
+  }, __('of the reviews are verified purchases', 'wca-woo-reviews')))));
 });
 
 /***/ }),
@@ -2005,7 +2207,8 @@ __webpack_require__.r(__webpack_exports__);
     queryArgs,
     setQueryArgs,
     userData,
-    meta
+    meta,
+    breakpoint
   } = _ref;
   let amount = {
     1: 0,
@@ -2018,8 +2221,7 @@ __webpack_require__.r(__webpack_exports__);
     product: {
       average,
       total,
-      counts,
-      allow
+      counts
     },
     verified: verifiedBadge
   } = options;
@@ -2037,28 +2239,37 @@ __webpack_require__.r(__webpack_exports__);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__summary"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "wp-block-columns grid"
+    className: "grid",
+    style: {
+      alignItems: 'center'
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `span-12 span-sm-6 span-lg-${allow ? 2 : 4}`
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_RatingData__WEBPACK_IMPORTED_MODULE_3__["default"], dataProps)), allow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "span-12 span-sm-6 span-lg-3 order-lg-last"
+    className: "span-12 span-sm-6 span-lg-2"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_RatingData__WEBPACK_IMPORTED_MODULE_3__["default"], dataProps)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "span-12 span-sm-6 span-lg-3 start-lg-7"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_RatingStats__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    average,
+    verified,
+    verifiedBadge
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "span-12 span-lg-3 start-lg-10",
+    style: {
+      textAlign: breakpoint === 'mobile' ? 'center' : 'left'
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_AddReview__WEBPACK_IMPORTED_MODULE_2__["default"], {
     rating,
     setRating,
     userData,
     options
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: `span-12 span-lg-${allow ? 4 : 6}`
+    className: "span-12 span-lg-4 start-lg-3",
+    style: {
+      gridRowStart: breakpoint === 'mobile' ? 'initial' : 1
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_RatingBars__WEBPACK_IMPORTED_MODULE_4__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, dataProps, {
     queryArgs,
     setQueryArgs
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "span-12 span-lg-3 align-self-center"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_RatingStats__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    average,
-    verified,
-    verifiedBadge
-  }))));
+  })))));
 });
 
 /***/ })

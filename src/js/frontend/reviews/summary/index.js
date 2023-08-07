@@ -3,7 +3,7 @@ import RatingData from './RatingData';
 import RatingBars from './RatingBars';
 import RatingStats from './RatingStats';
 
-export default ({ options, rating, setRating, queryArgs, setQueryArgs, userData, meta }) => {
+export default ({ options, rating, setRating, queryArgs, setQueryArgs, userData, meta, breakpoint }) => {
 	let amount = {
 		1: 0,
 		2: 0,
@@ -12,7 +12,7 @@ export default ({ options, rating, setRating, queryArgs, setQueryArgs, userData,
 		5: 0,
 	};
 
-	const { product: { average, total, counts, allow }, verified: verifiedBadge } = options;
+	const { product: { average, total, counts }, verified: verifiedBadge } = options;
 	const { verified } = meta;
 
 	amount = { ...amount, ...counts };
@@ -21,18 +21,18 @@ export default ({ options, rating, setRating, queryArgs, setQueryArgs, userData,
 
 	return (
 		<div className="woocommerce-Reviews__summary">
-			<div className="wp-block-columns grid">
-				<div {...{ className: `span-12 span-sm-6 span-lg-${allow ? 2 : 4}` }}>
+			<div className="grid" style={{ alignItems: 'center' }}>
+				<div className="span-12 span-sm-6 span-lg-2">
 					<RatingData {...dataProps} />
 				</div>
-				{allow && <div className="span-12 span-sm-6 span-lg-3 order-lg-last">
-					<AddReview {...{ rating, setRating, userData, options }} />
-				</div>}
-				<div {...{ className: `span-12 span-lg-${allow ? 4 : 6}` }}>
-					<RatingBars {...{ ...dataProps, queryArgs, setQueryArgs }} />
-				</div>
-				<div className="span-12 span-lg-3 align-self-center">
+				<div className="span-12 span-sm-6 span-lg-3 start-lg-7">
 					<RatingStats {...{ average, verified, verifiedBadge }} />
+				</div>
+				<div className="span-12 span-lg-3 start-lg-10" style={{ textAlign: breakpoint === 'mobile' ? 'center' : 'left' }}>
+					<AddReview {...{ rating, setRating, userData, options }} />
+				</div>
+				<div className="span-12 span-lg-4 start-lg-3" style={{ gridRowStart: breakpoint === 'mobile' ? 'initial' : 1 }}>
+					<RatingBars {...{ ...dataProps, queryArgs, setQueryArgs }} />
 				</div>
 			</div>
 		</div>

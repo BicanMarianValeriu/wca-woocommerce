@@ -4,12 +4,12 @@ const {
 	element: { useEffect, useState },
 } = wp;
 
-const RATING_SUGGESTIONS = applyFilters('wecodeart.wecodeart.woocommerce.reviews.rating.suggestions', {
-	1: [__('Not recommended', 'wca-woocommerce'), __('Very weak', 'wca-woocommerce'), __('Not happy', 'wca-woocommerce')],
-	2: [__('Weak', 'wca-woocommerce'), __('I don\'t like it', 'wca-woocommerce'), __('Disappointing', 'wca-woocommerce')],
-	3: [__('Decent', 'wca-woocommerce'), __('Acceptable', 'wca-woocommerce'), __('Ok', 'wca-woocommerce')],
-	4: [__('Happy', 'wca-woocommerce'), __('I like it', 'wca-woocommerce'), __('Is worth it', 'wca-woocommerce'), __('Good', 'wca-woocommerce')],
-	5: [__('Excelent', 'wca-woocommerce'), __('Very satisfied', 'wca-woocommerce'), __('Recommended', 'wca-woocommerce'), __('Cool', 'wca-woocommerce')],
+const RATING_SUGGESTIONS = applyFilters('wecodeart.woocommerce.reviews.rating.suggestions', {
+	1: [__('Not recommended', 'wca-woo-reviews'), __('Very weak', 'wca-woo-reviews'), __('Not happy', 'wca-woo-reviews')],
+	2: [__('Weak', 'wca-woo-reviews'), __('I don\'t like it', 'wca-woo-reviews'), __('Disappointing', 'wca-woo-reviews')],
+	3: [__('Decent', 'wca-woo-reviews'), __('Acceptable', 'wca-woo-reviews'), __('Ok', 'wca-woo-reviews')],
+	4: [__('Happy', 'wca-woo-reviews'), __('I like it', 'wca-woo-reviews'), __('Is worth it', 'wca-woo-reviews'), __('Good', 'wca-woo-reviews')],
+	5: [__('Excelent', 'wca-woo-reviews'), __('Very satisfied', 'wca-woo-reviews'), __('Recommended', 'wca-woo-reviews'), __('Cool', 'wca-woo-reviews')],
 });
 
 export default ({ rating: star = 5 }) => {
@@ -21,13 +21,13 @@ export default ({ rating: star = 5 }) => {
 	const onClick = (e) => document.forms['wca-woo-addreview'].elements['title'].value = e.currentTarget.textContent;
 
 	const Button = ({ key, label }) => {
-		const props = { type: 'button', className: 'wp-element-button has-accent-background-color has-black-color rounded-pill me-2', key, onClick };
+		const props = { type: 'button', className: 'wp-element-button has-accent-background-color has-black-color', key, onClick };
 		return (<button {...props}>{label}</button>);
 	};
 
-	return ( 
-		<div className="woocommerce-Reviews__suggestions d-flex flex-wrap align-items-center">
+	return (
+		<div className="woocommerce-Reviews__suggestions" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '.5rem' }}>
 			{current.map((x, y) => <Button key={y} label={x} />)}
-		</div> 
+		</div>
 	);
 };

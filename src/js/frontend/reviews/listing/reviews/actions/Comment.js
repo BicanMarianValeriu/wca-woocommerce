@@ -5,14 +5,13 @@ const {
     i18n: { __ },
 } = wp;
 
-const Component = ({ review, options, userData, onAddComment }) => {
+const Component = ({ review, userData, onAddComment }) => {
     const { id: reviewId } = review;
-    const { product: { allow } } = options;
 
-    if (allow && userData) {
+    if (userData) {
         const onClick = () => onAddComment(reviewId);
 
-        return (<Action {...{ label: __('Add Comment', 'wca-woocommerce'), icon: 'comment', onClick }} />);
+        return (<Action {...{ label: __('Add Comment', 'wca-woo-reviews'), icon: 'comment', onClick }} />);
     }
 
     return null;

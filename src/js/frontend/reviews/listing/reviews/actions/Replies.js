@@ -6,10 +6,10 @@ const {
     element: { useState, useEffect, lazy, Suspense },
 } = wp;
 
-const CommentsList = lazy(() => import(/* webpackChunkName: 'CommentList' */ './../../comments/CommentsList'));
+const CommentsList = lazy(() => import(/* webpackChunkName: 'CommentList' */ '../../comments'));
 
 const Component = ({ review, options, comments, setComments, loading, setLoading }) => {
-    const { replies, id: reviewId } = review;
+    const { replies = [], id: reviewId } = review;
     const { requestUrl } = options;
 
     const [scroll, setScroll] = useState(false);
@@ -29,13 +29,11 @@ const Component = ({ review, options, comments, setComments, loading, setLoading
             }
 
             if (comments.length) {
-                const container = e.currentTarget.closest('div').nextSibling;
-                if (container && container.classList.contains('woocommerce-Reviews__listing--comments')) {
-                    container.classList.toggle('d-none');
-                } else {
-                    container.nextSibling.classList.toggle('d-none');
+                const container = e.currentTarget.parentNode.parentNode.querySelector('.woocommerce-Reviews__listing--comments');
+                if (container) {
+                    container.style.display = container?.style?.display === 'none' ? 'block' : 'none';
+                    return;
                 }
-                return;
             }
 
             const formData = new FormData();
@@ -53,20 +51,27 @@ const Component = ({ review, options, comments, setComments, loading, setLoading
                 const { data } = await r.json();
 
                 return setComments(data);
+            } catch(e) {
+                console.warn(e);
+                setComments([]);
             } finally {
                 setLoading(false);
             }
         };
 
-        return (<Action {...{ label: `${__('View Comments', 'wca-woocommerce')} (${replies.length})`, icon: 'comments', onClick }} />);
+        return (
+            <Action {...{ label: __('View Comments', 'wca-woo-reviews'), icon: 'comments', onClick }}>
+                <span className="count"> ({replies.length}) </span>
+            </Action>
+        );
     }
 };
 
-const After = ({ loading, comments }) => {
-    if(comments.length ) {
+const After = ({ loading, comments, avatar }) => {
+    if (comments.length) {
         return (
             <Suspense fallback={<div>Loading...</div>}>
-                <CommentsList {...{ comments, loading }} />
+                <CommentsList {...{ comments, loading, avatar }} />
             </Suspense>
         );
     }
