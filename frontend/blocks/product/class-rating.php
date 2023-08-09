@@ -116,9 +116,9 @@ class Rating extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-rating', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-rating', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wp-block-rating' ) || wp_style_is( 'wp-block-product-rating' ) ) {
+				if( wp_style_is( 'wc-blocks-style-rating' ) || wp_style_is( 'wc-blocks-style-product-rating' ) ) {
 					return false;
 				}
 

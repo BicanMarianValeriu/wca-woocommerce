@@ -200,9 +200,9 @@ class Price extends Base {
 		woocommerce_wp_text_input( [
 			'data_type'		=> 'price',
 			'id' 			=> 'price_manufacturer', 
-			'label' 		=> sprintf( __( 'Recommended price (%s)', 'woocommerce' ), get_woocommerce_currency_symbol() ), 
+			'label' 		=> sprintf( __( 'Recommended price (%s)', 'wca-woocommerce' ), get_woocommerce_currency_symbol() ), 
 			'placeholder' 	=> '', 
-			'description'	=> __( 'Enter the price recommended by manufacturer.', 'woocommerce' ),
+			'description'	=> esc_html__( 'Enter the price recommended by the manufacturer.', 'wca-woocommerce' ),
 			'desc_tip' 		=> true,
 		] );
 	}
@@ -218,10 +218,10 @@ class Price extends Base {
 			'data_type'		=> 'price',
 			'wrapper_class'	=> 'form-row',
 			'id' 			=> 'price_manufacturer[' . $loop . ']', 
-			'label' 		=> sprintf( __( 'Recommended price (%s)', 'woocommerce' ), get_woocommerce_currency_symbol() ), 
+			'label' 		=> sprintf( __( 'Recommended price (%s)', 'wca-woocommerce' ), get_woocommerce_currency_symbol() ), 
 			'value' 		=> get_post_meta( $variation->ID, 'price_manufacturer', true ),
 			'placeholder' 	=> '', 
-			'description'	=> __( 'Enter the price recomended by manufacturer.', 'woocommerce' ),
+			'description'	=> esc_html__( 'Enter the price recommended by the manufacturer.', 'wca-woocommerce' ),
 			'desc_tip' 		=> true,
 		] );
 	}
@@ -234,9 +234,9 @@ class Price extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-price', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-price', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wp-block-price' ) || wp_style_is( 'wp-block-product-price' ) ) {
+				if( wp_style_is( 'wc-blocks-style-price' ) || wp_style_is( 'wp-blocks-style-product-price' ) ) {
 					return false;
 				}
 

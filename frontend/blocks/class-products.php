@@ -39,9 +39,9 @@ class Products extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-products', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-products', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wp-block-products' ) || wp_style_is( 'wp-block-all-products' ) ) {
+				if( wp_style_is( 'wc-blocks-style-products' ) || wp_style_is( 'wc-blocks-style-all-products' ) ) {
 					return false;
 				}
 

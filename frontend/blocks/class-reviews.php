@@ -39,9 +39,9 @@ class Reviews extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-reviews', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-reviews', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wp-block-reviews' ) || wp_style_is( 'wp-block-all-reviews' ) ) {
+				if( wp_style_is( 'wc-blocks-style-reviews' ) || wp_style_is( 'wc-blocks-style-all-reviews' ) ) {
 					return false;
 				}
 

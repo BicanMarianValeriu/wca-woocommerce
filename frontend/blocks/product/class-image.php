@@ -44,9 +44,9 @@ class Image extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-product-thumb', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-product-thumb', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wp-block-product-thumb' ) || wp_style_is( 'wp-block-product-image' ) ) {
+				if( wp_style_is( 'wc-blocks-style-product-thumb' ) || wp_style_is( 'wc-blocks-style-product-image' ) ) {
 					return false;
 				}
 

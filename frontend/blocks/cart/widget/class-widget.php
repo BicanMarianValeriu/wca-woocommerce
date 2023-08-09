@@ -158,9 +158,9 @@ class Widget extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-cart-dep', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-cart-dep', [
 			'load'		=> function( $blocks ) {			
-				if( wp_style_is( 'wp-block-cart' ) || wp_style_is( 'wp-block-cart-dep' ) ) {
+				if( wp_style_is( 'wc-blocks-style-cart' ) || wp_style_is( 'wc-blocks-style-cart-dep' ) ) {
 					return false;
 				}
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WCA: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-07 07:56+0000\n"
+"POT-Creation-Date: 2023-08-09 04:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Loco-Version: 2.6.4; wp-6.2.2\n"
 "X-Domain: wca-woocommerce"
 
-#: frontend/blocks/product/class-rating.php:106
+#: frontend/blocks/product/class-rating.php:99
 #, php-format
 msgid "%s of the customers recommend the product"
 msgstr ""
@@ -60,6 +60,11 @@ msgstr ""
 
 #: frontend/class-patterns.php:162 frontend/class-patterns.php:165
 msgid "Color filter"
+msgstr ""
+
+#: frontend/blocks/product/class-price.php:205
+#: frontend/blocks/product/class-price.php:224
+msgid "Enter the price recommended by the manufacturer."
 msgstr ""
 
 #: frontend/class-patterns.php:147
@@ -126,8 +131,10 @@ msgstr ""
 msgid "Rating filter"
 msgstr ""
 
-#: frontend/class-patterns.php:123 frontend/class-patterns.php:134
-msgid "Related Products"
+#: frontend/blocks/product/class-price.php:203
+#: frontend/blocks/product/class-price.php:221
+#, php-format
+msgid "Recommended price (%s)"
 msgstr ""
 
 #: admin/class-admin.php:279
@@ -142,7 +149,7 @@ msgstr ""
 msgid "Show me the options!"
 msgstr ""
 
-#: includes/ajax.php:146 includes/ajax.php:189
+#: includes/ajax.php:159 includes/ajax.php:197
 msgid "Something went wrong."
 msgstr ""
 
@@ -158,7 +165,7 @@ msgstr ""
 msgid "Templates array is empty."
 msgstr ""
 
-#: includes/ajax.php:146
+#: includes/ajax.php:159
 msgid "The comment has been sent."
 msgstr ""
 
@@ -168,7 +175,7 @@ msgid ""
 "it manually."
 msgstr ""
 
-#: includes/ajax.php:189
+#: includes/ajax.php:197
 msgid "The review has been sent."
 msgstr ""
 
@@ -181,7 +188,7 @@ msgstr ""
 msgid "This extension requires WooCommerce plugin installed and active."
 msgstr ""
 
-#: frontend/blocks/product/class-price.php:125
+#: frontend/blocks/product/class-price.php:118
 msgid ""
 "This is the manufacturer's recommended price. The selling price of the "
 "product is shown below."
@@ -202,7 +209,7 @@ msgstr ""
 msgid "WCA: WooCommerce"
 msgstr ""
 
-#: frontend/blocks/account/class-link.php:163
+#: frontend/blocks/account/class-link.php:156
 #, php-format
 msgid "Welcome %s"
 msgstr ""

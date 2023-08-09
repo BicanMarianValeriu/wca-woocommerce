@@ -120,7 +120,7 @@ class Patterns {
 		] );
 	
 		register_block_pattern( 'wecodeart/query-products-related', [
-			'title' 		=> esc_html__( 'Related Products', 'wca-woocommerce' ),
+			'title' 		=> apply_filters( 'woocommerce_product_related_products_heading', esc_html__( 'Related products', 'woocommerce' ) ),
 			'categories' 	=> [ 'wecodeart', 'wecodeart-query' ],
 			'blockTypes' 	=> [ 'core/query' ],
 			'postTypes' 	=> [ 'product' ],
@@ -131,7 +131,7 @@ class Patterns {
 					<!-- wp:query {"queryId":0,"query":{"perPage":"4","pages":0,"offset":0,"postType":"product","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false},"displayLayout":{"type":"flex","columns":4},"namespace":"woocommerce/related-products","lock":{"remove":true,"move":true},"layout":{"type":"constrained"}} -->
 					<div class="wp-block-query">
 						<!-- wp:heading {"level":3,"className":"fw-500"} -->
-						<h3 class="wp-block-heading fw-500">' . esc_html__( 'Related Products', 'wca-woocommerce' ) . '</h3>
+						<h3 class="wp-block-heading fw-500">' . apply_filters( 'woocommerce_product_related_products_heading', esc_html__( 'Related products', 'woocommerce' ) ) . '</h3>
 						<!-- /wp:heading -->
 						<!-- wp:post-template {"className":"wp-block-query__products","__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
 						<!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
