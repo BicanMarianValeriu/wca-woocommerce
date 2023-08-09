@@ -111,6 +111,8 @@ class Frontend {
 
 		// By default we have our own simplified styles
 		wp_deregister_style( 'wc-blocks-style' );
+		// wp_deregister_style( 'wc-blocks-editor-style' );
+		wp_deregister_style( 'wc-blocks-packages-style' );
 
 		// Legacy styles
 		if( get_prop( $options, 'remove_style' ) ) {

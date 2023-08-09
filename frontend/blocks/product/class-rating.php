@@ -14,8 +14,8 @@ namespace WCA\EXT\WOO\Frontend\Blocks\Product;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
 use WCA\EXT\WOO\Frontend;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 use function add_filter;
 use function preg_match;
@@ -24,16 +24,9 @@ use function WeCodeArt\Functions\get_prop;
 /**
  * Gutenberg Product Rating block.
  */
-class Rating extends Dynamic {
+class Rating extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

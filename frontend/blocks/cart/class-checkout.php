@@ -14,22 +14,15 @@ namespace WCA\EXT\WOO\Frontend\Blocks\Cart;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 use function WeCodeArt\Functions\get_prop;
 
 /**
  * Gutenberg Cart Checkout block.
  */
-class Checkout extends Dynamic {
+class Checkout extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

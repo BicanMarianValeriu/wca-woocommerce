@@ -12,13 +12,13 @@
 namespace WCA\EXT\WOO\Frontend\Blocks\Filters;
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
 use WCA\EXT\WOO\Frontend;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 /**
  * Gutenberg Attribute Filter block.
  */
-class Active extends Dynamic {
+class Active extends Base {
 
 	use Singleton;
 

@@ -26,6 +26,7 @@ class Sortable extends Base {
         return [
 			'woocommerce/reviews-by-category',
 			'woocommerce/reviews-by-product',
+            'woocommerce/all-products',
             'woocommerce/all-reviews',
         ];
 	}
