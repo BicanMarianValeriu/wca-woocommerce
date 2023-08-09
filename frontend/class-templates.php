@@ -24,6 +24,8 @@ class Templates {
 	use Singleton;
 
 	const ALL_TEMPLATES = [
+		'cart',
+		'checkout',
 		'archive-product',
 		'single-product',
 		'product-search-results',
