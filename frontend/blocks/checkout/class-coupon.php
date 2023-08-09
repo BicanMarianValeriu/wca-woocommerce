@@ -14,21 +14,14 @@ namespace WCA\EXT\WOO\Frontend\Blocks\Checkout\Summary;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 /**
  * Gutenberg Summary Coupon block.
  */
-class Coupon extends Dynamic {
+class Coupon extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

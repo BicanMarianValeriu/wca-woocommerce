@@ -14,7 +14,7 @@ namespace WCA\EXT\WOO\Frontend\Blocks;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 use function add_filter;
 use function add_action;
@@ -22,24 +22,17 @@ use function WeCodeArt\Functions\get_prop;
 
 use \LiteSpeed\Tag;
 use \LiteSpeed\Conf;
-use \LiteSpeed\Base;
+use \LiteSpeed\Base as LTBase;
 
 /**
  * Gutenberg Viewed Products block.
  */
-class Viewed extends Dynamic {
+class Viewed extends Base {
 
 	use Singleton;
 
 	const COOKIE 	= 'wca_recently_viewed';
 	const ESI_TAG	= 'wca_recently_viewed';
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.
@@ -229,7 +222,7 @@ class Viewed extends Dynamic {
 		$inline = [
 			'val'		=> $content,
 			'tag'		=> $inline_tags,
-			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( LTBase::O_CACHE_TTL_PRIV ),
 		];
 
 		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'WOO_RECENTLY_VIEWED', $params, 'private,no-vary', false, false, false, $inline );

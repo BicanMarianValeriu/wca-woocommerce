@@ -14,8 +14,8 @@ namespace WCA\EXT\WOO\Frontend\Blocks\Account;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
 use WeCodeArt\Gutenberg\Blocks\Navigation\Menu;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 use function add_filter;
 use function str_replace;
@@ -25,16 +25,9 @@ use function WeCodeArt\Functions\get_dom_element;
 /**
  * Gutenberg Account Link block.
  */
-class Link extends Dynamic {
+class Link extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

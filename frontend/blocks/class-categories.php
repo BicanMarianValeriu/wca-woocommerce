@@ -14,21 +14,14 @@ namespace WCA\EXT\WOO\Frontend\Blocks;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 /**
  * Gutenberg Product Categories block.
  */
-class Categories extends Dynamic {
+class Categories extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

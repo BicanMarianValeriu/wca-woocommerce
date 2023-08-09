@@ -14,22 +14,15 @@ namespace WCA\EXT\WOO\Frontend\Blocks\Product;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
 use WCA\EXT\WOO\Frontend;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 /**
  * Gutenberg Product Add to Cart Form block.
  */
-class Cart extends Dynamic {
+class Cart extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

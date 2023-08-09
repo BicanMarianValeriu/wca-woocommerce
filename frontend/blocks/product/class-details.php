@@ -15,7 +15,8 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Config\Traits\Asset;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
+
 use function add_filter;
 use function add_action;
 use function WeCodeArt\Functions\get_prop;
@@ -23,17 +24,10 @@ use function WeCodeArt\Functions\get_prop;
 /**
  * Gutenberg Product Details block.
  */
-class Details extends Dynamic {
+class Details extends Base {
 
 	use Singleton;
 	use Asset;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

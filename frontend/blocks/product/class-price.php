@@ -14,8 +14,8 @@ namespace WCA\EXT\WOO\Frontend\Blocks\Product;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
 use WCA\EXT\WOO\Frontend;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 use function add_action;
 use function add_filter;
@@ -25,16 +25,9 @@ use function WeCodeArt\Functions\get_prop;
 /**
  * Gutenberg Product Price block.
  */
-class Price extends Dynamic {
+class Price extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.

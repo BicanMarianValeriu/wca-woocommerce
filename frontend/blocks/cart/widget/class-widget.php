@@ -14,7 +14,7 @@ namespace WCA\EXT\WOO\Frontend\Blocks\Cart;
 defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
-use WeCodeArt\Gutenberg\Blocks\Dynamic;
+use WCA\EXT\WOO\Frontend\Blocks\Base;
 
 use function add_action;
 use function add_filter;
@@ -22,21 +22,14 @@ use function WeCodeArt\Functions\get_prop;
 
 use \LiteSpeed\Tag;
 use \LiteSpeed\Conf;
-use \LiteSpeed\Base;
+use \LiteSpeed\LTBase;
 
 /**
  * Gutenberg Mini Cart block.
  */
-class Widget extends Dynamic {
+class Widget extends Base {
 
 	use Singleton;
-
-	/**
-	 * Block namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = 'woocommerce';
 
 	/**
 	 * Block name.
@@ -112,7 +105,7 @@ class Widget extends Dynamic {
 		return wp_parse_args( [
 			'val'		=> render_block( get_prop( $params, 'block', [] ) ),
 			'tag'		=> self::esi_tags(),
-			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( LTBase::O_CACHE_TTL_PRIV ),
 		], $res );
 	}
 
