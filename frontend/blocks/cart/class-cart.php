@@ -84,7 +84,8 @@ class Cart extends Base {
 		
 		$inline .= '
 			.wc-block-cart__totals-title.wc-block-cart__totals-title {
-				margin-top: 1rem;
+				display: block;
+				padding: 1rem 0;
 				font-size: var(--wp--preset--font-size--normal);
 				font-weight: 700;
 				text-align: right;

@@ -40,9 +40,9 @@ class Button extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-add-to-cart', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-add-to-cart', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wp-block-add-to-cart' ) || wp_style_is( 'wp-block-product-button' ) ) {
+				if( wp_style_is( 'wc-blocks-style-add-to-cart' ) || wp_style_is( 'wc-blocks-style-product-button' ) ) {
 					return false;
 				}
 				

@@ -38,9 +38,9 @@ class Featured extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-featured-category', [
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-featured-category', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wp-block-featured-category' ) || wp_style_is( 'wp-block-featured-product' ) ) {
+				if( wp_style_is( 'wc-blocks-style-featured-category' ) || wp_style_is( 'wc-blocks-style-featured-product' ) ) {
 					return false;
 				}
 
