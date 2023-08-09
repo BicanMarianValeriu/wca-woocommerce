@@ -60,7 +60,8 @@ function __require_user() {
     require_once( ABSPATH . WPINC . '/class-wp-user.php' );
 }
 
-function __require_comment() {
+function __require_comment( bool $not_auth = false ) {
+    // Requirements while logged in.
     require_once( ABSPATH . WPINC . '/post.php' );
     require_once( ABSPATH . WPINC . '/comment.php' );
     require_once( ABSPATH . WPINC . '/blocks.php' );
@@ -68,6 +69,16 @@ function __require_comment() {
     require_once( ABSPATH . WPINC . '/class-wp-post.php' );
     require_once( ABSPATH . WPINC . '/class-wp-comment.php' );
     require_once( ABSPATH . WPINC . '/class-wp-block-parser.php' );
+
+    if( $not_auth ) {
+        // Requirements while logged out.
+        require_once( ABSPATH . WPINC . '/http.php' );
+        require_once( ABSPATH . WPINC . '/link-template.php' );
+        require_once( ABSPATH . WPINC . '/comment-template.php' );
+        require_once( ABSPATH . WPINC . '/class-wp-http.php' );
+        require_once( ABSPATH . WPINC . '/class-wp-date-query.php' );
+        require_once( ABSPATH . WPINC . '/class-wp-comment-query.php' );
+    }
 }
 
 switch( $action ) :
@@ -92,7 +103,7 @@ switch( $action ) :
     break;
 
     // Working while: logged in/out (everyone can like)
-    case 'like':
+    case 'like' :
         // Requirements.
         require_once( ABSPATH . WPINC . '/comment.php' );
         require_once( ABSPATH . WPINC . '/class-wp-comment.php' );
@@ -143,6 +154,8 @@ switch( $action ) :
     
         $comment = wp_new_comment( $comment );
 
+        clean_comment_cache( $comment );
+
         $message = $comment ? esc_html__( 'The comment has been sent.', 'wca-woocommerce' ) : esc_html__( 'Something went wrong.', 'wca-woocommerce' );
 
         $data = wp_parse_args( [
@@ -155,17 +168,10 @@ switch( $action ) :
     case 'review' :
         // User required
         __require_user();
-        // Requirements while logged in.
-        __require_comment();
+        // Requirements for loggedin/out.
+        __require_comment( true );
         // Extra requirements for review.
         require_once( ABSPATH . WPINC . '/shortcodes.php' );
-        // Requirements while logged out.
-        require_once( ABSPATH . WPINC . '/http.php' );
-        require_once( ABSPATH . WPINC . '/link-template.php' );
-        require_once( ABSPATH . WPINC . '/comment-template.php' );
-        require_once( ABSPATH . WPINC . '/class-wp-http.php' );
-        require_once( ABSPATH . WPINC . '/class-wp-date-query.php' );
-        require_once( ABSPATH . WPINC . '/class-wp-comment-query.php' );
         // Translations are required.
         wp_load_translations_early();
         // Disabled email notification to save some file requirements.
@@ -185,6 +191,8 @@ switch( $action ) :
         update_comment_meta( $review, 'title', filter_input( INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) );
         update_comment_meta( $review, 'likes', 0 );
         update_comment_meta( $review, 'rating', filter_input( INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT ) );
+
+        clean_comment_cache( $review );
 
         $message = $review ? esc_html__( 'The review has been sent.', 'wca-woocommerce' ) : esc_html__( 'Something went wrong.', 'wca-woocommerce' );
 
@@ -262,15 +270,15 @@ switch( $action ) :
         }
     
         if( in_array( $prepared_args['orderby'], [ 'likes', 'rating' ] ) ) {
-            $prepared_args['meta_key'] 	=  $prepared_args['orderby'];
-            $prepared_args['orderby'] 	= 'meta_value meta_value_num';
+            $prepared_args['meta_key'] 	= $prepared_args['orderby'];
+            $prepared_args['orderby'] 	= 'meta_value_num';
         }
     
         if( ! empty( $meta_query ) ) {
             $prepared_args['meta_query'] = $meta_query;
         }
     
-        $prepared_args = apply_filters( 'wecodeart/filter/woocommerce/reviews/ajax/args', $prepared_args );
+        $prepared_args = apply_filters( 'wecodeart/filter/woocommerce/reviews/ajax/query', $prepared_args );
     
         // Query reviews.
         $query        = new WP_Comment_Query();

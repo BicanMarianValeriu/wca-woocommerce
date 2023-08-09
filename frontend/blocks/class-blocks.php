@@ -72,6 +72,7 @@ class Blocks {
 		$container->register( 'woocommerce/mini-cart',							Blocks\Cart\Widget::class );
 		$container->register( 'woocommerce/mini-cart-title',					Blocks\Cart\Widget\Title::class );
 		$container->register( 'woocommerce/mini-cart-items',					Blocks\Cart\Widget\Items::class );
+		$container->register( 'woocommerce/mini-cart-contents',					Blocks\Cart\Widget\Contents::class );
 		$container->register( 'woocommerce/mini-cart-footer',					Blocks\Cart\Widget\Footer::class );
 		$container->register( 'woocommerce/mini-cart-shopping-button',			Blocks\Cart\Widget\Button::class );
 		// Checkout

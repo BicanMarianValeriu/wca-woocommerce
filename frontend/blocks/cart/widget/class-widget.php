@@ -244,21 +244,6 @@ class Widget extends Base {
 			.wc-block-mini-cart__drawer {
 				font-size: 1rem;
 			}
-			.wp-block-woocommerce-mini-cart-contents {
-				height: 100vh;
-			}
-			.wp-block-woocommerce-empty-mini-cart-contents-block,
-			.wp-block-woocommerce-filled-mini-cart-contents-block {
-				display: flex;
-				flex-direction: column;
-				height: 100%;
-			}
-			.wp-block-woocommerce-empty-mini-cart-contents-block {
-				justify-content: center;
-			}
-			.wp-block-woocommerce-filled-mini-cart-contents-block {
-				justify-content: space-between;
-			}
 	
 			@media screen and (min-width: 768px) {
 				.wc-block-mini-cart__amount {
