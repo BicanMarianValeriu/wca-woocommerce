@@ -234,6 +234,7 @@ class Widget extends Base {
 				display: block;
 				height: 1.25em;
 				width: 1.25em;
+				transform: scale(1.35);
 			}
 			html[dir=rtl] .wc-block-mini-cart__icon {
 				transform: scaleX(-1);

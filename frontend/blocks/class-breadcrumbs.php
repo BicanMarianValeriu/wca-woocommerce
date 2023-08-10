@@ -61,6 +61,10 @@ class Breadcrumbs extends Base {
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
-		return '';
+		return '
+			.woocommerce.wc-block-breadcrumbs {
+				font-size: inherit;
+			}
+		';
 	}
 }

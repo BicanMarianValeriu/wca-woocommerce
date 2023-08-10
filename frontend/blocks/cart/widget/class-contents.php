@@ -28,7 +28,7 @@ class Contents extends Base {
 	 *
 	 * @var string
 	 */
-	protected $block_name = 'mini-cart-contents-block';
+	protected $block_name = 'mini-cart-contents';
 
 	/**
 	 * Block styles
