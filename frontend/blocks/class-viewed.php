@@ -73,13 +73,7 @@ class Viewed extends Base {
 			return $content;
 		}
 
-		if ( ! is_user_logged_in() ) {
-			return '';
-		}
-
-		$viewed_ids = $this->get_viewed_products_ids();
-
-		if ( ! $this->has_viewed() ) {
+		if ( ! is_user_logged_in() || ! $this->has_viewed() ) {
 			return '';
 		}
 
