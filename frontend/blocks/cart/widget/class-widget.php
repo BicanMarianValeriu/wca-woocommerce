@@ -16,14 +16,6 @@ defined( 'ABSPATH' ) || exit();
 use WeCodeArt\Singleton;
 use WCA\EXT\WOO\Frontend\Blocks\Base;
 
-use function add_action;
-use function add_filter;
-use function WeCodeArt\Functions\get_prop;
-
-use \LiteSpeed\Tag;
-use \LiteSpeed\Conf;
-use \LiteSpeed\LTBase;
-
 /**
  * Gutenberg Mini Cart block.
  */
@@ -37,118 +29,6 @@ class Widget extends Base {
 	 * @var string
 	 */
 	protected $block_name = 'mini-cart';
-
-	const ESI_TAG = 'woo_mini_cart'; 
-
-	/**
-	 * Block args.
-	 *
-	 * @return 	array
-	 */
-	public function init() {
-		// if ( apply_filters( 'litespeed_esi_status', false ) ) {
-		// 	add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
-		// 	add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
-		// 	add_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline',	20, 2 );
-			
-		// 	add_action( 'woocommerce_ajax_added_to_cart',			__CLASS__ . '::esi_purge' );
-		// 	add_action( 'woocommerce_add_to_cart',					__CLASS__ . '::esi_purge' );
-		// 	add_action( 'woocommerce_cart_item_removed',			__CLASS__ . '::esi_purge' );
-		// 	add_action( 'woocommerce_cart_item_restored',			__CLASS__ . '::esi_purge' );
-		// }
-	}
-
-	/**
-	 * Filter Render
-	 * 
-	 * @param 	string 	$content
-	 * 
-	 * @return 	string
-	 */
-	public static function render_block( string $content = '', array $block = [] ): string {		
-		$inline = [
-			'val'		=> $content,
-			'tag'		=> self::esi_tags(),
-			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
-		];
-
-		$params = [
-			'content' 	=> $content,
-			'block'		=> $block
-		];
-
-		do_action( 'litespeed_esi_combine', self::ESI_TAG );
-
-		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'WOO_ESI_BLOCK', $params, 'private,no-vary', false, false, false, $inline );
-	}
-
-	/**
-	 * Hooked to the litespeed_is_not_esi_template action.
-	 */
-	public static function is_not_esi() {
-		add_filter( 'render_block_woocommerce/mini-cart', __CLASS__ . '::render_block', 20, 2 );
-	}
-
-	/**
-	 * Generate ESI inline value
-	 *
-	 * @return 	array
-	 */
-	public static function esi_inline( $res, $params ) {
-		if ( ! is_array( $res ) ) {
-			$res = [];
-		}
-
-		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
-
-		return wp_parse_args( [
-			'val'		=> render_block( get_prop( $params, 'block', [] ) ),
-			'tag'		=> self::esi_tags(),
-			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( LTBase::O_CACHE_TTL_PRIV ),
-		], $res );
-	}
-
-	/**
-	 * Render Block
-	 * 
-	 * @param 	string 	$content
-	 * 
-	 * @return 	string
-	 */
-	public static function esi_load( $params ) {
-		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
-
-		echo render_block( get_prop( $params, 'block', [] ) );
-	
-		do_action( 'litespeed_control_set_private', 'woo mini cart' );
-		do_action( 'litespeed_vary_no' );
-	}
-
-	/**
-	 * Inline ESI Tags
-	 * 
-	 * @return 	string
-	 */
-	public static function esi_tags(): string {
-		$inline_tags = [ '', rtrim( Tag::TYPE_ESI, '.' ), Tag::TYPE_ESI . self::ESI_TAG ];
-		$inline_tags = implode( ',', array_map( fn( $val ) => 'public:' . LSWCP_TAG_PREFIX . '_' . $val, $inline_tags ) );
-		$inline_tags .= ',' . LSWCP_TAG_PREFIX . '_tag_priv';
-
-		return $inline_tags;
-	}
-
-	/**
-	 * Purge Cache
-	 */
-	public static function esi_purge() {
-		// do_action( 'litespeed_purge_esi', self::ESI_TAG );
-		// do_action( 'litespeed_purge_widget', self::ESI_TAG );
-		// do_action( 'litespeed_purge_private', self::ESI_TAG );
-		// do_action( 'litespeed_purge_private_esi', self::ESI_TAG );
-		do_action( 'litespeed_purge_all' );
-	}
 
 	/**
 	 * Block styles.
