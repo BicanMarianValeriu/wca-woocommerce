@@ -33,8 +33,11 @@ class Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function run() {
+		if( ! function_exists( 'wecodeart' ) ) {
+			return;
+		}
+		
 		Notifications::get_instance()->remove_notification_by_id( Admin::NOTICE_ID );
-
 		delete_transient( Admin::NOTICE_ID );
 		delete_transient( Admin::UPDATE_ID );
 	}
