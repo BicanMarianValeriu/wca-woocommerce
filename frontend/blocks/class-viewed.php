@@ -113,11 +113,12 @@ class Viewed extends Base {
 			return $query;
 		}
 
-		if ( ! $this->has_viewed() ) {
+		$viewed_ids = $this->get_viewed_products_ids();
+
+		if ( ! count( $viewed_ids ) ) {
 			return [];
 		}
 
-		$viewed_ids = $this->get_viewed_products_ids();
 		$viewed_ids = array_diff( $viewed_ids, [ get_the_ID() ] ); // remove current
 		$viewed_ids = array_slice( $viewed_ids, 0, get_prop( $block, [ 'attrs', 'query', 'perPage' ], 4 ) );
 
