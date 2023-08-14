@@ -73,7 +73,7 @@ class Viewed extends Base {
 			return $content;
 		}
 
-		if ( ! is_user_logged_in() || ! $this->has_viewed() ) {
+		if ( ! is_user_logged_in() || ! count( $this->get_viewed_products_ids() ) ) {
 			return '';
 		}
 
@@ -157,15 +157,6 @@ class Viewed extends Base {
 		}
 
 		return wp_parse_id_list( (array) explode( '|', wp_unslash( $viewed_ids ) ) );
-	}
-
-	/**
-	 * Check if vary need to be on based on cart
-	 *
-	 * @return int
-	 */
-	public function has_viewed(): bool {
-		return count( $this->get_viewed_products_ids() ) >= 1;
 	}
 
 	/**
