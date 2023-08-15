@@ -30,6 +30,7 @@ class Components implements Configuration {
 	 */
     const CACHE_FILE    = 'woo-components.css';
     const CACHE_KEY     = 'wecodeart/gutenberg/woocommerce/components';
+    const CSS_HANDLE    = 'wecodeart-woocommerce-components';
 
 	/**
      * All of the configuration items.
@@ -123,9 +124,9 @@ class Components implements Configuration {
             $fake_input = wecodeart_input( 'hidden', [], false );
             $inline     = wecodeart( 'styles' )::compress( $inline );
     
-            wp_register_style( $this->make_handle(), '' );
-            wp_enqueue_style( $this->make_handle() );
-            wp_add_inline_style( $this->make_handle(), $inline );
+            wp_register_style( self::CSS_HANDLE, '' );
+            wp_enqueue_style( self::CSS_HANDLE );
+            wp_add_inline_style( self::CSS_HANDLE, $inline );
         }
 	}
 

@@ -22,7 +22,7 @@ use function WeCodeArt\Functions\get_prop;
 
 use \LiteSpeed\Tag;
 use \LiteSpeed\Conf;
-use \LiteSpeed\LTBase;
+use \LiteSpeed\Base as LSBase;
 
 /**
  * Gutenberg Mini Cart block.
@@ -46,16 +46,37 @@ class Widget extends Base {
 	 * @return 	array
 	 */
 	public function init() {
-		// if ( apply_filters( 'litespeed_esi_status', false ) ) {
-		// 	add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
-		// 	add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
-		// 	add_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline',	20, 2 );
-			
-		// 	add_action( 'woocommerce_ajax_added_to_cart',			__CLASS__ . '::esi_purge' );
-		// 	add_action( 'woocommerce_add_to_cart',					__CLASS__ . '::esi_purge' );
-		// 	add_action( 'woocommerce_cart_item_removed',			__CLASS__ . '::esi_purge' );
-		// 	add_action( 'woocommerce_cart_item_restored',			__CLASS__ . '::esi_purge' );
-		// }
+		if ( apply_filters( 'litespeed_esi_status', false ) ) {
+			// Temporary solution until we figure it out the ESI implementation
+			// The thing this WOO cart implementation is quite complex and
+			// it will require a lot of logic to be hooked under esi template
+			// like script data and so on
+			add_filter( 'litespeed_vary_curr_cookies',  			__CLASS__ . '::esi_cookie' );
+			// add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
+			// add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
+			// add_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline',	20, 2 );
+
+			// add_action( 'woocommerce_ajax_added_to_cart',			__CLASS__ . '::esi_purge' );
+			// add_action( 'woocommerce_add_to_cart',					__CLASS__ . '::esi_purge' );
+			// add_action( 'woocommerce_cart_item_removed',			__CLASS__ . '::esi_purge' );
+			// add_action( 'woocommerce_cart_item_restored',			__CLASS__ . '::esi_purge' );
+		}
+	}
+
+	/**
+	 * Vary Cookies
+	 *
+	 * @return	array
+	 */
+	public static function esi_cookie( array $cookies ): array {
+		return array_merge( $cookies, [ 'woocommerce_cart_hash', 'woocommerce_items_in_cart' ] );
+	}
+
+	/**
+	 * Hooked to the litespeed_tpl_normal action.
+	 */
+	public static function is_not_esi() {
+		add_filter( 'render_block_woocommerce/mini-cart', __CLASS__ . '::esi_render', 30, 2 );
 	}
 
 	/**
@@ -65,11 +86,11 @@ class Widget extends Base {
 	 * 
 	 * @return 	string
 	 */
-	public static function render_block( string $content = '', array $block = [] ): string {		
+	public static function esi_render( string $content = '', array $block = [] ): string {		
 		$inline = [
 			'val'		=> $content,
 			'tag'		=> self::esi_tags(),
-			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( Base::O_CACHE_TTL_PRIV ),
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( LSBase::O_CACHE_TTL_PRIV ),
 		];
 
 		$params = [
@@ -79,14 +100,7 @@ class Widget extends Base {
 
 		do_action( 'litespeed_esi_combine', self::ESI_TAG );
 
-		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'WOO_ESI_BLOCK', $params, 'private,no-vary', false, false, false, $inline );
-	}
-
-	/**
-	 * Hooked to the litespeed_is_not_esi_template action.
-	 */
-	public static function is_not_esi() {
-		add_filter( 'render_block_woocommerce/mini-cart', __CLASS__ . '::render_block', 20, 2 );
+		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'WOO MINI CART', $params, 'private,no-vary', false, true, false, $inline );
 	}
 
 	/**
@@ -99,13 +113,10 @@ class Widget extends Base {
 			$res = [];
 		}
 
-		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
-
 		return wp_parse_args( [
-			'val'		=> render_block( get_prop( $params, 'block', [] ) ),
+			'val'		=> get_prop( $params, 'content', '' ),
 			'tag'		=> self::esi_tags(),
-			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( LTBase::O_CACHE_TTL_PRIV ),
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( LSBase::O_CACHE_TTL_PRIV ),
 		], $res );
 	}
 
@@ -117,13 +128,14 @@ class Widget extends Base {
 	 * @return 	string
 	 */
 	public static function esi_load( $params ) {
-		// remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
-		// remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
+		remove_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
+		remove_action( 'litespeed_esi_load-' . self::ESI_TAG,	__CLASS__ . '::esi_load' );
+		remove_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline',	20, 2 );
+
+		do_action( 'litespeed_control_set_private' );
+		do_action( 'litespeed_vary_no' );
 
 		echo render_block( get_prop( $params, 'block', [] ) );
-	
-		do_action( 'litespeed_control_set_private', 'woo mini cart' );
-		do_action( 'litespeed_vary_no' );
 	}
 
 	/**
@@ -143,11 +155,7 @@ class Widget extends Base {
 	 * Purge Cache
 	 */
 	public static function esi_purge() {
-		// do_action( 'litespeed_purge_esi', self::ESI_TAG );
-		// do_action( 'litespeed_purge_widget', self::ESI_TAG );
-		// do_action( 'litespeed_purge_private', self::ESI_TAG );
-		// do_action( 'litespeed_purge_private_esi', self::ESI_TAG );
-		do_action( 'litespeed_purge_all' );
+		do_action( 'litespeed_purge_private_esi' );
 	}
 
 	/**

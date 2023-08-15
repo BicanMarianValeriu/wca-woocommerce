@@ -22,7 +22,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $upsells ) :
 
 	$product_ids = [];
-	foreach( $upsells as $product ) $product_ids[] = $product->get_id();
+	foreach( $upsells as $product ) {
+		if( $product->get_type() !== 'variation' ) {
+			$product_ids[] = $product->get_id();
+		}
+	}
+
+	if( count( $product_ids ) === 0 ) {
+		return;
+	}
 
 	$heading = apply_filters( 'woocommerce_product_upsells_products_heading', __( 'You may also like&hellip;', 'woocommerce' ) );
 

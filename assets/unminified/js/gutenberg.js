@@ -27,7 +27,7 @@ const viewedProductsVariation = {
     name: VARIATION_NAME,
     title: __('Recently viewed products', 'wca-woocommerce'),
     icon: 'products',
-    description: __('Displays a list of recently viewed products.', 'wca-woocommerce'),
+    description: __('Displays a list of recently viewed products for logged in users.', 'wca-woocommerce'),
     isActive: ['namespace'],
     attributes: {
       namespace: VARIATION_NAME,
@@ -42,6 +42,7 @@ const viewedProductsVariation = {
     },
     allowedControls: [],
     innerBlocks: [['core/heading', {
+      level: 2,
       className: 'fw-500',
       content: __('Recently viewed products', 'wca-woocommerce')
     }], ['core/post-template', {
