@@ -120,7 +120,7 @@ class Details extends Base {
 					],
 				] );
 			?>
-			<div id="reviews" class="woocommerce-Reviews"></div>
+			<div id="reviews" class="woocommerce-Reviews is-layout-flow"></div>
 			<?php };
 		}
 
