@@ -334,7 +334,7 @@ const {
 const {
   container = '#reviews'
 } = wpBlockWooReviews || {};
-Promise.all(/*! import() | App */[__webpack_require__.e("vendors-node_modules_react-hook-form_dist_index_esm_js-node_modules_react-use_esm_factory_cre-4f5c83"), __webpack_require__.e("App")]).then(__webpack_require__.bind(__webpack_require__, /*! ./App */ "./src/js/frontend/reviews/App.js")).then(_ref => {
+Promise.all(/*! import() | App */[__webpack_require__.e("vendors-node_modules_react-use_esm_factory_createBreakpoint_js-node_modules_babel_runtime_hel-8b788f"), __webpack_require__.e("App")]).then(__webpack_require__.bind(__webpack_require__, /*! ./App */ "./src/js/frontend/reviews/App.js")).then(_ref => {
   let {
     App
   } = _ref;
