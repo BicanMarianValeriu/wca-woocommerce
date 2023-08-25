@@ -22,7 +22,7 @@ export default ({
 					<img {...{
 						width: 50,
 						src: avatar === 'initials' ? generateAvatarDataURL(getInitials(authorName)) : authorAvatar,
-						alt: sprintf(__("%s's Avatar", 'wca-woo-reviews'), authorName)
+						alt: sprintf(__("%s's Avatar", 'wca-woocommerce'), authorName)
 					}} />
 				</div>
 				<div className="span-9 span-sm-10 span-lg-11">

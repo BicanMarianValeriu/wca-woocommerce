@@ -11,7 +11,7 @@ const Component = ({ review, userData, onAddComment }) => {
     if (userData) {
         const onClick = () => onAddComment(reviewId);
 
-        return (<Action {...{ label: __('Add Comment', 'wca-woo-reviews'), icon: 'comment', onClick }} />);
+        return (<Action {...{ label: __('Add Comment', 'wca-woocommerce'), icon: 'comment', onClick }} />);
     }
 
     return null;

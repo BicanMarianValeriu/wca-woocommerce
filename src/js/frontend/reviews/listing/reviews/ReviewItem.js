@@ -69,7 +69,7 @@ export default ({ review, options, userData = false, addComment, setAddComment, 
 							<img {...{
 								width: 65,
 								src: avatar === 'initials' ? generateAvatarDataURL(getInitials(authorName), 150) : authorAvatar,
-								alt: sprintf(__("%s's Avatar", 'wca-woo-reviews'), authorName)
+								alt: sprintf(__("%s's Avatar", 'wca-woocommerce'), authorName)
 							}} />
 						</div>
 						<div className="span-9 span-sm-10 span-md-12">
@@ -84,7 +84,7 @@ export default ({ review, options, userData = false, addComment, setAddComment, 
 						<StarRating rating={rating} className="has-small-font-size" />
 						{verified && <span className="woocommerce-Reviews__item-verified">
 							<Icon icon="verified" />
-							<em className="has-cyan-bluish-gray-color">{__('Verified Purchase', 'wca-woo-reviews')}</em>
+							<em className="has-cyan-bluish-gray-color">{__('Verified Purchase', 'wca-woocommerce')}</em>
 						</span>}
 					</div>
 					<div className="woocommerce-Reviews__item-content" dangerouslySetInnerHTML={{ __html: content }} />

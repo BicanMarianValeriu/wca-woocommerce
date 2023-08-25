@@ -15,14 +15,14 @@ export default ({ rating, setRating, queryArgs, setQueryArgs, userData = false, 
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState(false);
 
-	const { handleSubmit, register, errors } = useForm();
+	const { handleSubmit, register, reset: resetForm, formState: { errors } } = useForm({
+		mode: 'onSubmit',
+	});
 
 	const onSubmit = async (values, e) => {
 		if (loading) {
 			return;
 		}
-
-		console.log(values);
 
 		const formData = new FormData();
 		formData.append('action', 'review');
@@ -52,10 +52,8 @@ export default ({ rating, setRating, queryArgs, setQueryArgs, userData = false, 
 			setLoading(false);
 			// Reset Rating
 			setTimeout(() => setRating(false), 3000);
-			// Scroll to notification
-			e.target.querySelector('#review-success').scrollIntoView({ behavior: 'smooth', block: 'end' });
 			// Reset Reviews
-			e.target.reset();
+			resetForm();
 			setQueryArgs({ ...queryArgs });
 		}
 	};
@@ -72,41 +70,45 @@ export default ({ rating, setRating, queryArgs, setQueryArgs, userData = false, 
 						<div className="woocommerce-Reviews__respond-field">
 							<div className="mb-spacer">
 								<RatingInput {...{ rating, onClick: setRating }}>
-									<input type="hidden" name="rating" value={rating} ref={register({
-										validate: value => value !== 0,
-										required: __('This cannot be empty!', 'wca-woo-reviews'),
-										minLength: 1,
-										maxLength: 5
-									})} />
+									<input type="hidden" name="rating" value={rating}
+										{...register('rating', {
+											validate: value => value !== 0,
+											minLength: 1,
+											maxLength: 5
+										})}
+									/>
 								</RatingInput>
 							</div>
 						</div>
 						{!userData && <div className="woocommerce-Reviews__respond-field grid">
 							<div className="mb-spacer span-12 span-md-6">
-								<label for="reviewer">{__('Name', 'wca-woo-reviews')}:</label>
-								<input className="form-control" type="text" name="reviewer" id="reviewer" ref={register({
-									required: __('What is your name?', 'wca-woo-reviews'),
-									validate: value => value !== 'admin' || __('Nice Try', 'wca-woo-reviews'),
-								})} placeholder={__('Name', 'wca-woo-reviews')} />
+								<label for="reviewer">{__('Name', 'wca-woocommerce')}:</label>
+								<input className="form-control" type="text" id="reviewer" placeholder={__('Name', 'wca-woocommerce')}
+									{...register('reviewer', {
+										required: __('What is your name?', 'wca-woocommerce'),
+										validate: value => value !== 'admin' || __('Nice Try', 'wca-woocommerce'),
+									})}
+								/>
 								{errors.reviewer && <em class="invalid-feedback" style={{ display: 'block' }}>{errors.reviewer.message}</em>}
 							</div>
 							<div className="mb-spacer span-12 span-md-6">
-								<label for="reviewer_email">{__('Email', 'wca-woo-reviews')}:</label>
-								<input className="form-control" type="email" name="reviewer_email" id="reviewer_email" ref={register({
-									required: __('What is your email address?', 'wca-woo-reviews'),
-									pattern: {
-										value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-										message: __('Invalid email address.', 'wca-woo-reviews')
-									}
-								})} placeholder={__('Email', 'wca-woo-reviews')} />
+								<label for="reviewer_email">{__('Email', 'wca-woocommerce')}:</label>
+								<input className="form-control" type="email" id="reviewer_email" placeholder={__('Email', 'wca-woocommerce')}
+									{...register('reviewer_email', {
+										required: __('What is your email address?', 'wca-woocommerce'),
+										pattern: {
+											value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+											message: __('Invalid email address.', 'wca-woocommerce')
+										}
+									})}
+								/>
 								{errors.reviewer_email && <em class="invalid-feedback" style={{ display: 'block' }}>{errors.reviewer_email.message}</em>}
 							</div>
 						</div>}
 						<div className="woocommerce-Reviews__respond-field">
 							<div className="mb-spacer">
-								<label for="review_title">{__('Review title (optional)', 'wca-woo-reviews')}:</label>
-								<input className="form-control" type="text" name="title" id="review_title" ref={register}
-									placeholder={__('Use a suggestion or write your own title', 'wca-woo-reviews')} />
+								<label for="review_title">{__('Review title (optional)', 'wca-woocommerce')}:</label>
+								<input className="form-control" type="text" id="review_title" placeholder={__('Use a suggestion or write your own title', 'wca-woocommerce')} {...register('title')} />
 							</div>
 							<div className="mb-spacer">
 								<SuggestTitle rating={rating} />
@@ -114,13 +116,15 @@ export default ({ rating, setRating, queryArgs, setQueryArgs, userData = false, 
 						</div>
 						<div className="woocommerce-Reviews__respond-field">
 							<div className="mb-spacer">
-								<label for="review">{__('Review', 'wca-woo-reviews')}:</label>
-								<textarea className="form-control" id="review" name="review" rows="7" required="" ref={register({
-									required: __('This cannot be empty!', 'wca-woo-reviews'),
-									minLength: 20
-								})} placeholder={__('Describe your experience with the product', 'wca-woo-reviews')} ></textarea>
+								<label for="review">{__('Review', 'wca-woocommerce')}:</label>
+								<textarea className="form-control" id="review" rows="7" required="" placeholder={__('Describe your experience with the product', 'wca-woocommerce')}
+									{...register('review', {
+										required: __('This cannot be empty!', 'wca-woocommerce'),
+										minLength: 20
+									})}
+								/>
 								{errors.review && <em class="invalid-feedback" style={{ display: 'block' }}>{
-									errors.review.type === 'minLength' ? __('Please be more descriptive.', 'wca-woo-reviews') : errors.review.message
+									errors.review.type === 'minLength' ? __('Please be more descriptive.', 'wca-woocommerce') : errors.review.message
 								}</em>}
 							</div>
 						</div>
@@ -132,13 +136,13 @@ export default ({ rating, setRating, queryArgs, setQueryArgs, userData = false, 
 						</div>}
 						<div className="woocommerce-Reviews__respond-field">
 							<button type="submit" className="wp-element-button has-primary-background-color" {...{ disabled: loading === true }}>{
-								__('Add Review', 'wca-woo-reviews')
+								__('Add Review', 'wca-woocommerce')
 							}</button>
 							<span> &nbsp; </span>
 							<a href="javascript:void(0);" onClick={() => setRating(false)} className="wp-element-link">{
-								__('Cancel', 'wca-woo-reviews')
+								__('Cancel', 'wca-woocommerce')
 							}</a>
-							{message && <div id="review-success" className="has-accent-background-color" style={{ padding: '1rem', marginTop: '1rem', borderRadius: '.25rem' }}>{message}</div>}
+							{message && <div className="has-accent-background-color" style={{ padding: '1rem', marginTop: '1rem', borderRadius: '.25rem' }}>{message}</div>}
 						</div>
 					</form >
 				</div>

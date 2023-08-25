@@ -21,15 +21,15 @@ export default ({ setRating, userData: { reviewer = false }, options = {} }) => 
 			<>
 				<p className="has-normal-font-size" style={{ marginBottom: 10 }}><strong>{
 					reviewer ?
-						sprintf(__('Hey %s. Welcome back!', 'wca-woo-reviews'), reviewer)
-						: __('Do you own or used the product?', 'wca-woo-reviews')
+						sprintf(__('Hey %s. Welcome back!', 'wca-woocommerce'), reviewer)
+						: __('Do you own or used the product?', 'wca-woocommerce')
 				}</strong></p>
 				<p className="has-small-font-size has-cyan-bluish-gray-color" style={{ marginBottom: 10 }}>{
-					__('Tell your opinion by giving it a rating', 'wca-woo-reviews')
+					__('Tell your opinion by giving it a rating', 'wca-woocommerce')
 				}</p>
 				<RatingInput onClick={setRating} style={{ marginBottom: 10 }} />
 				<button className="wp-element-button has-primary-background-color has-small-font-size" onClick={() => setRating(5)}>{
-					__('Add a review', 'wca-woo-reviews')
+					__('Add a review', 'wca-woocommerce')
 				}</button>
 			</>
 		}</div >

@@ -60,7 +60,7 @@ const Component = ({ review, options, comments, setComments, loading, setLoading
         };
 
         return (
-            <Action {...{ label: __('View Comments', 'wca-woo-reviews'), icon: 'comments', onClick }}>
+            <Action {...{ label: __('View Comments', 'wca-woocommerce'), icon: 'comments', onClick }}>
                 <span className="count"> ({replies.length}) </span>
             </Action>
         );

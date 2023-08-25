@@ -7,11 +7,11 @@ export default ({ totalResults = false, onReset }) => {
 		<>
 			<div className="has-accent-background-color" style={{ padding: '1rem', borderRadius: '.25rem' }}>
 				<span>{sprintf(
-					_n('We found %s result for your filters.', 'We found %s results for your filters.', totalResults, 'wca-woo-reviews'),
+					_n('We found %s result for your filters.', 'We found %s results for your filters.', totalResults, 'wca-woocommerce'),
 					totalResults
 				)}</span>
 				<span> &nbsp; </span>
-				<a href="javascript:void(0);" onClick={onReset}>{__('Remove filters', 'wca-woo-reviews')}</a>
+				<a href="javascript:void(0);" onClick={onReset}>{__('Remove filters', 'wca-woocommerce')}</a>
 			</div>
 		</>
 	);

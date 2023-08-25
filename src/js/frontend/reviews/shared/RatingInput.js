@@ -8,11 +8,11 @@ const {
 } = wp;
 
 const RATING_LABELS = applyFilters('wecodeart.woocommerce.reviews.rating.labels', {
-	1: __('Not recommended', 'wca-woo-reviews'),
-	2: __('Weak', 'wca-woo-reviews'),
-	3: __('Acceptable', 'wca-woo-reviews'),
-	4: __('Good', 'wca-woo-reviews'),
-	5: __('Excelent', 'wca-woo-reviews'),
+	1: __('Not recommended', 'wca-woocommerce'),
+	2: __('Weak', 'wca-woocommerce'),
+	3: __('Acceptable', 'wca-woocommerce'),
+	4: __('Good', 'wca-woocommerce'),
+	5: __('Excelent', 'wca-woocommerce'),
 });
 
 export default ({ rating = 0, onClick, children }) => {
@@ -46,7 +46,7 @@ export default ({ rating = 0, onClick, children }) => {
 						);
 					})}
 				</div>
-				<strong className="woocommerce-Reviews__rating-hover">{hoverLabel || ratingLabel || __('Your rating', 'wca-woo-reviews')}</strong>
+				<strong className="woocommerce-Reviews__rating-hover">{hoverLabel || ratingLabel || __('Your rating', 'wca-woocommerce')}</strong>
 				{children}
 			</div>
 		</>

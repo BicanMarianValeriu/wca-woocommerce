@@ -44,15 +44,15 @@ export default ({ loading, queryArgs, setQueryArgs, totalPages: total }) => {
 		return (
 			<li className={classNames.join(' ')}>{
 				isDisabled ?
-					<span {...props}><Inner /> <ReaderText text={__('Next page', 'wca-woo-reviews')} /></span>
+					<span {...props}><Inner /> <ReaderText text={__('Next page', 'wca-woocommerce')} /></span>
 					:
-					<a {...props}><Inner /> <ReaderText text={__('Previous page', 'wca-woo-reviews')} /></a>
+					<a {...props}><Inner /> <ReaderText text={__('Previous page', 'wca-woocommerce')} /></a>
 			}</li>
 		);
 	};
 
 	const generateDots = () => <li className="woocommerce-Reviews__pagination-item woocommerce-Reviews__pagination-item--dots">
-		<span className="woocommerce-Reviews__pagination-link">...<ReaderText text={__('dots', 'wca-woo-reviews')} /></span>
+		<span className="woocommerce-Reviews__pagination-link">...<ReaderText text={__('dots', 'wca-woocommerce')} /></span>
 	</li>;
 
 	const generateLink = (p) => {
@@ -76,9 +76,9 @@ export default ({ loading, queryArgs, setQueryArgs, totalPages: total }) => {
 				...[isCurrent ? 'woocommerce-Reviews__pagination-item--current' : '']
 			].filter(Boolean).join(' ')}>{
 					isCurrent ?
-						<span {...props}><ReaderText text={__('Page', 'wca-woo-reviews')} /> {p}</span>
+						<span {...props}><ReaderText text={__('Page', 'wca-woocommerce')} /> {p}</span>
 						:
-						<a {...props}><ReaderText text={__('Page', 'wca-woo-reviews')} /> {p}</a>
+						<a {...props}><ReaderText text={__('Page', 'wca-woocommerce')} /> {p}</a>
 				}</li>
 		);
 	};
@@ -103,7 +103,7 @@ export default ({ loading, queryArgs, setQueryArgs, totalPages: total }) => {
 	}
 
 	return (
-		<nav className="woocommerce-Reviews__pagination" aria-label={__('Reviews pagination', 'wca-woo-reviews')}>
+		<nav className="woocommerce-Reviews__pagination" aria-label={__('Reviews pagination', 'wca-woocommerce')}>
 			<ul className="woocommerce-Reviews__pagination-list" style={style}>
 				{renderAdjacent(true)}
 				{generateLinks()}

@@ -6,7 +6,7 @@ const {
 
 export default ({ average = 0.0, total = 0 }) => {
 
-	const labelElement = _n('%s review', '%s reviews', total, 'wca-woo-reviews');
+	const labelElement = _n('%s review', '%s reviews', total, 'wca-woocommerce');
 
 	return (
 		<div className="woocommerce-Reviews__summary-info is-layout-flow" style={{ textAlign: 'center' }}>

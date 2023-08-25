@@ -47,7 +47,7 @@ const {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     width: 50,
     src: avatar === 'initials' ? (0,_functions__WEBPACK_IMPORTED_MODULE_1__.generateAvatarDataURL)((0,_functions__WEBPACK_IMPORTED_MODULE_1__.getInitials)(authorName)) : authorAvatar,
-    alt: sprintf(__("%s's Avatar", 'wca-woo-reviews'), authorName)
+    alt: sprintf(__("%s's Avatar", 'wca-woocommerce'), authorName)
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "span-9 span-sm-10 span-lg-11"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

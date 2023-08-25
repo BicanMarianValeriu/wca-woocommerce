@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WCA: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-24 17:44+0000\n"
-"PO-Revision-Date: 2023-08-09 04:04+0000\n"
+"PO-Revision-Date: 2023-08-25 11:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: Română\n"
 "Language: ro_RO\n"
@@ -67,7 +67,6 @@ msgstr "Filtru de culoare"
 
 #: frontend/blocks/product/class-price.php:205
 #: frontend/blocks/product/class-price.php:224
-#, fuzzy
 #| msgid "Enter the price recommended by manufacturer."
 msgid "Enter the price recommended by the manufacturer."
 msgstr "Introduceți prețul recomandat de producător."

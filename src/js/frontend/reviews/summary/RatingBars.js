@@ -29,7 +29,7 @@ export default ({ amount = {
 				const count = amount[value];
 				const calc  = count ? count / total * 100 : 0;
 				const width = calc.toString() + '%';
-				const label = sprintf(_n('%s star', '%s stars', value, 'wca-woo-reviews'), value);
+				const label = sprintf(_n('%s star', '%s stars', value, 'wca-woocommerce'), value);
 
 				const cellStyle = {
 					display: 'table-cell',

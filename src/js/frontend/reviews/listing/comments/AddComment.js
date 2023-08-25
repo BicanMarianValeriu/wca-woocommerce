@@ -7,9 +7,14 @@ const {
 } = wp;
 
 export default ({ addComment, setAddComment, productId, requestUrl }) => {
-	const { handleSubmit, register, errors = false } = useForm();
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState(false);
+	const { handleSubmit, register, formState: { errors } } = useForm({
+		mode: 'onSubmit',
+		defaultValues: {
+			comment: ''
+		}
+	});
 
 	const onSubmit = async (values) => {
 		if (loading) {
@@ -40,6 +45,8 @@ export default ({ addComment, setAddComment, productId, requestUrl }) => {
 		}
 	};
 
+	console.log(errors);
+
 	return (
 		<>
 			{message ?
@@ -50,12 +57,14 @@ export default ({ addComment, setAddComment, productId, requestUrl }) => {
 				<form className="woocommerce-Reviews__comment" onSubmit={handleSubmit(onSubmit)} name="wca-woo-comment">
 					{doAction('wecodeart.woocommerce.reviews.newComment.top', register, errors, productId)}
 					<div className="position-relative my-spacer">
-						<textarea className="form-control" id="comment" name="comment" rows="7" required="" ref={register({
-							required: __('This cannot be empty!', 'wca-woo-reviews'),
-							minLength: 20
-						})} placeholder={__('Your comment', 'wca-woo-reviews')}></textarea>
+						<textarea className="form-control" id="comment" rows="7" placeholder={__('Your comment', 'wca-woocommerce')}
+							{...register('comment', {
+								required: __('This cannot be empty!', 'wca-woocommerce'),
+								minLength: 20
+							})}
+						/>
 						{errors.comment && <em class="invalid-feedback" style={{ display: 'block' }}>{
-							errors.comment.type === 'minLength' ? __('Comment is too short.', 'wca-woo-reviews') : errors.comment.message
+							errors.comment.type === 'minLength' ? __('Comment is too short.', 'wca-woocommerce') : errors.comment.message
 						}</em>}
 					</div>
 					{doAction('wecodeart.woocommerce.reviews.newComment.bottom', register, errors, productId)}
@@ -64,7 +73,7 @@ export default ({ addComment, setAddComment, productId, requestUrl }) => {
 						className: 'wp-element-button has-primary-background-color',
 						disabled: loading === true || errors.comment === false || errors.comment
 					}}>
-						<span>{loading ? __('Submitting...', 'wca-woo-reviews') : __('Add Comment', 'wca-woo-reviews')}</span>
+						<span>{loading ? __('Submitting...', 'wca-woocommerce') : __('Add Comment', 'wca-woocommerce')}</span>
 					</button>
 				</form>
 			}

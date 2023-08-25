@@ -20,7 +20,7 @@
 		"@wordpress/scripts": "^23.3.0",
 		"animate.css": "^4.1.1",
 		"bootstrap": "^5.2.3",
-		"react-hook-form": "^6.11.2",
+		"react-hook-form": "^7.45.4",
 		"react-use": "^17.4.0"
 	}
 }
