@@ -3,11 +3,11 @@ Contributors: wecodeart
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: WooCommerce, WeCodeArt Framework
-Requires at least: 6.0
-Tested up to: 6.2
-Stable tag: 1.0.0
-Version: 1.0.0
-Requires PHP: 7.0
+Requires at least: 6.3
+Tested up to: 6.3
+Stable tag: 1.1.1
+Version: 1.1.1
+Requires PHP: 7.4
 
 A simple WordPress plugin designed to extend the functionality of your theme and provide seamless integration between the theme and the WooCommerce plugin. It enhances the capabilities of your theme by providing additional features and options for contact forms created using WooCommerce.
 

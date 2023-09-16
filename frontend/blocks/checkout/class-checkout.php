@@ -144,6 +144,10 @@ class Checkout extends Base {
 				font-weight: 500;
 				margin: 0;
 			}
+			.wc-block-components-checkout-step__title textarea {
+				overflow: hidden!important;
+				resize: none!important;
+			}
 			.wc-block-components-checkout-step__description {
 				font-size: var(--wp--preset--font-size--small);
 				opacity: .7;
@@ -159,6 +163,7 @@ class Checkout extends Base {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				width: 100%;
 			}
 			.is-mobile .wc-block-checkout__actions .wc-block-components-checkout-return-to-cart-button {
 				display: none;

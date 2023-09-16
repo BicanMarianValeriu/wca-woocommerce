@@ -67,6 +67,12 @@ class Dropdown extends Base {
 			:is(
 				.wc-blocks-components-form-token-field-wrapper,
 				.wc-block-components-combobox
+			) .components-combobox-control__suggestions-container > * {
+				width: 100%;
+			}
+			:is(
+				.wc-blocks-components-form-token-field-wrapper,
+				.wc-block-components-combobox
 			) .components-form-token-field__suggestions-list {
 				position: absolute;
 				left: 0;
