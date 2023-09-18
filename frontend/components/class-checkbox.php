@@ -55,10 +55,10 @@ class Checkbox extends Base {
             .wc-block-components-checkbox__mark {
                 position: absolute;
                 fill: white;
-                width: 1.125em;
-                height: 1.125em;
-                margin-left: 0.1875em;
-                margin-top: 0.0625em;
+                width: calc(.75 * var(--wc--checkbox--size));
+                height: calc(.75 * var(--wc--checkbox--size));
+                margin-left: calc(.15 * var(--wc--checkbox--size));
+                margin-top: calc(.05 * var(--wc--checkbox--size));
                 pointer-events: none;
             }
             .wc-block-components-checkbox label {

@@ -58,6 +58,7 @@ class Text extends Base {
             .wc-block-components-textarea,
             .wc-block-components-text-input input,
             .wc-block-components-combobox input.components-combobox-control__input {
+                box-sizing: border-box;
                 width: 100%;
                 min-height: 0;
                 padding: var(--wc--input--padding-x);
