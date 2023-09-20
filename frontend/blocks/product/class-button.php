@@ -40,8 +40,9 @@ class Button extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
+		// Styles
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-add-to-cart', [
-			'load'		=> function( $blocks ) {
+			'load'		=> static function( $blocks ) {
 				if( wp_style_is( 'wc-blocks-style-add-to-cart' ) || wp_style_is( 'wc-blocks-style-product-button' ) ) {
 					return false;
 				}
@@ -50,13 +51,41 @@ class Button extends Base {
 				if( in_array( 'woocommerce/add-to-cart-form', $blocks, true ) ) {
 					return true;
 				}
-
+	
 				// Products blocks should inherit the styles
 				if( Frontend\Blocks::has_products( $blocks ) ) {
 					return true;
 				}
 			},
 			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
+		] );
+
+		// Scripts
+		wecodeart( 'assets' )->add_script( 'wc-blocks-add-to-cart-form', [
+			'load'		=> static function( $blocks ) {
+				if( in_array( 'woocommerce/add-to-cart-form', $blocks, true ) ) {
+					return true;
+				}
+			},
+			'inline'	=> <<<JS
+				const handleButtonClick = (input, action) => {
+					const value = parseInt(input.value, 10) || 0;
+					const min = parseInt(input.getAttribute('min'), 10) || 0;
+					const max = parseInt(input.getAttribute('max'), 10) || 99999;
+			
+					input.value = (action === '-' && value > min) ? value - 1 : (action === '+' && value < max) ? value + 1 : value;
+					input.dispatchEvent(new Event('change'));
+				};
+			
+				document.querySelectorAll('.quantity.wc-block-components-quantity-selector:not([hasQtyInit])').forEach((item) => {
+					item.hasQtyInit = true;
+					const input = item.querySelector('.wc-block-components-quantity-selector__input');
+			
+					item.querySelectorAll('.wc-block-components-quantity-selector__button').forEach((el) => {
+						el.addEventListener('click', () => handleButtonClick(input, el.value));
+					});
+				});
+			JS,
 		] );
 	}
 

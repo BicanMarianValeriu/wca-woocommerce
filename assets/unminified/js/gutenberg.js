@@ -34,10 +34,6 @@ const viewedProductsVariation = {
       query: {
         postType: 'product',
         perPage: 4
-      },
-      displayLayout: {
-        type: 'flex',
-        columns: 4
       }
     },
     allowedControls: [],
@@ -48,6 +44,10 @@ const viewedProductsVariation = {
     }], ['core/post-template', {
       className: 'wp-block-query__products',
       __woocommerceNamespace: 'woocommerce/product-query/product-template',
+      layout: {
+        type: 'grid',
+        columns: 4
+      },
       lock: {
         move: true,
         remove: true

@@ -42,7 +42,11 @@ class Layout extends Base {
 				flex-wrap: wrap;
 				gap: calc(2 * var(--wp--custom--gutter));
 			}
-			.wc-block-components-sidebar-layout .block-editor-block-list__layout {
+			.wc-block-components-sidebar-layout > .block-editor-inner-blocks > .block-editor-block-list__layout {
+				position: relative;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: flex-start;
 				gap: calc(2 * var(--wp--custom--gutter));
 			}
 			.wc-block-components-main,

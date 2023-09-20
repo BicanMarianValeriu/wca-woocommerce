@@ -37,9 +37,7 @@ class Price extends Base {
 	protected $block_name = 'product-price';
 
 	/**
-	 * Block args.
-	 *
-	 * @return 	array
+	 * Init
 	 */
 	public function init() {
 		$is_enabled = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_price_extra' ] );
