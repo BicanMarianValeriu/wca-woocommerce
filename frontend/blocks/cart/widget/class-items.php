@@ -39,6 +39,8 @@ class Items extends Base {
 		return '
 			.wc-block-mini-cart__items {
 				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
 				overflow-y: auto;
 			}
 			.wc-block-mini-cart__products-table {

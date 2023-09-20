@@ -65,6 +65,7 @@ class Items extends Base {
 			.wc-block-components-order-summary-item__image {
 				position: relative;
 				flex: 0 0 50px;
+				border: 1px solid var(--wp--preset--color--accent);
 			}
 			.wc-block-components-order-summary-item__quantity {
 				position: absolute;

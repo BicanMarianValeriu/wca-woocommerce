@@ -57,6 +57,7 @@ class Badges extends Base {
 				text-transform: uppercase;
 				padding: 0.5em;
 				z-index: 9;
+				border: 1px solid transparent;
 				box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.4);
 				border-radius: 0.375rem;
 			}
