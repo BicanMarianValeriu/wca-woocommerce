@@ -25,7 +25,7 @@
  * Requires at least:       6.3
  * Requires PHP:            7.4
  * WC requires at least:    8.0
- * WC tested up to:         8.1
+ * WC tested up to:         8.2
  */
 namespace WCA\EXT\WOO;
 

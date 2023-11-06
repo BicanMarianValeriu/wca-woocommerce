@@ -106,6 +106,7 @@ class Cart extends Base {
 
 			.wc-block-cart-items {
 				width: 100%;
+				table-layout: fixed;
 			}
 			.wc-block-cart-items > :not(caption) > * > * {
 				border-bottom: 1px solid var(--wp--preset--color--accent);
@@ -161,7 +162,9 @@ class Cart extends Base {
 			.wc-block-cart-item__product .wc-block-components-product-name {
 				display: block;
 				font-weight: 700;
-				width: max-content;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 			.wc-block-cart-item__product .wc-block-components-product-badge {
 				margin-right: 0.5rem;
