@@ -98,7 +98,7 @@ class Details extends Base {
 					'deps'		=> [ 'wp-i18n', 'wp-hooks', 'wp-url', 'wp-element' ],
 					'version'	=> WCA_WOO_EXT_VER,
 					'locale'	=> [
-						'requestUrl' 	=> WCA_WOO_EXT_URL . '/includes/ajax.php',
+						'requestUrl' 	=> untrailingslashit( WCA_WOO_EXT_URL ) . '/includes/ajax.php',
 						'product'		=> [
 							'ID'		=> $product->get_id(),
 							'title' 	=> $product->get_title(),

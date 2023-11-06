@@ -50,6 +50,7 @@ function __require_user() {
     require_once( ABSPATH . WPINC . '/user.php' );
     require_once( ABSPATH . WPINC . '/l10n.php' );
     require_once( ABSPATH . WPINC . '/kses.php' );
+    require_once( ABSPATH . WPINC . '/blocks.php' );
     require_once( ABSPATH . WPINC . '/rest-api.php' );
     require_once( ABSPATH . WPINC . '/pluggable.php' );
     require_once( ABSPATH . WPINC . '/capabilities.php' );
@@ -64,7 +65,6 @@ function __require_comment( bool $not_auth = false ) {
     // Requirements while logged in.
     require_once( ABSPATH . WPINC . '/post.php' );
     require_once( ABSPATH . WPINC . '/comment.php' );
-    require_once( ABSPATH . WPINC . '/blocks.php' );
     require_once( ABSPATH . WPINC . '/taxonomy.php' );
     require_once( ABSPATH . WPINC . '/class-wp-post.php' );
     require_once( ABSPATH . WPINC . '/class-wp-comment.php' );
