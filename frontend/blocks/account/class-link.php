@@ -20,7 +20,7 @@ use WCA\EXT\WOO\Frontend\Blocks\Base;
 use function add_filter;
 use function str_replace;
 use function WeCodeArt\Functions\get_prop;
-use function WeCodeArt\Functions\get_dom_element;
+use function WeCodeArt\Functions\dom_get_element;
 
 /**
  * Gutenberg Account Link block.
@@ -92,7 +92,7 @@ class Link extends Base {
 
 		$processor->next_tag();
 
-		if( $dropdown ) {
+		if( $dropdown && is_user_logged_in() ) {
 			$processor->add_class( 'dropdown' );
 		}
 
@@ -103,7 +103,7 @@ class Link extends Base {
 		$processor->next_tag( 'a' );
 		$processor->add_class( 'wc-block-customer-account__account-link' );
 		
-		if( $dropdown && is_user_logged_in() && ! is_account_page() ) {			
+		if( $dropdown && is_user_logged_in() && ! is_account_page() ) {		
 			$processor->add_class( 'dropdown-toggle' );
 			$processor->set_attribute( 'data-bs-toggle', 'dropdown' );
 		}
@@ -119,8 +119,8 @@ class Link extends Base {
 		}
 
 		$dom	= $this->dom( $content );
-		$svg_	= get_dom_element( 'svg', $dom );
-		$link	= get_dom_element( 'a', $dom );
+		$svg_	= dom_get_element( 'svg', $dom );
+		$link	= dom_get_element( 'a', $dom );
 		
 		$svg	= $dom->importNode( $this->dom( wecodeart( 'markup' )->SVG::compile( 'account', [
 			'class' => 'wc-block-customer-account__account-icon',

@@ -225,6 +225,7 @@ class Patterns {
 		register_block_pattern( 'wecodeart/page-cart', [
 			'title' 		=> esc_html__( 'Cart', 'wca-woocommerce' ),
 			'categories' 	=> [ 'wecodeart', 'wecodeart-pages' ],
+			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/cart {"align":""} -->
 				<div class="wp-block-woocommerce-cart is-loading">
@@ -317,6 +318,7 @@ class Patterns {
 		register_block_pattern( 'wecodeart/page-checkout', [
 			'title' 		=> esc_html__( 'Checkout', 'wca-woocommerce' ),
 			'categories' 	=> [ 'wecodeart', 'wecodeart-pages' ],
+			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/checkout {"align":""} -->
 				<div class="wp-block-woocommerce-checkout wc-block-checkout is-loading">
