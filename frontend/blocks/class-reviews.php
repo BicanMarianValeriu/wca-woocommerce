@@ -44,7 +44,7 @@ class Reviews extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-reviews', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-reviews' ) || wp_style_is( 'wc-blocks-style-all-reviews' ) ) {
+				if( wp_style_is( 'wc-blocks-style-reviews' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 

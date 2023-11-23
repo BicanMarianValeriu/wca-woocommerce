@@ -41,7 +41,7 @@ class Products extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-products', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-products' ) || wp_style_is( 'wc-blocks-style-all-products' ) ) {
+				if( wp_style_is( 'wc-blocks-style-products' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 

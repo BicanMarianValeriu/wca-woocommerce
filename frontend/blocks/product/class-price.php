@@ -234,7 +234,7 @@ class Price extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-price', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-price' ) || wp_style_is( 'wp-blocks-style-product-price' ) ) {
+				if( wp_style_is( 'wc-blocks-style-price' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 

@@ -40,7 +40,7 @@ class Shipping extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-address', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-address' ) || wp_style_is( 'wc-blocks-style-shipping-address' ) ) {
+				if( wp_style_is( 'wc-blocks-style-address' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 

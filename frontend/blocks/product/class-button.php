@@ -42,8 +42,8 @@ class Button extends Base {
 
 		// Styles
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-add-to-cart', [
-			'load'		=> static function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-add-to-cart' ) || wp_style_is( 'wc-blocks-style-product-button' ) ) {
+			'load'		=> function( $blocks ) {
+				if( wp_style_is( 'wc-blocks-style-add-to-cart' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 				
@@ -62,7 +62,7 @@ class Button extends Base {
 
 		// Scripts
 		wecodeart( 'assets' )->add_script( 'wc-blocks-add-to-cart-form', [
-			'load'		=> static function( $blocks ) {
+			'load'		=> function( $blocks ) {
 				if( in_array( 'woocommerce/add-to-cart-form', $blocks, true ) ) {
 					return true;
 				}
