@@ -85,8 +85,15 @@ class Totals extends Base {
 				table-layout: fixed;
 				width: 100%;
 			}
+			.wc-block-order-confirmation-totals__product a {
+				font-weight: bold;
+			}
+			.wc-block-order-confirmation-totals__table tfoot .woocommerce-Price-amount {
+				font-weight: bold;
+			}
 			.product-purchase-note {
 				font-size: var(--wp--preset--font-size--small);
+				opacity: .75;
 			}
 		';
 	}
