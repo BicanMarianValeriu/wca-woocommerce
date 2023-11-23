@@ -57,6 +57,9 @@ class Status extends Base {
 			.wc-block-order-confirmation-status p:only-child {
 				margin: 0;
 			}
+			.wc-block-order-confirmation-status-description {
+				text-align: center;
+			}
 		';
 
 		return $inline;
