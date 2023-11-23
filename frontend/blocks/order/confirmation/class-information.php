@@ -49,15 +49,15 @@ class Information extends Base {
 					'link' 		 => true,
 					'text'       => true
 				],
-				'typography' => [
-					'fontSize' => true,
-					'lineHeight' => true,
-					'__experimentalFontFamily' => true,
-					'__experimentalFontWeight' => true,
-					'__experimentalFontStyle' => true,
-					'__experimentalTextTransform' => true,
-					'__experimentalTextDecoration' => true,
-					'__experimentalLetterSpacing' => true,
+				'typography' 	=> [
+					'fontSize' 		=> true,
+					'lineHeight' 	=> true,
+					'__experimentalFontFamily' 	=> true,
+					'__experimentalFontWeight' 	=> true,
+					'__experimentalFontStyle' 		=> true,
+					'__experimentalTextTransform' 	=> true,
+					'__experimentalTextDecoration' 	=> true,
+					'__experimentalLetterSpacing' 	=> true,
 					'__experimentalDefaultControls' => [
 						'fontSize' => true,
 					],
