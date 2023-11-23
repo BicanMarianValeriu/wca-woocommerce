@@ -81,6 +81,18 @@ class Blocks {
 		$container->register( 'woocommerce/checkout-shipping-method',			Blocks\Checkout\Shipping::class );
 		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
 		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
+		// Order
+		$container->register( 'woocommerce/order-confirmation-status',					Blocks\Order\Confirmation\Status::class );
+		$container->register( 'woocommerce/order-confirmation-totals',					Blocks\Order\Confirmation\Totals::class );
+		$container->register( 'woocommerce/order-confirmation-summary',					Blocks\Order\Confirmation\Summary::class );
+		$container->register( 'woocommerce/order-confirmation-downloads',				Blocks\Order\Confirmation\Downloads::class );
+		$container->register( 'woocommerce/order-confirmation-billing-address',			Blocks\Order\Confirmation\Address\Billing::class );
+		$container->register( 'woocommerce/order-confirmation-shipping-address',		Blocks\Order\Confirmation\Address\Shipping::class );
+		$container->register( 'woocommerce/order-confirmation-additional-information',	Blocks\Order\Confirmation\Information::class );
+		$container->register( 'woocommerce/order-confirmation-totals-wrapper',			Blocks\Order\Confirmation\Wrappers\Totals::class );
+		$container->register( 'woocommerce/order-confirmation-downloads-wrapper',		Blocks\Order\Confirmation\Wrappers\Downloads::class );
+		$container->register( 'woocommerce/order-confirmation-shipping-wrapper',		Blocks\Order\Confirmation\Wrappers\Shipping::class );
+		$container->register( 'woocommerce/order-confirmation-billing-wrapper',			Blocks\Order\Confirmation\Wrappers\Billing::class );
 		
 		// New Blocks
 		$container->register( 'woocommerce/viewed-products',	Blocks\Viewed::class );
@@ -142,6 +154,17 @@ class Blocks {
 				'woocommerce/checkout-shipping-method',
 				'woocommerce/checkout-order-summary-coupon-form',
 				'woocommerce/checkout-order-summary-cart-items',
+				// Order confirmation
+				'woocommerce/order-confirmation-status',
+				'woocommerce/order-confirmation-totals',
+				'woocommerce/order-confirmation-summary',
+				'woocommerce/order-confirmation-downloads',
+				'woocommerce/order-confirmation-shipping-address',
+				'woocommerce/order-confirmation-additional-information',
+				'woocommerce/order-confirmation-totals-wrapper',
+				'woocommerce/order-confirmation-downloads-wrapper',
+				'woocommerce/order-confirmation-shipping-wrapper',
+				'woocommerce/order-confirmation-billing-wrapper',
 			] as $block ) {
 				if( wecodeart( 'blocks' )->has( $block ) ) {
 					$inline .= wecodeart( 'blocks' )->get( $block )::get_instance()->styles();

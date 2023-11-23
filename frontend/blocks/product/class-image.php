@@ -46,7 +46,7 @@ class Image extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-product-thumb', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-product-thumb' ) || wp_style_is( 'wc-blocks-style-product-image' ) ) {
+				if( wp_style_is( 'wc-blocks-style-product-thumb' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 

@@ -392,5 +392,52 @@ class Patterns {
 				<!-- /wp:woocommerce/checkout -->
 			'
 		] );
+		
+		register_block_pattern( 'wecodeart/page-order-confirmation', [
+			'title' 		=> esc_html__( 'Order Confirmation', 'wca-woocommerce' ),
+			'categories' 	=> [ 'wecodeart', 'wecodeart-pages' ],
+			'inserter'		=> false,
+			'content'		=> '
+				<!-- wp:woocommerce/order-confirmation-status {"align":"","fontSize":"large"} /-->
+				<!-- wp:woocommerce/order-confirmation-summary {"align":""} /-->
+				<!-- wp:woocommerce/order-confirmation-totals-wrapper -->
+					<!-- wp:heading {"level":3} -->
+					<h3 class="wp-block-heading">' . esc_html__( 'Order details', 'woocommerce' ) . '</h3>
+					<!-- /wp:heading -->
+					<!-- wp:woocommerce/order-confirmation-totals {"lock":{"remove":true}} /-->
+				<!-- /wp:woocommerce/order-confirmation-totals-wrapper -->
+				<!-- wp:woocommerce/order-confirmation-downloads-wrapper -->
+					<!-- wp:heading {"level":3} -->
+					<h3 class="wp-block-heading">' . esc_html__( 'Downloads', 'woocommerce' ) . '</h3>
+					<!-- /wp:heading -->
+					<!-- wp:woocommerce/order-confirmation-downloads {"lock":{"remove":true},"backgroundColor":"accent"} /-->
+				<!-- /wp:woocommerce/order-confirmation-downloads-wrapper -->
+				<!-- wp:columns {"className":""} -->
+				<div class="wp-block-columns">
+					<!-- wp:column -->
+					<div class="wp-block-column">
+						<!-- wp:woocommerce/order-confirmation-shipping-wrapper {"align":"","backgroundColor":"accent","style":{"spacing":{"padding":{"top":"var:preset|spacing|g","bottom":"var:preset|spacing|g","left":"var:preset|spacing|g","right":"var:preset|spacing|g"}},"border":{"radius":"5px"}}} -->
+							<!-- wp:heading {"level":4,"style":{"spacing":{"margin":{"top":"0"}},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"600"}},"fontSize":"normal"} -->
+							<h4 class="wp-block-heading has-normal-font-size" style="margin-top:0;font-style:normal;font-weight:600;text-transform:uppercase">' . esc_html__( 'Shipping address', 'woocommerce' ) . '</h4>
+							<!-- /wp:heading -->
+							<!-- wp:woocommerce/order-confirmation-shipping-address {"lock":{"remove":true}} /-->
+						<!-- /wp:woocommerce/order-confirmation-shipping-wrapper -->
+					</div>
+					<!-- /wp:column -->
+					<!-- wp:column -->
+					<div class="wp-block-column">
+						<!-- wp:woocommerce/order-confirmation-billing-wrapper {"align":"","backgroundColor":"accent","style":{"spacing":{"padding":{"top":"var:preset|spacing|g","bottom":"var:preset|spacing|g","left":"var:preset|spacing|g","right":"var:preset|spacing|g"}},"border":{"radius":"5px"}}} -->
+							<!-- wp:heading {"level":4,"style":{"spacing":{"margin":{"top":"0"}},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"600"}},"fontSize":"normal"} -->
+							<h4 class="wp-block-heading has-normal-font-size" style="margin-top:0;font-style:normal;font-weight:600;text-transform:uppercase">' . esc_html__( 'Billing address', 'woocommerce' ) . '</h4>
+							<!-- /wp:heading -->
+							<!-- wp:woocommerce/order-confirmation-billing-address {"lock":{"remove":true}} /-->
+						<!-- /wp:woocommerce/order-confirmation-billing-wrapper -->
+					</div>
+					<!-- /wp:column -->
+				</div>
+				<!-- /wp:columns -->
+				<!-- wp:woocommerce/order-confirmation-additional-information {"align":""} /-->
+			'
+		] );
 	}
 }

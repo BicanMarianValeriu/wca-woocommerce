@@ -57,6 +57,7 @@ class Chips extends Base {
 			.wp-block-woocommerce-filter-wrapper :where(.wc-block-components-chip,.components-form-token-field__token) > button {
 				position: relative;
 				background: transparent;
+				font-size: inherit;
 				padding: 0;
 				margin: 0;
 				border: 0;

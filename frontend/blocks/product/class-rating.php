@@ -118,7 +118,7 @@ class Rating extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-rating', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-rating' ) || wp_style_is( 'wc-blocks-style-product-rating' ) ) {
+				if( wp_style_is( 'wc-blocks-style-rating' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 

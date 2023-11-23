@@ -26,6 +26,7 @@ class Templates {
 	const ALL_TEMPLATES = [
 		'cart',
 		'checkout',
+		'order-confirmation',
 		'archive-product',
 		'single-product',
 		'product-search-results',

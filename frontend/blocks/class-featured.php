@@ -40,7 +40,7 @@ class Featured extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-featured-category', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-featured-category' ) || wp_style_is( 'wc-blocks-style-featured-product' ) ) {
+				if( wp_style_is( 'wc-blocks-style-featured-category' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 

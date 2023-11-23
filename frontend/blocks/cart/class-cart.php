@@ -106,7 +106,6 @@ class Cart extends Base {
 
 			.wc-block-cart-items {
 				width: 100%;
-				table-layout: fixed;
 			}
 			.wc-block-cart-items > :not(caption) > * > * {
 				border-bottom: 1px solid var(--wp--preset--color--accent);

@@ -40,7 +40,7 @@ class Notices extends Base {
 
 		wecodeart( 'assets' )->add_style( 'wc-blocks-style-notices', [
 			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-notices' ) || wp_style_is( 'wc-blocks-style-store-notices' ) ) {
+				if( wp_style_is( 'wc-blocks-style-notices' ) || wp_style_is( $this->get_asset_handle() ) ) {
 					return false;
 				}
 
