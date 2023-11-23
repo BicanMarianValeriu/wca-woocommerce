@@ -25,7 +25,7 @@
  * Requires at least:       6.3
  * Requires PHP:            7.4
  * WC requires at least:    8.0
- * WC tested up to:         8.2
+ * WC tested up to:         8.3
  */
 namespace WCA\EXT\WOO;
 
@@ -57,6 +57,10 @@ new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/filters' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/account' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/product' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/checkout' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/order' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/order/confirmation' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/order/confirmation/address' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/order/confirmation/wrappers' );
 
 // Activation/Deactivation Hooks
 register_activation_hook( WCA_WOO_EXT, [ Activator::class, 'run' ] );

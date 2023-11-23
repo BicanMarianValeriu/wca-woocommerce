@@ -213,6 +213,7 @@ class Link extends Base {
 				display: flex;
 				align-items: center;
 				text-decoration: none;
+				color: inherit;
 			}
 			.wp-block-woocommerce-customer-account .dropdown-menu {
 				font-size: var(--wp--preset--font-size--small);

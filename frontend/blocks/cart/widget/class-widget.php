@@ -205,9 +205,6 @@ class Widget extends Base {
 				padding: 0.5em 0;
 				cursor: pointer;
 			}
-			.wc-block-mini-cart__button:hover:not([disabled]) {
-				opacity: 0.6;
-			}
 			.modal-open .wc-block-mini-cart__button {
 				pointer-events: none;
 			}

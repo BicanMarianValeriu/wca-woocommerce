@@ -54,6 +54,7 @@ class Components implements Configuration {
 		$this->register( 'radio',       Components\Radio::class     );
 		$this->register( 'quantity',    Components\Quantity::class  );
 		$this->register( 'chips',       Components\Chips::class     );
+		$this->register( 'skeleton',    Components\Skeleton::class  );
 		$this->register( 'sortable',    Components\Sortable::class  );
 		$this->register( 'loading',     Components\Loading::class   );
 		$this->register( 'layout',      Components\Layout::class    );
