@@ -27,12 +27,10 @@ echo wc_get_stock_html( $product ); // WPCS: XSS ok.
 
 if ( $product->is_in_stock() ) :
 
-wecodeart( 'styles' )->Utilities->load( [ 'mt-3' ] );
-
 do_action( 'woocommerce_before_add_to_cart_form' );
 
 ?>
-<form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+<form class="is-layout-flow cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
 <?php
 	
 	do_action( 'woocommerce_before_add_to_cart_button' );
@@ -53,7 +51,7 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 
 	<div class="wp-block-button"><?php
 
-	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button', 'mt-3' ];
+	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button' ];
 	$classes[] = wc_wp_theme_get_element_class_name( 'button' );
 
 	wecodeart_input( 'button', [

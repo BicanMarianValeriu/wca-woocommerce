@@ -30,7 +30,7 @@ add_action( 'wp_enqueue_scripts', function() {
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-<form class="cart grouped_form" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+<form class="is-layout-flow cart grouped_form" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
 	<table cellspacing="0" class="woocommerce-grouped-product-list group_table table table-bordered">
 		<tbody>
 			<?php
@@ -119,7 +119,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 	
 	<div class="wp-block-button"><?php
 
-	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button', 'mt-3' ];
+	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button' ];
 	$classes[] = wc_wp_theme_get_element_class_name( 'button' );
 
 	wecodeart_input( 'button', [

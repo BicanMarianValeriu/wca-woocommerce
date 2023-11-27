@@ -11,10 +11,8 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 
-wecodeart( 'styles' )->Utilities->load( [ 'mt-3' ] );
-
 ?>
-<div class="woocommerce-variation-add-to-cart variations_button">
+<div class="is-layout-flow woocommerce-variation-add-to-cart variations_button">
 	<?php
 	
 	do_action( 'woocommerce_before_add_to_cart_button' );
@@ -31,7 +29,7 @@ wecodeart( 'styles' )->Utilities->load( [ 'mt-3' ] );
 
 	?><div class="wp-block-button"><?php
 
-	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button', 'mt-3' ];
+	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button' ];
 	$classes[] = wc_wp_theme_get_element_class_name( 'button' );
 
 	wecodeart_input( 'button', [
