@@ -1461,35 +1461,41 @@ const Component = _ref => {
   const isReviewLiked = likedReviews.includes(parseInt(reviewId));
   const [likes, setLikes] = useState(hasLikes);
   const [liking, setLiking] = useState(false);
-
-  const onClick = async () => {
-    if (liking) return;
-    setLiking(true);
-    const formData = new FormData();
-    formData.append('action', 'like');
-    formData.append('review_id', reviewId);
-
-    try {
-      const r = await fetch(requestUrl, {
-        method: 'POST',
-        body: formData
-      });
-      const {
-        likes
-      } = await r.json();
-      setLikes(likes);
-      const newLiked = isReviewLiked ? likedReviews.filter(i => parseInt(i) !== parseInt(reviewId)) : [...likedReviews, reviewId];
-      setLikedReviews(newLiked);
-    } finally {
-      setLiking(false);
-    }
+  let actionProps = {
+    icon: isReviewLiked ? 'liked' : 'like',
+    disabled: liking === true
   };
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    icon: isReviewLiked ? 'liked' : 'like',
-    disabled: liking === true,
-    onClick: userData && onClick
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  if (userData) {
+    const onClick = async () => {
+      if (liking) return;
+      setLiking(true);
+      const formData = new FormData();
+      formData.append('action', 'like');
+      formData.append('review_id', reviewId);
+
+      try {
+        const r = await fetch(requestUrl, {
+          method: 'POST',
+          body: formData
+        });
+        const {
+          likes
+        } = await r.json();
+        setLikes(likes);
+        const newLiked = isReviewLiked ? likedReviews.filter(i => parseInt(i) !== parseInt(reviewId)) : [...likedReviews, reviewId];
+        setLikedReviews(newLiked);
+      } finally {
+        setLiking(false);
+      }
+    };
+
+    actionProps = { ...actionProps,
+      onClick
+    };
+  }
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], actionProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "count"
   }, "(", likes, ")"));
 };
