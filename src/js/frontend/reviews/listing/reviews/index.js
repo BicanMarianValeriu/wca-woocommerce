@@ -9,7 +9,7 @@ const {
 	element: { useEffect, useState },
 } = wp;
 
-export default ({ loading, reviews = [], meta, queryArgs, setQueryArgs, userData, options, breakpoint }) => {
+export default ({ loading, reviews = [], likedReviews = [], setLikedReviews, meta, queryArgs, setQueryArgs, userData, options, breakpoint }) => {
 	const { amount } = options;
 
 	const { hash } = window.location;
@@ -33,6 +33,8 @@ export default ({ loading, reviews = [], meta, queryArgs, setQueryArgs, userData
 				{loading && Array(parseInt(amount)).fill().map((_, i) => <div key={i} dangerouslySetInnerHTML={{ __html: preloader }} />)}
 				{!loading && reviews.map((review) => <ReviewItem {...{
 					review,
+					likedReviews,
+					setLikedReviews,
 					userData,
 					addComment,
 					onAddComment,

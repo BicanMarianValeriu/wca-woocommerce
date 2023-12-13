@@ -24,6 +24,7 @@ const App = (options) => {
 	const [scroll, setScroll] = useState(false);
 	const [rating, setRating] = useState(false);
 	const [userData, setUserData] = useState(false);
+	const [likedReviews, setLikedReviews] = useState([]);
 	const [queryArgs, setQueryArgs] = useState({ product_id, action: 'query' });
 
 	// Load requested comments by filters
@@ -48,6 +49,7 @@ const App = (options) => {
 				if (status) {
 					const [reviewer, reviewer_email] = atob(token).split(':');
 					setUserData({ reviewer, reviewer_email, liked });
+					setLikedReviews(liked);
 				}
 
 			} catch (e) {
@@ -68,7 +70,7 @@ const App = (options) => {
 	const breakpoint = useBreakpoint();
 	const defaultProps = { options, rating, setRating, queryArgs, setQueryArgs, userData, breakpoint };
 	const filtersProps = { options, loading, meta, queryArgs, setQueryArgs, breakpoint };
-	const listingProps = { ...filtersProps, reviews, userData, actions };
+	const listingProps = { ...filtersProps, reviews, likedReviews, setLikedReviews, userData, actions };
 
 	return (
 		<>

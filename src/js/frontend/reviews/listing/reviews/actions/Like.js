@@ -2,12 +2,11 @@ import Action from './Action';
 
 const { element: { useState } } = wp;
 
-const Component = ({ review, options, userData }) => {
+const Component = ({ review, options, likedReviews, setLikedReviews }) => {
     const { id: reviewId, likes: hasLikes } = review;
     const { requestUrl } = options;
 
-    const { liked = [] } = userData;
-    const isReviewLiked = liked.includes(reviewId);
+    const isReviewLiked = likedReviews.includes(reviewId);
     const [likes, setLikes] = useState(hasLikes);
     const [liking, setLiking] = useState(false);
 
@@ -29,6 +28,8 @@ const Component = ({ review, options, userData }) => {
             const { likes } = await r.json();
 
             setLikes(likes);
+            const newLiked = isReviewLiked ? likedReviews.filter(i !== reviewId) : [...likedReviews, reviewId];
+            setLikedReviews(newLiked);
         } finally {
             setLiking(false);
         }

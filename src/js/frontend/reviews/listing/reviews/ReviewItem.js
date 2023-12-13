@@ -9,7 +9,7 @@ const {
 	element: { useState },
 } = wp;
 
-export default ({ review, options, userData = false, addComment, setAddComment, onAddComment }) => {
+export default ({ review, options, userData = false, addComment, setAddComment, onAddComment, likedReviews, setLikedReviews }) => {
 	const {
 		id: reviewId,
 		content,
@@ -33,7 +33,7 @@ export default ({ review, options, userData = false, addComment, setAddComment, 
 	const defaultActions = [
 		{
 			key: <Like.key />,
-			Component: <Like.Component {...defaultProps} />
+			Component: <Like.Component {...{ ...defaultProps, likedReviews, setLikedReviews }} />
 		},
 		{
 			key: <Replies.key />,
