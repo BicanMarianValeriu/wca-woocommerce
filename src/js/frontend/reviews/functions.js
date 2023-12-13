@@ -4,19 +4,6 @@ const formatDate = (date) => {
 	return event.toLocaleDateString(undefined, options);
 };
 
-const getCookie = (cname) => {
-	const name = cname + "=";
-	const ca = document.cookie.split(';');
-
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) == ' ') c = c.substring(1);
-		if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-	}
-
-	return "";
-};
-
 const scrollToElement = (element) => {
 	if (element) {
 		const headerEl = document.querySelector('.wp-site-header.sticky-top');
@@ -82,4 +69,4 @@ const renderToString = (string = '', variables = {}) => {
 	return string;
 }
 
-export { formatDate, getCookie, scrollToElement, generateAvatarDataURL, getInitials, renderToString };
+export { formatDate, scrollToElement, generateAvatarDataURL, getInitials, renderToString };

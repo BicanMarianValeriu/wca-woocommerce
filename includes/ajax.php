@@ -90,13 +90,16 @@ switch( $action ) :
         if( is_user_logged_in() ) {
             $user_data  = wp_get_current_user();
             $user_data  = array_filter( (array) $user_data->data, function( $item ) {
-                return in_array( $item, [ 'display_name', 'user_firstname', 'user_lastname', 'user_email' ] );
+                return in_array( $item, [ 'display_name', 'user_firstname', 'user_lastname', 'user_email', 'ID' ] );
             }, ARRAY_FILTER_USE_KEY );
             
-            $token = base64_encode( implode( ':', [ $user_data['display_name'], $user_data['user_email'] ] ) );
+            $token  = base64_encode( implode( ':', [ $user_data['display_name'], $user_data['user_email'] ] ) );
+            $liked  = get_user_meta( $user_data['ID'], 'wecodeart_reviews_liked', true );
+            $liked  = array_map( 'intval', explode( ',', $liked ) );
             
             $data = wp_parse_args( [
                 'status'    => true,
+                'liked'     => $liked,
                 'token'     => $token
             ], $data );
         }

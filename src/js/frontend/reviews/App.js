@@ -43,11 +43,11 @@ const App = (options) => {
 					body: formData,
 				});
 
-				const { token, status } = await r.json();
+				const { token, status, liked } = await r.json();
 
 				if (status) {
 					const [reviewer, reviewer_email] = atob(token).split(':');
-					setUserData({ reviewer, reviewer_email });
+					setUserData({ reviewer, reviewer_email, liked });
 				}
 
 			} catch (e) {

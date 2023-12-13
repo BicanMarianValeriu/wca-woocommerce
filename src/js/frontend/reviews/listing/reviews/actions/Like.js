@@ -1,14 +1,13 @@
 import Action from './Action';
-import { getCookie } from '../../../functions';
 
 const { element: { useState } } = wp;
 
-const Component = ({ review, options }) => {
+const Component = ({ review, options, userData }) => {
     const { id: reviewId, likes: hasLikes } = review;
     const { requestUrl } = options;
 
-    const allLikedReviews = getCookie('wca_wooReviews_liked') || [];
-    const isReviewLiked = allLikedReviews.includes(reviewId);
+    const { liked = [] } = userData;
+    const isReviewLiked = liked.includes(reviewId);
     const [likes, setLikes] = useState(hasLikes);
     const [liking, setLiking] = useState(false);
 
