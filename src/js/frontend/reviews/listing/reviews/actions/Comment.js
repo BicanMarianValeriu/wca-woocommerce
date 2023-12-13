@@ -6,9 +6,8 @@ const {
 } = wp;
 
 const Component = ({ review, userData, onAddComment }) => {
-    const { id: reviewId } = review;
-
     if (userData) {
+        const { id: reviewId } = review;
         const onClick = () => onAddComment(reviewId);
 
         return (<Action {...{ label: __('Add Comment', 'wca-woocommerce'), icon: 'comment', onClick }} />);

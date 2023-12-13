@@ -2,7 +2,7 @@ import Action from './Action';
 
 const { element: { useState } } = wp;
 
-const Component = ({ review, options, likedReviews, setLikedReviews }) => {
+const Component = ({ review, options, likedReviews, setLikedReviews, userData }) => {
     const { id: reviewId, likes: hasLikes } = review;
     const { requestUrl } = options;
 
@@ -36,7 +36,7 @@ const Component = ({ review, options, likedReviews, setLikedReviews }) => {
     };
 
     return (
-        <Action {...{ icon: isReviewLiked ? 'liked' : 'like', disabled: liking === true, onClick }} >
+        <Action {...{ icon: isReviewLiked ? 'liked' : 'like', disabled: liking === true, onClick: userData && onClick }} >
             <span className="count">({likes})</span>
         </Action>
     );
