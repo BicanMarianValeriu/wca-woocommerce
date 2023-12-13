@@ -6,7 +6,7 @@ const Component = ({ review, options, likedReviews, setLikedReviews }) => {
     const { id: reviewId, likes: hasLikes } = review;
     const { requestUrl } = options;
 
-    const isReviewLiked = likedReviews.includes(reviewId);
+    const isReviewLiked = likedReviews.includes(parseInt(reviewId));
     const [likes, setLikes] = useState(hasLikes);
     const [liking, setLiking] = useState(false);
 
@@ -28,7 +28,7 @@ const Component = ({ review, options, likedReviews, setLikedReviews }) => {
             const { likes } = await r.json();
 
             setLikes(likes);
-            const newLiked = isReviewLiked ? likedReviews.filter(i !== reviewId) : [...likedReviews, reviewId];
+            const newLiked = isReviewLiked ? likedReviews.filter(i => parseInt(i) !== parseInt(reviewId)) : [...likedReviews, reviewId];
             setLikedReviews(newLiked);
         } finally {
             setLiking(false);
