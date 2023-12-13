@@ -84,14 +84,16 @@ const App = options => {
         });
         const {
           token,
-          status
+          status,
+          liked
         } = await r.json();
 
         if (status) {
           const [reviewer, reviewer_email] = atob(token).split(':');
           setUserData({
             reviewer,
-            reviewer_email
+            reviewer_email,
+            liked
           });
         }
       } catch (e) {
@@ -418,7 +420,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "formatDate": () => (/* binding */ formatDate),
 /* harmony export */   "generateAvatarDataURL": () => (/* binding */ generateAvatarDataURL),
-/* harmony export */   "getCookie": () => (/* binding */ getCookie),
 /* harmony export */   "getInitials": () => (/* binding */ getInitials),
 /* harmony export */   "renderToString": () => (/* binding */ renderToString),
 /* harmony export */   "scrollToElement": () => (/* binding */ scrollToElement)
@@ -431,21 +432,6 @@ const formatDate = date => {
     day: 'numeric'
   };
   return event.toLocaleDateString(undefined, options);
-};
-
-const getCookie = cname => {
-  const name = cname + "=";
-  const ca = document.cookie.split(';');
-
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-
-    while (c.charAt(0) == ' ') c = c.substring(1);
-
-    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-  }
-
-  return "";
 };
 
 const scrollToElement = element => {
@@ -1439,8 +1425,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Action */ "./src/js/frontend/reviews/listing/reviews/actions/Action.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../functions */ "./src/js/frontend/reviews/functions.js");
-
 
 
 const {
@@ -1452,7 +1436,8 @@ const {
 const Component = _ref => {
   let {
     review,
-    options
+    options,
+    userData
   } = _ref;
   const {
     id: reviewId,
@@ -1461,8 +1446,10 @@ const Component = _ref => {
   const {
     requestUrl
   } = options;
-  const allLikedReviews = (0,_functions__WEBPACK_IMPORTED_MODULE_2__.getCookie)('wca_wooReviews_liked') || [];
-  const isReviewLiked = allLikedReviews.includes(reviewId);
+  const {
+    liked = []
+  } = userData;
+  const isReviewLiked = liked.includes(reviewId);
   const [likes, setLikes] = useState(hasLikes);
   const [liking, setLiking] = useState(false);
 
