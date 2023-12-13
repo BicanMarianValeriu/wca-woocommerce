@@ -187,8 +187,10 @@ class Woo implements Integration {
 		$this->loader->add_action( 'enqueue_block_editor_assets', 			$admin, 'editor_assets' );
 
 		// Handle Updates
-		$this->loader->add_filter( 'pre_set_site_transient_update_plugins',	$admin, 'update' 		);
-		$this->loader->add_filter( 'upgrader_post_install',					$admin, 'install', 	20, 3 );
+		$this->loader->add_filter( 'pre_set_site_transient_update_plugins',	$admin, 'update'	);
+		$this->loader->add_filter( 'upgrader_post_install',					$admin, 'install', 20, 3 );
+		$this->loader->add_action( 'wecodeart/upgrade/finish',				$admin, 'templates'	);
+		
 		// Handle Plugin Info
 		$this->loader->add_filter( 'plugins_api', 							$admin, 'info', 	20, 3 );
 		$this->loader->add_filter( 'plugin_action_links',					$admin, 'links', 	20, 2 );

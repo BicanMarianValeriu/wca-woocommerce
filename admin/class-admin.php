@@ -181,6 +181,21 @@ class Admin {
 	}
 
 	/**
+	 * Editor Templates
+	 *
+	 * @since 	1.1.6
+	 * @version	1.1.6
+	 *
+	 * @return 	void
+	 */
+	public function templates(): void {
+		$installer = new Admin\Ajax();
+		$templates = Templates::get_instance()->get_missing();
+
+		$installer::copy_templates( $templates );
+	}
+
+	/**
 	 * Update
 	 *
 	 * @since 	1.0.0
