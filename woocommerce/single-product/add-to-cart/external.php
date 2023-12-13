@@ -17,17 +17,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-wecodeart( 'styles' )->Utilities->load( [ 'mt-3' ] );
-
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-<form class="cart" action="<?php echo esc_url( $product_url ); ?>" method="get">
+<form class="is-layout-flow cart" action="<?php echo esc_url( $product_url ); ?>" method="get">
 
 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
 	<div class="wp-block-button"><?php
 
-	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button', 'mt-3' ];
+	$classes = [ 'wp-block-button__link', 'has-primary-background-color', 'has-white-color', 'single_add_to_cart_button' ];
 	$classes[] = wc_wp_theme_get_element_class_name( 'button' );
 
 	wecodeart_input( 'button', [
