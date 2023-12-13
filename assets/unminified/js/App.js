@@ -57,6 +57,7 @@ const App = options => {
   const [scroll, setScroll] = useState(false);
   const [rating, setRating] = useState(false);
   const [userData, setUserData] = useState(false);
+  const [likedReviews, setLikedReviews] = useState([]);
   const [queryArgs, setQueryArgs] = useState({
     product_id,
     action: 'query'
@@ -95,6 +96,7 @@ const App = options => {
             reviewer_email,
             liked
           });
+          setLikedReviews(liked);
         }
       } catch (e) {
         console.warn(e);
@@ -130,6 +132,8 @@ const App = options => {
   };
   const listingProps = { ...filtersProps,
     reviews,
+    likedReviews,
+    setLikedReviews,
     userData,
     actions
   };
@@ -1155,7 +1159,9 @@ const {
     userData = false,
     addComment,
     setAddComment,
-    onAddComment
+    onAddComment,
+    likedReviews,
+    setLikedReviews
   } = _ref;
   const {
     id: reviewId,
@@ -1186,7 +1192,10 @@ const {
   const [loading, setLoading] = useState(false);
   const defaultActions = [{
     key: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Like.key, null),
-    Component: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Like.Component, defaultProps)
+    Component: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Like.Component, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultProps, {
+      likedReviews,
+      setLikedReviews
+    }))
   }, {
     key: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Replies.key, null),
     Component: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_actions__WEBPACK_IMPORTED_MODULE_2__.Replies.Component, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, defaultProps, {
@@ -1437,7 +1446,8 @@ const Component = _ref => {
   let {
     review,
     options,
-    userData
+    likedReviews,
+    setLikedReviews
   } = _ref;
   const {
     id: reviewId,
@@ -1446,10 +1456,7 @@ const Component = _ref => {
   const {
     requestUrl
   } = options;
-  const {
-    liked = []
-  } = userData;
-  const isReviewLiked = liked.includes(reviewId);
+  const isReviewLiked = likedReviews.includes(reviewId);
   const [likes, setLikes] = useState(hasLikes);
   const [liking, setLiking] = useState(false);
 
@@ -1469,6 +1476,8 @@ const Component = _ref => {
         likes
       } = await r.json();
       setLikes(likes);
+      const newLiked = isReviewLiked ? likedReviews.filter(i !== reviewId) : [...likedReviews, reviewId];
+      setLikedReviews(newLiked);
     } finally {
       setLiking(false);
     }
@@ -1678,6 +1687,8 @@ const {
   let {
     loading,
     reviews = [],
+    likedReviews = [],
+    setLikedReviews,
     meta,
     queryArgs,
     setQueryArgs,
@@ -1714,6 +1725,8 @@ const {
     }
   })), !loading && reviews.map(review => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_ReviewItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
     review,
+    likedReviews,
+    setLikedReviews,
     userData,
     addComment,
     onAddComment,

@@ -95,7 +95,7 @@ switch( $action ) :
             
             $token  = base64_encode( implode( ':', [ $user_data['display_name'], $user_data['user_email'] ] ) );
             $liked  = get_user_meta( $user_data['ID'], 'wecodeart_reviews_liked', true );
-            $liked  = array_map( 'intval', explode( ',', $liked ) );
+            $liked  = $liked ? array_map( 'intval', explode( ',', $liked ) ) : [];
             
             $data = wp_parse_args( [
                 'status'    => true,
