@@ -1367,11 +1367,12 @@ const Component = _ref => {
     userData,
     onAddComment
   } = _ref;
-  const {
-    id: reviewId
-  } = review;
 
   if (userData) {
+    const {
+      id: reviewId
+    } = review;
+
     const onClick = () => onAddComment(reviewId);
 
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1447,7 +1448,8 @@ const Component = _ref => {
     review,
     options,
     likedReviews,
-    setLikedReviews
+    setLikedReviews,
+    userData
   } = _ref;
   const {
     id: reviewId,
@@ -1486,7 +1488,7 @@ const Component = _ref => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
     icon: isReviewLiked ? 'liked' : 'like',
     disabled: liking === true,
-    onClick
+    onClick: userData && onClick
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "count"
   }, "(", likes, ")"));
