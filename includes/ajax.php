@@ -102,34 +102,34 @@ switch( $action ) :
         }
     break;
 
-    // Working while: logged in/out (everyone can like)
+    // Working while: logged in (only users can like)
     case 'like' :
+        // User required
+        __require_user();
         // Requirements.
         require_once( ABSPATH . WPINC . '/comment.php' );
         require_once( ABSPATH . WPINC . '/class-wp-comment.php' );
 
         $review_id      = filter_input( INPUT_POST, 'review_id', FILTER_SANITIZE_NUMBER_INT );
         $review_likes   = (int) get_comment_meta( $review_id, 'likes', true );
-        $previous_liked = isset( $_COOKIE['wca_wooReviews_liked'] ) ? explode( ',', $_COOKIE['wca_wooReviews_liked'] ) : [];
-        $previous_liked = array_map( 'intval', $previous_liked );
+        $previous_liked = get_user_meta( get_current_user_id(), 'wecodeart_reviews_liked', true );
+        $previous_liked = array_map( 'intval', explode( ',', $previous_liked ) );
     
         if ( in_array( $review_id, $previous_liked ) ) {
             $like_action    = ( $review_likes - 1 );
-            $previous_liked = array_diff( $previous_liked, [ $review_id ] );
+            $new_liked = array_diff( $previous_liked, [ $review_id ] );
         } else {
             $like_action    = ( $review_likes + 1 );
-            $previous_liked = array_merge( $previous_liked, [ $review_id ] );
+            $new_liked = array_merge( $previous_liked, [ $review_id ] );
         }
     
         update_comment_meta( $review_id, 'likes', absint( $like_action ) );
-        
-        $cookie_val = implode( ',',  $previous_liked );
-        setcookie( 'wca_wooReviews_liked', $cookie_val, time() + WEEK_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+        update_user_meta( get_current_user_id(), 'wecodeart_reviews_liked', implode( ',',  $new_liked ) );
         
         $data = wp_parse_args( [
             'status'    => true,
             'likes'     => $like_action
-        ], $data ); 
+        ], $data );
     break;
     
     // Working while: logged in (only users can comment)
