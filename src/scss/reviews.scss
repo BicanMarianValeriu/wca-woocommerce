@@ -1,35 +1,3 @@
-@charset "UTF-8";
-
-// Variables
-$breakpoints: (
-	xs: 0,
-	sm: 576px,
-	md: 768px,
-	lg: 992px,
-) !default;
-$columns: 12 !default;
-
-// Required
-@function breakpoint-infix($name, $breakpoints) {
-	@return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
-}
-
-@function breakpoint-min($name, $breakpoints) {
-	$min: map-get($breakpoints, $name);
-	@return if($min != 0, $min, null);
-}
-
-@mixin media-breakpoint-up($name, $breakpoints) {
-	$min: breakpoint-min($name, $breakpoints);
-	@if $min {
-		@media (min-width: $min) {
-			@content;
-		}
-	} @else {
-		@content;
-	}
-}
-
 /* Required */
 .woocommerce-Reviews {
 	--wp--spacer: 15px;
@@ -39,6 +7,22 @@ $columns: 12 !default;
 			h3 {
 				font-size: 3.5rem;
 			}
+		}
+
+		&-stats {
+			text-align: center;
+		}
+
+		&-new {
+			text-align: center;
+
+			@media screen and (min-width: 992px) {
+				text-align: left;
+			}
+		}
+
+		.grid {
+			align-items: center;
 		}
 	}
 

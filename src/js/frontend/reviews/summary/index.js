@@ -21,14 +21,14 @@ export default ({ options, rating, setRating, queryArgs, setQueryArgs, userData,
 
 	return (
 		<div className="woocommerce-Reviews__summary">
-			<div className="grid" style={{ alignItems: 'center' }}>
+			<div className="grid">
 				<div className="span-12 span-sm-6 span-lg-2">
 					<RatingData {...dataProps} />
 				</div>
 				<div className="span-12 span-sm-6 span-lg-3 start-lg-7">
 					<RatingStats {...{ average, verified, verifiedBadge }} />
 				</div>
-				<div className="span-12 span-lg-3 start-lg-10" style={{ textAlign: breakpoint === 'mobile' ? 'center' : 'left' }}>
+				<div className="span-12 span-lg-3 start-lg-10">
 					<AddReview {...{ rating, setRating, userData, options }} />
 				</div>
 				<div className="span-12 span-lg-4 start-lg-3" style={{ gridRowStart: breakpoint === 'mobile' ? 'initial' : 1 }}>

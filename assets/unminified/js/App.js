@@ -111,7 +111,7 @@ const App = options => {
     }
 
     setScroll(true);
-  }, [rating, scroll]);
+  }, [rating]);
   const breakpoint = useBreakpoint();
   const defaultProps = {
     options,
@@ -2156,10 +2156,7 @@ const {
     verifiedRef.current = verified;
   }, [verified]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "woocommerce-Reviews__summary-stats",
-    style: {
-      textAlign: 'center'
-    }
+    className: "woocommerce-Reviews__summary-stats"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__summary-stats__1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_shared_Icon__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -2252,10 +2249,7 @@ __webpack_require__.r(__webpack_exports__);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__summary"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "grid",
-    style: {
-      alignItems: 'center'
-    }
+    className: "grid"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "span-12 span-sm-6 span-lg-2"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_RatingData__WEBPACK_IMPORTED_MODULE_3__["default"], dataProps)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
@@ -2265,10 +2259,7 @@ __webpack_require__.r(__webpack_exports__);
     verified,
     verifiedBadge
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    className: "span-12 span-lg-3 start-lg-10",
-    style: {
-      textAlign: breakpoint === 'mobile' ? 'center' : 'left'
-    }
+    className: "span-12 span-lg-3 start-lg-10"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_AddReview__WEBPACK_IMPORTED_MODULE_2__["default"], {
     rating,
     setRating,

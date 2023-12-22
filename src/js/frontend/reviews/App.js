@@ -65,7 +65,7 @@ const App = (options) => {
 			scrollToElement(scrollEl);
 		}
 		setScroll(true);
-	}, [rating, scroll]);
+	}, [rating]);
 
 	const breakpoint = useBreakpoint();
 	const defaultProps = { options, rating, setRating, queryArgs, setQueryArgs, userData, breakpoint };

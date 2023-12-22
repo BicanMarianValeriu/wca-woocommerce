@@ -8,6 +8,20 @@
 .woocommerce-Reviews__summary-info h3 {
   font-size: 3.5rem;
 }
+.woocommerce-Reviews__summary-stats {
+  text-align: center;
+}
+.woocommerce-Reviews__summary-new {
+  text-align: center;
+}
+@media screen and (min-width: 992px) {
+  .woocommerce-Reviews__summary-new {
+    text-align: left;
+  }
+}
+.woocommerce-Reviews__summary .grid {
+  align-items: center;
+}
 @media screen and (max-width: 575.95px) {
   .woocommerce-Reviews__filters label.input-group-text {
     min-width: 70px;

@@ -14,7 +14,7 @@ export default ({ average = 0.0, verified = 0, verifiedBadge }) => {
 	}, [verified]);
 
 	return (
-		<div className="woocommerce-Reviews__summary-stats" style={{ textAlign: 'center' }}>
+		<div className="woocommerce-Reviews__summary-stats">
 			<div className="woocommerce-Reviews__summary-stats__1">
 				<Icon icon="recommend" style={{ marginRight: 15 }} />
 				<span className="has-black-color"><strong>{parseInt(((average / 5) * 100)) + '%'}</strong></span>
