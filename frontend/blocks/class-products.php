@@ -96,6 +96,7 @@ class Products extends Base {
 			}
 			:where(
 				ul li.type-product,
+				ul.wc-block-product-template li.wc-block-product,
 				ul.products-block-post-template li.wp-block-post,
 				ul.wp-block-query__products li.wp-block-post,
 				.wc-block-grid__product,
@@ -116,6 +117,7 @@ class Products extends Base {
 			:where(
 				ul li.type-product,
 				ul.products-block-post-template li.wp-block-post,
+				ul.wc-block-product-template li.wc-block-product,
 				ul.wp-block-query__products li.wp-block-post,
 				.wc-block-grid__product,
 				.cross-sells-product
@@ -125,6 +127,7 @@ class Products extends Base {
 			}
 			:where(
 				ul li.type-product.is-loading,
+				ul.wc-block-product-template li.wc-block-product.is-loading,
 				ul.wp-block-query__products li.wp-block-post.is-loading,
 				.wc-block-grid__product.is-loading,
 				.cross-sells-product.is-loading
@@ -138,6 +141,7 @@ class Products extends Base {
 			}
 			
 			:is(
+				ul.wc-block-product-template .wp-block-post-title,
 				ul.products-block-post-template .wp-block-post-title,
 				ul li.type-product .wp-block-post-title,
 				.wc-block-grid__product-title,
