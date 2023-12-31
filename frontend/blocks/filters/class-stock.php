@@ -35,6 +35,6 @@ class Stock extends Base {
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
-		return Frontend::get_loading_css( '.wc-block-stock-filter.is-loading' );
+		return Frontend::get_loading_css( '.wc-block-stock-filter.is-loading ul > li' );
 	}
 }
