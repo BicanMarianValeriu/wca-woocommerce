@@ -22,17 +22,16 @@ const {
     sprintf
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    id,
-    content,
-    date,
-    author: {
-      name: authorName,
-      avatar: authorAvatar
-    },
-    avatar
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  id,
+  content,
+  date,
+  author: {
+    name: authorName,
+    avatar: authorAvatar
+  },
+  avatar
+}) => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__item woocommerce-Reviews__item--comment has-accent-background-color",
     id: `comment-${id}`,
@@ -83,12 +82,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    loading,
-    comments,
-    avatar
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  loading,
+  comments,
+  avatar
+}) => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__listing woocommerce-Reviews__listing--comments is-layout-flow"
   }, loading && comments.map((_, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {

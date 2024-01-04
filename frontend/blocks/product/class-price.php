@@ -139,12 +139,14 @@ class Price extends Base {
 				printf( 'PRP: %s', wc_price( $prp ) );
 		
 			?></span>
-			<a class="has-cyan-bluish-gray-color ms-1"
-				href="#"
-				data-bs-toggle="tooltip"
-				data-bs-custom-class="wc-block-components-product-price__tip"
+			<span
+				class="has-popper ms-1"
+				data-plugin="tooltip"
+				data-options="<?php echo esc_attr( wp_json_encode( [
+					'title' => $message
+				] ) ); ?>"
 				title="<?php echo esc_attr( $message ); ?>"
-				rel="nofollow">
+				tabindex="0">
 				<?php
 				
 				wecodeart( 'markup' )->SVG::render( 'info', [
@@ -152,7 +154,7 @@ class Price extends Base {
 				] );
 		
 				?>
-			</a>
+			</span>
 		</p>
 		<?php
 

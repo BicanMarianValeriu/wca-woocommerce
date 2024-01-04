@@ -73,7 +73,7 @@ class Viewed extends Base {
 			return $content;
 		}
 
-		if ( ! is_user_logged_in() || ! count( $this->get_viewed_products_ids() ) ) {
+		if ( ! is_user_logged_in() || ! $this->get_products_ids() ) {
 			return '';
 		}
 
@@ -113,19 +113,18 @@ class Viewed extends Base {
 			return $query;
 		}
 
-		$viewed_ids = $this->get_viewed_products_ids();
+		$products = $this->get_products_ids();
 
-		if ( ! count( $viewed_ids ) ) {
+		if ( ! $products ) {
 			return [];
 		}
 
-		$viewed_ids = array_diff( $viewed_ids, [ get_the_ID() ] ); // remove current
-		$viewed_ids = array_slice( $viewed_ids, 0, get_prop( $block, [ 'attrs', 'query', 'perPage' ], 4 ) );
+		$products = array_slice( $products, 0, get_prop( $block, [ 'attrs', 'query', 'perPage' ], 4 ) );
 
 		return [
 			'post_type'   	=> 'product',
 			'post_status' 	=> 'publish',
-			'post__in'    	=> $viewed_ids,
+			'post__in'    	=> $products,
 			'orderby'		=> 'post__in',
 		];
 	}
@@ -150,14 +149,17 @@ class Viewed extends Base {
 	 *
 	 * @return	array	Products ids.
 	 */
-	private function get_viewed_products_ids(): array {
-		$viewed_ids = get_prop( $_COOKIE, [ self::COOKIE ], '' );
+	private function get_products_ids(): array {
+		$products = get_prop( $_COOKIE, [ self::COOKIE ], '' );
 
-		if( empty( $viewed_ids ) ) {
+		if( empty( $products ) ) {
 			return [];
 		}
 
-		return wp_parse_id_list( (array) explode( '|', wp_unslash( $viewed_ids ) ) );
+		$products = wp_parse_id_list( (array) explode( '|', wp_unslash( $products ) ) );
+		$products = array_diff( $products, [ get_the_ID() ] );
+		
+		return $products;
 	}
 
 	/**
@@ -170,7 +172,7 @@ class Viewed extends Base {
 			return;
 		}
 	
-		$viewed_ids = $this->get_viewed_products_ids();
+		$viewed_ids = $this->get_products_ids();
 
 		// Remove the current product ID if it exists in the viewed IDs array.
 		$viewed_ids = array_diff( $viewed_ids, [ get_the_ID() ] );

@@ -161,6 +161,7 @@ module.exports = window["wp"]["element"];
 /******/ 					script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 				}
 /******/ 				script.setAttribute("data-webpack", dataWebpackPrefix + key);
+/******/ 		
 /******/ 				script.src = url;
 /******/ 			}
 /******/ 			inProgress[url] = [done];
@@ -174,7 +175,6 @@ module.exports = window["wp"]["element"];
 /******/ 				doneFns && doneFns.forEach((fn) => (fn(event)));
 /******/ 				if(prev) return prev(event);
 /******/ 			}
-/******/ 			;
 /******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
 /******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
 /******/ 			script.onload = onScriptComplete.bind(null, script.onload);
@@ -200,10 +200,13 @@ module.exports = window["wp"]["element"];
 /******/ 		var document = __webpack_require__.g.document;
 /******/ 		if (!scriptUrl && document) {
 /******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
+/******/ 				scriptUrl = document.currentScript.src;
 /******/ 			if (!scriptUrl) {
 /******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
 /******/ 			}
 /******/ 		}
 /******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
@@ -258,7 +261,7 @@ module.exports = window["wp"]["element"];
 /******/ 								}
 /******/ 							};
 /******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
-/******/ 						} else installedChunks[chunkId] = 0;
+/******/ 						}
 /******/ 					}
 /******/ 				}
 /******/ 		};
@@ -315,7 +318,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _scss_reviews_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../scss/reviews.scss */ "./src/scss/reviews.scss");
 
-
 /**
  * @package: 	WeCodeArt WOO Reviews
  * @author: 	BicanMarianValeriu
@@ -334,10 +336,9 @@ const {
 const {
   container = '#reviews'
 } = wpBlockWooReviews || {};
-Promise.all(/*! import() | App */[__webpack_require__.e("vendors-node_modules_react-use_esm_factory_createBreakpoint_js-node_modules_babel_runtime_hel-8b788f"), __webpack_require__.e("App")]).then(__webpack_require__.bind(__webpack_require__, /*! ./App */ "./src/js/frontend/reviews/App.js")).then(_ref => {
-  let {
-    App
-  } = _ref;
+Promise.all(/*! import() | App */[__webpack_require__.e("vendors-node_modules_react-use_esm_factory_createBreakpoint_js-node_modules_babel_runtime_hel-8b788f"), __webpack_require__.e("App")]).then(__webpack_require__.bind(__webpack_require__, /*! ./App */ "./src/js/frontend/reviews/App.js")).then(({
+  App
+}) => {
   doAction('wecodeart.woocommerce.reviews.loaded', wpBlockWooReviews);
   render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, wpBlockWooReviews), document.querySelector(container));
 });

@@ -10,7 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "viewedProductsVariation": () => (/* binding */ viewedProductsVariation)
+/* harmony export */   viewedProductsVariation: () => (/* binding */ viewedProductsVariation)
 /* harmony export */ });
 /**
  * WordPress dependencies
@@ -137,17 +137,14 @@ const {
   }
 } = wp;
 
-
 function registerBlockVariations() {
-  [_blocks_variations__WEBPACK_IMPORTED_MODULE_0__.viewedProductsVariation].forEach(_ref => {
-    let {
-      block,
-      attributes
-    } = _ref;
+  [_blocks_variations__WEBPACK_IMPORTED_MODULE_0__.viewedProductsVariation].forEach(({
+    block,
+    attributes
+  }) => {
     registerBlockVariation(block, attributes);
   });
 }
-
 registerBlockVariations();
 })();
 

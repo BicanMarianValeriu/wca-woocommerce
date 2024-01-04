@@ -37,6 +37,7 @@ class Quantity extends Base {
 			.wc-block-components-quantity-selector {
 				display: inline-flex;
 			}
+			.quantity .qty,
 			.wc-block-components-quantity-selector__input,
 			.wc-block-components-quantity-selector__button {
 				min-width: 2.5em;

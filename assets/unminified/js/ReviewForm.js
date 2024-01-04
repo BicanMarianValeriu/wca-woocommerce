@@ -21,12 +21,11 @@ const {
     renderToString: _functions__WEBPACK_IMPORTED_MODULE_1__.renderToString
   }
 } = window.wecodeart || {};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    userData = {},
-    note,
-    options
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  userData = {},
+  note,
+  options
+}) => {
   const {
     product: {
       title: productTitle
@@ -80,20 +79,21 @@ const RATING_SUGGESTIONS = applyFilters('wecodeart.woocommerce.reviews.rating.su
   4: [__('Happy', 'wca-woocommerce'), __('I like it', 'wca-woocommerce'), __('Is worth it', 'wca-woocommerce'), __('Good', 'wca-woocommerce')],
   5: [__('Excelent', 'wca-woocommerce'), __('Very satisfied', 'wca-woocommerce'), __('Recommended', 'wca-woocommerce'), __('Cool', 'wca-woocommerce')]
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    rating: star = 5
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  rating: star = 5,
+  setTitle
+}) => {
   const [current, setCurrent] = useState(RATING_SUGGESTIONS[star]);
   useEffect(() => setCurrent(RATING_SUGGESTIONS[star]), [star]);
-
-  const onClick = e => document.forms['wca-woo-addreview'].elements['title'].value = e.currentTarget.textContent;
-
-  const Button = _ref2 => {
-    let {
-      key,
-      label
-    } = _ref2;
+  const onClick = e => {
+    const value = e.currentTarget.textContent;
+    setTitle(value);
+    document.forms['wca-woo-addreview'].elements['title'].value = value;
+  };
+  const Button = ({
+    key,
+    label
+  }) => {
     const props = {
       type: 'button',
       className: 'wp-element-button has-accent-background-color has-black-color',
@@ -102,7 +102,6 @@ const RATING_SUGGESTIONS = applyFilters('wecodeart.woocommerce.reviews.rating.su
     };
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", props, label);
   };
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__suggestions",
     style: {
@@ -153,16 +152,15 @@ const {
     useState
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    rating,
-    setRating,
-    queryArgs,
-    setQueryArgs,
-    userData = false,
-    options,
-    breakpoint
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  rating,
+  setRating,
+  queryArgs,
+  setQueryArgs,
+  userData = false,
+  options,
+  breakpoint
+}) => {
   const {
     product: {
       ID: productId
@@ -179,27 +177,24 @@ const {
     reset: resetForm,
     formState: {
       errors
-    }
+    },
+    setValue
   } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useForm)({
     mode: 'onSubmit'
   });
-
+  const setTitle = value => setValue('title', value);
   const onSubmit = async (values, e) => {
     if (loading) {
       return;
     }
-
     const formData = new FormData();
     formData.append('action', 'review');
     formData.append('product_id', productId);
     Object.keys(values).map(k => formData.append(k, values[k]));
-
     if (userData) {
       Object.keys(userData).map(k => formData.append(k, userData[k]));
     }
-
     setLoading(true);
-
     try {
       const r = await fetch(requestUrl, {
         method: 'POST',
@@ -213,16 +208,16 @@ const {
       console.warn(e);
       setMessage(e);
     } finally {
-      setLoading(false); // Reset Rating
-
-      setTimeout(() => setRating(false), 3000); // Reset Reviews
-
+      setLoading(false);
+      // Reset Rating
+      setTimeout(() => setRating(false), 3000);
+      // Reset Reviews
       resetForm();
-      setQueryArgs({ ...queryArgs
+      setQueryArgs({
+        ...queryArgs
       });
     }
   };
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__respond"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
@@ -310,7 +305,8 @@ const {
   }, register('title')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "mb-spacer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_SuggestTitle__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    rating: rating
+    rating: rating,
+    setTitle: setTitle
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__respond-field"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
