@@ -15,9 +15,11 @@ export default ({ rating, setRating, queryArgs, setQueryArgs, userData = false, 
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState(false);
 
-	const { handleSubmit, register, reset: resetForm, formState: { errors } } = useForm({
+	const { handleSubmit, register, reset: resetForm, formState: { errors }, setValue } = useForm({
 		mode: 'onSubmit',
 	});
+
+	const setTitle = (value) => setValue('title', value);
 
 	const onSubmit = async (values, e) => {
 		if (loading) {
@@ -111,7 +113,7 @@ export default ({ rating, setRating, queryArgs, setQueryArgs, userData = false, 
 								<input className="form-control" type="text" id="review_title" placeholder={__('Use a suggestion or write your own title', 'wca-woocommerce')} {...register('title')} />
 							</div>
 							<div className="mb-spacer">
-								<SuggestTitle rating={rating} />
+								<SuggestTitle rating={rating} setTitle={setTitle} />
 							</div>
 						</div>
 						<div className="woocommerce-Reviews__respond-field">

@@ -1,9 +1,3 @@
-// Required
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/maps";
-@import "~bootstrap/scss/mixins";
-
 .select2-container {
     position: relative;
     display: block;
@@ -118,7 +112,10 @@
                         transform: translate3d(0,-50%,0);
 
                         b {
-                            @include caret-down();
+                            border-top: .3em solid;
+                            border-right: .3em solid transparent;
+                            border-bottom: 0;
+                            border-left: .3em solid transparent;
                         }
                     }
                 }
@@ -132,7 +129,10 @@
                 .select2-selection {
                     &__arrow {
                         b {
-                            @include caret-up();
+                            border-top: 0;
+                            border-right: .3em solid transparent;
+                            border-bottom: .3em solid;
+                            border-left: .3em solid transparent;
                         }
                     }
                 }

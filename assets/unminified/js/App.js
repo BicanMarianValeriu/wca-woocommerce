@@ -9,7 +9,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "App": () => (/* binding */ App)
+/* harmony export */   App: () => (/* binding */ App)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
@@ -41,7 +41,6 @@ const useBreakpoint = (0,react_use__WEBPACK_IMPORTED_MODULE_7__["default"])({
   mobile: 0,
   laptop: 992
 });
-
 const App = options => {
   const {
     headline = false,
@@ -52,8 +51,9 @@ const App = options => {
     },
     requestUrl,
     actions
-  } = options; // State
+  } = options;
 
+  // State
   const [scroll, setScroll] = useState(false);
   const [rating, setRating] = useState(false);
   const [userData, setUserData] = useState(false);
@@ -61,23 +61,23 @@ const App = options => {
   const [queryArgs, setQueryArgs] = useState({
     product_id,
     action: 'query'
-  }); // Load requested comments by filters
+  });
 
+  // Load requested comments by filters
   const {
     loading,
     data: reviews,
     meta
   } = (0,_hooks__WEBPACK_IMPORTED_MODULE_5__.useApiFetch)({
     queryArgs
-  }); // Set User
+  });
 
+  // Set User
   useEffect(() => {
     if (userData) return;
-
     (async () => {
       const formData = new FormData();
       formData.append('action', 'user');
-
       try {
         const r = await fetch(requestUrl, {
           method: 'POST',
@@ -88,7 +88,6 @@ const App = options => {
           status,
           liked
         } = await r.json();
-
         if (status) {
           const [reviewer, reviewer_email] = atob(token).split(':');
           setUserData({
@@ -102,14 +101,14 @@ const App = options => {
         console.warn(e);
       }
     })();
-  }, [userData]); // Scroll to Comments if rating
+  }, [userData]);
 
+  // Scroll to Comments if rating
   useEffect(() => {
     if (scroll) {
       const scrollEl = document.querySelector(container);
       (0,_functions__WEBPACK_IMPORTED_MODULE_6__.scrollToElement)(scrollEl);
     }
-
     setScroll(true);
   }, [rating]);
   const breakpoint = useBreakpoint();
@@ -130,7 +129,8 @@ const App = options => {
     setQueryArgs,
     breakpoint
   };
-  const listingProps = { ...filtersProps,
+  const listingProps = {
+    ...filtersProps,
     reviews,
     likedReviews,
     setLikedReviews,
@@ -147,7 +147,6 @@ const App = options => {
     meta
   })), total > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_filters__WEBPACK_IMPORTED_MODULE_3__["default"], filtersProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_listing_reviews__WEBPACK_IMPORTED_MODULE_4__["default"], listingProps)));
 };
-
 
 
 /***/ }),
@@ -172,11 +171,10 @@ const {
     sprintf
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    totalResults = false,
-    onReset
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  totalResults = false,
+  onReset
+}) => {
   return totalResults !== false && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "has-accent-background-color",
     style: {
@@ -227,17 +225,16 @@ const SORTING_OPTIONS = applyFilters('wecodeart.woocommerce.reviews.sorting', {
   'rating': __('Rating', 'wca-woocommerce'),
   'likes': __('Popularity', 'wca-woocommerce')
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    queryArgs,
-    setQueryArgs,
-    loading,
-    meta: {
-      totalResults
-    },
-    options,
-    breakpoint
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  queryArgs,
+  setQueryArgs,
+  loading,
+  meta: {
+    totalResults
+  },
+  options,
+  breakpoint
+}) => {
   const {
     product: {
       ID: product_id,
@@ -253,12 +250,11 @@ const SORTING_OPTIONS = applyFilters('wecodeart.woocommerce.reviews.sorting', {
     2: 0,
     1: 0
   };
-  amount = { ...amount,
+  amount = {
+    ...amount,
     ...counts
   };
-
   const getLabel = v => sprintf(_n('%s star reviews', '%s stars reviews', v, 'wca-woocommerce'), v);
-
   const {
     handleSubmit,
     register,
@@ -266,42 +262,31 @@ const SORTING_OPTIONS = applyFilters('wecodeart.woocommerce.reviews.sorting', {
   } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_4__.useForm)({
     mode: 'onSubmit'
   });
-
   const onSubmit = values => {
     const result = {};
-
     for (const [k, v] of Object.entries(values)) {
       if (v !== '' && v !== false) result[k] = v;
     }
-
     setQueryArgs({
       product_id,
       ...result
     });
   };
-
   const onChange = () => setTimeout(handleSubmit(onSubmit), 20);
-
   const onReset = () => {
     resetForm();
     return onChange();
   };
-
   const style = {};
-
   if (loading) {
     style.pointerEvents = 'none';
     style.opacity = .65;
   }
-
   const includedIn = x => ['rating', 'verified', 'search'].includes(x);
-
   const hasFilters = Object.keys(queryArgs).map(includedIn).filter(Boolean).pop();
-
   if (actions?.like === false) {
     delete SORTING_OPTIONS.likes;
   }
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("form", {
     className: "woocommerce-Reviews__filters",
     onSubmit: handleSubmit(onSubmit),
@@ -380,20 +365,18 @@ const SORTING_OPTIONS = applyFilters('wecodeart.woocommerce.reviews.sorting', {
     type: "search",
     placeholder: __('Search in reviews', 'wca-woocommerce')
   }, register('search', {
-    onBlur(_ref2) {
-      let {
-        target: {
-          value
-        }
-      } = _ref2;
-
+    onBlur({
+      target: {
+        value
+      }
+    }) {
       if (value === '' && queryArgs.search !== undefined) {
         delete queryArgs.search;
-        setQueryArgs({ ...queryArgs
+        setQueryArgs({
+          ...queryArgs
         });
       }
     }
-
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("button", {
     className: 'wp-element-button wp-block-search__button has-accent-background-color',
     style: {
@@ -422,11 +405,11 @@ const SORTING_OPTIONS = applyFilters('wecodeart.woocommerce.reviews.sorting', {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "formatDate": () => (/* binding */ formatDate),
-/* harmony export */   "generateAvatarDataURL": () => (/* binding */ generateAvatarDataURL),
-/* harmony export */   "getInitials": () => (/* binding */ getInitials),
-/* harmony export */   "renderToString": () => (/* binding */ renderToString),
-/* harmony export */   "scrollToElement": () => (/* binding */ scrollToElement)
+/* harmony export */   formatDate: () => (/* binding */ formatDate),
+/* harmony export */   generateAvatarDataURL: () => (/* binding */ generateAvatarDataURL),
+/* harmony export */   getInitials: () => (/* binding */ getInitials),
+/* harmony export */   renderToString: () => (/* binding */ renderToString),
+/* harmony export */   scrollToElement: () => (/* binding */ scrollToElement)
 /* harmony export */ });
 const formatDate = date => {
   const event = new Date(date);
@@ -437,7 +420,6 @@ const formatDate = date => {
   };
   return event.toLocaleDateString(undefined, options);
 };
-
 const scrollToElement = element => {
   if (element) {
     const headerEl = document.querySelector('.wp-site-header.sticky-top');
@@ -449,62 +431,52 @@ const scrollToElement = element => {
     });
   }
 };
-
 const getInitials = name => {
   if (!name) {
     return 'AN';
   }
-
   const names = name.trim().split(' ');
   const initials = names.map(n => n[0].toUpperCase());
   return initials.join('');
 };
-
-const generateAvatarDataURL = function (initials) {
-  let size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
-  let bgColor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '#007bff';
+const generateAvatarDataURL = (initials, size = 100, bgColor = '#007bff') => {
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
-  const ctx = canvas.getContext('2d'); // Set background color
+  const ctx = canvas.getContext('2d');
 
+  // Set background color
   ctx.fillStyle = bgColor;
-  ctx.fillRect(0, 0, canvas.width, canvas.height); // Set text style
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  // Set text style
   ctx.font = `${size / 2.5}px Arial`;
   ctx.fillStyle = '#ffffff'; // White text color
-  // Calculate text metrics to center it on the canvas
 
+  // Calculate text metrics to center it on the canvas
   const textMetrics = ctx.measureText(initials);
   const x = (canvas.width - textMetrics.width) / 2;
-  const y = (canvas.height + size / 4) / 2.5 + size / 4 - textMetrics.actualBoundingBoxAscent / 2.5; // Draw initials on the canvas
+  const y = (canvas.height + size / 4) / 2.5 + size / 4 - textMetrics.actualBoundingBoxAscent / 2.5;
 
-  ctx.fillText(initials, x, y); // Convert canvas to data URL
+  // Draw initials on the canvas
+  ctx.fillText(initials, x, y);
 
+  // Convert canvas to data URL
   const dataURL = canvas.toDataURL();
   return dataURL;
 };
-
-const renderToString = function () {
-  let string = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  let variables = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
+const renderToString = (string = '', variables = {}) => {
   const destruct = (obj, v) => v.split(/\.|\|/).reduce((v, k) => v?.[k], obj); // Multiple
-
-
   const rxp = /{{([^}]+)}}/g;
   let match;
-
   while (match = rxp.exec(string)) {
     const expression = match[1];
     const value = destruct(variables, expression.trim());
     if (value === undefined) continue;
     string = string.replace(new RegExp(`{{${expression}}}`, 'g'), value);
   }
-
   return string;
 };
-
 
 
 /***/ }),
@@ -517,8 +489,8 @@ const renderToString = function () {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useApiFetch": () => (/* binding */ useApiFetch),
-/* harmony export */   "useHover": () => (/* binding */ useHover)
+/* harmony export */   useApiFetch: () => (/* binding */ useApiFetch),
+/* harmony export */   useHover: () => (/* binding */ useHover)
 /* harmony export */ });
 const {
   element: {
@@ -533,76 +505,74 @@ const {
   product: {
     total
   }
-} = wpBlockWooReviews; // Actions
+} = wpBlockWooReviews;
 
+// Actions
 const ACTIONS = {
   MAKE_REQUEST: 'make-request',
   SET_META: 'set-meta',
   GET_REVIEWS: 'get-reviews',
   GET_COMMENTS: 'get-comments',
   ERROR: 'error'
-}; // Reducer
+};
 
+// Reducer
 function reducer(state, action) {
   const {
     type,
     payload
   } = action;
-
   switch (type) {
     case ACTIONS.MAKE_REQUEST:
-      return { ...state,
+      return {
+        ...state,
         loading: true,
         data: [],
         meta: {}
       };
-
     case ACTIONS.SET_META:
       const {
         meta
       } = payload;
-      return { ...state,
+      return {
+        ...state,
         meta
       };
-
     case ACTIONS.GET_REVIEWS:
     case ACTIONS.GET_COMMENTS:
       const {
         data
       } = payload;
-      return { ...state,
+      return {
+        ...state,
         loading: false,
         data
       };
-
     case ACTIONS.ERROR:
       const {
         error
       } = payload;
-      return { ...state,
+      return {
+        ...state,
         loading: false,
         data: [],
         error
       };
-
     default:
       return state;
   }
 }
+
 /**
  * Function that fetches data using apiFetch, and updates the status.
  *
  * @param {string} path Query path.
  */
-
-
-function useApiFetch(_ref) {
-  let {
-    path = requestUrl,
-    queryArgs = {},
-    action = 'GET_REVIEWS'
-  } = _ref;
-  let hasReviews = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : total;
+function useApiFetch({
+  path = requestUrl,
+  queryArgs = {},
+  action = 'GET_REVIEWS'
+}, hasReviews = total) {
   const [state, dispatch] = useReducer(reducer, {
     data: [],
     meta: {},
@@ -621,11 +591,10 @@ function useApiFetch(_ref) {
       method: 'POST',
       body: formData,
       parse: true
-    }).then(r => r.json()).then(_ref2 => {
-      let {
-        meta,
-        data
-      } = _ref2;
+    }).then(r => r.json()).then(({
+      meta,
+      data
+    }) => {
       dispatch({
         type: ACTIONS.SET_META,
         payload: {
@@ -649,34 +618,31 @@ function useApiFetch(_ref) {
   }, [queryArgs, total]);
   return state;
 }
+
 /**
  * Function that listens for hover.
  */
-
-
 function useHover() {
   const [value, setValue] = useState(false);
   const ref = useRef(null);
-
   const handleMouseOver = e => setValue(e.target);
-
   const handleMouseOut = () => setValue(false);
-
   useEffect(() => {
     const node = ref.current;
-
     if (node) {
       // Add event listeners for mouse events
       node.addEventListener('mouseover', handleMouseOver);
-      node.addEventListener('mouseout', handleMouseOut); // Add event listeners for touch events
+      node.addEventListener('mouseout', handleMouseOut);
 
+      // Add event listeners for touch events
       node.addEventListener('touchstart', handleMouseOver);
       node.addEventListener('touchend', handleMouseOut);
       return () => {
         // Remove event listeners for mouse events
         node.removeEventListener('mouseover', handleMouseOver);
-        node.removeEventListener('mouseout', handleMouseOut); // Remove event listeners for touch events
+        node.removeEventListener('mouseout', handleMouseOut);
 
+        // Remove event listeners for touch events
         node.removeEventListener('touchstart', handleMouseOver);
         node.removeEventListener('touchend', handleMouseOut);
       };
@@ -684,7 +650,6 @@ function useHover() {
   }, [ref.current]);
   return [ref, value];
 }
-
 
 
 /***/ }),
@@ -717,13 +682,12 @@ const {
     useState
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    addComment,
-    setAddComment,
-    productId,
-    requestUrl
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  addComment,
+  setAddComment,
+  productId,
+  requestUrl
+}) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
   const {
@@ -738,19 +702,16 @@ const {
       comment: ''
     }
   });
-
   const onSubmit = async values => {
     if (loading) {
       return;
     }
-
     const formData = new FormData();
     formData.append('action', 'comment');
     formData.append('product_id', productId);
     formData.append('parent', addComment);
     Object.keys(values).map(k => formData.append(k, values[k]));
     setLoading(true);
-
     try {
       const r = await fetch(requestUrl, {
         method: 'POST',
@@ -765,7 +726,6 @@ const {
       setTimeout(() => setAddComment(false), 5000);
     }
   };
-
   console.log(errors);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, message ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "has-accent-background-color my-spacer",
@@ -997,42 +957,33 @@ const {
     useState
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    loading,
-    queryArgs,
-    setQueryArgs,
-    totalPages: total
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  loading,
+  queryArgs,
+  setQueryArgs,
+  totalPages: total
+}) => {
   const {
     page = 1
   } = queryArgs;
   const [scroll, setScroll] = useState(false);
-
-  const setPage = p => setQueryArgs({ ...queryArgs,
+  const setPage = p => setQueryArgs({
+    ...queryArgs,
     page: Math.min(Math.max(p, 1), total)
   });
-
   useEffect(() => {
     if (scroll) {
       const scrollEl = document.forms['wca-woo-filters'];
       (0,_functions__WEBPACK_IMPORTED_MODULE_1__.scrollToElement)(scrollEl);
     }
-
     setScroll(true);
   }, [page]);
-
-  const ReaderText = _ref2 => {
-    let {
-      text
-    } = _ref2;
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      class: "screen-reader-text"
-    }, text);
-  };
-
-  const renderAdjacent = function () {
-    let prev = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  const ReaderText = ({
+    text
+  }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    class: "screen-reader-text"
+  }, text);
+  const renderAdjacent = (prev = false) => {
     const goToPage = prev ? page - 1 : page + 1;
     const isPrevDisabled = [prev === true && page === 1 ? 'disabled' : ''];
     const isNextDisabled = [prev === false && page === parseFloat(total) ? 'disabled' : ''];
@@ -1043,14 +994,12 @@ const {
       href: !isDisabled ? 'javascript:void(0);' : null,
       onClick: !isDisabled ? () => setPage(goToPage) : null
     };
-
     const Inner = () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       "aria-hidden": "true",
       dangerouslySetInnerHTML: {
         __html: prev ? '&laquo;' : '&raquo;'
       }
     });
-
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
       className: classNames.join(' ')
     }, isDisabled ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", props, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Inner, null), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReaderText, {
@@ -1059,7 +1008,6 @@ const {
       text: __('Previous page', 'wca-woocommerce')
     })));
   };
-
   const generateDots = () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "woocommerce-Reviews__pagination-item woocommerce-Reviews__pagination-item--dots"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
@@ -1067,7 +1015,6 @@ const {
   }, "...", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ReaderText, {
     text: __('dots', 'wca-woocommerce')
   })));
-
   const generateLink = p => {
     const isCurrent = parseFloat(p) === page;
     const classNames = ['woocommerce-Reviews__pagination-link', ...[isCurrent ? 'has-primary-background-color' : '']].filter(Boolean);
@@ -1085,27 +1032,21 @@ const {
       text: __('Page', 'wca-woocommerce')
     }), " ", p));
   };
-
   const generateLinks = () => {
     let d = 2,
-        range = [];
-
+      range = [];
     for (let i = Math.max(2, page - d); i <= Math.min(total - 1, page + d); i++) range.push(generateLink(i));
-
     if (page + d < total - 1) range.push(generateDots());
     if (page - d > 2) range.unshift(generateDots());
     range.unshift(generateLink(1));
     range.push(generateLink(total));
     return range;
   };
-
   const style = {};
-
   if (loading) {
     style.pointerEvents = 'none';
     style.opacity = .65;
   }
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", {
     className: "woocommerce-Reviews__pagination",
     "aria-label": __('Reviews pagination', 'wca-woocommerce')
@@ -1152,17 +1093,16 @@ const {
     useState
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    review,
-    options,
-    userData = false,
-    addComment,
-    setAddComment,
-    onAddComment,
-    likedReviews,
-    setLikedReviews
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  review,
+  options,
+  userData = false,
+  addComment,
+  setAddComment,
+  onAddComment,
+  likedReviews,
+  setLikedReviews
+}) => {
   const {
     id: reviewId,
     content,
@@ -1220,19 +1160,17 @@ const {
     }))
   }];
   const enabledActions = Object.keys(actions).filter(k => actions[k] === true);
-  let reviewActions = applyFilters('wecodeart.woocommerce.reviews.actions', defaultActions, review, options, userData); // Filter the defaultActions array based on enabledActions
+  let reviewActions = applyFilters('wecodeart.woocommerce.reviews.actions', defaultActions, review, options, userData);
 
-  reviewActions = reviewActions.filter(_ref2 => {
-    let {
-      key: {
-        type
-      }
-    } = _ref2;
-
+  // Filter the defaultActions array based on enabledActions
+  reviewActions = reviewActions.filter(({
+    key: {
+      type
+    }
+  }) => {
     if (type === 'comments' && enabledActions.includes('comment')) {
       return true;
     }
-
     return enabledActions.includes(type);
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
@@ -1288,17 +1226,11 @@ const {
     }
   }), reviewActions.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "woocommerce-Reviews__item-actions"
-  }, reviewActions.map(_ref3 => {
-    let {
-      Component = null
-    } = _ref3;
-    return Component;
-  })), reviewActions.reverse().map(_ref4 => {
-    let {
-      After = null
-    } = _ref4;
-    return After;
-  })))));
+  }, reviewActions.map(({
+    Component = null
+  }) => Component)), reviewActions.reverse().map(({
+    After = null
+  }) => After)))));
 });
 
 /***/ }),
@@ -1318,13 +1250,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    icon = false,
-    label,
-    children,
-    ...rest
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  icon = false,
+  label,
+  children,
+  ...rest
+}) => {
   rest = {
     className: 'wp-element-button has-background has-black-color has-small-font-size',
     ...rest
@@ -1360,38 +1291,30 @@ const {
     __
   }
 } = wp;
-
-const Component = _ref => {
-  let {
-    review,
-    userData,
-    onAddComment
-  } = _ref;
-
+const Component = ({
+  review,
+  userData,
+  onAddComment
+}) => {
   if (userData) {
     const {
       id: reviewId
     } = review;
-
     const onClick = () => onAddComment(reviewId);
-
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
       label: __('Add Comment', 'wca-woocommerce'),
       icon: 'comment',
       onClick
     });
   }
-
   return null;
 };
-
-const After = _ref2 => {
-  let {
-    review,
-    options,
-    addComment,
-    setAddComment
-  } = _ref2;
+const After = ({
+  review,
+  options,
+  addComment,
+  setAddComment
+}) => {
   const {
     id: reviewId
   } = review;
@@ -1401,7 +1324,6 @@ const After = _ref2 => {
     },
     requestUrl
   } = options;
-
   if (addComment === reviewId) {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_comments_AddComment__WEBPACK_IMPORTED_MODULE_2__["default"], {
       addComment,
@@ -1410,10 +1332,8 @@ const After = _ref2 => {
       requestUrl
     });
   }
-
   return null;
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   key: 'comment',
   Component,
@@ -1442,15 +1362,13 @@ const {
     useState
   }
 } = wp;
-
-const Component = _ref => {
-  let {
-    review,
-    options,
-    likedReviews,
-    setLikedReviews,
-    userData
-  } = _ref;
+const Component = ({
+  review,
+  options,
+  likedReviews,
+  setLikedReviews,
+  userData
+}) => {
   const {
     id: reviewId,
     likes: hasLikes
@@ -1465,7 +1383,6 @@ const Component = _ref => {
     icon: isReviewLiked ? 'liked' : 'like',
     disabled: liking === true
   };
-
   if (userData) {
     const onClick = async () => {
       if (liking) return;
@@ -1473,7 +1390,6 @@ const Component = _ref => {
       const formData = new FormData();
       formData.append('action', 'like');
       formData.append('review_id', reviewId);
-
       try {
         const r = await fetch(requestUrl, {
           method: 'POST',
@@ -1489,17 +1405,15 @@ const Component = _ref => {
         setLiking(false);
       }
     };
-
-    actionProps = { ...actionProps,
+    actionProps = {
+      ...actionProps,
       onClick
     };
   }
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], actionProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "count"
   }, "(", likes, ")"));
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   key: 'like',
   Component
@@ -1536,16 +1450,14 @@ const {
   }
 } = wp;
 const CommentsList = lazy(() => __webpack_require__.e(/*! import() | CommentList */ "CommentList").then(__webpack_require__.bind(__webpack_require__, /*! ../../comments */ "./src/js/frontend/reviews/listing/comments/index.js")));
-
-const Component = _ref => {
-  let {
-    review,
-    options,
-    comments,
-    setComments,
-    loading,
-    setLoading
-  } = _ref;
+const Component = ({
+  review,
+  options,
+  comments,
+  setComments,
+  loading,
+  setLoading
+}) => {
   const {
     replies = [],
     id: reviewId
@@ -1559,30 +1471,24 @@ const Component = _ref => {
       const containerEl = document.querySelector(`#review-${reviewId}`);
       (0,_functions__WEBPACK_IMPORTED_MODULE_2__.scrollToElement)(containerEl);
     }
-
     setScroll(true);
   }, [comments]);
-
   if (replies.length) {
     const onClick = async e => {
       if (loading) {
         return;
       }
-
       if (comments.length) {
         const container = e.currentTarget.parentNode.parentNode.querySelector('.woocommerce-Reviews__listing--comments');
-
         if (container) {
           container.style.display = container?.style?.display === 'none' ? 'block' : 'none';
           return;
         }
       }
-
       const formData = new FormData();
       formData.append('action', 'query');
       formData.append('include', replies);
       setLoading(true);
-
       try {
         const r = await fetch(requestUrl, {
           method: 'POST',
@@ -1599,7 +1505,6 @@ const Component = _ref => {
         setLoading(false);
       }
     };
-
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
       label: __('View Comments', 'wca-woocommerce'),
       icon: 'comments',
@@ -1609,14 +1514,11 @@ const Component = _ref => {
     }, " (", replies.length, ") "));
   }
 };
-
-const After = _ref2 => {
-  let {
-    loading,
-    comments,
-    avatar
-  } = _ref2;
-
+const After = ({
+  loading,
+  comments,
+  avatar
+}) => {
   if (comments.length) {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Suspense, {
       fallback: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Loading...")
@@ -1627,7 +1529,6 @@ const After = _ref2 => {
     }));
   }
 };
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   key: 'comments',
   Component,
@@ -1644,9 +1545,9 @@ const After = _ref2 => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Comment": () => (/* reexport safe */ _Comment__WEBPACK_IMPORTED_MODULE_1__["default"]),
-/* harmony export */   "Like": () => (/* reexport safe */ _Like__WEBPACK_IMPORTED_MODULE_0__["default"]),
-/* harmony export */   "Replies": () => (/* reexport safe */ _Replies__WEBPACK_IMPORTED_MODULE_2__["default"])
+/* harmony export */   Comment: () => (/* reexport safe */ _Comment__WEBPACK_IMPORTED_MODULE_1__["default"]),
+/* harmony export */   Like: () => (/* reexport safe */ _Like__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   Replies: () => (/* reexport safe */ _Replies__WEBPACK_IMPORTED_MODULE_2__["default"])
 /* harmony export */ });
 /* harmony import */ var _Like__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Like */ "./src/js/frontend/reviews/listing/reviews/actions/Like.js");
 /* harmony import */ var _Comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Comment */ "./src/js/frontend/reviews/listing/reviews/actions/Comment.js");
@@ -1691,19 +1592,18 @@ const {
     useState
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    loading,
-    reviews = [],
-    likedReviews = [],
-    setLikedReviews,
-    meta,
-    queryArgs,
-    setQueryArgs,
-    userData,
-    options,
-    breakpoint
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  loading,
+  reviews = [],
+  likedReviews = [],
+  setLikedReviews,
+  meta,
+  queryArgs,
+  setQueryArgs,
+  userData,
+  options,
+  breakpoint
+}) => {
   const {
     amount
   } = options;
@@ -1712,9 +1612,7 @@ const {
   } = window.location;
   const rId = isValidFragment(hash) && hash.split('-').pop();
   const [addComment, setAddComment] = useState(false);
-
   const onAddComment = id => addComment !== id ? setAddComment(id) : setAddComment(false);
-
   useEffect(() => {
     if (loading) return;
     const scrollEl = document.getElementById(`review-${rId}`);
@@ -1764,11 +1662,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    icon = 'default',
-    ...rest
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  icon = 'default',
+  ...rest
+}) => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: `woocommerce-Reviews__icon woocommerce-Reviews__icon--${icon}`,
     role: "img"
@@ -1813,12 +1710,11 @@ const RATING_LABELS = applyFilters('wecodeart.woocommerce.reviews.rating.labels'
   4: __('Good', 'wca-woocommerce'),
   5: __('Excelent', 'wca-woocommerce')
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    rating = 0,
-    onClick,
-    children
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  rating = 0,
+  onClick,
+  children
+}) => {
   const [refHover, isHovered] = (0,_hooks__WEBPACK_IMPORTED_MODULE_1__.useHover)();
   const [ratingLabel, setRatingLabel] = useState('');
   const hoverLabel = isHovered && isHovered.closest('[aria-label]')?.getAttribute('aria-label');
@@ -1866,13 +1762,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Icon */ "./src/js/frontend/reviews/shared/Icon.js");
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    rating = 0.0,
-    percent = false,
-    className = 'has-medium-font-size'
-  } = _ref;
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  rating = 0.0,
+  percent = false,
+  className = 'has-medium-font-size'
+}) => {
   const generateStars = a => [5, 4, 3, 2, 1].map(i => {
     const className = ['has-background', parseInt(a) === i ? 'active' : ''].filter(Boolean).join(' ');
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -1882,7 +1776,6 @@ __webpack_require__.r(__webpack_exports__);
       icon: "rating"
     }));
   });
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `woocommerce-Reviews__rating ${className}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1921,14 +1814,13 @@ const {
     sprintf
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    setRating,
-    userData: {
-      reviewer = false
-    },
-    options = {}
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  setRating,
+  userData: {
+    reviewer = false
+  },
+  options = {}
+}) => {
   const {
     product: {
       verify = false
@@ -1984,34 +1876,31 @@ const {
     sprintf
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    amount = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0
-    },
-    total = 0,
-    queryArgs,
-    setQueryArgs
-  } = _ref;
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  amount = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0
+  },
+  total = 0,
+  queryArgs,
+  setQueryArgs
+}) => {
   const onClick = e => {
     e.preventDefault();
     const filterForms = document.forms['wca-woo-filters'];
     const clickedValue = e.currentTarget.dataset.value;
     const fieldElement = filterForms.elements.rating;
-
     if (clickedValue !== fieldElement.value) {
       fieldElement.value = clickedValue;
-      setQueryArgs({ ...queryArgs,
+      setQueryArgs({
+        ...queryArgs,
         rating: clickedValue
       });
     }
   };
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__summary-bars",
     style: {
@@ -2043,7 +1932,8 @@ const {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
       style: cellStyle
     }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      style: { ...cellStyle,
+      style: {
+        ...cellStyle,
         padding: 8,
         width: '100%'
       }
@@ -2090,14 +1980,11 @@ const {
     sprintf
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    average = 0.0,
-    total = 0
-  } = _ref;
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  average = 0.0,
+  total = 0
+}) => {
   const labelElement = _n('%s review', '%s reviews', total, 'wca-woocommerce');
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "woocommerce-Reviews__summary-info is-layout-flow",
     style: {
@@ -2142,16 +2029,15 @@ const {
     useEffect
   }
 } = wp;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  average = 0.0,
+  verified = 0,
+  verifiedBadge
+}) => {
   var _verifiedRef$current;
+  const verifiedRef = useRef();
 
-  let {
-    average = 0.0,
-    verified = 0,
-    verifiedBadge
-  } = _ref;
-  const verifiedRef = useRef(); // Update once and maintain it.
-
+  // Update once and maintain it.
   useEffect(() => {
     verifiedRef.current = verified;
   }, [verified]);
@@ -2209,17 +2095,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_ref => {
-  let {
-    options,
-    rating,
-    setRating,
-    queryArgs,
-    setQueryArgs,
-    userData,
-    meta,
-    breakpoint
-  } = _ref;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
+  options,
+  rating,
+  setRating,
+  queryArgs,
+  setQueryArgs,
+  userData,
+  meta,
+  breakpoint
+}) => {
   let amount = {
     1: 0,
     2: 0,
@@ -2238,7 +2123,8 @@ __webpack_require__.r(__webpack_exports__);
   const {
     verified
   } = meta;
-  amount = { ...amount,
+  amount = {
+    ...amount,
     ...counts
   };
   const dataProps = {

@@ -12,13 +12,17 @@ const RATING_SUGGESTIONS = applyFilters('wecodeart.woocommerce.reviews.rating.su
 	5: [__('Excelent', 'wca-woocommerce'), __('Very satisfied', 'wca-woocommerce'), __('Recommended', 'wca-woocommerce'), __('Cool', 'wca-woocommerce')],
 });
 
-export default ({ rating: star = 5 }) => {
+export default ({ rating: star = 5, setTitle }) => {
 
 	const [current, setCurrent] = useState(RATING_SUGGESTIONS[star]);
 
 	useEffect(() => setCurrent(RATING_SUGGESTIONS[star]), [star]);
 
-	const onClick = (e) => document.forms['wca-woo-addreview'].elements['title'].value = e.currentTarget.textContent;
+	const onClick = (e) => {
+		const value = e.currentTarget.textContent;
+		setTitle(value);
+		document.forms['wca-woo-addreview'].elements['title'].value = value;
+	};
 
 	const Button = ({ key, label }) => {
 		const props = { type: 'button', className: 'wp-element-button has-accent-background-color has-black-color', key, onClick };
