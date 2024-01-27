@@ -90,6 +90,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 							break;
 						case 'price':
 							$value = $grouped_product_child->get_price_html() . wc_get_stock_html( $grouped_product_child );
+							$column_id .= ' price';
 							break;
 						default:
 							$value = '';

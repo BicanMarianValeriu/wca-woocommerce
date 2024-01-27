@@ -9,7 +9,7 @@
  * @subpackage WCA\EXT\WOO\Frontend\Blocks\Featured
  */
 
-namespace WCA\EXT\WOO\Frontend\Blocks;
+namespace WCA\EXT\WOO\Frontend\Blocks\Featured;
 
 defined( 'ABSPATH' ) || exit();
 
@@ -20,7 +20,7 @@ use function WeCodeArt\Functions\get_prop;
 /**
  * Gutenberg Featured Product block.
  */
-class Featured extends Base {
+class Product extends Base {
 
 	use Singleton;
 
@@ -32,34 +32,15 @@ class Featured extends Base {
 	protected $block_name = 'featured-product';
 
 	/**
-	 * Block styles.
-	 *
-	 * @return 	string Block CSS.
-	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-
-		wecodeart( 'assets' )->add_style( 'wc-blocks-style-featured-category', [
-			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-featured-category' ) || wp_style_is( $this->get_asset_handle() ) ) {
-					return false;
-				}
-
-				if( in_array( 'woocommerce/featured-category', $blocks ) ) {
-					return true;
-				}
-			},
-			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
-		] );
-	}
-
-	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
 		return '
+			.wp-block.wp-block:is(.wp-block-woocommerce-featured-product) {
+				background: none!important;
+			}
 			div[class*=wc-block-featured-] {
 				position: relative;
 				overflow: hidden;

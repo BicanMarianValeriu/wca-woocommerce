@@ -31,6 +31,33 @@ class Notices extends Base {
 	protected $block_name = 'store-notices';
 
 	/**
+	 * Constructor.
+	 *
+	 * @return 	void
+	 */
+	public function init() {
+		\add_filter( 'render_block_' . $this->get_block_type(), [ $this, 'render' ], 20, 1 );
+	}
+
+	/**
+	 * Dynamically renders the `woocommerce/store-notices` block.
+	 *
+	 * @param 	string 	$content 	The block markup.
+	 *
+	 * @return 	string 	The block markup.
+	 */
+	public function render( string $content = '' ): string {
+
+		return str_replace( [
+			'alignwide  alignwide',
+			'  align',
+		], [ 
+			'alignwide',
+			'alignnone'
+		], $content );
+	}
+
+	/**
 	 * Block styles.
 	 *
 	 * @return 	string Block CSS.

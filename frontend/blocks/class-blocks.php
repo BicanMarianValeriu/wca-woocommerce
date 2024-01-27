@@ -53,7 +53,8 @@ class Blocks {
 		$container->register( 'woocommerce/stock-filter',			Blocks\Filters\Stock::class );
 		$container->register( 'woocommerce/attribute-filter',		Blocks\Filters\Attribute::class );
 		// Featured
-		$container->register( 'woocommerce/featured-product',		Blocks\Featured::class );
+		$container->register( 'woocommerce/featured-product',		Blocks\Featured\Product::class );
+		$container->register( 'woocommerce/featured-category',		Blocks\Featured\Category::class );
 		// Product
 		$container->register( 'woocommerce/product-price', 			Blocks\Product\Price::class );
 		$container->register( 'woocommerce/product-image', 			Blocks\Product\Image::class );
@@ -78,7 +79,8 @@ class Blocks {
 		$container->register( 'woocommerce/mini-cart-shopping-button',			Blocks\Cart\Widget\Button::class );
 		// Checkout
 		$container->register( 'woocommerce/checkout',							Blocks\Checkout::class );
-		$container->register( 'woocommerce/checkout-billing-address',			Blocks\Checkout\Address::class );
+		$container->register( 'woocommerce/checkout-billing-address-block',		Blocks\Checkout\Address\Billing::class );
+		$container->register( 'woocommerce/checkout-shipping-address-block',	Blocks\Checkout\Address\Shipping::class );
 		$container->register( 'woocommerce/checkout-shipping-method',			Blocks\Checkout\Shipping::class );
 		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
 		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );
