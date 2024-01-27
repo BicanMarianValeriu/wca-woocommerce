@@ -221,8 +221,8 @@ class Woo implements Integration {
 		$this->loader->add_filter( 'woocommerce_form_field',					$frontend, 	'form_field_markup',	20, 4 );
 		$this->loader->add_filter( 'woocommerce_locate_template',				$frontend, 	'locate_template',		20, 2 );
 		$this->loader->add_filter( 'comments_template',							$frontend, 	'comments_template',	20, 2 );
+		$this->loader->add_filter( 'register_block_type_args',					$blocks, 	'block_type_args',		20, 2 );
 		$this->loader->add_action( 'wecodeart/gutenberg/blocks/register',		$blocks, 	'register',				20, 1 );
-		$this->loader->add_filter( 'wecodeart/filter/gutenberg/restricted',		$blocks, 	'restricted',			20, 1 );
 	}
 
 	/**

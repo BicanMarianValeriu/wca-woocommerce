@@ -13,6 +13,7 @@ namespace WCA\EXT\WOO\Frontend;
 
 use WeCodeArt\Singleton;
 use WeCodeArt\Config\Traits\Asset;
+use function WeCodeArt\Functions\get_prop;
 
 /**
  * Blocks
@@ -178,6 +179,28 @@ class Blocks {
 	}
 
 	/**
+	 * Block register args.
+	 *
+	 * @param	array	$args
+	 * @param	string	$block_name
+	 *
+	 * @return 	array
+	 */
+	public function block_type_args( array $args, string $block_name ): array {
+		if( str_starts_with( $block_name, 'woocommerce/' ) && ! in_array( $block_name, self::get_restricted_blocks(), true ) ) {
+			$support	= get_prop( $args, [ 'supports' ], [] );
+			
+			$args		= wp_parse_args( [
+				'supports'	=> wp_parse_args( [
+					'__experimentalStyles' => true,
+				], $support ),
+			], $args );
+		}
+
+		return $args;
+	}
+
+	/**
 	 * Filter - Restricted WooCommerce Blocks from theme code (extending their attributes will cause them to crash)
 	 *
 	 * @since	1.0.0
@@ -185,8 +208,8 @@ class Blocks {
 	 *
 	 * @return 	array
 	 */
-	public function restricted( $blocks ) {
-		return wp_parse_args( [
+	public static function get_restricted_blocks() {
+		return [
 			'woocommerce/product-best-sellers', // ok
 			'woocommerce/product-top-rated',	// ok
 			'woocommerce/product-on-sale',		// ok
@@ -197,7 +220,7 @@ class Blocks {
 			'woocommerce/handpicked-products',	// ok
 			'woocommerce/product-categories',	// ok
 			'fibosearch/search'
-		], $blocks );
+		];
 	}
 
 	/**
@@ -218,6 +241,7 @@ class Blocks {
 			'woocommerce/product-tag',
 			'woocommerce/product-category',
 			'woocommerce/products-by-attribute',
+			'woocommerce/product-collection',
 			'woocommerce/all-products',
 			'woocommerce/related-products',
 			'woocommerce/handpicked-products',
