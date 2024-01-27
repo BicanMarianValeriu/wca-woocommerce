@@ -96,8 +96,7 @@ class Patterns {
 		register_block_pattern( 'wecodeart/query-products-related', [
 			'title' 		=> apply_filters( 'woocommerce_product_related_products_heading', esc_html__( 'Related products', 'woocommerce' ) ),
 			'categories' 	=> [ 'wecodeart' ],
-			// 'blockTypes' 	=> [ 'core/query' ],
-			'postTypes' 	=> [ 'product' ],
+			'blockTypes' 	=> [ 'core/query' ],
 			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/related-products -->
