@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit();
 
 use WeCodeArt\Singleton;
 use WCA\EXT\WOO\Frontend\Blocks\Base;
+use function WeCodeArt\Functions\get_prop;
 
 /**
  * Gutenberg Featured Product block.
@@ -65,6 +66,9 @@ class Featured extends Base {
 			}
 			div[class*=wc-block-featured-].alignnone {
 				margin: 0;
+			}
+			div[class*=wc-block-featured-].has-background-dim {
+				opacity: 1;
 			}
 			div[class*=wc-block-featured-].has-left-content div[class*=__wrapper] {
 				align-items: flex-start;

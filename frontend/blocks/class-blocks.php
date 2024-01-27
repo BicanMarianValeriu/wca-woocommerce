@@ -187,9 +187,13 @@ class Blocks {
 	 * @return 	array
 	 */
 	public function block_type_args( array $args, string $block_name ): array {
-		if( str_starts_with( $block_name, 'woocommerce/' ) && ! in_array( $block_name, self::get_restricted_blocks(), true ) ) {
+		if( in_array( $block_name, self::get_restricted_blocks(), true ) ) {
+			return $args;
+		}
+
+		if( str_starts_with( $block_name, 'woocommerce/' ) ) {
 			$support	= get_prop( $args, [ 'supports' ], [] );
-			
+
 			$args		= wp_parse_args( [
 				'supports'	=> wp_parse_args( [
 					'__experimentalStyles' => true,
@@ -210,15 +214,7 @@ class Blocks {
 	 */
 	public static function get_restricted_blocks() {
 		return [
-			'woocommerce/product-best-sellers', // ok
-			'woocommerce/product-top-rated',	// ok
-			'woocommerce/product-on-sale',		// ok
-			'woocommerce/product-new',			// ok
-			'woocommerce/product-tag',			// ok
-			'woocommerce/product-category', 	// ok
-			'woocommerce/products-by-attribute',// ok
-			'woocommerce/handpicked-products',	// ok
-			'woocommerce/product-categories',	// ok
+			'woocommerce/product-on-sale',
 			'fibosearch/search'
 		];
 	}
