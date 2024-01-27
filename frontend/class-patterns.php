@@ -28,10 +28,10 @@ class Patterns {
 	public function register() {
 		register_block_pattern( 'wecodeart/el-product-loop', [
 			'title' 		=> esc_html__( 'Product Item', 'wca-woocommerce' ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart/elements' ],
+			'categories' 	=> [ 'wecodeart' ],
 			'inserter'		=> false,
 			'content'		=> '
-				<!-- wp:woocommerce/product-image {"saleBadgeAlign":"left","isDescendentOfQueryLoop":true} /-->
+				<!-- wp:woocommerce/product-image {"saleBadgeAlign":"left","imageSizing":"cropped","isDescendentOfQueryLoop":true} /-->
 				<!-- wp:post-title {"textAlign":"center","level":3,"isLink":true,"style":{"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"700"},"spacing":{"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}},"fontSize":"normal","__woocommerceNamespace":"woocommerce/product-collection/product-title"} /-->
 				<!-- wp:woocommerce/product-rating {"isDescendentOfQueryLoop":true,"textAlign":"center"} /-->
 				<!-- wp:woocommerce/product-price {"isDescendentOfQueryLoop":true,"textAlign":"center","style":{"spacing":{"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}}} /-->
@@ -41,7 +41,7 @@ class Patterns {
 
 		register_block_pattern( 'wecodeart/query-products', [
 			'title' 		=> esc_html__( 'Query (Products)', 'wca-woocommerce' ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart-query' ],
+			'categories' 	=> [ 'wecodeart' ],
 			'blockTypes' 	=> [ 'core/query' ],
 			'inserter'		=> false,
 			'content'		=> '
@@ -77,33 +77,10 @@ class Patterns {
 				<!-- /wp:woocommerce/product-collection -->
 			'
 		] );
-
-		register_block_pattern( 'wecodeart/query-products-search', [
-			'title' 		=> esc_html__( 'Query (Products - Search)', 'wca-woocommerce' ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart-query' ],
-			'blockTypes' 	=> [ 'core/query' ],
-			'inserter'		=> false,
-			'content'		=> '
-				<!-- wp:woocommerce/product-collection {"queryId":0,"query":{"woocommerceAttributes":[],"woocommerceStockStatus":["outofstock","onbackorder","instock"],"woocommerceOnSale":false,"taxQuery":null,"isProductCollectionBlock":true,"perPage":1,"pages":0,"offset":0,"postType":"product","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true,"parents":[]},"tagName":"div","displayLayout":{"type":"flex","columns":3,"shrinkColumns":false}} -->
-				<div class="wp-block-woocommerce-product-collection">
-					<!-- wp:woocommerce/product-template -->
-					<!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
-					<!-- /wp:woocommerce/product-template -->
-					<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
-					<!-- wp:query-pagination-numbers /-->
-					<!-- /wp:query-pagination -->
-					<!-- wp:query-no-results -->
-					<!-- wp:pattern {"slug":"woocommerce/no-products-found"} /-->
-					<!-- wp:pattern {"slug":"woocommerce/product-search-form"} /-->
-					<!-- /wp:query-no-results -->
-				</div>
-				<!-- /wp:woocommerce/product-collection -->
-			'
-		] );
 		
 		register_block_pattern( 'wecodeart/query-products-tax', [
 			'title' 		=> esc_html__( 'Query (Products - Taxonomy)', 'wca-woocommerce' ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart-query' ],
+			'categories' 	=> [ 'wecodeart' ],
 			'blockTypes' 	=> [ 'core/query' ],
 			'inserter'		=> false,
 			'content'		=> '
@@ -118,8 +95,8 @@ class Patterns {
 	
 		register_block_pattern( 'wecodeart/query-products-related', [
 			'title' 		=> apply_filters( 'woocommerce_product_related_products_heading', esc_html__( 'Related products', 'woocommerce' ) ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart-query' ],
-			'blockTypes' 	=> [ 'core/query' ],
+			'categories' 	=> [ 'wecodeart' ],
+			// 'blockTypes' 	=> [ 'core/query' ],
 			'postTypes' 	=> [ 'product' ],
 			'inserter'		=> false,
 			'content'		=> '
@@ -221,7 +198,7 @@ class Patterns {
 
 		register_block_pattern( 'wecodeart/page-cart', [
 			'title' 		=> esc_html__( 'Cart', 'wca-woocommerce' ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart-pages' ],
+			'categories' 	=> [ 'wecodeart' ],
 			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/cart {"align":""} -->
@@ -314,7 +291,7 @@ class Patterns {
 		
 		register_block_pattern( 'wecodeart/page-checkout', [
 			'title' 		=> esc_html__( 'Checkout', 'wca-woocommerce' ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart-pages' ],
+			'categories' 	=> [ 'wecodeart' ],
 			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/checkout {"align":""} -->
@@ -392,7 +369,7 @@ class Patterns {
 		
 		register_block_pattern( 'wecodeart/page-order-confirmation', [
 			'title' 		=> esc_html__( 'Order Confirmation', 'wca-woocommerce' ),
-			'categories' 	=> [ 'wecodeart', 'wecodeart-pages' ],
+			'categories' 	=> [ 'wecodeart' ],
 			'inserter'		=> false,
 			'content'		=> '
 				<!-- wp:woocommerce/order-confirmation-status {"align":"","fontSize":"large"} /-->
@@ -413,22 +390,22 @@ class Patterns {
 				<div class="wp-block-columns">
 					<!-- wp:column -->
 					<div class="wp-block-column">
-						<!-- wp:woocommerce/order-confirmation-shipping-wrapper {"align":"","backgroundColor":"accent","style":{"spacing":{"padding":{"top":"var:preset|spacing|g","bottom":"var:preset|spacing|g","left":"var:preset|spacing|g","right":"var:preset|spacing|g"}},"border":{"radius":"5px"}}} -->
-							<!-- wp:heading {"level":4,"style":{"spacing":{"margin":{"top":"0"}},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"600"}},"fontSize":"normal"} -->
-							<h4 class="wp-block-heading has-normal-font-size" style="margin-top:0;font-style:normal;font-weight:600;text-transform:uppercase">' . esc_html__( 'Shipping address', 'woocommerce' ) . '</h4>
-							<!-- /wp:heading -->
-							<!-- wp:woocommerce/order-confirmation-shipping-address {"lock":{"remove":true}} /-->
-						<!-- /wp:woocommerce/order-confirmation-shipping-wrapper -->
-					</div>
-					<!-- /wp:column -->
-					<!-- wp:column -->
-					<div class="wp-block-column">
 						<!-- wp:woocommerce/order-confirmation-billing-wrapper {"align":"","backgroundColor":"accent","style":{"spacing":{"padding":{"top":"var:preset|spacing|g","bottom":"var:preset|spacing|g","left":"var:preset|spacing|g","right":"var:preset|spacing|g"}},"border":{"radius":"5px"}}} -->
 							<!-- wp:heading {"level":4,"style":{"spacing":{"margin":{"top":"0"}},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"600"}},"fontSize":"normal"} -->
 							<h4 class="wp-block-heading has-normal-font-size" style="margin-top:0;font-style:normal;font-weight:600;text-transform:uppercase">' . esc_html__( 'Billing address', 'woocommerce' ) . '</h4>
 							<!-- /wp:heading -->
 							<!-- wp:woocommerce/order-confirmation-billing-address {"lock":{"remove":true}} /-->
 						<!-- /wp:woocommerce/order-confirmation-billing-wrapper -->
+					</div>
+					<!-- /wp:column -->
+					<!-- wp:column -->
+					<div class="wp-block-column">
+						<!-- wp:woocommerce/order-confirmation-shipping-wrapper {"align":"","backgroundColor":"accent","style":{"spacing":{"padding":{"top":"var:preset|spacing|g","bottom":"var:preset|spacing|g","left":"var:preset|spacing|g","right":"var:preset|spacing|g"}},"border":{"radius":"5px"}}} -->
+							<!-- wp:heading {"level":4,"style":{"spacing":{"margin":{"top":"0"}},"typography":{"textTransform":"uppercase","fontStyle":"normal","fontWeight":"600"}},"fontSize":"normal"} -->
+							<h4 class="wp-block-heading has-normal-font-size" style="margin-top:0;font-style:normal;font-weight:600;text-transform:uppercase">' . esc_html__( 'Shipping address', 'woocommerce' ) . '</h4>
+							<!-- /wp:heading -->
+							<!-- wp:woocommerce/order-confirmation-shipping-address {"lock":{"remove":true}} /-->
+						<!-- /wp:woocommerce/order-confirmation-shipping-wrapper -->
 					</div>
 					<!-- /wp:column -->
 				</div>

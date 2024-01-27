@@ -22,12 +22,19 @@ use function str_replace;
 use function WeCodeArt\Functions\get_prop;
 use function WeCodeArt\Functions\dom_get_element;
 
+use \LiteSpeed\Tag;
+use \LiteSpeed\ESI;
+use \LiteSpeed\Conf;
+use \LiteSpeed\Base as LSBase;
+
 /**
  * Gutenberg Account Link block.
  */
 class Link extends Base {
 
 	use Singleton;
+
+	const ESI_TAG	= 'wca_customer_account';
 
 	/**
 	 * Block name.
@@ -42,12 +49,18 @@ class Link extends Base {
 	 * @return 	array
 	 */
 	public function init() {
-		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'filter_render' ], 20, 2 );
-
 		wecodeart( 'markup' )->SVG::add( 'account', [
 			'viewBox' 	=> '0 0 512 512',
 			'paths'		=> 'M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z'
 		] );
+		
+		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'filter_render' ], 20, 2 );
+
+		if ( apply_filters( 'litespeed_esi_status', false ) ) {
+			add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
+			add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
+			add_filter( 'litespeed_esi_inline-' . self::ESI_TAG, 	__CLASS__ . '::esi_inline', 20, 2 );
+		}
 	}
 
 	/**
@@ -194,6 +207,92 @@ class Link extends Base {
 		endforeach;
 
 		return Menu::render_dropdown( (object) $block, [], false );
+	}
+
+	/**
+	 * Is ESI Block.
+	 *
+	 * @return 	void
+	 */
+	public static function is_not_esi() {
+		add_filter( 'render_block_woocommerce/customer-account', __CLASS__ . '::esi_render', 30, 2 );
+	}
+
+	/**
+	 * If there are no related products, return an empty string.
+	 *
+	 * @param 	string $content The block content.
+	 * @param 	array  $block The block.
+	 *
+	 * @return 	string The block content.
+	 */
+	public static function esi_render( string $content = '', array $block = [] ): string {
+		$params = [
+			'block'	=> $block,
+		];
+
+		$inline_tags = self::esi_tags();
+
+		do_action( 'litespeed_esi_combine', self::ESI_TAG );
+
+		$inline = [
+			'val' 		=> $content,
+			'tag' 		=> $inline_tags,
+			'control' 	=> 'private,no-vary,max-age=' . Conf::cls()->conf( LSBase::O_CACHE_TTL_PRIV ),
+		];
+
+		return apply_filters( 'litespeed_esi_url', self::ESI_TAG, 'CUSTOMER ACCOUNT', $params, 'private,no-vary', false, true, true, $inline );
+	}
+
+	/**
+	 * Load ESI block.
+	 *
+	 * @param 	array 	$params.
+	 *
+	 * @return 	void
+	 */
+	public static function esi_load( $params ) {
+		// Remove actions due to render block filter being called.
+		remove_all_actions( 'litespeed_esi_load-' . self::ESI_TAG );
+		remove_all_filters( 'litespeed_esi_inline-' . self::ESI_TAG );
+
+		echo render_block( get_prop( $params, 'block', [] ) );
+
+		do_action( 'litespeed_control_set_private', 'CUSTOMER ACCOUNT' );
+		do_action( 'litespeed_vary_no' );
+	}
+
+	/**
+	 * Inline ESI block.
+	 *
+	 * @param 	array 	$res.
+	 * @param 	array 	$params.
+	 *
+	 * @return 	array
+	 */
+	public static function esi_inline( $res, $params ) {
+		if ( ! is_array( $res ) ) {
+			$res = [];
+		}
+
+		$res['val'] 	= render_block( get_prop( $params, [ 'block' ], [] ) );
+		$res['control'] = 'private,no-vary,max-age=' . Conf::cls()->conf( LSBase::O_CACHE_TTL_PRIV );
+		$res['tag'] 	= self::esi_tags();
+
+		return $res;
+	}
+
+	/**
+	 * Get ESI tags.
+	 *
+	 * @return 	string
+	 */
+	public static function esi_tags(): string {
+		$inline_tags = [ '', rtrim( Tag::TYPE_ESI, '.' ), Tag::TYPE_ESI . self::ESI_TAG ];
+		$inline_tags = implode( ',', array_map( fn( $val ) => 'public:' . LSWCP_TAG_PREFIX . '_' . $val, $inline_tags ) );
+		$inline_tags .= ',' . LSWCP_TAG_PREFIX . '_tag_priv';
+
+		return $inline_tags;
 	}
 
 	/**
