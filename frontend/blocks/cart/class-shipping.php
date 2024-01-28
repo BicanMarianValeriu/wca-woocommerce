@@ -47,7 +47,7 @@ class Shipping extends Base {
 			}
 			.wc-block-components-shipping-calculator-address__button.wp-element-button {
 				display: block;
-				margin: 1.5rem 0 0;
+				margin: 0;
 				width: 100%;
 				background-color: var(--wp--preset--color--primary);
 			}

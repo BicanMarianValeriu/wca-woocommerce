@@ -36,6 +36,10 @@ class Coupon extends Base {
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
-		return wecodeart( 'blocks' )->get( 'woocommerce/checkout-order-summary-coupon-form' )::get_instance()->styles();
+		return '
+			.wp-block-woocommerce-cart-order-summary-coupon-form-block {
+				box-sizing: border-box;
+			}
+		';
 	}
 }

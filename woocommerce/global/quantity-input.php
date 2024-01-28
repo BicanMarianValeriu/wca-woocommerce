@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 7.4.0
+ * @version 7.8.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -44,15 +44,16 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 			'name'      => $input_name,
 			'value'     => $input_value,
 			'title'		=> _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ),
+			'aria-label'=> __( 'Product quantity', 'woocommerce' ),
 			'class'     => join( ' ', (array) $classes ),
 			'size'		=> 4,
 			'min'		=> $min_value,
 			'max'		=> 0 < $max_value ? $max_value : '',
-			'step'			=> $readonly ? $step : null,
-			'placeholder' 	=> $readonly ? $placeholder : null,
-			'inputmode'		=> $readonly ? $inputmode : null,
 			'readonly'		=> $readonly ? 'readonly' : null, 
-			'autocomplete'	=> isset( $autocomplete ) ? $autocomplete : 'on'
+			'step'			=> ! $readonly ? $step : null,
+			'placeholder' 	=> ! $readonly ? $placeholder : null,
+			'inputmode'		=> ! $readonly ? $inputmode : null,
+			'autocomplete'	=> ! $readonly ? ( isset( $autocomplete ) ? $autocomplete : 'on' ) : null
 		]
 	] );
 

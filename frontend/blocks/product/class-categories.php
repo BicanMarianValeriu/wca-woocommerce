@@ -9,7 +9,7 @@
  * @subpackage WCA\EXT\WOO\Frontend\Blocks\Categories
  */
 
-namespace WCA\EXT\WOO\Frontend\Blocks;
+namespace WCA\EXT\WOO\Frontend\Blocks\Product;
 
 defined( 'ABSPATH' ) || exit();
 
