@@ -37,19 +37,8 @@ class Coupon extends Base {
 	 */
 	public function styles(): string {
 		return '
-			.wc-block-components-totals-coupon__form {
-				display: flex;
-			}
-			.wc-block-components-totals-coupon__input {
-				flex: 1 1 100%;
-				margin: 0;
-			}
-			.wc-block-components-totals-coupon__button.wp-element-button {
-				margin-left: 1rem;
-				background-color: var(--wp--preset--color--primary);
-			}
-			.wc-block-components-totals-coupon__button.wp-element-button:disabled {
-				opacity: 0.5;
+			.wp-block-woocommerce-checkout-order-summary-coupon-form-block {
+				box-sizing: border-box;
 			}
 		';
 	}

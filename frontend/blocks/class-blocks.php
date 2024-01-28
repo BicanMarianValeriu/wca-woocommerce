@@ -44,7 +44,6 @@ class Blocks {
 		$container->register( 'woocommerce/all-reviews',			Blocks\Reviews::class );
 		$container->register( 'woocommerce/all-products',			Blocks\Products::class );
 		$container->register( 'woocommerce/breadcrumbs',			Blocks\Breadcrumbs::class );
-		$container->register( 'woocommerce/categories',				Blocks\Categories::class );
 		// Filters
 		$container->register( 'woocommerce/filter-wrapper', 		Blocks\Filters::class );
 		$container->register( 'woocommerce/active-filters',			Blocks\Filters\Active::class );
@@ -62,6 +61,7 @@ class Blocks {
 		$container->register( 'woocommerce/product-rating', 		Blocks\Product\Rating::class );
 		$container->register( 'woocommerce/product-details',		Blocks\Product\Details::class );
 		$container->register( 'woocommerce/product-image-gallery',	Blocks\Product\Gallery::class );
+		$container->register( 'woocommerce/product-categories',		Blocks\Product\Categories::class );
 		$container->register( 'woocommerce/add-to-cart-form',		Blocks\Product\Cart::class );
 		// Account
 		$container->register( 'woocommerce/customer-account',		Blocks\Account\Link::class );
@@ -79,8 +79,8 @@ class Blocks {
 		$container->register( 'woocommerce/mini-cart-shopping-button',			Blocks\Cart\Widget\Button::class );
 		// Checkout
 		$container->register( 'woocommerce/checkout',							Blocks\Checkout::class );
-		$container->register( 'woocommerce/checkout-billing-address-block',		Blocks\Checkout\Address\Billing::class );
-		$container->register( 'woocommerce/checkout-shipping-address-block',	Blocks\Checkout\Address\Shipping::class );
+		$container->register( 'woocommerce/checkout-billing-address',			Blocks\Checkout\Address\Billing::class );
+		$container->register( 'woocommerce/checkout-shipping-address',			Blocks\Checkout\Address\Shipping::class );
 		$container->register( 'woocommerce/checkout-shipping-method',			Blocks\Checkout\Shipping::class );
 		$container->register( 'woocommerce/checkout-order-summary-cart-items',	Blocks\Checkout\Summary\Items::class );
 		$container->register( 'woocommerce/checkout-order-summary-coupon-form',	Blocks\Checkout\Summary\Coupon::class );

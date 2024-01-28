@@ -12,14 +12,14 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.5.0
+ * @version 7.8.0
  */
 
 defined( 'ABSPATH' ) || exit;
 ?>
 
 <div class="wp-block-button is-style-outline">
-	<a href="<?php echo esc_url( $order_again_url ); ?>" class="wp-block-button__link has-primary-color"><?php
+	<a href="<?php echo esc_url( $order_again_url ); ?>" class="wp-block-button__link wp-element-button has-primary-color"><?php
 	
 		esc_html_e( 'Order again', 'woocommerce' );
 		
