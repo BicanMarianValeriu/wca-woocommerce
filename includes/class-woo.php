@@ -182,6 +182,7 @@ class Woo implements Integration {
 		$admin = new WOO\Admin( $this->get_plugin_name(), $this->get_version(), $this->get_config() );
 
 		// Admin init/scripts
+		$this->loader->add_action( 'before_woocommerce_init',				$admin, 'hpos_compat'	);
 		$this->loader->add_action( 'admin_init', 							$admin, 'if_active' 	);
 		$this->loader->add_action( 'admin_enqueue_scripts',					$admin, 'assets' 		);
 		$this->loader->add_action( 'enqueue_block_editor_assets', 			$admin, 'editor_assets' );

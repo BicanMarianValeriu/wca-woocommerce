@@ -82,6 +82,20 @@ class Admin {
 
 		new Admin\Ajax();
 	}
+
+	/**
+	 * Declare HPOS compatability
+	 *
+	 * @since 	1.0.0
+	 * @version	1.0.0
+	 */
+	public function hpos_compat() {
+		if ( ! class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			return;
+		}
+		
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', WCA_WOO_EXT, true );	
+	}
     
     /**
 	 * Check if active
@@ -310,7 +324,7 @@ class Admin {
 	 */
 	public function meta( $links, $file ) {
 		// If we are not on the correct plugin, abort.
-		if( WCA_WOO_EXT_BASE !== $file) {
+		if( WCA_WOO_EXT_BASE !== $file ) {
 			return $links;
 		}
 
