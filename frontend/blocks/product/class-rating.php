@@ -57,14 +57,16 @@ class Rating extends Base {
 	 */
 	public function render_block( string $content = '', array $block = [] ): string {
 		$is_single_product = get_prop( $block, [ 'attrs', 'isDescendentOfSingleProductTemplate' ] ) === true;
-
 		
 		$regex = '/<div\b[^>]+wc-block-components-product-rating__container[\s|"][^>]*>/U';
 		if ( $is_single_product && 1 === preg_match( $regex, $content, $matches, PREG_OFFSET_CAPTURE ) ) {
 			$offset	= $matches[0][1];
 			$offset	= strrpos( $content, '</div>', $offset );
     		$content = substr( $content, 0, $offset ) . $this->markup() . substr( $content, $offset );
-		} 
+		}
+
+		// Fix double text align class ouput
+		$content = preg_replace( '/(has-text-align-(left|center|right)) \1|has-text-align- has-text-align- /', '$1', $content );
 
 		return $content;
 	}
@@ -81,9 +83,8 @@ class Rating extends Base {
 			return $html;
 		}
 
-		$product = wc_get_product( get_queried_object_id() );
-
-		$count	= $product->get_rating_count();
+		$product 	= wc_get_product( get_queried_object_id() );
+		$count		= $product->get_rating_count();
 
 		if ( $count === 0 ) {
 			return $html;
