@@ -50,10 +50,10 @@ class Notices extends Base {
 
 		return str_replace( [
 			'alignwide  alignwide',
-			'  align',
+			'  align ',
 		], [ 
 			'alignwide',
-			'alignnone'
+			''
 		], $content );
 	}
 
