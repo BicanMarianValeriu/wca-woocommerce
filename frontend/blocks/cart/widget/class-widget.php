@@ -62,6 +62,17 @@ class Widget extends Base {
 	}
 
 	/**
+	 * Block args.
+	 *
+	 * @return 	array
+	 */
+	public function block_type_args(): array {
+		return [
+			'style'	=> [ $this->get_asset_handle(), 'wc-blocks-style-cart' ]
+		];
+	}
+
+	/**
 	 * Hooked to the litespeed_tpl_normal action.
 	 */
 	public static function is_not_esi() {
@@ -167,27 +178,6 @@ class Widget extends Base {
 
 	public static function register_cookies( array $list = [] ): array {
 		return array_merge( $list, self::COOKIES );
-	}
-
-	/**
-	 * Block styles.
-	 *
-	 * @return 	string Block CSS.
-	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-
-		wecodeart( 'assets' )->add_style( 'wc-blocks-style-cart-dep', [
-			'load'		=> function( $blocks ) {			
-				if( wp_style_is( 'wc-blocks-style-cart' ) || wp_style_is( 'wc-blocks-style-cart-dep' ) ) {
-					return false;
-				}
-
-				// Global
-				return true;
-			},
-			'inline'	=> wecodeart( 'blocks' )->get( 'woocommerce/cart' )::get_instance()->styles()
-		] );
 	}
 
 	/**
