@@ -38,13 +38,10 @@ class Crossells extends Base {
 	public function styles(): string {
 		return '
 			/* Admin */
-			.wp-block-woocommerce-cart-cross-sells-products-block .cross-sells-product {
-				display: inline-flex;
-				margin-right: calc(5% - 2px);
-				padding: 0;
-			}
-			.wp-block-woocommerce-cart-cross-sells-products-block .cross-sells-product:nth-child(3n+3) {
-				margin-right: 0;
+			.wp-block-woocommerce-cart-cross-sells-products-block > * > div {
+				display: grid;
+				grid-gap: 1rem;
+				grid-template-columns: repeat(3, 1fr);
 			}
 			/* Frontend */
 			.woocommerce-cart .wp-block-woocommerce-cart-cross-sells-block > div {

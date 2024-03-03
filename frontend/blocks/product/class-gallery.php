@@ -152,6 +152,18 @@ class Gallery extends Base {
 				border-color: var(--wp--preset--color--primary);
 			}
 
+			.wc-block-editor-product-gallery {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+
+			.wc-block-editor-product-gallery__other-images {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 10px;
+			}
+
 			@media (min-width: 576px) {
 				.woocommerce-product-gallery .flex-control-thumbs {
 					grid-template-columns: repeat(var(--columns), 1fr);
