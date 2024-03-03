@@ -32,27 +32,14 @@ class Category extends Base {
 	protected $block_name = 'featured-category';
 
 	/**
-	 * Block styles.
+	 * Block args.
 	 *
-	 * @return 	string Block CSS.
+	 * @return 	array
 	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-
-		$featured = wecodeart( 'blocks' )->get( 'woocommerce/featured-product' )::get_instance();
-
-		wecodeart( 'assets' )->add_style( 'wc-blocks-style-featured', [
-			'load'		=> function( $blocks ) use( $featured ) {
-				if( wp_style_is( 'wc-blocks-style-featured' ) || wp_style_is( $featured->get_asset_handle() ) ) {
-					return false;
-				}
-
-				if( in_array( $this->get_block_type(), $blocks ) ) {
-					return true;
-				}
-			},
-			'inline'	=> $featured->styles()
-		] );
+	public function block_type_args(): array {
+		return [
+			'style'	=> [ $this->get_asset_handle(), 'wc-blocks-style-featured-product' ]
+		];
 	}
 
 	/**

@@ -31,28 +31,6 @@ class Shipping extends Base {
 	protected $block_name = 'order-confirmation-shipping-address';
 
 	/**
-	 * Block styles.
-	 *
-	 * @return 	string Block CSS.
-	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-
-		wecodeart( 'assets' )->add_style( 'wc-blocks-style-address', [
-			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-address' ) || wp_style_is( $this->get_asset_handle() ) ) {
-					return false;
-				}
-
-				if( in_array( 'woocommerce/order-confirmation-billing-address', $blocks, true ) ) {
-					return true;
-				}
-			},
-			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
-		] );
-	}
-
-	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.

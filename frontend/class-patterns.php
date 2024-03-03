@@ -106,7 +106,7 @@ class Patterns {
 						<!-- wp:heading {"level":3,"className":"fw-500"} -->
 						<h3 class="wp-block-heading fw-500">' . apply_filters( 'woocommerce_product_related_products_heading', esc_html__( 'Related products', 'woocommerce' ) ) . '</h3>
 						<!-- /wp:heading -->
-						<!-- wp:post-template {"className":"wp-block-query__products","layout":{"type":"grid","columnCount":4},"__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
+						<!-- wp:post-template {"className":"wp-block-query__products grid","layout":{"type":"grid","columnCount":4},"__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
 						<!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
 						<!-- /wp:post-template -->
 					</div>

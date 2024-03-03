@@ -31,6 +31,17 @@ class Billing extends Base {
 	protected $block_name = 'order-confirmation-billing-address';
 
 	/**
+	 * Block args.
+	 *
+	 * @return 	array
+	 */
+	public function block_type_args(): array {
+		return [
+			'style'	=> [ $this->get_asset_handle(), 'wc-blocks-style-order-confirmation-shipping-address' ]
+		];
+	}
+
+	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.

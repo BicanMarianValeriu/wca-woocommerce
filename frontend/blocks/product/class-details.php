@@ -86,6 +86,26 @@ class Details extends Base {
 				wecodeart_input( 'text', [], false );
 				wecodeart_input( 'textarea', [], false );
 
+				wecodeart( 'styles' )->Utilities->load( [
+					'span-3',
+					'span-9',
+					'span-12',
+					'span-sm-2',
+					'span-sm-6',
+					'span-sm-10',
+					'span-md-2',
+					'span-md-10',
+					'span-lg-2',
+					'span-lg-3',
+					'span-lg-4',
+					'span-lg-7',
+					'span-lg-9',
+					'start-lg-3', 
+					'start-lg-7',
+					'start-lg-9',
+					'start-lg-10',
+				] );
+
 				// Add CSS
 				wecodeart( 'assets' )->add_style( 'wp-block-woo-reviews', [
 					'inline'	=> 'file:' . sprintf( '%s/assets/%s/css/%s.css', untrailingslashit( WCA_WOO_EXT_DIR ), $path, $name ),
