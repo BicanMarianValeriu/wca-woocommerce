@@ -22,6 +22,8 @@ wecodeart( 'styles' )->Utilities->load( [
 	'fw-700',
 	'my-0',
 	'mx-0',
+	'span-2',
+	'span-md-1'
 ] );
 
 do_action( 'woocommerce_before_edit_account_form' ); ?>
