@@ -161,9 +161,7 @@ class Cart extends Base {
 			.wc-block-cart-item__product .wc-block-components-product-name {
 				display: block;
 				font-weight: 700;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
+				line-height: 1.2;
 			}
 			.wc-block-cart-item__product .wc-block-components-product-badge {
 				margin-right: 0.5rem;

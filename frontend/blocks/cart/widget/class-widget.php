@@ -66,10 +66,31 @@ class Widget extends Base {
 	 *
 	 * @return 	array
 	 */
-	public function block_type_args(): array {
+	public function block_type_args( array $current = [] ): array {
+		$support = get_prop( $current, [ 'supports' ], [] );
+
 		return [
-			'style'	=> [ $this->get_asset_handle(), 'wc-blocks-style-cart' ]
+			'supports'	=> wp_parse_args( [
+				'spacing' => [
+					'margin' 	=> true,
+					'padding' 	=> true,
+				]
+			], $support )
 		];
+	}
+
+	/**
+	 * Block styles.
+	 *
+	 * @return 	string Block CSS.
+	 */
+	public function enqueue_styles() {
+		parent::enqueue_styles();
+
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-cart-deps', [
+			'load'		=> fn() => ! wp_style_is( 'wc-blocks-style-cart' ),
+			'inline'	=> wecodeart( 'blocks' )->get( 'woocommerce/cart' )::get_instance()->styles()
+		] );
 	}
 
 	/**

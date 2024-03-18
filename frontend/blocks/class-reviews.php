@@ -63,6 +63,9 @@ class Reviews extends Base {
 	 */
 	public function styles(): string {
 		$inline = '
+			.wc-block-all-reviews:empty {
+				display: none;
+			}
 			.wc-block-review-list {
 				--wc--avatar--size: 60px;
 				--wc--avatar--radius: .25rem;
