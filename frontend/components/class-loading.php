@@ -53,10 +53,12 @@ class Loading extends Base {
 				display: block;
 				width: 3em;
 				height: auto;
-				background-image: var(--wc--arrow);
-				background-repeat: no-repeat;
-				background-position: center;
-				background-size: 2em;
+				background-color: currentColor;
+				-webkit-mask-repeat: no-repeat;
+				-webkit-mask-position: center;
+				-webkit-mask-size: 1.125em;
+				-webkit-mask-image: var(--wc--icon--arrow);
+				mask-image: var(--wc--icon--arrow);
 				animation: animation__rotate 1s linear infinite;
 			}
 			.wc-block-components-loading-mask {

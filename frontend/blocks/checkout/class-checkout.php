@@ -173,6 +173,7 @@ class Checkout extends Base {
 			}
 			.wc-block-components-checkout-place-order-button.wp-element-button {
 				background-color: var(--wp--preset--color--primary);
+				cursor: pointer;
 			}
 		';
 

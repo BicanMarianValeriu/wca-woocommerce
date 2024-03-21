@@ -13,17 +13,17 @@ namespace WCA\EXT\WOO\Frontend\Conditions;
 
 defined( 'ABSPATH' ) || exit(); 
 
-use WeCodeArt\Conditional\Interfaces\ConditionalInterface;
+use WeCodeArt\Config\Interfaces\Conditional;
 
 /**
  * Conditional that is only met when in the front page.
  */
-class Archive implements ConditionalInterface {
+class Archive implements Conditional {
 
 	/**
 	 * @inheritdoc
 	 */
-	public function is_met() {
+	public function is_met(): bool {
 		if ( wecodeart_if( 'is_woocommerce_active' ) ) {
 			if ( \is_shop() || \is_product_taxonomy() || \is_product_category() || \is_product_tag() ) {
 				return true;

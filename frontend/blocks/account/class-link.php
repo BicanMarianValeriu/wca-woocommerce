@@ -115,6 +115,7 @@ class Link extends Base {
 
 		$processor->next_tag( 'a' );
 		$processor->add_class( 'wc-block-customer-account__account-link' );
+		$processor->set_attribute( 'aria-label', esc_html__( 'Customer account', 'woocommerce' ) );
 		
 		if( $dropdown && is_user_logged_in() && ! is_account_page() ) {		
 			$processor->add_class( 'dropdown-toggle' );
@@ -148,7 +149,6 @@ class Link extends Base {
 
 		return $content;
 	}
-	
 
 	/**
 	 * Block styles.
@@ -193,7 +193,8 @@ class Link extends Base {
 				$block['inner_blocks'][] = $divider;
 			}
 
-			$permalink = wc_get_account_endpoint_url( $endpoint );
+			$permalink = trailingslashit( wc_get_account_endpoint_url( $endpoint ) );
+			
 			$block['inner_blocks'][] = new \WP_Block( [
 				'blockName'	=> 'core/navigation-link',
 				'attrs'		=> [

@@ -184,12 +184,12 @@ class Rating extends Base {
 			}
 			:is({$selectors}) > span:before {
 				position: relative;
-				background-image: var(--wc--star-active);
+				background-image: var(--wc--icon--star-active);
 				z-index: 2;
 			}
 			:is({$selectors}) > span:after {
 				position: absolute;
-				background-image: var(--wc--star);
+				background-image: var(--wc--icon--star);
 				z-index: 1;
 			}
 			.wc-block-components-product-rating__reviews_count {

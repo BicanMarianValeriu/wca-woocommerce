@@ -62,7 +62,7 @@ class Shipping extends Base {
 				-webkit-mask-position: center;
 				-webkit-mask-size: contain;
 				-webkit-mask-image: var(--wc--icon);
-					mask-image: var(--wc--icon);
+				mask-image: var(--wc--icon);
 			}
 		';
 	}

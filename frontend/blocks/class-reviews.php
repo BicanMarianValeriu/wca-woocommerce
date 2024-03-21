@@ -95,7 +95,7 @@ class Reviews extends Base {
 				right: -0.5em;
 				width: 1rem;
 				height: 1rem;
-				background-image: var(--wc--verified);
+				background-image: var(--wc--icon--verified);
 				background-size: contain;
 				background-position: center;
 				background-repeat: no-repeat;

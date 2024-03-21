@@ -18,7 +18,6 @@
 	"dependencies": {
 		"@wordpress/browserslist-config": "^4.0.0",
 		"@wordpress/scripts": "^23.3.0",
-		"animate.css": "^4.1.1",
 		"react-hook-form": "^7.45.4",
 		"react-use": "^17.4.0"
 	}
