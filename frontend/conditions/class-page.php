@@ -13,12 +13,12 @@ namespace WCA\EXT\WOO\Frontend\Conditions;
 
 defined( 'ABSPATH' ) || exit(); 
 
-use WeCodeArt\Config\Interfaces\Conditional;
+use WeCodeArt\Conditional\Interfaces\ConditionalInterface;
 
 /**
  * Conditional that is only met when in the Woo Pages.
  */
-class Page implements Conditional {
+class Page implements ConditionalInterface {
 
 	/**
 	 * @inheritdoc
