@@ -77,7 +77,7 @@ class Components implements Configuration {
 	 * @since	1.0.0
 	 * @version	1.0.0
 	 */
-	public function wp_enqueue_scripts() {
+	public function assets() {
         $blocks = [];
 
         global $_wp_current_template_content;
@@ -124,11 +124,8 @@ class Components implements Configuration {
         if( ! empty( $inline ) ) {
             // Load a fake input to trigger body class vars
             $fake_input = wecodeart_input( 'hidden', [], false );
-            $inline     = wecodeart( 'styles' )::compress( $inline );
     
-            wp_register_style( self::CSS_HANDLE, '' );
-            wp_enqueue_style( self::CSS_HANDLE );
-            wp_add_inline_style( self::CSS_HANDLE, $inline );
+            wecodeart( 'assets' )->add_style( self::CSS_HANDLE, [ 'inline' => $inline ] );
         }
 	}
 

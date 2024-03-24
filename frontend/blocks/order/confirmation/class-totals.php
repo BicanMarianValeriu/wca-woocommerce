@@ -38,14 +38,17 @@ class Totals extends Base {
     }
 
 	/**
-	 * Block args.
+	 * Block styles.
 	 *
-	 * @return 	array
+	 * @return 	string Block CSS.
 	 */
-	public function block_type_args(): array {
-		return [
-			'style'	=> [ 'wp-block-table', $this->get_asset_handle() ]
-		];
+	public function enqueue_styles() {
+		parent::enqueue_styles();
+
+		wecodeart( 'assets' )->add_style( 'wp-block-table-dep', [
+			'load'		=> fn() => ! wp_style_is( 'wp-block-table' ),
+			'inline'	=> wecodeart( 'blocks' )->get( 'core/table' )::get_instance()->styles()
+		] );
 	}
 
 	/**

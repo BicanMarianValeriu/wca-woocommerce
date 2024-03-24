@@ -684,12 +684,12 @@ class Details extends Base {
 			p.stars a:before,
 			p.stars a:hover ~ a:before,
 			p.stars.selected a.active ~ a:before {
-				background-image: var(--wc--star);
+				background-image: var(--wc--icon--star);
 			}
 			p.stars:hover a:before,
 			p.stars.selected a.active:before,
 			p.stars.selected a:not(.active):before {
-				background-image: var(--wc--star-active);
+				background-image: var(--wc--icon--start-active);
 			}
 			p.stars span {
 				display: block;

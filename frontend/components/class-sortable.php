@@ -52,7 +52,7 @@ class Sortable extends Base {
 				line-height: var(--wc--input--line-height);
 				color: var(--wc--input--color);
 				background-color: var(--wc--input--background-color);
-				background-image: var(--wc--carret);
+				background-image: var(--wc--icon--carret);
 				background-repeat: no-repeat;
 				background-position: right var(--wc--input--padding-y) center;
 				background-size: 1em 0.75em;

@@ -1,10 +1,10 @@
 "use strict";
 (globalThis["webpackChunkwca_woocommerce"] = globalThis["webpackChunkwca_woocommerce"] || []).push([["CommentList"],{
 
-/***/ "./src/js/frontend/reviews/listing/comments/CommentItem.js":
-/*!*****************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/comments/CommentItem.js ***!
-  \*****************************************************************/
+/***/ "./src/js/reviews/listing/comments/CommentItem.js":
+/*!********************************************************!*\
+  !*** ./src/js/reviews/listing/comments/CommentItem.js ***!
+  \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions */ "./src/js/reviews/functions.js");
 
 
 const {
@@ -63,10 +63,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/comments/index.js":
-/*!***********************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/comments/index.js ***!
-  \***********************************************************/
+/***/ "./src/js/reviews/listing/comments/index.js":
+/*!**************************************************!*\
+  !*** ./src/js/reviews/listing/comments/index.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -76,8 +76,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _CommentItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CommentItem */ "./src/js/frontend/reviews/listing/comments/CommentItem.js");
-/* harmony import */ var _preloaders_CommentPreloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../preloaders/CommentPreloader */ "./src/js/frontend/reviews/listing/preloaders/CommentPreloader.js");
+/* harmony import */ var _CommentItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CommentItem */ "./src/js/reviews/listing/comments/CommentItem.js");
+/* harmony import */ var _preloaders_CommentPreloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../preloaders/CommentPreloader */ "./src/js/reviews/listing/preloaders/CommentPreloader.js");
 
 
 
@@ -102,10 +102,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/preloaders/CommentPreloader.js":
-/*!************************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/preloaders/CommentPreloader.js ***!
-  \************************************************************************/
+/***/ "./src/js/reviews/listing/preloaders/CommentPreloader.js":
+/*!***************************************************************!*\
+  !*** ./src/js/reviews/listing/preloaders/CommentPreloader.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

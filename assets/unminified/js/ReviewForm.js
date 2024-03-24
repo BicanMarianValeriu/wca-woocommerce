@@ -1,10 +1,10 @@
 "use strict";
 (globalThis["webpackChunkwca_woocommerce"] = globalThis["webpackChunkwca_woocommerce"] || []).push([["ReviewForm"],{
 
-/***/ "./src/js/frontend/reviews/form/Notification.js":
-/*!******************************************************!*\
-  !*** ./src/js/frontend/reviews/form/Notification.js ***!
-  \******************************************************/
+/***/ "./src/js/reviews/form/Notification.js":
+/*!*********************************************!*\
+  !*** ./src/js/reviews/form/Notification.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions */ "./src/js/reviews/functions.js");
 
 
 const {
@@ -47,10 +47,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/form/SuggestTitle.js":
-/*!******************************************************!*\
-  !*** ./src/js/frontend/reviews/form/SuggestTitle.js ***!
-  \******************************************************/
+/***/ "./src/js/reviews/form/SuggestTitle.js":
+/*!*********************************************!*\
+  !*** ./src/js/reviews/form/SuggestTitle.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -118,10 +118,10 @@ const RATING_SUGGESTIONS = applyFilters('wecodeart.woocommerce.reviews.rating.su
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/form/index.js":
-/*!***********************************************!*\
-  !*** ./src/js/frontend/reviews/form/index.js ***!
-  \***********************************************/
+/***/ "./src/js/reviews/form/index.js":
+/*!**************************************!*\
+  !*** ./src/js/reviews/form/index.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -132,9 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var _SuggestTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SuggestTitle */ "./src/js/frontend/reviews/form/SuggestTitle.js");
-/* harmony import */ var _Notification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Notification */ "./src/js/frontend/reviews/form/Notification.js");
-/* harmony import */ var _shared_RatingInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../shared/RatingInput */ "./src/js/frontend/reviews/shared/RatingInput.js");
+/* harmony import */ var _SuggestTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SuggestTitle */ "./src/js/reviews/form/SuggestTitle.js");
+/* harmony import */ var _Notification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Notification */ "./src/js/reviews/form/Notification.js");
+/* harmony import */ var _shared_RatingInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/RatingInput */ "./src/js/reviews/shared/RatingInput.js");
 
 
 

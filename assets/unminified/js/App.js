@@ -1,10 +1,10 @@
 "use strict";
 (globalThis["webpackChunkwca_woocommerce"] = globalThis["webpackChunkwca_woocommerce"] || []).push([["App"],{
 
-/***/ "./src/js/frontend/reviews/App.js":
-/*!****************************************!*\
-  !*** ./src/js/frontend/reviews/App.js ***!
-  \****************************************/
+/***/ "./src/js/reviews/App.js":
+/*!*******************************!*\
+  !*** ./src/js/reviews/App.js ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -14,11 +14,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./summary */ "./src/js/frontend/reviews/summary/index.js");
-/* harmony import */ var _filters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filters */ "./src/js/frontend/reviews/filters/index.js");
-/* harmony import */ var _listing_reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./listing/reviews */ "./src/js/frontend/reviews/listing/reviews/index.js");
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hooks */ "./src/js/frontend/reviews/hooks.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var _summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./summary */ "./src/js/reviews/summary/index.js");
+/* harmony import */ var _filters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filters */ "./src/js/reviews/filters/index.js");
+/* harmony import */ var _listing_reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./listing/reviews */ "./src/js/reviews/listing/reviews/index.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hooks */ "./src/js/reviews/hooks.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./functions */ "./src/js/reviews/functions.js");
 /* harmony import */ var react_use__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-use */ "./node_modules/react-use/esm/factory/createBreakpoint.js");
 
 
@@ -36,7 +36,7 @@ const {
     Suspense
   }
 } = wp;
-const LeaveAReview = lazy(() => __webpack_require__.e(/*! import() | ReviewForm */ "ReviewForm").then(__webpack_require__.bind(__webpack_require__, /*! ./form */ "./src/js/frontend/reviews/form/index.js")));
+const LeaveAReview = lazy(() => __webpack_require__.e(/*! import() | ReviewForm */ "ReviewForm").then(__webpack_require__.bind(__webpack_require__, /*! ./form */ "./src/js/reviews/form/index.js")));
 const useBreakpoint = (0,react_use__WEBPACK_IMPORTED_MODULE_7__["default"])({
   mobile: 0,
   laptop: 992
@@ -151,10 +151,10 @@ const App = options => {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/filters/ResultsNote.js":
-/*!********************************************************!*\
-  !*** ./src/js/frontend/reviews/filters/ResultsNote.js ***!
-  \********************************************************/
+/***/ "./src/js/reviews/filters/ResultsNote.js":
+/*!***********************************************!*\
+  !*** ./src/js/reviews/filters/ResultsNote.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -189,10 +189,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/filters/index.js":
-/*!**************************************************!*\
-  !*** ./src/js/frontend/reviews/filters/index.js ***!
-  \**************************************************/
+/***/ "./src/js/reviews/filters/index.js":
+/*!*****************************************!*\
+  !*** ./src/js/reviews/filters/index.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -203,8 +203,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var _ResultsNote__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ResultsNote */ "./src/js/frontend/reviews/filters/ResultsNote.js");
-/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+/* harmony import */ var _ResultsNote__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ResultsNote */ "./src/js/reviews/filters/ResultsNote.js");
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/Icon */ "./src/js/reviews/shared/Icon.js");
 
 
 
@@ -397,10 +397,10 @@ const SORTING_OPTIONS = applyFilters('wecodeart.woocommerce.reviews.sorting', {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/functions.js":
-/*!**********************************************!*\
-  !*** ./src/js/frontend/reviews/functions.js ***!
-  \**********************************************/
+/***/ "./src/js/reviews/functions.js":
+/*!*************************************!*\
+  !*** ./src/js/reviews/functions.js ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -481,10 +481,10 @@ const renderToString = (string = '', variables = {}) => {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/hooks.js":
-/*!******************************************!*\
-  !*** ./src/js/frontend/reviews/hooks.js ***!
-  \******************************************/
+/***/ "./src/js/reviews/hooks.js":
+/*!*********************************!*\
+  !*** ./src/js/reviews/hooks.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -654,10 +654,10 @@ function useHover() {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/comments/AddComment.js":
-/*!****************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/comments/AddComment.js ***!
-  \****************************************************************/
+/***/ "./src/js/reviews/listing/comments/AddComment.js":
+/*!*******************************************************!*\
+  !*** ./src/js/reviews/listing/comments/AddComment.js ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -761,10 +761,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloader.js":
-/*!***********************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/preloaders/ReviewPreloader.js ***!
-  \***********************************************************************/
+/***/ "./src/js/reviews/listing/preloaders/ReviewPreloader.js":
+/*!**************************************************************!*\
+  !*** ./src/js/reviews/listing/preloaders/ReviewPreloader.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -848,10 +848,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloaderMobile.js":
-/*!*****************************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/preloaders/ReviewPreloaderMobile.js ***!
-  \*****************************************************************************/
+/***/ "./src/js/reviews/listing/preloaders/ReviewPreloaderMobile.js":
+/*!********************************************************************!*\
+  !*** ./src/js/reviews/listing/preloaders/ReviewPreloaderMobile.js ***!
+  \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -933,10 +933,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/Pagination.js":
-/*!***************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/Pagination.js ***!
-  \***************************************************************/
+/***/ "./src/js/reviews/listing/reviews/Pagination.js":
+/*!******************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/Pagination.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -945,7 +945,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions */ "./src/js/reviews/functions.js");
 
 
 const {
@@ -1058,10 +1058,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/ReviewItem.js":
-/*!***************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/ReviewItem.js ***!
-  \***************************************************************/
+/***/ "./src/js/reviews/listing/reviews/ReviewItem.js":
+/*!******************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/ReviewItem.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1071,10 +1071,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./src/js/frontend/reviews/listing/reviews/actions/index.js");
-/* harmony import */ var _shared_StarRating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/StarRating */ "./src/js/frontend/reviews/shared/StarRating.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../functions */ "./src/js/frontend/reviews/functions.js");
-/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./src/js/reviews/listing/reviews/actions/index.js");
+/* harmony import */ var _shared_StarRating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/StarRating */ "./src/js/reviews/shared/StarRating.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../functions */ "./src/js/reviews/functions.js");
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../shared/Icon */ "./src/js/reviews/shared/Icon.js");
 
 
 
@@ -1235,10 +1235,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/actions/Action.js":
-/*!*******************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/actions/Action.js ***!
-  \*******************************************************************/
+/***/ "./src/js/reviews/listing/reviews/actions/Action.js":
+/*!**********************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/actions/Action.js ***!
+  \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1247,7 +1247,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/Icon */ "./src/js/reviews/shared/Icon.js");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
@@ -1269,10 +1269,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/actions/Comment.js":
-/*!********************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/actions/Comment.js ***!
-  \********************************************************************/
+/***/ "./src/js/reviews/listing/reviews/actions/Comment.js":
+/*!***********************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/actions/Comment.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1281,8 +1281,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Action */ "./src/js/frontend/reviews/listing/reviews/actions/Action.js");
-/* harmony import */ var _comments_AddComment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../comments/AddComment */ "./src/js/frontend/reviews/listing/comments/AddComment.js");
+/* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Action */ "./src/js/reviews/listing/reviews/actions/Action.js");
+/* harmony import */ var _comments_AddComment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../comments/AddComment */ "./src/js/reviews/listing/comments/AddComment.js");
 
 
 
@@ -1342,10 +1342,10 @@ const After = ({
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/actions/Like.js":
-/*!*****************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/actions/Like.js ***!
-  \*****************************************************************/
+/***/ "./src/js/reviews/listing/reviews/actions/Like.js":
+/*!********************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/actions/Like.js ***!
+  \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1354,7 +1354,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Action */ "./src/js/frontend/reviews/listing/reviews/actions/Action.js");
+/* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Action */ "./src/js/reviews/listing/reviews/actions/Action.js");
 
 
 const {
@@ -1421,10 +1421,10 @@ const Component = ({
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/actions/Replies.js":
-/*!********************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/actions/Replies.js ***!
-  \********************************************************************/
+/***/ "./src/js/reviews/listing/reviews/actions/Replies.js":
+/*!***********************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/actions/Replies.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1433,8 +1433,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Action */ "./src/js/frontend/reviews/listing/reviews/actions/Action.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Action */ "./src/js/reviews/listing/reviews/actions/Action.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../functions */ "./src/js/reviews/functions.js");
 
 
 
@@ -1449,7 +1449,7 @@ const {
     Suspense
   }
 } = wp;
-const CommentsList = lazy(() => __webpack_require__.e(/*! import() | CommentList */ "CommentList").then(__webpack_require__.bind(__webpack_require__, /*! ../../comments */ "./src/js/frontend/reviews/listing/comments/index.js")));
+const CommentsList = lazy(() => __webpack_require__.e(/*! import() | CommentList */ "CommentList").then(__webpack_require__.bind(__webpack_require__, /*! ../../comments */ "./src/js/reviews/listing/comments/index.js")));
 const Component = ({
   review,
   options,
@@ -1537,10 +1537,10 @@ const After = ({
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/actions/index.js":
-/*!******************************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/actions/index.js ***!
-  \******************************************************************/
+/***/ "./src/js/reviews/listing/reviews/actions/index.js":
+/*!*********************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/actions/index.js ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1549,19 +1549,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Like: () => (/* reexport safe */ _Like__WEBPACK_IMPORTED_MODULE_0__["default"]),
 /* harmony export */   Replies: () => (/* reexport safe */ _Replies__WEBPACK_IMPORTED_MODULE_2__["default"])
 /* harmony export */ });
-/* harmony import */ var _Like__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Like */ "./src/js/frontend/reviews/listing/reviews/actions/Like.js");
-/* harmony import */ var _Comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Comment */ "./src/js/frontend/reviews/listing/reviews/actions/Comment.js");
-/* harmony import */ var _Replies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Replies */ "./src/js/frontend/reviews/listing/reviews/actions/Replies.js");
+/* harmony import */ var _Like__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Like */ "./src/js/reviews/listing/reviews/actions/Like.js");
+/* harmony import */ var _Comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Comment */ "./src/js/reviews/listing/reviews/actions/Comment.js");
+/* harmony import */ var _Replies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Replies */ "./src/js/reviews/listing/reviews/actions/Replies.js");
 
 
 
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/listing/reviews/index.js":
-/*!**********************************************************!*\
-  !*** ./src/js/frontend/reviews/listing/reviews/index.js ***!
-  \**********************************************************/
+/***/ "./src/js/reviews/listing/reviews/index.js":
+/*!*************************************************!*\
+  !*** ./src/js/reviews/listing/reviews/index.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1571,11 +1571,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ReviewItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewItem */ "./src/js/frontend/reviews/listing/reviews/ReviewItem.js");
-/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Pagination */ "./src/js/frontend/reviews/listing/reviews/Pagination.js");
-/* harmony import */ var _preloaders_ReviewPreloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloaders/ReviewPreloader */ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloader.js");
-/* harmony import */ var _preloaders_ReviewPreloaderMobile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../preloaders/ReviewPreloaderMobile */ "./src/js/frontend/reviews/listing/preloaders/ReviewPreloaderMobile.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions */ "./src/js/frontend/reviews/functions.js");
+/* harmony import */ var _ReviewItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewItem */ "./src/js/reviews/listing/reviews/ReviewItem.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Pagination */ "./src/js/reviews/listing/reviews/Pagination.js");
+/* harmony import */ var _preloaders_ReviewPreloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloaders/ReviewPreloader */ "./src/js/reviews/listing/preloaders/ReviewPreloader.js");
+/* harmony import */ var _preloaders_ReviewPreloaderMobile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../preloaders/ReviewPreloaderMobile */ "./src/js/reviews/listing/preloaders/ReviewPreloaderMobile.js");
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions */ "./src/js/reviews/functions.js");
 
 
 
@@ -1647,10 +1647,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/shared/Icon.js":
-/*!************************************************!*\
-  !*** ./src/js/frontend/reviews/shared/Icon.js ***!
-  \************************************************/
+/***/ "./src/js/reviews/shared/Icon.js":
+/*!***************************************!*\
+  !*** ./src/js/reviews/shared/Icon.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1674,10 +1674,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/shared/RatingInput.js":
-/*!*******************************************************!*\
-  !*** ./src/js/frontend/reviews/shared/RatingInput.js ***!
-  \*******************************************************/
+/***/ "./src/js/reviews/shared/RatingInput.js":
+/*!**********************************************!*\
+  !*** ./src/js/reviews/shared/RatingInput.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1686,8 +1686,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks */ "./src/js/frontend/reviews/hooks.js");
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks */ "./src/js/reviews/hooks.js");
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Icon */ "./src/js/reviews/shared/Icon.js");
 
 
 
@@ -1747,10 +1747,10 @@ const RATING_LABELS = applyFilters('wecodeart.woocommerce.reviews.rating.labels'
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/shared/StarRating.js":
-/*!******************************************************!*\
-  !*** ./src/js/frontend/reviews/shared/StarRating.js ***!
-  \******************************************************/
+/***/ "./src/js/reviews/shared/StarRating.js":
+/*!*********************************************!*\
+  !*** ./src/js/reviews/shared/StarRating.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1759,7 +1759,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Icon */ "./src/js/reviews/shared/Icon.js");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({
@@ -1793,10 +1793,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/summary/AddReview.js":
-/*!******************************************************!*\
-  !*** ./src/js/frontend/reviews/summary/AddReview.js ***!
-  \******************************************************/
+/***/ "./src/js/reviews/summary/AddReview.js":
+/*!*********************************************!*\
+  !*** ./src/js/reviews/summary/AddReview.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1805,7 +1805,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _shared_RatingInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../shared/RatingInput */ "./src/js/frontend/reviews/shared/RatingInput.js");
+/* harmony import */ var _shared_RatingInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/RatingInput */ "./src/js/reviews/shared/RatingInput.js");
 
 
 const {
@@ -1857,10 +1857,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/summary/RatingBars.js":
-/*!*******************************************************!*\
-  !*** ./src/js/frontend/reviews/summary/RatingBars.js ***!
-  \*******************************************************/
+/***/ "./src/js/reviews/summary/RatingBars.js":
+/*!**********************************************!*\
+  !*** ./src/js/reviews/summary/RatingBars.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1959,10 +1959,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/summary/RatingData.js":
-/*!*******************************************************!*\
-  !*** ./src/js/frontend/reviews/summary/RatingData.js ***!
-  \*******************************************************/
+/***/ "./src/js/reviews/summary/RatingData.js":
+/*!**********************************************!*\
+  !*** ./src/js/reviews/summary/RatingData.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1971,7 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _shared_StarRating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../shared/StarRating */ "./src/js/frontend/reviews/shared/StarRating.js");
+/* harmony import */ var _shared_StarRating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/StarRating */ "./src/js/reviews/shared/StarRating.js");
 
 
 const {
@@ -2005,10 +2005,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/summary/RatingStats.js":
-/*!********************************************************!*\
-  !*** ./src/js/frontend/reviews/summary/RatingStats.js ***!
-  \********************************************************/
+/***/ "./src/js/reviews/summary/RatingStats.js":
+/*!***********************************************!*\
+  !*** ./src/js/reviews/summary/RatingStats.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2017,7 +2017,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../shared/Icon */ "./src/js/frontend/reviews/shared/Icon.js");
+/* harmony import */ var _shared_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/Icon */ "./src/js/reviews/shared/Icon.js");
 
 
 const {
@@ -2072,10 +2072,10 @@ const {
 
 /***/ }),
 
-/***/ "./src/js/frontend/reviews/summary/index.js":
-/*!**************************************************!*\
-  !*** ./src/js/frontend/reviews/summary/index.js ***!
-  \**************************************************/
+/***/ "./src/js/reviews/summary/index.js":
+/*!*****************************************!*\
+  !*** ./src/js/reviews/summary/index.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2085,10 +2085,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _AddReview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddReview */ "./src/js/frontend/reviews/summary/AddReview.js");
-/* harmony import */ var _RatingData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingData */ "./src/js/frontend/reviews/summary/RatingData.js");
-/* harmony import */ var _RatingBars__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RatingBars */ "./src/js/frontend/reviews/summary/RatingBars.js");
-/* harmony import */ var _RatingStats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./RatingStats */ "./src/js/frontend/reviews/summary/RatingStats.js");
+/* harmony import */ var _AddReview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddReview */ "./src/js/reviews/summary/AddReview.js");
+/* harmony import */ var _RatingData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingData */ "./src/js/reviews/summary/RatingData.js");
+/* harmony import */ var _RatingBars__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RatingBars */ "./src/js/reviews/summary/RatingBars.js");
+/* harmony import */ var _RatingStats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./RatingStats */ "./src/js/reviews/summary/RatingStats.js");
 
 
 

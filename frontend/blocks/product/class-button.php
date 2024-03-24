@@ -150,9 +150,9 @@ class Button extends Base {
 				display: block;
 				width: 4em;
 				background-color: var(--wp--preset--color--danger);
-				background-image: var(--wc--cart);
+				background-image: var(--wc--icon--cart-add);
 				background-repeat: no-repeat;
-				background-position: 40% center;
+				background-position: center;
 				background-size: 2em;
 				border-radius: inherit;
 				border-top-right-radius: 0;

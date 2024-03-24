@@ -47,6 +47,8 @@ class Widget extends Base {
 	 * @return 	array
 	 */
 	public function init() {
+		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'filter_render' ], 20, 1 );
+
 		if ( apply_filters( 'litespeed_esi_status', false ) ) {
 			add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
 			add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
@@ -66,10 +68,51 @@ class Widget extends Base {
 	 *
 	 * @return 	array
 	 */
-	public function block_type_args(): array {
+	public function block_type_args( array $current = [] ): array {
+		$support = get_prop( $current, [ 'supports' ], [] );
+
 		return [
-			'style'	=> [ $this->get_asset_handle(), 'wc-blocks-style-cart' ]
+			'supports'	=> wp_parse_args( [
+				'spacing' => [
+					'margin' 	=> true,
+					'padding' 	=> true,
+				]
+			], $support )
 		];
+	}
+
+	/**
+	 * Render Block
+	 * 
+	 * @param 	string 	$content
+	 * 
+	 * @return 	string
+	 */
+	public function filter_render( string $content = '' ): string {
+		$processor 	= new \WP_HTML_Tag_Processor( $content );
+
+		$processor->next_tag( [
+			'tag_name' 	=> 'button',
+			'class_name'=> 'wc-block-mini-cart__button'
+		] );
+
+		$processor->set_attribute( 'aria-label', esc_html__( 'Cart', 'woocommerce' ) ); 
+
+		return $processor->get_updated_html();
+	}
+
+	/**
+	 * Block styles.
+	 *
+	 * @return 	string Block CSS.
+	 */
+	public function enqueue_styles() {
+		parent::enqueue_styles();
+
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-cart-dep', [
+			'load'		=> fn() => ! wp_style_is( 'wc-blocks-style-cart' ),
+			'inline'	=> wecodeart( 'blocks' )->get( 'woocommerce/cart' )::get_instance()->styles()
+		] );
 	}
 
 	/**

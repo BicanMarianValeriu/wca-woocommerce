@@ -81,6 +81,11 @@ class Drawer extends Base {
 				opacity: 1;
 				z-index: 9999;
 			}
+			.wc-block-components-drawer__content {
+    			position: relative;
+				height: 100vh;
+			    height: 100dvh;
+			}
 			.wc-block-components-drawer__screen-overlay--with-slide-in {
 				animation-duration: var(--wp--animation--duration);
 				animation-name: animation__fadeIn;

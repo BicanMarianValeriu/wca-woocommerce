@@ -13,17 +13,17 @@ namespace WCA\EXT\WOO\Frontend\Conditions;
 
 defined( 'ABSPATH' ) || exit(); 
 
-use WeCodeArt\Conditional\Interfaces\ConditionalInterface;
+use WeCodeArt\Config\Interfaces\Conditional;
 
 /**
  * Conditional that is only met when in the Woo Pages.
  */
-class Page implements ConditionalInterface {
+class Page implements Conditional {
 
 	/**
 	 * @inheritdoc
 	 */
-	public function is_met() {
+	public function is_met(): bool {
 		if ( wecodeart_if( 'is_woocommerce_active' ) ) {
 			if ( \is_woocommerce() || \is_cart() || \is_checkout() || \is_account_page() ) {
 				return true;

@@ -13,6 +13,7 @@ namespace WCA\EXT\WOO\Frontend;
 
 use WP_Query;
 use WeCodeArt\Singleton;
+use Automattic\WooCommerce\Blocks\Domain\Services\FeatureGating;
 use Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils;
 use function WeCodeArt\Functions\get_prop;
 
@@ -80,7 +81,22 @@ class Templates {
 		$templates_from_db	= $this->get_from_db( $slugs, $template_type );
 		$templates_from_fs 	= $this->get_from_fs( $slugs, $templates_from_db, $template_type );
 
-		return BlockTemplateUtils::filter_block_templates_by_feature_flag( $templates_from_fs );
+		$feature_gating = new FeatureGating();
+		$flag           = $feature_gating->get_flag();
+
+		/**
+		 * An array of block templates with slug as key and flag as value.
+		 *
+		 * @var array
+		*/
+		$block_templates_with_feature_gate = [];
+
+		return array_filter( $templates_from_fs, function( $block_template ) use ( $flag, $block_templates_with_feature_gate ) {
+			if ( isset( $block_templates_with_feature_gate[ $block_template->slug ] ) ) {
+				return $block_templates_with_feature_gate[ $block_template->slug ] <= $flag;
+			}
+			return true;
+		} );
 	}
 
 	/**

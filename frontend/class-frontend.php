@@ -129,17 +129,6 @@ class Frontend {
 				'version' 	=> $this->version,
 			] );
 		}
-
-		// Frontend JS
-		$frontend	= wecodeart_if( 'is_dev_mode' ) ? 'frontend' : 'frontend.min';
-		wecodeart( 'assets' )->add_script( $this->make_handle(), [
-			'path' 		=> sprintf( '%s/assets/%s/js/%s.js', $plugin, $folder, $frontend ),
-			'deps'		=> [ 'wecodeart-support-assets' ],
-			'version' 	=> $this->version,
-			'load'  	=> function( $blocks ) {
-				return wecodeart_if( 'is_woocommerce_page' ) || Frontend\Blocks::has_products( $blocks );
-			},
-		] );
 	}
 
 	/**

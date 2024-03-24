@@ -37,14 +37,17 @@ class Contents extends Base {
 	 */
 	public function styles(): string {
 		return '
+			.wc-block-mini-cart__template-part,
 			.wp-block-woocommerce-mini-cart-contents {
-				height: 100vh;
+				height: 100%;
 			}
 			.wp-block-woocommerce-empty-mini-cart-contents-block,
 			.wp-block-woocommerce-filled-mini-cart-contents-block {
 				display: flex;
 				flex-direction: column;
 				height: 100%;
+				max-height: -moz-available;
+    			max-height: fill-available;
 			}
 			.wp-block-woocommerce-empty-mini-cart-contents-block {
 				justify-content: center;

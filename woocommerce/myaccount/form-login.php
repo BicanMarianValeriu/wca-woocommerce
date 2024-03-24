@@ -30,6 +30,10 @@ wecodeart( 'styles' )->Utilities->load( [
 	'mt-0',
 	'p-3',
 	'p-md-5',
+	'span-6',
+	'span-md-3',
+	'span-lg-2',
+	'span-lg-4'
 ] );
 
 do_action( 'woocommerce_before_customer_login_form' ); ?>

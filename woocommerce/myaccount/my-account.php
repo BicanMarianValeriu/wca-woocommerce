@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-wecodeart( 'styles' )->Utilities->load( [ ] );
+wecodeart( 'styles' )->Utilities->load( [ 'span-2', 'span-4', 'span-md-1', 'span-md-3' ] );
 
 ?>
 <div class="grid" style="--wp--columns:4;">
