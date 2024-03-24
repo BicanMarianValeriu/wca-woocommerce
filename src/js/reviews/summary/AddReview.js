@@ -1,4 +1,4 @@
-import RatingInput from './../shared/RatingInput';
+import RatingInput from '../shared/RatingInput';
 
 const {
 	i18n: { __, sprintf },

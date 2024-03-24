@@ -1,4 +1,4 @@
-import { scrollToElement } from './../../functions';
+import { scrollToElement } from '../../functions';
 
 const {
 	i18n: { __ },

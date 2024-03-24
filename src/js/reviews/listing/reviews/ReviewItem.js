@@ -1,6 +1,6 @@
 import { Like, Comment, Replies } from './actions';
 import StarRating from '../../shared/StarRating';
-import { formatDate, generateAvatarDataURL, getInitials } from './../../functions';
+import { formatDate, generateAvatarDataURL, getInitials } from '../../functions';
 import Icon from '../../shared/Icon';
 
 const {

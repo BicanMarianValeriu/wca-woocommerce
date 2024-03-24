@@ -1,4 +1,4 @@
-import { renderToString as _render } from './../functions';
+import { renderToString as _render } from '../functions';
 
 const { Template = { renderToString: _render } } = window.wecodeart || {};
 

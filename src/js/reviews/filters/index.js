@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import ResultsNote from './ResultsNote';
-import Icon from './../shared/Icon';
+import Icon from '../shared/Icon';
 
 const {
 	i18n: { __, _n, sprintf },

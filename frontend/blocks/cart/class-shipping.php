@@ -50,6 +50,7 @@ class Shipping extends Base {
 				margin: 0;
 				width: 100%;
 				background-color: var(--wp--preset--color--primary);
+				cursor: pointer;
 			}
 		';
 	}

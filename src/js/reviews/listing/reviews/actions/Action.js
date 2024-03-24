@@ -1,4 +1,4 @@
-import Icon from './../../../shared/Icon';
+import Icon from '../../../shared/Icon';
 
 export default ({ icon = false, label, children, ...rest }) => {
 	rest = { className: 'wp-element-button has-background has-black-color has-small-font-size', ...rest };

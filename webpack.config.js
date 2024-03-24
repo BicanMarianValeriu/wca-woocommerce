@@ -20,8 +20,7 @@ module.exports = {
     entry: {
         'select2': path.resolve(process.cwd(), 'src', 'scss', 'vendor', 'select2.scss'),
         'gutenberg': path.resolve(process.cwd(), 'src', 'js', 'gutenberg', 'index.js'),
-        'frontend': path.resolve(process.cwd(), 'src', 'js', 'frontend', 'index.js'),
-        'reviews': path.resolve(process.cwd(), 'src', 'js', 'frontend', 'reviews', 'index.js'),
+        'reviews': path.resolve(process.cwd(), 'src', 'js', 'reviews', 'index.js'),
         'admin': path.resolve(process.cwd(), 'src', 'js', 'admin', 'index.js'),
     },
     output: {

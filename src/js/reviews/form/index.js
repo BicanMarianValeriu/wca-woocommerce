@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import SuggestTitle from './SuggestTitle';
 import Notification from './Notification';
-import RatingInput from './../shared/RatingInput';
+import RatingInput from '../shared/RatingInput';
 
 const {
 	i18n: { __ },

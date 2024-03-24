@@ -1,4 +1,4 @@
-import StarRating from './../shared/StarRating';
+import StarRating from '../shared/StarRating';
 
 const {
 	i18n: { _n, sprintf }

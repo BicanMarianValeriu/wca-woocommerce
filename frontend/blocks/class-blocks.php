@@ -43,6 +43,7 @@ class Blocks {
 		$container->register( 'woocommerce/catalog-sorting',		Blocks\Sorting::class );
 		$container->register( 'woocommerce/all-reviews',			Blocks\Reviews::class );
 		$container->register( 'woocommerce/all-products',			Blocks\Products::class );
+		$container->register( 'woocommerce/product-collection',		Blocks\Collection::class );
 		$container->register( 'woocommerce/breadcrumbs',			Blocks\Breadcrumbs::class );
 		// Filters
 		$container->register( 'woocommerce/filter-wrapper', 		Blocks\Filters::class );

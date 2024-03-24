@@ -46,6 +46,7 @@ class Coupon extends Base {
 			.wc-block-components-totals-coupon__button.wp-element-button {
 				margin-left: 1rem;
 				background-color: var(--wp--preset--color--primary);
+				cursor: pointer;
 			}
 			.wc-block-components-totals-coupon__button.wp-element-button:disabled {
 				opacity: 0.5;

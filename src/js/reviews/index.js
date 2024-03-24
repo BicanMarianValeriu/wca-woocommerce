@@ -4,7 +4,7 @@
  * @license:	https://www.wecodeart.com/
  * @version:	1.0.0
  */
-import './../../../scss/reviews.scss';
+import './../../scss/reviews.scss';
 
 const {
 	hooks: { doAction },

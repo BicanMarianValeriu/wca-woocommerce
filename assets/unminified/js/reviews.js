@@ -310,13 +310,13 @@ module.exports = window["wp"]["element"];
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!******************************************!*\
-  !*** ./src/js/frontend/reviews/index.js ***!
-  \******************************************/
+/*!*********************************!*\
+  !*** ./src/js/reviews/index.js ***!
+  \*********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _scss_reviews_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../scss/reviews.scss */ "./src/scss/reviews.scss");
+/* harmony import */ var _scss_reviews_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../scss/reviews.scss */ "./src/scss/reviews.scss");
 
 /**
  * @package: 	WeCodeArt WOO Reviews
@@ -336,7 +336,7 @@ const {
 const {
   container = '#reviews'
 } = wpBlockWooReviews || {};
-Promise.all(/*! import() | App */[__webpack_require__.e("vendors-node_modules_react-use_esm_factory_createBreakpoint_js-node_modules_babel_runtime_hel-8b788f"), __webpack_require__.e("App")]).then(__webpack_require__.bind(__webpack_require__, /*! ./App */ "./src/js/frontend/reviews/App.js")).then(({
+Promise.all(/*! import() | App */[__webpack_require__.e("vendors-node_modules_react-use_esm_factory_createBreakpoint_js-node_modules_babel_runtime_hel-8b788f"), __webpack_require__.e("App")]).then(__webpack_require__.bind(__webpack_require__, /*! ./App */ "./src/js/reviews/App.js")).then(({
   App
 }) => {
   doAction('wecodeart.woocommerce.reviews.loaded', wpBlockWooReviews);
