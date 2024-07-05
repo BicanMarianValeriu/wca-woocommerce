@@ -46,7 +46,8 @@ class Address extends Base {
             ) :is(
                 .wc-block-components-combobox,
                 .wc-block-components-checkbox,
-                .wc-block-components-text-input
+                .wc-block-components-text-input,
+				.wc-block-components-address-form__address_2-toggle
             ) {
                 margin-bottom: var(--wp--style--block-gap);
             }

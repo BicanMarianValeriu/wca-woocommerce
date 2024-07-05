@@ -129,6 +129,12 @@ class Frontend {
 				'version' 	=> $this->version,
 			] );
 		}
+
+		// Photoswipe styles
+		if( ! is_product() ) {
+			wp_deregister_style( 'photoswipe' );
+			wp_deregister_style( 'photoswipe-default-skin' );
+		}
 	}
 
 	/**

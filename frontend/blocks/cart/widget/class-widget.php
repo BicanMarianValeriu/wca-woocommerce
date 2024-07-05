@@ -53,8 +53,8 @@ class Widget extends Base {
 			add_action( 'litespeed_tpl_normal', 					__CLASS__ . '::is_not_esi' );
 			add_action( 'litespeed_esi_load-' . self::ESI_TAG, 		__CLASS__ . '::esi_load' );
 			add_filter( 'litespeed_esi_inline-' . self::ESI_TAG,	__CLASS__ . '::esi_inline',	20, 2 );
-			add_filter( 'litespeed_vary_curr_cookies', 				__CLASS__ . '::check_cookies' ); 
-			add_filter( 'litespeed_vary_cookies', 					__CLASS__ . '::register_cookies' ); 
+			// add_filter( 'litespeed_vary_curr_cookies', 				__CLASS__ . '::check_cookies' ); 
+			// add_filter( 'litespeed_vary_cookies', 					__CLASS__ . '::register_cookies' );
 
 			add_action( 'woocommerce_ajax_added_to_cart',			__CLASS__ . '::esi_purge' );
 			add_action( 'woocommerce_add_to_cart',					__CLASS__ . '::esi_purge' );

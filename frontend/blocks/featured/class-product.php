@@ -71,7 +71,7 @@ class Product extends Base {
 				border-radius: inherit;
 				padding: var(--wp--custom--gutter, 1rem);
 			}
-			div[class*=wc-block-featured-] div[class*=__wrapper] > :not(.background-dim__overlay, *[class*=__background-image]) {
+			div[class*=wc-block-featured-] div[class*=__wrapper] > :not(.background-dim__overlay, *[class*=__background-image], picture) {
 				position: relative;
 				z-index: 2;
 			}
