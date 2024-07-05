@@ -274,7 +274,7 @@ class Price extends Base {
 			}
 			:is(.price,.wc-block-grid__product-price,.wc-block-components-product-price) del {
 				font-size: var(--wp--preset--font-size--small);
-				color: var(--wp--gray-500); 
+				color: var(--wp--gray-700); 
 			}
 			:is(.price,.wc-block-grid__product-price,.wc-block-components-product-price) ins {
 				color: var(--wp--preset--color--danger);

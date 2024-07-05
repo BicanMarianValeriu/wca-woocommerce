@@ -43,7 +43,7 @@ class Shipping extends Base {
 				justify-content: space-between;
 				width: 100%;
 			}
-			.wc-block-checkout__shipping-method-option {
+			.wp-element-button.wc-block-checkout__shipping-method-option {
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -68,12 +68,14 @@ class Shipping extends Base {
 				text-transform: inherit;
 				cursor: pointer;
 			}
-			.wc-block-checkout__shipping-method-option--selected {
+			.wp-element-button.wc-block-checkout__shipping-method-option:hover, 
+			.wp-element-button.wc-block-checkout__shipping-method-option--selected {
 				background-color: var(--wp--preset--color--accent);
 				border-color: var(--wp--preset--color--primary);
+				color: var(--wp--preset--color--dark);
 			}
 			.wc-block-checkout__shipping-method-option-price {
-				font-size: small;
+				font-size: var(--wp--preset--font-size--small);
 				opacity: .75;
 			}
 		';

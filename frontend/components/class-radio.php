@@ -61,7 +61,7 @@ class Radio extends Base {
 			.wc-block-components-radio-control-accordion-option input {
 				left: 1.125rem;
 			}
-			.wc-block-components-radio-control-accordion-content {
+			.wc-block-components-radio-control-accordion-content div:not(:empty) {
 				padding: 0 1rem 1rem;
 			}
 			.wc-block-components-radio-control__input {
@@ -96,7 +96,7 @@ class Radio extends Base {
 				.wc-block-components-shipping-rates-control,
 				.wc-block-components-local-pickup-rates-control
 			) .wc-block-components-radio-control__input {
-				top: 1.55em;
+				top: 1.4em;
 			} 
 			.wc-block-components-radio-control__label {
 				font-weight: 700;

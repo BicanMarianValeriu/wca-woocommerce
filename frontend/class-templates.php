@@ -49,16 +49,14 @@ class Templates {
 		 * Update title and description for WC templates that aren't listed in theme.json.
 		 */
 		$result = array_map( function( $template ) {
-			if (
-				! in_array( $template->slug, self::ALL_TEMPLATES, true ) &&
-				BlockTemplateUtils::template_has_title( $template )
-			) {
+			if ( ! in_array( $template->slug, self::ALL_TEMPLATES, true ) && self::template_has_title( $template ) ) {
 				return $template;
 			}
 			
 			if ( $template->title === $template->slug ) {
 				$template->title = BlockTemplateUtils::get_block_template_title( $template->slug );
 			}
+
 			if ( ! $template->description ) {
 				$template->description = BlockTemplateUtils::get_block_template_description( $template->slug );
 			}
@@ -217,5 +215,16 @@ class Templates {
 			'title'       => BlockTemplateUtils::get_block_template_title( $template_slug ),
 			'description' => BlockTemplateUtils::get_block_template_description( $template_slug ),
 		];
-	  }
+	}
+
+	/**
+	 * Template has title.
+	 *
+	 * @param	object  $template
+	 *
+	 * @return 	bool
+	 */
+	public static function template_has_title( object $template ): bool {
+		return ! empty( $template->title ) && $template->title !== $template->slug;
+	}
 }

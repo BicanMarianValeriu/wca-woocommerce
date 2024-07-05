@@ -210,36 +210,6 @@ class Admin {
 	}
 
 	/**
-	 * Update
-	 *
-	 * @since 	1.0.0
-	 * @version	1.0.0
-	 */
-	public function update( $transient ) {
-		if ( empty( $transient->checked ) ) {
-			return $transient;
-		}
-		
-		$latest 	= self::get_github_data();
-		$tag_name 	= get_prop( $latest, 'tag_name', 'v1.0.0' );
-		$version 	= str_replace( 'v', '', $tag_name );
-
-		if ( 1 === version_compare( $version, $this->version ) ) {
-			$response 				= new \stdClass;
-			$response->new_version 	= $version;
-			$response->slug 		= dirname( WCA_WOO_EXT_BASE );
-			$response->url 			= sprintf( 'https://github.com/%s', self::REPOSITORY );
-			$response->package 		= sprintf( 'https://api.github.com/repos/%s/zipball/%s', self::REPOSITORY, $tag_name );
-			// $response->package	= sprintf( 'https://github.com/BicanMarianValeriu/wca-contact-form-7/archive/refs/tags/%s.zip', $tag_name );
-			// $response->upgrade_notice	= '';
-
-			$transient->response[ WCA_WOO_EXT_BASE ] = $response;
-		}
-		
-		return $transient;
-	}
-
-	/**
 	 * Upgrader/Updater
 	 *
 	 * @since 	1.0.0
@@ -268,6 +238,42 @@ class Admin {
 	}
 
 	/**
+	 * Update
+	 *
+	 * @since 	1.0.0
+	 * @version	1.0.0
+	 */
+	public function update( $transient ) {
+		if ( empty( $transient->checked ) ) {
+			return $transient;
+		}
+		
+		$latest 	= self::get_github_data();
+		$tag_name 	= get_prop( $latest, 'tag_name', 'v1.0.0' );
+		$version 	= str_replace( 'v', '', $tag_name );
+
+		$response 				= new \stdClass;
+		$response->new_version 	= $version;
+		$response->slug 		= dirname( WCA_WOO_EXT_BASE );
+		$response->plugin 		= WCA_WOO_EXT_BASE;
+		$response->id 			= WCA_WOO_EXT_BASE;
+		$response->tested 		= '6.5.0';
+		$response->url 			= sprintf( 'https://github.com/%s', self::REPOSITORY );
+		$response->package 		= sprintf( 'https://api.github.com/repos/%s/zipball/%s', self::REPOSITORY, $tag_name );
+
+		if ( 1 === version_compare( $version, $this->version ) ) {
+			$transient->response[ WCA_WOO_EXT_BASE ] = $response;
+		} else {
+			$transient->no_update[ WCA_WOO_EXT_BASE ] = $response;
+		}
+
+		$transient->last_checked	= time();
+		$transient->checked[ WCA_WOO_EXT_BASE ] = WCA_WOO_EXT_VER;
+		
+		return $transient;
+	}
+
+	/**
 	 * Get Plugin info
 	 *
 	 * @since 	1.0.0
@@ -280,9 +286,13 @@ class Admin {
 	 * @return 	object $response the plugin info
 	 */
 	public function info( $false, $action, $response ) {
+		if ( 'plugin_information' !== $action ) {
+			return $false;
+		}
+
 		// Check if this call API is for the right plugin
 		if ( ! isset( $response->slug ) || $response->slug !== dirname( WCA_WOO_EXT_BASE ) ) {
-			return false;
+			return $false;
 		}
 
 		$plugin		= self::get_plugin_data();
@@ -292,6 +302,7 @@ class Admin {
 
 		$response->slug 		= dirname( WCA_WOO_EXT_BASE );
 		$response->version 		= str_replace( 'v', '', $tag_name );
+		$response->id 			= WCA_WOO_EXT_BASE;
 		$response->plugin_name 	= $plugin['Name'];
 		$response->author 		= $plugin['Author'];
 		$response->homepage		= $plugin['PluginURI'];
@@ -312,6 +323,10 @@ class Admin {
 		];
 		$response->donate_link 		= 'https://www.paypal.com/donate?hosted_button_id=PV9A4JDX84Z3W';
 		$response->download_link 	= sprintf( 'https://api.github.com/repos/%s/zipball/%s', self::REPOSITORY, $tag_name );
+
+		if ( ! isset( $response->plugin ) ) {
+			$response->plugin = WCA_WOO_EXT_BASE;
+		}
 
 		return $response;
 	}

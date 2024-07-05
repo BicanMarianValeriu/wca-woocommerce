@@ -152,6 +152,9 @@ class Checkout extends Base {
 				font-size: var(--wp--preset--font-size--small);
 				opacity: .7;
 			}
+			.wc-block-components-checkout-step__content:first-child {
+				margin-top: 1rem;
+			}
 
 			.wc-block-checkout__actions {
 				padding-top: 1rem;

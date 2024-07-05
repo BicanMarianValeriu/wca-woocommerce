@@ -15,17 +15,18 @@
  * Plugin Name:       WCA: WooCommerce
  * Plugin URI:        https://github.com/BicanMarianValeriu/wca-woocommerce
  * Description:       WCA WooCommerce extension for WeCodeArt Framework theme.
- * Version:           1.2.6
+ * Version:           1.2.7
  * Author:            Bican Marian Valeriu
  * Author URI:        https://www.wecodeart.com/about/
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       wca-woocommerce
  * Domain Path:       /languages
- * Requires at least:       6.3
+ * Requires at least:       6.5
  * Requires PHP:            7.4
  * WC requires at least:    8.0
- * WC tested up to:         8.3
+ * WC tested up to:         8.9
+ * Requires Plugins: woocommerce
  */
 namespace WCA\EXT\WOO;
 

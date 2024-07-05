@@ -75,6 +75,9 @@ class Filters extends Base {
 			.wc-block-components-price-slider__actions,
 			.wp-block-woocommerce-filter-wrapper *[class*="filter__actions"] {
 				margin-top: var(--wp--style--block-gap);
+				display: flex;
+				align-items: flex-end;
+				justify-content: space-between;
 			}
 			.wc-block-components-price-slider__actions:empty,
 			.wp-block-woocommerce-filter-wrapper *[class*="filter__actions"]:empty {
