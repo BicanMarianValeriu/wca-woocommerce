@@ -78,20 +78,18 @@ class Templates {
 	public function get_missing( array $slugs = Templates::ALL_TEMPLATES, string $template_type = 'wp_template' ): array {
 		$templates_from_db	= $this->get_from_db( $slugs, $template_type );
 		$templates_from_fs 	= $this->get_from_fs( $slugs, $templates_from_db, $template_type );
-
-		$feature_gating = new FeatureGating();
-		$flag           = $feature_gating->get_flag();
+		$template_flag		= 0;
 
 		/**
 		 * An array of block templates with slug as key and flag as value.
 		 *
 		 * @var array
 		*/
-		$block_templates_with_feature_gate = [];
+		$with_feature_gate = [];
 
-		return array_filter( $templates_from_fs, function( $block_template ) use ( $flag, $block_templates_with_feature_gate ) {
-			if ( isset( $block_templates_with_feature_gate[ $block_template->slug ] ) ) {
-				return $block_templates_with_feature_gate[ $block_template->slug ] <= $flag;
+		return array_filter( $templates_from_fs, function( $block_template ) use ( $template_flag, $with_feature_gate ) {
+			if ( isset( $with_feature_gate[ $block_template->slug ] ) ) {
+				return $with_feature_gate[ $block_template->slug ] <= $template_flag;
 			}
 			return true;
 		} );
