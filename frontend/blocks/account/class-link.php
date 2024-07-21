@@ -20,7 +20,6 @@ use WCA\EXT\WOO\Frontend\Blocks\Base;
 use function add_filter;
 use function str_replace;
 use function WeCodeArt\Functions\get_prop;
-use function WeCodeArt\Functions\dom_get_element;
 
 use \LiteSpeed\Tag;
 use \LiteSpeed\ESI;
@@ -101,7 +100,7 @@ class Link extends Base {
 	 */
 	public function filter_render( string $content = '', array $block = [] ): string {
 		$dropdown 	= get_prop( wecodeart_option( 'woocommerce' ), [ 'customer_account_extra' ], false );
-		$processor 	= new \WP_HTML_Tag_Processor( $content );
+		$processor 	= wecodeart( 'dom' )::processor( $content );
 
 		$processor->next_tag();
 
@@ -133,8 +132,8 @@ class Link extends Base {
 		}
 
 		$dom	= $this->dom( $content );
-		$svg_	= dom_get_element( 'svg', $dom );
-		$link	= dom_get_element( 'a', $dom );
+		$svg_	= wecodeart( 'dom' )::get_element( 'svg', $dom );
+		$link	= wecodeart( 'dom' )::get_element( 'a', $dom );
 		
 		$svg	= $dom->importNode( $this->dom( wecodeart( 'markup' )->SVG::compile( 'account', [
 			'class' => 'wc-block-customer-account__account-icon',
@@ -206,6 +205,8 @@ class Link extends Base {
 				]
 			] );
 		endforeach;
+
+		\wp_enqueue_style( 'wp-block-navigation-submenu' );
 
 		return Menu::render_dropdown( (object) $block, [], false );
 	}
