@@ -44,12 +44,12 @@ class Price extends Base {
 
 		if( ! $is_enabled ) return;
 
-		add_action( 'woocommerce_product_options_general_product_data', [ $this, 'manufacturer_product_data' 	], 20 );
+		add_action( 'woocommerce_product_options_general_product_data', [ $this, 'manufacturer_product_data' 	], 20, 1 );
 		add_action( 'woocommerce_variation_options_pricing', 			[ $this, 'manufacturer_variation_data' 	], 20, 3 );
-		add_action( 'woocommerce_process_product_meta', 				[ $this, 'process_product_meta' 		], 20);
+		add_action( 'woocommerce_process_product_meta', 				[ $this, 'process_product_meta' 		], 20, 1 );
 		add_action( 'woocommerce_save_product_variation', 				[ $this, 'process_variation_meta' 		], 20, 2 );
-		add_filter( 'woocommerce_available_variation',					[ $this, 'render_variation'	], 20 );
-		add_filter( 'render_block_' . $this->get_block_type(),			[ $this, 'render_block'		], 20 );
+		add_filter( 'woocommerce_available_variation',					[ $this, 'render_variation'				], 20, 1 );
+		add_filter( 'render_block_' . $this->get_block_type(),			[ $this, 'render_block'					], 20, 1 );
 	}
 
     /**
@@ -60,11 +60,9 @@ class Price extends Base {
 	 * @return 	string
 	 */
 	public function render_block( string $content = '', array $block = [] ): string {
-		// $is_single_product = get_prop( $block, [ 'attrs', 'isDescendentOfSingleProductTemplate' ] ) === true;
-
 		$content = str_replace( '<del', $this->markup() . '<del', $content );
 
-		$processor = new \WP_HTML_Tag_Processor( $content );
+		$processor = wecodeart( 'dom' )::processor( $content );
 		$processor->next_tag();
 	
 		// Clean empty class
@@ -140,13 +138,12 @@ class Price extends Base {
 		
 			?></span>
 			<span
-				class="has-popper ms-1"
-				data-plugin="tooltip"
-				data-options="<?php echo esc_attr( wp_json_encode( [
-					'title' => $message
-				] ) ); ?>"
-				title="<?php echo esc_attr( $message ); ?>"
-				tabindex="0">
+				class="has-floating ms-1"
+				data-wp-context="<?php echo esc_attr( wp_json_encode( [
+					'title' 	=> $message,
+					'trigger'	=> 'hover focus'
+				] ) ) ; ?>"
+				>
 				<?php
 				
 				wecodeart( 'markup' )->SVG::render( 'info', [
@@ -158,7 +155,15 @@ class Price extends Base {
 		</p>
 		<?php
 
-		return ob_get_clean();
+		$content = ob_get_clean();
+
+		if( wecodeart( 'support' )->has( 'modules/formatting' ) ) {
+			$content = wecodeart( 'support' )->get( 'modules/formatting' )::get_instance()->render_block( $content, [
+				'blockName' => 'core/paragraph'
+			] );
+		}
+
+		return $content;
 	}
 
 	/**

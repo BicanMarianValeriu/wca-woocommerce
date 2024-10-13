@@ -32,6 +32,28 @@ class Checkout extends Base {
 	protected $block_name = 'checkout';
 
 	/**
+	 * Block init.
+	 *
+	 * @return 	array
+	 */
+	public function init() {
+		add_filter( 'render_block_' . $this->get_block_type(),	[ $this, 'render_block'	], 20 );
+	}
+
+    /**
+	 * Render Block
+	 * 
+	 * @param 	string 	$content
+	 * 
+	 * @return 	string
+	 */
+	public function render_block( string $content = '' ): string {
+		$processor 	= wecodeart( 'dom' )::processor( $content );
+
+		return str_replace( 'wc-blocks-components-select__container', 'wc-blocks-components-select__container_2', $content );
+	}
+
+	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.
@@ -95,6 +117,7 @@ class Checkout extends Base {
 			
 			.wc-block-components-checkout-step {
 				border: 0;
+				padding: 0;
 				margin: 0 0 1.5rem;
 			}
 			.wc-block-components-checkout-step--with-step-number {
@@ -155,11 +178,13 @@ class Checkout extends Base {
 			.wc-block-components-checkout-step__content:first-child {
 				margin-top: 1rem;
 			}
-
 			.wc-block-checkout__actions {
 				padding-top: 1rem;
 				margin-top: 1rem;
 				border-top: 1px solid var(--wp--preset--color--accent);
+			}
+			wc-block-checkout__guest-checkout-notice {
+				margin-top: 0;
 			}
 			.is-root-container .wc-block-checkout__actions,
 			.wc-block-checkout__actions_row {

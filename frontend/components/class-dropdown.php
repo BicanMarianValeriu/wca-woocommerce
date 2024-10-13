@@ -31,9 +31,6 @@ class Dropdown extends Base {
         }
 		
         return [
-			'woocommerce/cart-order-summary-shipping-block',
-            'woocommerce/checkout-shipping-address-block',
-            'woocommerce/checkout-billing-address-block',
 			'woocommerce/attribute-filter',
         ];
 	}

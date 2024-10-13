@@ -41,9 +41,6 @@ class Totals extends Base {
 			.wc-block-components-totals-wrapper:empty {
 				display: none;
 			}
-			.woocommerce-page .wc-block-components-totals-wrapper:last-child {
-				padding-bottom: 0;
-			}
 			.wc-block-components-totals-wrapper::before {
 				content: "";
 				position: absolute;

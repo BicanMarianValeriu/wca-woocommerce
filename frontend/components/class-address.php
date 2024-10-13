@@ -47,9 +47,12 @@ class Address extends Base {
                 .wc-block-components-combobox,
                 .wc-block-components-checkbox,
                 .wc-block-components-text-input,
+				.wc-block-components-country-input,
+				.wc-block-components-state-input,
+				.wc-block-checkout__guest-checkout-notice,
 				.wc-block-components-address-form__address_2-toggle
             ) {
-                margin-bottom: var(--wp--style--block-gap);
+                margin: 0 0 var(--wp--style--block-gap);
             }
             .wc-block-components-address-address-wrapper:not(.is-editing) .wc-block-components-address-form-wrapper {
 				height: 0;
@@ -83,9 +86,7 @@ class Address extends Base {
 				.wc-block-components-address-form__first_name,
 				.wc-block-components-address-form__last_name,
 				.wc-block-components-address-form__city,
-				.wc-block-components-address-form__postcode,
-				.wc-block-components-address-form .wc-block-components-state-input,
-				.wc-block-components-address-form .wc-block-components-country-input
+				.wc-block-components-address-form .wc-block-components-state-input 
 			) {
 				flex: 0 0 calc(50% - 0.75rem);
 			}
@@ -99,8 +100,15 @@ class Address extends Base {
 				margin: 0 0 var(--wp--style--block-gap);
 			}
 			.wc-block-components-address-card__edit {
+				padding: 0;
+				border: 0;
+				background: none;
+				box-shadow: none;
 				margin-left: auto;
 				font-size: var(--wp--preset--font-size--small);
+			}
+			.wc-block-components-address-card__edit:is(:hover,:focus) {
+				text-decoration: underline;
 			}
 			.wc-block-components-address-card__address-section {
 				display: block;
