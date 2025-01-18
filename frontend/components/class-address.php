@@ -59,6 +59,7 @@ class Address extends Base {
 				opacity: 0;
 				visibility: hidden;
 			}
+			.wc-block-components-address-form__address_2-hidden-input,
 			.wc-block-components-address-address-wrapper.is-editing .wc-block-components-address-card-wrapper {
 				position: absolute;
 				top: 0;

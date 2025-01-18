@@ -141,7 +141,8 @@ class Price extends Base {
 				class="has-floating ms-1"
 				data-wp-context="<?php echo esc_attr( wp_json_encode( [
 					'title' 	=> $message,
-					'trigger'	=> 'hover focus'
+					'trigger'	=> 'hover focus',
+					'className' => 'has-small-font-size',
 				] ) ) ; ?>"
 				>
 				<?php

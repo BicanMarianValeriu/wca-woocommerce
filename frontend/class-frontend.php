@@ -197,51 +197,6 @@ class Frontend {
     }
 
 	/**
-     * WooCommerce Locate Template
-     *
-     * @since	1.0.0
-     * @version	1.0.0
-     *
-     * @return	array
-     */
-    public function locate_template( $template, $template_name ) {
-		// Check if the template is loaded from the plugin
-		$is_loaded_from_plugin = ( strpos( wp_normalize_path( $template ), 'woocommerce/templates' ) !== false );
-		
-		if( $is_loaded_from_plugin ) {
-			$template_file = untrailingslashit( WCA_WOO_EXT_DIR ) . '/woocommerce/' . $template_name;
-	
-			// Check if the template file exists in the custom directory
-			if ( file_exists( $template_file ) ) {
-				$template = $template_file;
-			}
-		}
-
-		return $template;
-    }
-
-	/**
-	 * Load Comments template.
-	 *
-	 * @since	1.0.0
-     * @version	1.0.0
-	 *
-	 * @param 	string 	$template template to load.
-	 *
-	 * @return 	string
-	 */
-	public function comments_template( $template ) {
-		// Check if the template is loaded from the plugin
-		$is_loaded_from_plugin = ( strpos( wp_normalize_path( $template ), 'woocommerce/templates' ) !== false );
-
-		if ( get_post_type() === 'product' && $is_loaded_from_plugin ) {
-			$template = WCA_WOO_EXT_DIR . 'woocommerce/single-product-reviews.php';
-		}
-
-		return $template;
-	}
-
-	/**
      * Returns loading CSS
      *
      * @since	1.0.0

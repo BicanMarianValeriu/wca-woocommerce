@@ -15,7 +15,7 @@
  * Plugin Name:       WCA: WooCommerce
  * Plugin URI:        https://github.com/BicanMarianValeriu/wca-woocommerce
  * Description:       WCA WooCommerce extension for WeCodeArt Framework theme.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Author:            Bican Marian Valeriu
  * Author URI:        https://www.wecodeart.com/about/
  * License:           GPL-3.0+
@@ -25,7 +25,7 @@
  * Requires at least:       6.5
  * Requires PHP:            7.4
  * WC requires at least:    8.0
- * WC tested up to:         8.9
+ * WC tested up to:         9.5.2
  * Requires Plugins: woocommerce
  */
 namespace WCA\EXT\WOO;
@@ -51,6 +51,7 @@ new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/includes' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/conditions' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/components' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/templates' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/cart' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/cart/widget' );

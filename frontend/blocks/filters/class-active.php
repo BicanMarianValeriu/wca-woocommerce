@@ -50,6 +50,7 @@ class Active extends Base {
 				border: 1px solid var(--wp--preset--color--accent);
 				border-radius: .375rem;
 			}
+			html:not(.js) div[data-filter-type="active-filters"],
 			.wp-block-woocommerce-active-filters:empty {
 				display: none;
 			}

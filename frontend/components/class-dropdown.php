@@ -127,12 +127,11 @@ class Dropdown extends Base {
 				border-color: var(--wc--input--border-focus);
 			}
 			.wc-blocks-components-form-token-field-wrapper .components-form-token-field__input-container:is(:focus,:focus-within,.is-active) input {
-				display: block;
-			}
-			.wc-blocks-components-form-token-field-wrapper .components-form-token-field__input-container:is(:focus,:focus-within,.is-active) input:not(:first-child) {
-				margin-top: var(--wc--input--padding-y);
+				display: inline-flex;
 			}
 			.wc-blocks-components-form-token-field-wrapper .components-form-token-field__input-container input {
+				width: max-content!important;
+				font-size: .85rem!important;
 				padding: 0!important;
 				border: 0!important;
 				background: 0!important;

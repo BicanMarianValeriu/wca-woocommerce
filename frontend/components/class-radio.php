@@ -55,16 +55,13 @@ class Radio extends Base {
 				border-color: var(--wc--input--border-color);
 				pointer-events: none;
 			}
-			.wc-block-components-radio-control-accordion-option label {
+			.wc-block-components-radio-control-accordion-option label.wc-block-components-radio-control__option {
 				padding: 1rem 1rem 1rem 3.5rem;
-			}
-			.wc-block-components-radio-control-accordion-option input {
-				left: 1.125rem;
 			}
 			.wc-block-components-radio-control-accordion-content div:not(:empty) {
 				padding: 0 1rem 1rem;
 			}
-			.wc-block-components-radio-control__input {
+			.wc-block-components-radio-control .wc-block-components-radio-control__input {
 				position: absolute;
 				top: 50%;
 				left: 0;
@@ -79,7 +76,7 @@ class Radio extends Base {
 				-webkit-appearance: none;
 						appearance: none;
 			}
-			.wc-block-components-radio-control__input:checked::before {
+			.wc-block-components-radio-control .wc-block-components-radio-control__input:checked::before {
 				content: "";
 				position: absolute;
 				top: 50%;
@@ -92,23 +89,28 @@ class Radio extends Base {
 				margin: 0;
 				transform: translate(-50%, -50%);
 			}
-			:where(
+			:is(
 				.wc-block-components-shipping-rates-control,
 				.wc-block-components-local-pickup-rates-control
 			) .wc-block-components-radio-control__input {
 				top: 1.4em;
-			} 
-			.wc-block-components-radio-control__label {
+			}
+			:is(
+				.wc-block-components-radio-control-accordion-option
+			) .wc-block-components-radio-control__input {
+				left: 1.125rem;
+			}
+			.wc-block-components-radio-control .wc-block-components-radio-control__label {
 				font-weight: 700;
 			}
-			.wc-block-components-radio-control__label-group {
+			.wc-block-components-radio-control .wc-block-components-radio-control__label-group {
 				display: flex;
 				justify-content: space-between;
 			}
-			.wc-block-components-radio-control__secondary-label {
+			.wc-block-components-radio-control .wc-block-components-radio-control__secondary-label {
 				margin-left: 1.5rem;
 			}
-			.wc-block-components-radio-control__description-group {
+			.wc-block-components-radio-control .wc-block-components-radio-control__description-group {
 				display: none;
 				flex-direction: column;
 				gap: 10px;
@@ -117,16 +119,19 @@ class Radio extends Base {
 				margin-top: var(--wp--custom--gutter);
 				font-size: var(--wp--preset--font-size--small);
 			}
-			.wc-block-components-radio-control__secondary-description {
+			.wc-block-components-radio-control .wc-block-components-radio-control__secondary-description {
 				opacity: .75;
 			}
-			.wc-block-components-radio-control__option-checked .wc-block-components-radio-control__description-group {
+			.wc-block-components-radio-control .wc-block-components-radio-control__secondary-description:empty {
+				display: none;
+			}
+			.wc-block-components-radio-control .wc-block-components-radio-control__option-checked .wc-block-components-radio-control__description-group {
 				display: flex;
 			}
-			.wc-block-components-radio-control__option {
+			.wc-block-components-radio-control .wc-block-components-radio-control__option {
 				position: relative;
 				display: block;
-				padding: 0.5rem 0 0.5rem 2.5rem;
+				padding: 0.5rem 0.5rem 0.5rem 2.5rem;
 				color: inherit;
 				font-family: inherit;
 				font-size: inherit;

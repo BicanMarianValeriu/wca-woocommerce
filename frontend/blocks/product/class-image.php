@@ -69,19 +69,20 @@ class Image extends Base {
 			:is(.wc-block-grid__product-image,.wc-block-components-product-image) {
 				position: relative;
 				z-index: 2;
+				margin: 0;
 			}
 			:is(.wc-block-grid__product-image,.wc-block-components-product-image) img {
 				display: block;
 				width: 100%;
 				object-fit: cover;
-				border-radius: 0.375rem;
+				border-radius: var(--wp--radius);
 			}
 			:is(.wc-block-grid__product-image,.wc-block-components-product-image) img:is(:only-child,:last-child,:last-of-type) {
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
 			}
 			.is-loading :is(.wc-block-grid__product-image,.wc-block-components-product-image) img {
-				border-radius: 0.375rem;
+				border-radius: var(--wp--radius);
 			}
 		';
 	}
