@@ -79,8 +79,6 @@ class Admin {
 		$this->plugin_name	= $plugin_name;
 		$this->version 		= $version;
 		$this->config 		= $config;
-
-		new Admin\Ajax();
 	}
 
 	/**
@@ -143,7 +141,9 @@ class Admin {
 	 */
 	public function assets() {
 		// Only if user is administrator.
-		if( ! current_user_can( 'administrator' ) ) return;
+		if( ! current_user_can( 'administrator' ) ) {
+			return;
+		}
 
 		$path = wecodeart_if( 'is_dev_mode' ) ? 'unminified' : 'minified';
 		$name = wecodeart_if( 'is_dev_mode' ) ? 'admin' : 'admin.min';
@@ -163,10 +163,6 @@ class Admin {
 		wp_enqueue_script( $this->make_handle() );
 
 		wp_set_script_translations( $this->make_handle(), 'wca-woocommerce', untrailingslashit( WCA_WOO_EXT_DIR ) . '/languages' );
-
-		wp_localize_script( $this->make_handle(), 'wecodeartWooCommerce', [
-			'missing' => Templates::get_instance()->get_missing(),
-		] );
 	}
 
 	/**
@@ -192,21 +188,6 @@ class Admin {
 		);
 
 		wp_enqueue_script( $this->make_handle( 'gutenberg' ) );
-	}
-
-	/**
-	 * Editor Templates
-	 *
-	 * @since 	1.1.6
-	 * @version	1.1.6
-	 *
-	 * @return 	void
-	 */
-	public function templates(): void {
-		$installer = new Admin\Ajax();
-		$templates = Templates::get_instance()->get_missing();
-
-		$installer::copy_templates( $templates );
 	}
 
 	/**

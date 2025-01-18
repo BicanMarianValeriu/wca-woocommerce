@@ -96,12 +96,13 @@ class Products extends Base {
 			}
 			:where(
 				ul li.type-product,
-				ul.wc-block-product-template li.wc-block-product,
 				ul.products-block-post-template li.wp-block-post,
+				ul.wc-block-product-template li.wc-block-product,
 				ul.wp-block-query__products li.wp-block-post,
 				.wc-block-grid__product,
 				.cross-sells-product
 			) {
+				--wp--radius: 0.375rem;
 				position: relative;
 				display: flex;
 				flex-direction: column;
@@ -111,7 +112,7 @@ class Products extends Base {
 				background-color: transparent;
 				transition: border-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 				border: 1px solid var(--wp--preset--color--accent);
-				border-radius: 0.375rem;
+				border-radius: var(--wp--radius);
 				box-sizing: border-box;
 			}
 			:where(

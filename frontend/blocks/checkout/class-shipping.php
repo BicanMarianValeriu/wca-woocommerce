@@ -43,7 +43,7 @@ class Shipping extends Base {
 				justify-content: space-between;
 				width: 100%;
 			}
-			.wp-element-button.wc-block-checkout__shipping-method-option {
+			.wc-block-checkout__shipping-method-option {
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -68,8 +68,8 @@ class Shipping extends Base {
 				text-transform: inherit;
 				cursor: pointer;
 			}
-			.wp-element-button.wc-block-checkout__shipping-method-option:hover, 
-			.wp-element-button.wc-block-checkout__shipping-method-option--selected {
+			.wc-block-checkout__shipping-method-option:hover, 
+			.wc-block-checkout__shipping-method-option--selected {
 				background-color: var(--wp--preset--color--accent);
 				border-color: var(--wp--preset--color--primary);
 				color: var(--wp--preset--color--dark);

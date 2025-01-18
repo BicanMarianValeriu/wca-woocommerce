@@ -2,110 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/admin/components/MissingTemplates.js":
-/*!*****************************************************!*\
-  !*** ./src/js/admin/components/MissingTemplates.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-
-/**
- * @package: 	WeCodeArt WooCommerce Extension
- * @author: 	Bican Marian Valeriu
- * @license:	https://www.wecodeart.com/
- * @version:	1.0.0
- */
-
-const {
-  i18n: {
-    __
-  },
-  components: {
-    Spinner,
-    Button
-  },
-  element: {
-    useState
-  }
-} = wp;
-const {
-  missing: _missingTemplates = []
-} = wecodeartWooCommerce;
-const MissingTemplates = ({
-  loading,
-  setLoading,
-  handleNotice
-}) => {
-  const [missingTemplates, setMissingTemplates] = useState(_missingTemplates);
-  if (missingTemplates.length === 0) {
-    return null;
-  }
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "components-notice is-warning flex-column align-items-start m-0 mb-3"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "my-3"
-  }, __('Your current theme is missing the following WooCommerce templates:', 'wca-woocommerce')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
-    className: "my-0"
-  }, missingTemplates.map(({
-    title,
-    description
-  }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, title), ": ", description))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Button, {
-    className: "button",
-    isPrimary: true,
-    icon: loading && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Spinner, null),
-    onClick: () => {
-      setLoading(true);
-      const formData = new FormData();
-      formData.append('action', 'wca_manage_woo_data');
-      formData.append('type', 'copy');
-      formData.append('slugs', JSON.stringify(missingTemplates.map(({
-        slug
-      }) => slug)));
-      return fetch(ajaxurl, {
-        method: 'POST',
-        body: formData
-      }).then(r => r.json()).then(({
-        data: {
-          message = '',
-          success = []
-        } = {}
-      }) => {
-        if (success.length) {
-          setMissingTemplates([...missingTemplates.filter(({
-            slug
-          }) => !success.includes(slug))]);
-        }
-        handleNotice(message);
-      });
-    },
-    disabled: loading
-  }, loading ? '' : __('Install Templates', 'wca-woocommerce')))));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MissingTemplates);
-
-/***/ }),
-
-/***/ "./src/js/admin/components/index.js":
-/*!******************************************!*\
-  !*** ./src/js/admin/components/index.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   MissingTemplates: () => (/* reexport safe */ _MissingTemplates__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _MissingTemplates__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MissingTemplates */ "./src/js/admin/components/MissingTemplates.js");
-
-
-/***/ }),
-
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -193,7 +89,6 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./src/js/admin/components/index.js");
 
 /**
  * @package: 	WeCodeArt WooCommerce Extension
@@ -226,7 +121,6 @@ const {
     useState
   }
 } = wp;
-
 addFilter('wecodeart.admin.tabs.plugins', 'wecodeart/woocommerce/admin/panel', optionsPanel);
 function optionsPanel(panels) {
   return [...panels, {
@@ -261,11 +155,14 @@ const Options = props => {
     }
     return createNotice('success', message);
   };
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components__WEBPACK_IMPORTED_MODULE_1__.MissingTemplates, {
-    loading,
-    setLoading,
-    handleNotice
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Card, {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "grid",
+    style: {
+      '--wca--columns': 2
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "g-col-1"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Card, {
     className: "border shadow-none"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardHeader, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
     className: "text-uppercase fw-medium m-0"
@@ -316,8 +213,10 @@ const Options = props => {
       ...formData,
       replace_select2_style: value
     })
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Card, {
-    className: "border border-top-0 shadow-none"
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "g-col-1"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Card, {
+    className: "border shadow-none"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardHeader, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", {
     className: "text-uppercase fw-medium m-0"
   }, __('Functionality', 'wca-woocommerce'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CardBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ToggleControl, {
@@ -375,16 +274,7 @@ const Options = props => {
       ...formData,
       customer_account_extra: value
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
-    label: __('Product gallery columns', 'wca-woocommerce'),
-    value: formData?.product_gallery_cols,
-    onChange: value => setFormData({
-      ...formData,
-      product_gallery_cols: value
-    }),
-    min: 3,
-    max: 8
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", {
+  }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", {
     style: {
       margin: '20px 0'
     }

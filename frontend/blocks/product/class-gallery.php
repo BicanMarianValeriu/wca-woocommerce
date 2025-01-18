@@ -52,9 +52,7 @@ class Gallery extends Base {
 	 * @return 	string
 	 */
 	public function render_block( string $content = '' ): string {
-		$columns = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_gallery_cols' ], 5 );
-
-		return str_replace( ' data-columns', sprintf( ' style="--columns:%s;" data-columns', $columns ), $content );
+		return str_replace( ' data-columns', sprintf( ' style="--columns:%s;" data-columns', 5 ), $content );
 	}
 
 	/**
@@ -64,17 +62,25 @@ class Gallery extends Base {
 	 */
 	public function styles(): string {
 		return '
+			.wp-block-woocommerce-product-image-gallery {
+				position: relative;
+			}
 			.wp-block-woocommerce-product-image-gallery.position-sticky {
 				top: 90px;
 			}
 			.woocommerce-product-gallery {
 				--columns: 3;
 				position: relative;
+				display: grid;
+				gap: 1rem;
+				opacity: 0;
+				transition: opacity .5s ease-in-out;
 			}
-			.woocommerce-product-gallery__wrapper {
-				max-width: initial;
-				height: 100%;
-				margin: 0;
+			html:not(.js) .woocommerce-product-gallery::after {
+				content: "";
+				display: block;
+				height: 0;
+				padding-bottom: 20%;
 			}
 			.woocommerce-product-gallery__trigger {
 				position: absolute;
@@ -109,6 +115,9 @@ class Gallery extends Base {
 				border-radius: 100%;
 				padding: 2px;
 			}
+			.woocommerce-product-gallery .flex-viewport {
+				max-height: 500px;
+			}
 			.woocommerce-product-gallery__image--placeholder,
 			.woocommerce-product-gallery__image:only-child,
 			.woocommerce-product-gallery .flex-viewport {
@@ -120,26 +129,30 @@ class Gallery extends Base {
 			.woocommerce-product-gallery__image:only-child img,
 			.woocommerce-product-gallery .flex-viewport img {
 				width: 100%;
-				max-width: 100%;
 			}
 			.woocommerce-product-gallery__image--placeholder a,
 			.woocommerce-product-gallery__image:only-child a,
 			.woocommerce-product-gallery .flex-viewport a {
 				display: block;
 			}
-			.woocommerce-product-gallery .flex-viewport {
-				max-height: 500px;
+			html:not(.js) .woocommerce-product-gallery ol {
+				display: none;
 			}
-			.woocommerce-product-gallery .flex-control-thumbs {
+			html:not(.js) .woocommerce-product-gallery__image:first-child img[src^="data:image"],
+			html:not(.js) .woocommerce-product-gallery__image:not(:first-child) img,
+			.woocommerce-product-gallery__image a + img {
+				position: absolute;
+				top: 0;
+			}
+			.woocommerce-product-gallery ol {
 				list-style: none;
 				padding: 0;
 				display: grid;
 				grid-gap: 10px;
-				grid-template-columns: repeat(3, 1fr);
-				margin-top: 1rem;
-				margin-bottom: 0;
+				grid-template-columns: repeat(var(--columns, 5), 1fr);
+				margin: 0;
 			}
-			.woocommerce-product-gallery .flex-control-thumbs li img {
+			.woocommerce-product-gallery ol li img {
 				width: 100%;
 				opacity: 0.5;
 				padding: 3px;
@@ -147,7 +160,7 @@ class Gallery extends Base {
 				border-radius: 0.25rem;
 				cursor: pointer;
 			}
-			.woocommerce-product-gallery .flex-control-thumbs li img:is(.flex-active,:hover) {
+			.woocommerce-product-gallery ol li img:is(.flex-active,:hover) {
 				opacity: 1;
 				border-color: var(--wp--preset--color--primary);
 			}
@@ -160,14 +173,8 @@ class Gallery extends Base {
 
 			.wc-block-editor-product-gallery__other-images {
 				display: grid;
-				grid-template-columns: repeat(4, 1fr);
+				grid-template-columns: repeat(var(--columns, 5), 1fr);
 				gap: 10px;
-			}
-
-			@media (min-width: 576px) {
-				.woocommerce-product-gallery .flex-control-thumbs {
-					grid-template-columns: repeat(var(--columns), 1fr);
-				}
 			}
 		';
 	}

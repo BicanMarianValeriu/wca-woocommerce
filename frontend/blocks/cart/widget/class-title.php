@@ -37,7 +37,7 @@ class Title extends Base {
 	 */
 	public function styles(): string {
 		return '
-			.wc-block-mini-cart__title {
+			h2.wc-block-mini-cart__title {
 				display: flex;
 				gap: .75rem;
 				font-size: var(--wp--preset--font-size--normal);

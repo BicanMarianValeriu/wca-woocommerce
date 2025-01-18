@@ -49,6 +49,7 @@ class Components implements Configuration {
 		$this->register( 'address',     Components\Address::class   );
 		$this->register( 'text',        Components\Text::class      );
 		$this->register( 'textarea',    Components\TextArea::class  );
+		$this->register( 'select',      Components\Select::class    );
 		$this->register( 'dropdown',    Components\Dropdown::class  );
 		$this->register( 'checkbox',    Components\Checkbox::class  );
 		$this->register( 'radio',       Components\Radio::class     );
@@ -66,7 +67,7 @@ class Components implements Configuration {
 		$this->register( 'card',        Components\Card::class      );
 		$this->register( 'more',        Components\More::class      );
         $this->register( 'account',     Components\Account::class   );
-        $this->register( 'coupon',      Components\Coupon::class   );
+        $this->register( 'coupon',      Components\Coupon::class    );
         $this->register( 'validation',  Components\Validation::class);
         $this->register( 'animations',  Components\Animations::class);
 	}
