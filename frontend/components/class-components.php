@@ -47,6 +47,7 @@ class Components implements Configuration {
 		$this->register( 'global',      Components\Root::class      );
         // Modules
 		$this->register( 'address',     Components\Address::class   );
+		$this->register( 'buttons',     Components\Buttons::class   );
 		$this->register( 'text',        Components\Text::class      );
 		$this->register( 'textarea',    Components\TextArea::class  );
 		$this->register( 'select',      Components\Select::class    );

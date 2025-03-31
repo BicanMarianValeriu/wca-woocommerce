@@ -61,7 +61,7 @@ class Layout extends Base {
 			}
 			.is-large .wc-block-components-sidebar {
 				position: sticky;
-				top: var(--wp--header-height, 80px);
+				top: var(--wp--header-height, 20px);
 				align-self: flex-start;
 				flex: 0 0 30%;
 			}

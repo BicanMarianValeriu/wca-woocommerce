@@ -45,9 +45,11 @@ class Totals extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wp-block-table-dep', [
-			'load'		=> fn() => ! wp_style_is( 'wp-block-table' ),
-			'inline'	=> wecodeart( 'blocks' )->get( 'core/table' )::get_instance()->styles()
+		$deps = wecodeart( 'blocks' )->get( 'core/table' )::get_instance();
+
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-order-totals-dep', [
+			'load'		=> fn() => ! wp_style_is( $deps->get_asset_handle() ),
+			'inline'	=> $deps->styles()
 		] );
 	}
 

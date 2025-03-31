@@ -15,7 +15,7 @@
             <!-- wp:post-title {"level":1,"fontSize":"large","className":"fw-700","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
             <!-- wp:woocommerce/product-price {"isDescendentOfSingleProductTemplate":true} /-->
             <!-- wp:woocommerce/product-rating {"isDescendentOfSingleProductTemplate":true} /-->
-            <!-- wp:post-excerpt {"__woocommerceNamespace":"woocommerce/product-query/product-summary"} /-->
+            <!-- wp:woocommerce/product-summary {"isDescendentOfSingleProductTemplate":true,"showLink":true,"summaryLength":10,"linkText":"See more details"} /-->
             <!-- wp:woocommerce/add-to-cart-form /-->
             <!-- wp:woocommerce/product-meta -->
             <div class="wp-block-woocommerce-product-meta">
@@ -34,7 +34,26 @@
     </div>
     <!-- /wp:columns -->
     <!-- wp:woocommerce/product-details /-->
-    <!-- wp:pattern {"slug":"wecodeart/query-products-related"} /-->
+    <!-- wp:woocommerce/product-collection {"queryId":7,"query":{"perPage":4,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":4,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/upsells","hideControls":["inherit","filterable"],"queryContextIncludes":["collection"],"__privatePreviewState":{"isPreview":true,"previewMessage":"Produsele existente vor varia în funcție de pagina vizualizată."},"style":{"spacing":{"blockGap":"var:preset|spacing|md"}}} -->
+    <div class="wp-block-woocommerce-product-collection">
+        <!-- wp:heading {"textAlign":"left"} -->
+        <h2 class="wp-block-heading has-text-align-left">You might also like</h2>
+        <!-- /wp:heading -->
+        <!-- wp:woocommerce/product-template -->
+        <!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
+        <!-- /wp:woocommerce/product-template -->
+    </div>
+    <!-- /wp:woocommerce/product-collection -->
+    <!-- wp:woocommerce/product-collection {"queryId":10,"query":{"perPage":4,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":4,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/related","hideControls":["inherit"],"queryContextIncludes":["collection"],"__privatePreviewState":{"isPreview":true,"previewMessage":"Produsele existente vor varia în funcție de produsul vizualizat."},"style":{"spacing":{"blockGap":"var:preset|spacing|md"}}} -->
+    <div class="wp-block-woocommerce-product-collection">
+        <!-- wp:heading {"textAlign":"left"} -->
+        <h2 class="wp-block-heading has-text-align-left">Similar products</h2>
+        <!-- /wp:heading -->
+        <!-- wp:woocommerce/product-template -->
+        <!-- wp:pattern {"slug":"wecodeart/el-product-loop"} /-->
+        <!-- /wp:woocommerce/product-template -->
+    </div>
+    <!-- /wp:woocommerce/product-collection -->
 </main>
 <!-- /wp:group -->
 <!-- wp:template-part {"slug":"footer","tagName":"footer","className":"wp-site-footer"} /-->

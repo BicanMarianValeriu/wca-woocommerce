@@ -182,6 +182,9 @@ class Price extends Base {
 				justify-content: space-between;
 				gap: 1rem;
 			}
+			.wc-block-components-price-slider__control {
+				flex: 0 0 calc(50% - .5rem);
+			}
 			.wc-block-components-price-slider__amount {
 				flex: 1 0 0%;
 				width: 100%;

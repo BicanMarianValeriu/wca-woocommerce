@@ -73,7 +73,7 @@ class Checkbox extends Base {
                 width: var(--wc--checkbox--size);
                 min-height: var(--wc--checkbox--size);
                 min-width: var(--wc--checkbox--size);
-                background-color: transparent;
+                background-color: var(--wp--preset--color--accent);
                 border: var(--wc--input--border);
                 border-radius: calc(var(--wc--input--border-radius) / 2);
                 font-size: 1em;

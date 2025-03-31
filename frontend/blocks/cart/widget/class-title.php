@@ -36,8 +36,9 @@ class Title extends Base {
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
-		return '
-			h2.wc-block-mini-cart__title {
+		return <<<CSS
+			h2.wc-block-mini-cart__title,
+			h2.wc-block-mini-cart__title .block-editor-block-list__layout {
 				display: flex;
 				gap: .75rem;
 				font-size: var(--wp--preset--font-size--normal);
@@ -46,6 +47,6 @@ class Title extends Base {
 				padding: var(--wp--custom--gutter, 1rem);
 				margin: 0;
 			}
-		';
+		CSS;
 	}
 }

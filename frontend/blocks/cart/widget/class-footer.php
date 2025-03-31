@@ -46,10 +46,11 @@ class Footer extends Base {
 				margin-bottom: 1em;
 			}
 			.wc-block-mini-cart__footer-subtotal .wc-block-components-totals-item__description,
-			.wc-block-mini-cart__footer-cart.wp-element-button span {
+			.wc-block-mini-cart__footer-cart.wc-block-components-button.wp-element-button span {
 				display: none;
 			}
-			.wc-block-mini-cart__footer-actions {
+			.wc-block-mini-cart__footer-actions, 
+			.wc-block-mini-cart__footer-actions .block-editor-block-list__layout {
 				display: grid;
 				grid-template-columns: auto 1fr;
 				grid-gap: 1rem;
@@ -68,28 +69,24 @@ class Footer extends Base {
 				-webkit-mask-repeat: no-repeat;
 				-webkit-mask-size: contain;
 			}
-			.wc-block-mini-cart__footer-cart.wp-element-button {
+			.wc-block-mini-cart__footer-cart.wc-block-components-button.wp-element-button {
 				background-color: transparent;
 				border-color: currentColor;
 				color: var(--wp--preset--color--primary);
 			}
-			.wc-block-mini-cart__footer-cart.wp-element-button:hover {
+			.wc-block-mini-cart__footer-cart.wc-block-components-button.wp-element-button:hover {
 				background-color: var(--wp--preset--color--primary);
 				border-color: var(--wp--preset--color--primary);
 				color: white;
 			}
-			.wc-block-mini-cart__footer-cart.wp-element-button::before {
+			.wc-block-mini-cart__footer-cart.wc-block-components-button.wp-element-button::before {
 				-webkit-mask-image: var(--wc--icon--cart);
 				mask-image: var(--wc--icon--cart);
 			}
-			.wc-block-mini-cart__footer-cart.wp-element-button:hover::before {
+			.wc-block-mini-cart__footer-cart.wc-block-components-button.wp-element-button:hover::before {
 				background-color: currentColor;
 			}
-			.wc-block-mini-cart__footer-checkout.wp-element-button {
-				background-color: var(--wp--preset--color--primary);
-				color: var(--wp--preset--color--white);
-			}
-			.wc-block-mini-cart__footer-checkout.wp-element-button::before {
+			.wc-block-mini-cart__footer-checkout.wc-block-components-button.wp-element-button::before {
 				background-color: currentColor;
 				-webkit-mask-image: var(--wc--icon--checkout);
 				mask-image: var(--wc--icon--checkout);

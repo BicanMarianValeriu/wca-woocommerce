@@ -76,8 +76,8 @@ class Widget extends Base {
 				'spacing' => [
 					'margin' 	=> true,
 					'padding' 	=> true,
-				]
-			], $support )
+				],
+			], $support ),
 		];
 	}
 
@@ -109,9 +109,11 @@ class Widget extends Base {
 	public function enqueue_styles() {
 		parent::enqueue_styles();
 
-		wecodeart( 'assets' )->add_style( 'wc-blocks-style-cart-dep', [
-			'load'		=> fn() => ! wp_style_is( 'wc-blocks-style-cart' ),
-			'inline'	=> wecodeart( 'blocks' )->get( 'woocommerce/cart' )::get_instance()->styles()
+		$deps = wecodeart( 'blocks' )->get( 'woocommerce/cart-line-items' )::get_instance();
+		
+		wecodeart( 'assets' )->add_style( 'wc-blocks-style-mini-cart-deps', [
+			'load'		=> fn() => ! wp_style_is( $deps->get_asset_handle() ),
+			'inline'	=> $deps->styles()
 		] );
 	}
 

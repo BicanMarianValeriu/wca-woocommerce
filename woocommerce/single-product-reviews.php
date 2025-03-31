@@ -27,7 +27,16 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'wp-block-separator' );
 } );
 
-wecodeart( 'styles' )->Utilities->load( [ 'position-sticky', 'my-3', 'mb-3', 'me-1', 'fw-500' ] );
+wecodeart( 'styles' )->Utilities->load( [
+	'position-sticky', 
+	'span-lg-2',
+	'span-lg-1',
+	'span-3',
+	'my-3',
+	'mb-3',
+	'me-1',
+	'fw-500'
+] );
 
 ?>
 <div id="reviews" class="woocommerce-reviews grid" style="--wp--columns:3;--wp--style--block-gap:2.5rem;">
@@ -44,7 +53,7 @@ wecodeart( 'styles' )->Utilities->load( [ 'position-sticky', 'my-3', 'mb-3', 'me
 			}
 		?>
 		</h3>
-		<hr class="wp-block-separator is-style-wide has-accent-color my-3">
+		<hr class="wp-block-separator is-style-wide has-accent-background-color my-3">
 		<?php if ( have_comments() ) : ?>
 		<ol class="commentlist list-unstyled">
 			<?php
@@ -89,7 +98,7 @@ wecodeart( 'styles' )->Utilities->load( [ 'position-sticky', 'my-3', 'mb-3', 'me
 				/* translators: %s is product title */
 				'title_reply_to'      	=> esc_html__( 'Leave a Reply to %s', 'woocommerce' ),
 				'title_reply_before'  	=> '<h3 id="reply-title" class="comment-reply-title fw-500 mb-3">',
-				'title_reply_after'   	=> '</h3><hr class="wp-block-separator is-style-wide has-accent-color my-3" />',
+				'title_reply_after'   	=> '</h3><hr class="wp-block-separator is-style-wide has-accent-background-color my-3" />',
 				'comment_notes_after' 	=> '',
 				'label_submit'        	=> esc_html__( 'Submit', 'woocommerce' ),
 				'class_submit'			=> 'comment-form-submit wp-block-button__link has-primary-background-color',

@@ -60,6 +60,8 @@ class Radio extends Base {
 			}
 			.wc-block-components-radio-control-accordion-content div:not(:empty) {
 				padding: 0 1rem 1rem;
+				font-size: var(--wp--preset--font-size--small);
+    			opacity: .7;
 			}
 			.wc-block-components-radio-control .wc-block-components-radio-control__input {
 				position: absolute;

@@ -31,6 +31,7 @@ class Templates {
 		'archive-product',
 		'product-search-results',
 		'taxonomy-product_attribute',
+		'taxonomy-product_brand',
 		'taxonomy-product_cat',
 		'taxonomy-product_tag',
 	];
@@ -86,7 +87,7 @@ class Templates {
 	 */
 	public function get_block_template( $template, $id, $template_type ) {
 		$template_name_parts = explode( '//', $id );
-
+		
 		if ( count( $template_name_parts ) < 2 ) {
 			return $template;
 		}
@@ -94,7 +95,7 @@ class Templates {
 		list( $template_id, $template_slug ) = $template_name_parts;
 
 		// If we are not dealing with a WooCommerce template let's return early and let it continue through the process.
-		if ( BlockTemplateUtils::PLUGIN_SLUG !== $template_id ) {
+		if ( ! $this->is_woo_template( $id, $template_slug ) ) {
 			return $template;
 		}
 
@@ -102,16 +103,31 @@ class Templates {
 		if ( ! in_array( $template_slug, self::ALL_TEMPLATES, true ) ) {
 			return $template;
 		}
-
+		
 		$template_built = $this->get_template( $template_type, $template_slug );
 		
 		if ( null !== $template_built ) {
-			$template_built->path = $this->get_template_path( $template_slug );
 			return $template_built;
 		}
 
 		// Hand back over to Gutenberg if we can't find a template.
 		return $template;
+	}
+
+	/**
+	 * Fixes a bug regarding taxonomies and FSE.
+	 *
+	 * @param 	bool   	$has_template  True if the template is available.
+	 * @param 	string 	$template_name The name of the template.
+	 *
+	 * @return 	bool 	True if the system is checking archive-product
+	 */
+	public function has_block_template( $has_template, $template_name ) {
+		if ( in_array( $template_name, self::ALL_TEMPLATES, true ) ) {
+			$has_template = true;
+		}
+
+		return $has_template;
 	}
 
 	/**
