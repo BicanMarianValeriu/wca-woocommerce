@@ -49,8 +49,6 @@ class Shipping extends Base {
 				display: block;
 				margin: 0;
 				width: 100%;
-				background-color: var(--wp--preset--color--primary);
-				cursor: pointer;
 			}
 		';
 	}

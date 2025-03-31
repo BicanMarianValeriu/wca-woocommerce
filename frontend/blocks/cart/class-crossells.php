@@ -31,6 +31,24 @@ class Crossells extends Base {
 	protected $block_name = 'cart-cross-sells-products-block';
 
 	/**
+	 * Block args.
+	 *
+	 * @return 	array
+	 */
+	public function block_type_args(): array {
+		return [
+			'style'	=> [ 
+				$this->get_asset_handle(), // self
+				'wc-blocks-style-product-collection', 
+				'wc-blocks-style-product-button',
+				'wc-blocks-style-product-rating',
+				'wc-blocks-style-product-price',
+				'wc-blocks-style-product-image',
+			]
+		];
+	}
+
+	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.
@@ -49,17 +67,24 @@ class Crossells extends Base {
 				grid-gap: 1rem;
 				grid-template-columns: 1fr;
 			}
-			.woocommerce-cart .cross-sells-product > div {
-				display: inherit;
-				gap: inherit;
-				flex-direction: inherit;
-				justify-content: inherit;
-			}
 			.woocommerce-cart .is-medium .wp-block-woocommerce-cart-cross-sells-block > div {
 				grid-template-columns: repeat(2, 1fr);
 			}
 			.woocommerce-cart .is-large .wp-block-woocommerce-cart-cross-sells-block > div {
 				grid-template-columns: repeat(3, 1fr);
+			}
+			/* Shared */
+			.wp-block-woocommerce-cart-cross-sells-block img {
+				aspect-ratio: 1;
+			}
+			.wp-block-woocommerce-cart-cross-sells-block .cross-sells-product > div {
+				display: flex;
+				gap: .5rem;
+				flex-direction: column;
+				justify-content: inherit;
+			}
+			.wp-block-woocommerce-cart-cross-sells-block .cross-sells-product > div > * {
+				margin: 0;
 			}
 		';
 	}

@@ -71,6 +71,7 @@ class Select extends Base {
                 right: .5rem;
                 top: 50%;
                 transform: translate3d(5px, -50%, 0);
+                pointer-events: none;
             }
             .wc-blocks-components-select__select {
                 box-sizing: border-box;

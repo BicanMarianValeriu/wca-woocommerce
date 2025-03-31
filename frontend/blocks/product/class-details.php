@@ -44,7 +44,9 @@ class Details extends Base {
 	public function init() {
 		$is_enabled = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_rating_extra' ] );
 
-		if( ! $is_enabled ) return;
+		if( ! $is_enabled || defined( 'WCA_WOO_EXT_REVIEWS' ) ) {
+			return;
+		}
 		
 		add_filter( 'woocommerce_product_tabs',				[ $this, 'woocommerce_product_tabs' ] );
 
@@ -611,7 +613,7 @@ class Details extends Base {
 			ul.wc-tabs li a {
 				position: relative;
 				display: block;
-				font-size: 0.6rem;
+				font-size: 0.75rem;
 				font-weight: 500;
 				text-transform: uppercase;
 				text-decoration: none;
@@ -689,7 +691,7 @@ class Details extends Base {
 			p.stars:hover a:before,
 			p.stars.selected a.active:before,
 			p.stars.selected a:not(.active):before {
-				background-image: var(--wc--icon--start-active);
+				background-image: var(--wc--icon--star-active);
 			}
 			p.stars span {
 				display: block;

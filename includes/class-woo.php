@@ -218,7 +218,8 @@ class Woo implements Integration {
 		$this->loader->add_action( 'init',										$modules, 	'assets',				20, 1 );
 		$this->loader->add_action( 'after_setup_theme',							$frontend, 	'after_setup_theme',	20, 1 );
 		$this->loader->add_filter( 'get_block_templates',						$template, 	'get_block_templates',	10, 3 );
-		$this->loader->add_filter( 'pre_get_block_file_template',				$template, 	'get_block_template',	10, 3 );
+		$this->loader->add_filter( 'get_block_file_template',					$template, 	'get_block_template',	10, 3 );
+		$this->loader->add_filter( 'woocommerce_has_block_template',			$template, 	'has_block_template',	10, 3 );
 		$this->loader->add_filter( 'woocommerce_locate_template',				$template, 	'locate_template',		20, 2 );
 		$this->loader->add_filter( 'comments_template',							$template, 	'comments_template',	20, 2 );
 		$this->loader->add_filter( 'woocommerce_form_field',					$frontend, 	'form_field_markup',	20, 4 );

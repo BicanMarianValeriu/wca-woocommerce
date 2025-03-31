@@ -246,11 +246,6 @@ class Price extends Base {
 					return false;
 				}
 
-				// Products
-				if( Frontend\Blocks::has_products( $blocks ) ) {
-					return true;
-				}
-
 				// If any of this blocks styles are detected
 				if( count( array_intersect( $blocks, [
 					'woocommerce/cart-cross-sells-products-block',

@@ -36,31 +36,6 @@ class Loading extends Base {
 	 */
 	public static function styles(): string {
 		return '
-			.wp-element-button.wc-block-components-button {
-				position: relative;
-				height: initial;
-			}
-			.wp-element-button.wc-block-components-button--loading {
-				padding-left: 3em;
-			}
-			.wp-element-button.wc-block-components-button--loading:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				top: 0;
-				bottom: 0;
-				margin: 0;
-				display: block;
-				width: 3em;
-				height: auto;
-				background-color: currentColor;
-				-webkit-mask-repeat: no-repeat;
-				-webkit-mask-position: center;
-				-webkit-mask-size: 1.125em;
-				-webkit-mask-image: var(--wc--icon--arrow);
-				mask-image: var(--wc--icon--arrow);
-				animation: animation__rotate 1s linear infinite;
-			}
 			.wc-block-components-loading-mask {
 				position: relative;
 				pointer-events: none;

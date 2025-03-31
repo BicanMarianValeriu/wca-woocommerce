@@ -37,29 +37,6 @@ class Image extends Base {
 	protected $block_name = 'product-image';
 
 	/**
-	 * Block styles.
-	 *
-	 * @return 	string Block CSS.
-	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-
-		wecodeart( 'assets' )->add_style( 'wc-blocks-style-product-thumb', [
-			'load'		=> function( $blocks ) {
-				if( wp_style_is( 'wc-blocks-style-product-thumb' ) || wp_style_is( $this->get_asset_handle() ) ) {
-					return false;
-				}
-
-				// Products
-				if( Frontend\Blocks::has_products( $blocks ) ) {
-					return true;
-				}
-			},
-			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
-		] );
-	}
-
-	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.

@@ -80,6 +80,10 @@ class Drawer extends Base {
 				transition: opacity var(--wp--animation--duration);
 				opacity: 1;
 				z-index: 9999;
+				pointer-events: none;
+			}
+			.is-root-container .wc-block-components-drawer__screen-overlay {
+				display: none;
 			}
 			.wc-block-components-drawer__content {
     			position: relative;

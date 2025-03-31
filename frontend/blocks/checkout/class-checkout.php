@@ -158,13 +158,10 @@ class Checkout extends Base {
 				font-size: var(--wp--preset--font-size--small);
 			}
 			.wc-block-components-checkout-step__heading-content a {
-				color: inherit;
 				font-weight: 500;
-				margin-left: 0.5em;
 			}
 			.wc-block-components-checkout-step__title.wc-block-components-checkout-step__title {
 				font-size: var(--wp--preset--font-size--large);
-				font-weight: 500;
 				margin: 0;
 			}
 			.wc-block-components-checkout-step__title textarea {
@@ -178,30 +175,8 @@ class Checkout extends Base {
 			.wc-block-components-checkout-step__content:first-child {
 				margin-top: 1rem;
 			}
-			.wc-block-checkout__actions {
-				padding-top: 1rem;
-				margin-top: 1rem;
-				border-top: 1px solid var(--wp--preset--color--accent);
-			}
-			wc-block-checkout__guest-checkout-notice {
+			.wc-block-checkout__guest-checkout-notice {
 				margin-top: 0;
-			}
-			.is-root-container .wc-block-checkout__actions,
-			.wc-block-checkout__actions_row {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				width: 100%;
-			}
-			.is-mobile .wc-block-checkout__actions .wc-block-components-checkout-return-to-cart-button {
-				display: none;
-			}
-			.is-mobile .wc-block-checkout__actions .wc-block-components-checkout-place-order-button {
-				width: 100%;
-			}
-			.wc-block-components-checkout-place-order-button.wp-element-button {
-				background-color: var(--wp--preset--color--primary);
-				cursor: pointer;
 			}
 		';
 

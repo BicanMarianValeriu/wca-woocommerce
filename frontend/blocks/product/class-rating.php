@@ -43,7 +43,9 @@ class Rating extends Base {
 	public function init() {
 		$is_enabled = get_prop( wecodeart_option( 'woocommerce' ), [ 'product_rating_extra' ] );
 
-		if( ! $is_enabled ) return;
+		if( ! $is_enabled ) {
+			return;
+		}
 		
 		add_filter( 'render_block_' . $this->get_block_type(), [ $this, 'render_block' ], 20, 2 );
 	}
@@ -132,11 +134,6 @@ class Rating extends Base {
 				] ) ) ) {
 					return true;
 				}
-				
-				// Products
-				if( Frontend\Blocks::has_products( $blocks ) ) {
-					return true;
-				}
 			},
 			'inline'	=> wecodeart( 'blocks' )->get( $this->get_block_type() )::get_instance()->styles()
 		] );
@@ -151,6 +148,7 @@ class Rating extends Base {
 		$selectors = join( ',', [
 			'.star-rating',
 			'.wc-block-components-product-rating__stars',
+			'.wc-block-components-product-rating-stars__stars',
 			'.wc-block-components-review-list-item__rating__stars'
 		] );
 

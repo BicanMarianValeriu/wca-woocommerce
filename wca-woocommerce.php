@@ -15,7 +15,7 @@
  * Plugin Name:       WCA: WooCommerce
  * Plugin URI:        https://github.com/BicanMarianValeriu/wca-woocommerce
  * Description:       WCA WooCommerce extension for WeCodeArt Framework theme.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Author:            Bican Marian Valeriu
  * Author URI:        https://www.wecodeart.com/about/
  * License:           GPL-3.0+
@@ -25,7 +25,7 @@
  * Requires at least:       6.5
  * Requires PHP:            7.4
  * WC requires at least:    8.0
- * WC tested up to:         9.5.2
+ * WC tested up to:         9.7.0
  * Requires Plugins: woocommerce
  */
 namespace WCA\EXT\WOO;
@@ -55,10 +55,12 @@ new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/templates' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/cart' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/cart/widget' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/cart/summary' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/filters' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/account' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/product' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/checkout' );
+new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/checkout/summary' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/checkout/address' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/featured' );
 new Autoloader( 'WCA\EXT\WOO', WCA_WOO_EXT_DIR . '/frontend/blocks/order' );

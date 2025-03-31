@@ -46,10 +46,10 @@ class Items extends Base {
 			}
 			.wc-block-components-order-summary-item .wc-block-components-product-name,
 			.wc-block-components-order-summary-item .wc-block-components-product-price {
-				display: block;
+				margin: 0;
 			}
 			.wc-block-components-order-summary-item .wc-block-components-product-name {
-				font-weight: 500;
+				font-size: var(--wp--preset--font-size--normal);
 			}
 			.wc-block-components-order-summary-item .wc-block-components-product-price {
 				margin-bottom: 0.5rem;
@@ -68,6 +68,8 @@ class Items extends Base {
 			}
 			.wc-block-components-order-summary-item__image img {
 				border: 1px solid var(--wp--preset--color--accent);
+				aspect-ratio: 1;
+				object-fit: cover;
 			}
 			.wc-block-components-order-summary-item__quantity {
 				position: absolute;
