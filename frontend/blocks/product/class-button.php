@@ -41,36 +41,36 @@ class Button extends Base {
 		parent::enqueue_styles();
 		
 		// Scripts
-		wecodeart( 'assets' )->add_script( 'wc-blocks-add-to-cart-form', [
-			'load'		=> function( $blocks ) {
-				if( in_array( 'woocommerce/add-to-cart-form', $blocks, true ) ) {
-					return true;
-				}
-			},
-			'inline'	=> <<<JS
-				(function() {
-					const { Events, Selector } = wecodeart;
+		// wecodeart( 'assets' )->add_script( 'wc-blocks-add-to-cart-form', [
+		// 	'load'		=> function( $blocks ) {
+		// 		if( in_array( 'woocommerce/add-to-cart-form', $blocks, true ) ) {
+		// 			return true;
+		// 		}
+		// 	},
+		// 	'inline'	=> <<<JS
+		// 		(function() {
+		// 			const { Events, Selector } = wecodeart;
 					
-					const handleButtonClick = (input, action) => {
-						const value = parseInt(input.value, 10) || 0;
-						const min = parseInt(input.getAttribute('min'), 10) || 0;
-						const max = parseInt(input.getAttribute('max'), 10) || 99999;
+		// 			const handleButtonClick = (input, action) => {
+		// 				const value = parseInt(input.value, 10) || 0;
+		// 				const min = parseInt(input.getAttribute('min'), 10) || 0;
+		// 				const max = parseInt(input.getAttribute('max'), 10) || 99999;
 						
-						input.value = (action === '-' && value > min) ? value - 1 : (action === '+' && value < max) ? value + 1 : value;
-						Events.trigger(input, 'change');
-					};
+		// 				input.value = (action === '-' && value > min) ? value - 1 : (action === '+' && value < max) ? value + 1 : value;
+		// 				Events.trigger(input, 'change');
+		// 			};
 					
-					const allFields = Selector.find('.wc-block-components-quantity-selector:not([hasQtyInit])');
+		// 			const allFields = Selector.find('.wc-block-components-quantity-selector:not([hasQtyInit])');
 					
-					allFields.forEach((item) => {
-						item.hasQtyInit = true;
-						const input = Selector.findOne('.wc-block-components-quantity-selector__input', item);
-						const buttons = Selector.find('.wc-block-components-quantity-selector__button', item);
-						buttons.forEach((el) => Events.on(el, 'click', () => handleButtonClick(input, el.value)));
-					});
-				})();
-			JS,
-		] );
+		// 			allFields.forEach((item) => {
+		// 				item.hasQtyInit = true;
+		// 				const input = Selector.findOne('.wc-block-components-quantity-selector__input', item);
+		// 				const buttons = Selector.find('.wc-block-components-quantity-selector__button', item);
+		// 				buttons.forEach((el) => Events.on(el, 'click', () => handleButtonClick(input, el.value)));
+		// 			});
+		// 		})();
+		// 	JS,
+		// ] );
     }
 
 	/**
@@ -85,8 +85,10 @@ class Button extends Base {
 			.wc-block-components-product-button {
 				margin: auto 0 0;
 			}
+			.wc-block-components-product-button a[hidden] {
+				display: none;
+			}
 			:is(.wc-block-product,.cross-sells-product) .wc-block-components-product-button__button {
-				display: block;
 				width: 100%;
 				margin: .5rem 0 0 !important;
 				border-radius: var(--wp--radius);
@@ -100,24 +102,36 @@ class Button extends Base {
 			}
 			.wc-block-components-product-button .wc-block-components-product-button__button {
 				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				padding-left: calc(4em + {$left_spacing})!important;
 				overflow: hidden;
 				background-color: transparent;
 				border-color: var(--wp--preset--color--accent);
 				color: var(--wp--preset--color--dark);
 			}
-			.wc-block-components-product-button .wc-block-components-product-button__button.loading::after {
-				content: '';
-				position: absolute;
+			.wc-block-components-product-button .wc-block-components-product-button__button--placeholder > * {
+				visibility: hidden;
+			}
+			.wc-block-components-product-button .wc-block-components-product-button__button--placeholder:after {
+				animation: animation__loading 1.5s ease-in-out infinite;
+				background-image: linear-gradient(90deg, var(--wp--preset--color--accent), hsla(0, 0%, 96%, 0.302), var(--wp--preset--color--accent));
+				background-repeat: no-repeat;
+				content: ' ';
 				display: block;
-				right: 1em;
-				top: 50%;
-				transform: translateY(-50%);
-				width: 1em;
-				height: 1em;
-				border-radius: 50%;
-				background: transparent;
-				border: 2px solid white;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				transform: translateX(-100%);
+			}
+			.wc-block-components-product-button .wc-block-components-product-button__button span.wc-block-slide-out {
+				animation: slideOut 0.1s linear 1 normal forwards;
+			}
+			.wc-block-components-product-button .wc-block-components-product-button__button span.wc-block-slide-in {
+				animation: slideIn 0.1s linear 1 normal;
 			}
 			.wc-block-components-product-button .wc-block-components-product-button__button:before {
 				content: '';
@@ -135,14 +149,11 @@ class Button extends Base {
 				border-radius: inherit;
 				border-top-right-radius: 0;
 			}
-			.wc-block-components-product-button .wc-block-components-product-button__button:after {
-				content: '';
-				position: absolute;
-				top: 50%;
-				right: 5px;
-				transform: translateY(-50%);
-				z-index: 20;
-			}
+			@media screen and (prefers-reduced-motion: reduce) {
+			  	.wc-block-components-product-button .wc-block-components-product-button__button--placeholder {
+					animation: none;
+				}
+			} 	
 		";
 	}
 }

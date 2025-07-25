@@ -118,7 +118,11 @@ class Link extends Base {
 		
 		if( $dropdown && is_user_logged_in() && ! is_account_page() ) {		
 			$processor->add_class( 'dropdown-toggle' );
-			$processor->set_attribute( 'data-bs-toggle', 'dropdown' );
+			$processor->set_attribute( 'data-wp-interactive', 'wecodeart/dropdown' );
+			$processor->set_attribute( 'data-wp-context', '[]' );
+			$processor->set_attribute( 'data-wp-on--click', 'actions.toggle' );
+			$processor->set_attribute( 'data-wp-init--validate', 'callbacks.validateConfig' );
+			$processor->set_attribute( 'aria-expanded', 'false' );
 		}
 
 		if( $processor->next_tag( 'span' ) ) {
@@ -134,6 +138,7 @@ class Link extends Base {
 		$dom	= $this->dom( $content );
 		$svg_	= wecodeart( 'dom' )::get_element( 'svg', $dom );
 		$link	= wecodeart( 'dom' )::get_element( 'a', $dom );
+		$link->setAttribute( 'href', 'javascript:void(0)' );
 		
 		$svg	= $dom->importNode( $this->dom( wecodeart( 'markup' )->SVG::compile( 'account', [
 			'class' => 'wc-block-customer-account__account-icon',

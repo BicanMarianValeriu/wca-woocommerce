@@ -59,7 +59,10 @@ class Blocks {
 		$container->register( 'woocommerce/product-button', 		Blocks\Product\Button::class );
 		$container->register( 'woocommerce/product-rating', 		Blocks\Product\Rating::class );
 		$container->register( 'woocommerce/product-details',		Blocks\Product\Details::class );
-		$container->register( 'woocommerce/product-image-gallery',	Blocks\Product\Gallery::class );
+		$container->register( 'woocommerce/product-image-gallery',	Blocks\Product\Images::class );
+		$container->register( 'woocommerce/product-gallery',		Blocks\Product\Gallery::class );
+		$container->register( 'woocommerce/product-gallery-thumbnails',					Blocks\Product\Gallery\Thumbnails::class );
+		$container->register( 'woocommerce/product-gallery-large-image-next-previous',	Blocks\Product\Gallery\Buttons::class );
 		$container->register( 'woocommerce/product-categories',		Blocks\Product\Categories::class );
 		$container->register( 'woocommerce/product-collection',		Blocks\Product\Collection::class );
 		$container->register( 'woocommerce/add-to-cart-form',		Blocks\Product\Cart::class );
