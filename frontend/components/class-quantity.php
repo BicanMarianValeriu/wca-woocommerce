@@ -34,13 +34,21 @@ class Quantity extends Base {
 	 */
 	public static function styles(): string {
 		return '
-			.wc-block-components-quantity-selector {
+			:root .wc-block-components-quantity-selector {
 				display: inline-flex;
+				width: auto;
 			}
-			.quantity .qty,
-			.wc-block-components-quantity-selector__input,
-			.wc-block-components-quantity-selector__button {
+			:root .wc-block-components-quantity-selector::after {
+				border-color: var(--wp--preset--color--accent);
+			}
+			:root :is(
+				.quantity .qty,
+				.wc-block-components-quantity-selector__input,
+				.wc-block-components-quantity-selector input,
+				.wc-block-components-quantity-selector__button
+			) {
 				min-width: 2.5em;
+				height: 2.5em;
 				min-height: 2.5em;
 				padding: 0;
 				background-color: transparent;
@@ -53,38 +61,45 @@ class Quantity extends Base {
 				-webkit-appearance: none;
 						appearance: none;
 				outline: none;
+				order: initial;
 			}
-			.wc-block-components-quantity-selector__input {
+			:root :is(
+				.wc-block-components-quantity-selector__input,
+				.wc-block-components-quantity-selector input
+			) {
 				position: relative;
-				font-size: 0.8em;
+				font-size: 1em!important;
 				max-width: 5rem;
 				margin: 0 -1px;
-				padding: 0;
+				padding: 0!important;
 				color: inherit;
 				background-color: transparent;
-				-moz-appearance: textfield;
+				-moz-appearance: textfield;  
 			}
-			.wc-block-components-quantity-selector__input::-webkit-inner-spin-button,
-			.wc-block-components-quantity-selector__input::-webkit-outer-spin-button {
+			:root .wc-block-components-quantity-selector__input::-webkit-inner-spin-button,
+			:root .wc-block-components-quantity-selector__input::-webkit-outer-spin-button {
 				margin: 0;
 				-webkit-appearance: none;
 						appearance: none;
 			}
-			.wc-block-components-quantity-selector__input:focus,
-			.wc-block-components-quantity-selector__input:active {
+			:root .wc-block-components-quantity-selector__input:focus,
+			:root .wc-block-components-quantity-selector__input:active {
 				border-color: var(--wp--preset--color--primary);
 				box-shadow: none;
 			}
-			.wc-block-components-quantity-selector__button {
+			:root .wc-block-components-quantity-selector__button {
 				transition: ease background-color 300ms;
 				cursor: pointer;
 			}
-			.wc-block-components-quantity-selector__button:hover,
-			.wc-block-components-quantity-selector__button:focus {
+			:root .wc-block-components-quantity-selector__button:hover,
+			:root .wc-block-components-quantity-selector__button:focus {
 				background-color: var(--wp--preset--color--accent);
 			}
-			.wc-block-components-quantity-selector__button--minus {
-				order: -1;
+			:root .wc-block-components-quantity-selector__button--minus {
+				order: -1!important;
+			}     
+			:root .wc-block-components-quantity-selector__button--plus {
+				order: -99;
 			}     
         ';
 	}

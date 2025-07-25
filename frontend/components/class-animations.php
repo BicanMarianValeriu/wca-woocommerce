@@ -61,6 +61,24 @@ class Animations extends Base {
 					transform: translate3d(-100%, 0, 0);
 				}
 			}
+			@keyframes slideOut {
+				from {
+					transform: translate3d(0,0,0);
+				}
+				to {
+					transform: translate3d(0,-100%,0);
+				}
+			}
+			@keyframes slideIn {
+				from {
+					opacity: 0;
+					transform: translate3d(0,90%,0);
+				}
+				to {
+					opacity: 1;
+					transform: translate3d(0,0,0);
+				}
+			}
         ';
 	}
 }

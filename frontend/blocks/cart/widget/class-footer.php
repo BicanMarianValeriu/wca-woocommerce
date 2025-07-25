@@ -46,7 +46,7 @@ class Footer extends Base {
 				margin-bottom: 1em;
 			}
 			.wc-block-mini-cart__footer-subtotal .wc-block-components-totals-item__description,
-			.wc-block-mini-cart__footer-cart.wc-block-components-button.wp-element-button span {
+			.wc-block-mini-cart__footer-cart.wc-block-components-button.wp-element-button .wc-block-components-button__text {
 				display: none;
 			}
 			.wc-block-mini-cart__footer-actions, 

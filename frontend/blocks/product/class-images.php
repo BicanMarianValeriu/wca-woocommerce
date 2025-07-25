@@ -24,7 +24,7 @@ use function WeCodeArt\Functions\get_prop;
 /**
  * Gutenberg Product Gallery block.
  */
-class Gallery extends Base {
+class Images extends Base {
 
 	use Singleton;
 
@@ -129,6 +129,8 @@ class Gallery extends Base {
 			.woocommerce-product-gallery__image:only-child img,
 			.woocommerce-product-gallery .flex-viewport img {
 				width: 100%;
+			    aspect-ratio: 1;
+    			object-fit: cover;
 			}
 			.woocommerce-product-gallery__image--placeholder a,
 			.woocommerce-product-gallery__image:only-child a,
@@ -153,6 +155,9 @@ class Gallery extends Base {
 				margin: 0;
 			}
 			.woocommerce-product-gallery ol li img {
+				display: block;
+				aspect-ratio: 1/1;
+				object-fit: cover;
 				width: 100%;
 				opacity: 0.5;
 				padding: 3px;

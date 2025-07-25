@@ -113,8 +113,11 @@ class Frontend {
 		wp_deregister_style( 'wc-blocks-style' );
 		wp_deregister_style( 'wc-blocks-packages-style' );
 		wp_deregister_style( 'wc-blocks-editor-style' );
-		wp_deregister_style( 'wc-blocks-style-all-products' ); 			// Not needed
-		wp_deregister_style( 'wc-blocks-style-product-rating-stars' ); 	// Not needed
+		wp_deregister_style( 'wc-blocks-style-all-products' ); 				// Not needed
+		wp_deregister_style( 'wc-blocks-style-product-rating-stars' ); 		// Not needed
+		wp_deregister_style( 'woocommerce-add-to-cart-form-style' ); 		// Not needed
+		wp_deregister_style( 'woocommerce-add-to-cart-with-options-style' );// Not needed
+		wp_deregister_style( 'woocommerce-product-button-style' ); 			// Not needed 
 
 		// Legacy styles
 		if( get_prop( $options, 'remove_style' ) ) {

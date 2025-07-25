@@ -48,7 +48,12 @@ class Notices extends Base {
 			}
 			.wc-block-components-notice-banner .wp-element-button {
 				float: right;
-				padding: 5px 10px;
+				padding: 5px;
+			}
+			.wc-block-components-notice-banner .wp-element-button svg {
+				display: block;
+				width: 1rem;
+				height: 1rem;
 			}
 			.wc-block-components-notice-banner > svg {
 				background-color: currentColor;
