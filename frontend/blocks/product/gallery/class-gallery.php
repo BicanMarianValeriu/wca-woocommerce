@@ -121,6 +121,10 @@ class Gallery extends Base {
 				cursor: zoom-in;
 			}
 
+			.wc-block-product-gallery-dialog {
+				display: none;
+			}
+
 			/* ---- Inner Blocks Overlay ---- */
 			.wc-block-product-gallery-large-image__inner-blocks {
 				position: absolute;

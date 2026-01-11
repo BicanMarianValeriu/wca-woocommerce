@@ -36,14 +36,24 @@ class Buttons extends Base {
 	protected $block_name = 'product-gallery-large-image-next-previous';
 
 	/**
+	 * Block args.
+	 *
+	 * @param	array $current	Existing register args
+	 *
+	 * @return 	array
+	 */
+	public function block_type_args( array $current ): array {
+		return [];
+	}
+
+	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.
 	 */
 	public function styles(): string {
-		return '
-			/* ---- Product Gallery Buttons ---- */
-			.wc-block-product-gallery-large-image-next-previous {
+		return ' 
+			.wc-block-next-previous-buttons {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
@@ -51,7 +61,7 @@ class Buttons extends Base {
 				height: 100%;
 				pointer-events: none;
 			}
-			.wc-block-product-gallery-large-image-next-previous__button {
+			.wc-block-next-previous-buttons__button {
 				background: #fff;
 				border: none;
 				cursor: pointer;
@@ -63,10 +73,15 @@ class Buttons extends Base {
 				pointer-events: all;
 				z-index: 3;
 			}
-			.wc-block-product-gallery-large-image-next-previous__button[aria-disabled="true"] {
+			.wc-block-next-previous-buttons__icon {
+				display: block;
+				margin: auto;
+				padding: 0;
+			}
+			.wc-block-next-previous-buttons__button[aria-disabled="true"] {
 				cursor: not-allowed;
 			}
-			.wc-block-product-gallery-large-image-next-previous__button[aria-disabled="true"] .wc-block-product-gallery-large-image-next-previous__icon {
+			.wc-block-next-previous-buttons__button[aria-disabled="true"] .wc-block-next-previous-buttons__icon {
 				opacity: 0.3;
 			}
 		';

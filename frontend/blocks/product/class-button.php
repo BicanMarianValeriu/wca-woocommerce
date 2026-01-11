@@ -33,47 +33,6 @@ class Button extends Base {
 	protected $block_name = 'product-button';
 
 	/**
-	 * Block styles.
-	 *
-	 * @return 	string Block CSS.
-	 */
-	public function enqueue_styles() {
-		parent::enqueue_styles();
-		
-		// Scripts
-		// wecodeart( 'assets' )->add_script( 'wc-blocks-add-to-cart-form', [
-		// 	'load'		=> function( $blocks ) {
-		// 		if( in_array( 'woocommerce/add-to-cart-form', $blocks, true ) ) {
-		// 			return true;
-		// 		}
-		// 	},
-		// 	'inline'	=> <<<JS
-		// 		(function() {
-		// 			const { Events, Selector } = wecodeart;
-					
-		// 			const handleButtonClick = (input, action) => {
-		// 				const value = parseInt(input.value, 10) || 0;
-		// 				const min = parseInt(input.getAttribute('min'), 10) || 0;
-		// 				const max = parseInt(input.getAttribute('max'), 10) || 99999;
-						
-		// 				input.value = (action === '-' && value > min) ? value - 1 : (action === '+' && value < max) ? value + 1 : value;
-		// 				Events.trigger(input, 'change');
-		// 			};
-					
-		// 			const allFields = Selector.find('.wc-block-components-quantity-selector:not([hasQtyInit])');
-					
-		// 			allFields.forEach((item) => {
-		// 				item.hasQtyInit = true;
-		// 				const input = Selector.findOne('.wc-block-components-quantity-selector__input', item);
-		// 				const buttons = Selector.find('.wc-block-components-quantity-selector__button', item);
-		// 				buttons.forEach((el) => Events.on(el, 'click', () => handleButtonClick(input, el.value)));
-		// 			});
-		// 		})();
-		// 	JS,
-		// ] );
-    }
-
-	/**
 	 * Block styles
 	 *
 	 * @return 	string 	The block styles.
