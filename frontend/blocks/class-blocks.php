@@ -43,6 +43,8 @@ class Blocks {
 		$container->register( 'woocommerce/catalog-sorting',		Blocks\Sorting::class );
 		$container->register( 'woocommerce/all-reviews',			Blocks\Reviews::class );
 		$container->register( 'woocommerce/breadcrumbs',			Blocks\Breadcrumbs::class );
+		// Accordion
+		$container->register( 'woocommerce/accordion-group',		Blocks\Accordion\Group::class );
 		// Filters
 		$container->register( 'woocommerce/filter-wrapper', 		Blocks\Filters::class );
 		$container->register( 'woocommerce/active-filters',			Blocks\Filters\Active::class );
@@ -97,6 +99,7 @@ class Blocks {
 		$container->register( 'woocommerce/order-confirmation-totals',					Blocks\Order\Confirmation\Totals::class );
 		$container->register( 'woocommerce/order-confirmation-summary',					Blocks\Order\Confirmation\Summary::class );
 		$container->register( 'woocommerce/order-confirmation-downloads',				Blocks\Order\Confirmation\Downloads::class );
+		$container->register( 'woocommerce/order-confirmation-create-account',			Blocks\Order\Confirmation\Account::class );
 		$container->register( 'woocommerce/order-confirmation-billing-address',			Blocks\Order\Confirmation\Address\Billing::class );
 		$container->register( 'woocommerce/order-confirmation-shipping-address',		Blocks\Order\Confirmation\Address\Shipping::class );
 		$container->register( 'woocommerce/order-confirmation-additional-information',	Blocks\Order\Confirmation\Information::class );
@@ -129,6 +132,8 @@ class Blocks {
 				'woocommerce/all-reviews',
 				'woocommerce/breadcrumbs',
 				'woocommerce/categories',
+				// Accordion
+				'woocommerce/accordion-group',
 				// Filters
 				'woocommerce/filter-wrapper',
 				'woocommerce/active-filters',

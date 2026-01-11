@@ -23,112 +23,81 @@ class Templates {
 
 	use Singleton;
 
-	const ALL_TEMPLATES = [
-		'page-cart',
-		'page-checkout',
-		'order-confirmation',
-		'single-product',
-		'archive-product',
-		'product-search-results',
-		'taxonomy-product_attribute',
-		'taxonomy-product_brand',
-		'taxonomy-product_cat',
-		'taxonomy-product_tag',
-	];
+	/**
+     * Template slugs we want to override
+     */
+    const TEMPLATES = [
+        'page-cart' => [
+            'title'       => 'Cart',
+            'description' => 'Displays the shopping cart.',
+        ],
+        'page-checkout' => [
+            'title'       => 'Checkout',
+            'description' => 'Displays the checkout form.',
+        ],
+        'order-confirmation' => [
+            'title'       => 'Order Confirmation',
+            'description' => 'Displays order confirmation after purchase.',
+        ],
+        'single-product' => [
+            'title'       => 'Single Product',
+            'description' => 'Displays a single product.',
+        ],
+        'archive-product' => [
+            'title'       => 'Product Catalog',
+            'description' => 'Displays your products.',
+        ],
+        'product-search-results' => [
+            'title'       => 'Product Search Results',
+            'description' => 'Displays search results for your store.',
+        ],
+        'taxonomy-product_cat' => [
+            'title'       => 'Product Category',
+            'description' => 'Displays products by category.',
+        ],
+        'taxonomy-product_tag' => [
+            'title'       => 'Product Tag',
+            'description' => 'Displays products by tag.',
+        ],
+    ];
 
 	/**
-	 * Add the Block template in the template query results needed by FSE
-	 * Triggered by get_block_templates action
-	 *
-	 * @param 	array  	$query_result The list of templates to render in the query.
-	 * @param 	array  	$query The current query parameters.
-	 * @param 	string 	$template_type The post_type for the template. Normally wp_template or wp_template_part.
-	 *
-	 * @return 	WP_Block_Template[] Array of the matched Block Templates to render.
-	 */
-	public function get_block_templates( $query_result, $query, $template_type ) {
-		// We don't want to run this if we are looking for template-parts. Like the header.
-		if ( 'wp_template' !== $template_type ) {
-			return $query_result;
-		}
+     * Register our custom templates, replacing WooCommerce's
+     */
+    public function register_templates() {
+        // Check if function exists (WordPress 6.7+)
+        if ( ! function_exists( 'register_block_template' ) ) {
+            return;
+        }
 
-		$post_id = isset( $_REQUEST['postId'] ) ? wc_clean( wp_unslash( $_REQUEST['postId'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$slugs   = $query['slug__in'] ?? [];
+        $registry = \WP_Block_Templates_Registry::get_instance();
 
-		// Filter the slugs to only include those in ALL_TEMPLATES
-		$matching_templates = array_intersect( self::ALL_TEMPLATES, $slugs );
+        foreach ( self::TEMPLATES as $slug => $data ) {
+            $template_id   = 'woocommerce//' . $slug;
+            $template_path = $this->get_template_path( $slug );
 
-		// Loop through all matching templates
-		foreach ( $matching_templates as $template_slug ) {
-			$query_result[] = $this->get_template( $template_type, $template_slug );
-		}
-		
-		// Handle fallback case if no slugs are matched but template is needed
-		if ( empty( $matching_templates ) ) {
-			foreach ( self::ALL_TEMPLATES as $fallback_template ) {
-				if ( ( ! $post_id && ! count( $slugs ) ) || ! count( $slugs ) && $this->is_woo_template( $post_id, $fallback_template ) ) {
-					$query_result[] = $this->get_template( $template_type, $fallback_template ); 
-				}
-			}
-		}
-		
-		return $query_result;
-	}
+            // Skip if our template file doesn't exist
+            if ( ! file_exists( $template_path ) ) {
+                continue;
+            }
 
-	/**
-	 * Get the block template if requested.
-	 * Triggered by get_block_file_template action
-	 *
-	 * @param 	WP_Block_Template|null $template The current Block Template loaded, if any.
-	 * @param 	string                 $id The template id normally in the format theme-slug//template-slug.
-	 * @param 	string                 $template_type The post_type for the template. Normally wp_template or wp_template_part.
-	 *
-	 * @return 	WP_Block_Template|null The taxonomy-product_brand template.
-	 */
-	public function get_block_template( $template, $id, $template_type ) {
-		$template_name_parts = explode( '//', $id );
-		
-		if ( count( $template_name_parts ) < 2 ) {
-			return $template;
-		}
+            // Unregister WooCommerce's template if it exists
+            if ( $registry->is_registered( $template_id ) ) {
+                unregister_block_template( $template_id );
+            }
 
-		list( $template_id, $template_slug ) = $template_name_parts;
-
-		// If we are not dealing with a WooCommerce template let's return early and let it continue through the process.
-		if ( ! $this->is_woo_template( $id, $template_slug ) ) {
-			return $template;
-		}
-
-		// If we don't have a template let Gutenberg do its thing.
-		if ( ! in_array( $template_slug, self::ALL_TEMPLATES, true ) ) {
-			return $template;
-		}
-		
-		$template_built = $this->get_template( $template_type, $template_slug );
-		
-		if ( null !== $template_built ) {
-			return $template_built;
-		}
-
-		// Hand back over to Gutenberg if we can't find a template.
-		return $template;
-	}
-
-	/**
-	 * Fixes a bug regarding taxonomies and FSE.
-	 *
-	 * @param 	bool   	$has_template  True if the template is available.
-	 * @param 	string 	$template_name The name of the template.
-	 *
-	 * @return 	bool 	True if the system is checking archive-product
-	 */
-	public function has_block_template( $has_template, $template_name ) {
-		if ( in_array( $template_name, self::ALL_TEMPLATES, true ) ) {
-			$has_template = true;
-		}
-
-		return $has_template;
-	}
+            // Register our template with the SAME woocommerce// prefix
+            // This ensures WooCommerce's styles and scripts still apply
+            register_block_template(
+                $template_id,
+                [
+                    'title'       => __( $data['title'], 'wca-woocommerce' ),
+                    'description' => __( $data['description'], 'wca-woocommerce' ),
+                    'content'     => file_get_contents( $template_path ),
+                ]
+            );
+        }
+    } 
 
 	/**
      * WooCommerce Locate Template
@@ -217,17 +186,6 @@ class Templates {
 		$result = BlockTemplateUtils::build_template_result_from_file( $template_file, $template_type );
 
 		return $result;
-	}
-
-	/**
-	 * Function to check if a template name is woocommerce
-	 *
-	 * @param  	string 	$id The string to check if contains the template name.
-	 *
-	 * @return 	bool 	True if the template is woocommerce
-	 */
-	private function is_woo_template( $id, $template ): bool {
-		return strpos( $id, 'woocommerce//' . $template ) !== false;
 	}
 
 	/**

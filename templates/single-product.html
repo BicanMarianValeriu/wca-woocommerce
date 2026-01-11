@@ -6,7 +6,22 @@
     <div class="wp-block-columns are-vertically-aligned-top flex-column flex-lg-row">
         <!-- wp:column {"verticalAlignment":"top","className":"align-self-stretch col-12 col-lg-6 col-xl-5"} -->
         <div class="wp-block-column is-vertically-aligned-top align-self-stretch col-12 col-lg-6 col-xl-5">
-            <!-- wp:woocommerce/product-image-gallery {"className":"position-sticky"} /-->
+            <!-- wp:woocommerce/product-gallery {"fullScreenOnClick":false,"className":"position-sticky"} -->
+            <div class="wp-block-woocommerce-product-gallery wc-block-product-gallery position-sticky">
+                <!-- wp:woocommerce/product-gallery-large-image -->
+                <div class="wp-block-woocommerce-product-gallery-large-image wc-block-product-gallery-large-image__inner-blocks">
+                    <!-- wp:woocommerce/product-sale-badge {"align":"right"} /-->
+                    <!-- wp:woocommerce/product-image {"showProductLink":false,"showSaleBadge":false} -->
+                    <div class="is-loading"></div>
+                    <!-- /wp:woocommerce/product-image -->
+                    <!-- wp:woocommerce/product-gallery-large-image-next-previous -->
+                    <div class="wp-block-woocommerce-product-gallery-large-image-next-previous"></div>
+                    <!-- /wp:woocommerce/product-gallery-large-image-next-previous -->
+                </div>
+                <!-- /wp:woocommerce/product-gallery-large-image -->
+                <!-- wp:woocommerce/product-gallery-thumbnails /-->
+            </div>
+            <!-- /wp:woocommerce/product-gallery -->
         </div>
         <!-- /wp:column -->
         <!-- wp:column {"verticalAlignment":"top","className":"col-12 col-lg"} -->
@@ -16,7 +31,7 @@
             <!-- wp:woocommerce/product-price {"isDescendentOfSingleProductTemplate":true} /-->
             <!-- wp:woocommerce/product-rating {"isDescendentOfSingleProductTemplate":true} /-->
             <!-- wp:woocommerce/product-summary {"isDescendentOfSingleProductTemplate":true,"showLink":true,"summaryLength":10,"linkText":"See more details"} /-->
-            <!-- wp:woocommerce/add-to-cart-form /-->
+            <!-- wp:woocommerce/add-to-cart-form {"quantitySelectorStyle":"stepper"} /-->
             <!-- wp:woocommerce/product-meta -->
             <div class="wp-block-woocommerce-product-meta">
                 <!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","flexWrap":"nowrap","orientation":"vertical"}} -->
@@ -33,7 +48,9 @@
         <!-- /wp:column -->
     </div>
     <!-- /wp:columns -->
-    <!-- wp:woocommerce/product-details /-->
+    <!-- wp:woocommerce/product-details {"align":""} -->
+    <div class="wp-block-woocommerce-product-details"></div>
+    <!-- /wp:woocommerce/product-details -->
     <!-- wp:woocommerce/product-collection {"queryId":7,"query":{"perPage":4,"pages":1,"offset":0,"postType":"product","order":"asc","orderBy":"title","search":"","exclude":[],"inherit":false,"taxQuery":{},"isProductCollectionBlock":true,"featured":false,"woocommerceOnSale":false,"woocommerceStockStatus":["instock"],"woocommerceAttributes":[],"woocommerceHandPickedProducts":[],"filterable":false,"relatedBy":{"categories":true,"tags":true}},"tagName":"div","displayLayout":{"type":"flex","columns":4,"shrinkColumns":true},"dimensions":{"widthType":"fill"},"collection":"woocommerce/product-collection/upsells","hideControls":["inherit","filterable"],"queryContextIncludes":["collection"],"__privatePreviewState":{"isPreview":true,"previewMessage":"Produsele existente vor varia în funcție de pagina vizualizată."},"style":{"spacing":{"blockGap":"var:preset|spacing|md"}}} -->
     <div class="wp-block-woocommerce-product-collection">
         <!-- wp:heading {"textAlign":"left"} -->

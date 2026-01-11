@@ -108,12 +108,6 @@ const Options = (props) => {
                                 onChange={value => setFormData({ ...formData, product_price_extra: value })}
                             />
                             <ToggleControl
-                                label={__('Enable product rating extras?', 'wca-woocommerce')}
-                                help={__('Display enhanced and visually captivating rating information.', 'wca-woocommerce')}
-                                checked={formData?.product_rating_extra}
-                                onChange={value => setFormData({ ...formData, product_rating_extra: value })}
-                            />
-                            <ToggleControl
                                 label={__('Enable customer account extras?', 'wca-woocommerce')}
                                 help={__('Create a dropdown with WooCommerce\'s account page endpoints.', 'wca-woocommerce')}
                                 checked={formData?.customer_account_extra}
