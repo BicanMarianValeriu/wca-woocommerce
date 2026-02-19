@@ -109,7 +109,7 @@ class Root extends Base {
 				border: 0 !important;
 			}
 		
-			.added_to_cart {
+			a.added_to_cart {
 				display: none
 			}
         ';

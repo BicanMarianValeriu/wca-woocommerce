@@ -119,7 +119,7 @@ class Link extends Base {
 		if( $dropdown && is_user_logged_in() && ! is_account_page() ) {		
 			$processor->add_class( 'dropdown-toggle' );
 			$processor->set_attribute( 'data-wp-interactive', 'wecodeart/dropdown' );
-			$processor->set_attribute( 'data-wp-context', '[]' );
+			$processor->set_attribute( 'data-wp-context', '{}' );
 			$processor->set_attribute( 'data-wp-on--click', 'actions.toggle' );
 			$processor->set_attribute( 'data-wp-init--validate', 'callbacks.validateConfig' );
 			$processor->set_attribute( 'aria-expanded', 'false' );
